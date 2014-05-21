@@ -1,1 +1,3 @@
-/AgileJava
+.settings
+.project
+*.class
