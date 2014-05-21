@@ -8,7 +8,7 @@ import java.util.*;
  * @author Administrator
  */
 public class CourseSession {
-	static int count;
+	private static int count;
 	private String department;
 	private String number;
 	private ArrayList<Student> students = new ArrayList<Student>();
@@ -23,7 +23,7 @@ public class CourseSession {
 		this.department = department;
 		this.number = number;
 		this.startDate = startDate;
-		CourseSession.count = CourseSession.count + 1;
+		CourseSession.incrementCount();;
 	}
 
 	String getDepartment() {
@@ -67,5 +67,14 @@ public class CourseSession {
 				sessionLength * daysInWeek - daysFromFridayToMonday;
 		calendar.add(Calendar.DAY_OF_YEAR, numberOfDays);
 		return calendar.getTime();
+	}
+	static int getCount(){
+		return count;
+	}
+	static void resetCount(){
+		count = 0;
+	}
+	static void incrementCount(){
+		count++;
 	}
 }
