@@ -1,3 +1,4 @@
-.settings
-.project
+AgileJava/.settings/
+AgileJava/.classpath
+AgileJava/.project
 *.class
