@@ -1,7 +1,7 @@
 package sis.studentinfo;
 
 public class Student {
-	private static int CREDITS_REQUIRED_FOR_FULL_TIME = 12;
+	static int CREDITS_REQUIRED_FOR_FULL_TIME = 12;
 	private String name;
 	private int credits;
 
