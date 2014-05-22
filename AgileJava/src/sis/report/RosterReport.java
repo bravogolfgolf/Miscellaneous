@@ -2,7 +2,7 @@ package sis.report;
 
 import sis.studentinfo.*;
 
-class RosterReporter {
+class RosterReport {
    static final String NEWLINE =
       System.getProperty("line.separator");
    static final String ROSTER_REPORT_HEADER =
@@ -13,7 +13,7 @@ class RosterReporter {
 
    private CourseSession session;
 
-   RosterReporter(CourseSession session) {
+   RosterReport(CourseSession session) {
       this.session = session;
    }
 
