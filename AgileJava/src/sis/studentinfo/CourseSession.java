@@ -81,6 +81,9 @@ public class CourseSession implements Comparable<CourseSession> {
 		count++;
 	}
 	public int compareTo(CourseSession that) {
+		if (this.getDepartment().compareTo(that.getDepartment()) == 0){
+			return this.getNumber().compareTo(that.getNumber());
+		}
 		return this.getDepartment().compareTo(that.getDepartment());
 	}
 }

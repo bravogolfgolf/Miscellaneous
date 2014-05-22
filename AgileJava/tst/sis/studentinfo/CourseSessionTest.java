@@ -51,13 +51,20 @@ public class CourseSessionTest extends TestCase {
 	}
 	public void testCompareTo(){
 		Date date = new Date();
-		CourseSession sessionA = CourseSession.create("ABC", "101", date);
-		CourseSession sessionB = CourseSession.create("BCD", "101", date);
-		assertTrue(sessionA.compareTo(sessionB) < 0);
-		assertTrue(sessionB.compareTo(sessionA) > 0);
+		CourseSession sessionA1 = CourseSession.create("ABC", "101", date);
+		CourseSession sessionB1 = CourseSession.create("BCD", "101", date);
+		assertTrue(sessionA1.compareTo(sessionB1) < 0);
+		assertTrue(sessionB1.compareTo(sessionA1) > 0);
 
-		CourseSession sessionC = CourseSession.create("ABC", "101", date);
-		assertEquals(0,sessionA.compareTo(sessionC));
+		CourseSession sessionA0 = CourseSession.create("ABC", "101", date);
+		assertEquals(0,sessionA1.compareTo(sessionA0));
+		
+		CourseSession sessionA2 = CourseSession.create("ABC", "201", date);
+		assertTrue(sessionA1.compareTo(sessionA2) < 0);
+		assertTrue(sessionA2.compareTo(sessionA1) > 0);
+		
+		
+		
 	}
 	CourseSession createCourseSession(){
 		CourseSession session = CourseSession.create("ENGL", "101", startDate);

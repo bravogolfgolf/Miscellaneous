@@ -13,10 +13,14 @@ public class CourseReportTest extends TestCase{
 		courseReport.add(CourseSession.create("ENGL", "101", date));
 		courseReport.add(CourseSession.create("CZEC", "200", date));
 		courseReport.add(CourseSession.create("ITAL", "410", date));
-
+		courseReport.add(CourseSession.create("CZEC", "220", date));
+		courseReport.add(CourseSession.create("ITAL", "330", date));
+		
 		assertEquals(
 				"CZEC 200" + NEWLINE +
+				"CZEC 220" + NEWLINE +
 				"ENGL 101" + NEWLINE +
+				"ITAL 330" + NEWLINE +
 				"ITAL 410" + NEWLINE, courseReport.getReport());
 	}
 }
