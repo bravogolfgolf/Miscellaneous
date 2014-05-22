@@ -46,6 +46,6 @@ public class CourseSessionTest extends TestCase {
 		assertEquals(2,CourseSession.getCount());
 	}
 	CourseSession createCourseSession(){
-		return new CourseSession("ENGL", "101", startDate);
+		return CourseSession.create("ENGL", "101", startDate);
 	}
 }
