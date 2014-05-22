@@ -3,6 +3,7 @@ package sis.report;
 import junit.framework.TestCase;
 import sis.report.RosterReport;
 import sis.studentinfo.*;
+import static sis.report.ReportConstant.NEWLINE;
 
 public class RosterReportTest extends TestCase {
 	public void testRosterReport() {
@@ -15,11 +16,10 @@ public class RosterReportTest extends TestCase {
 		String rosterReport = new RosterReport(session).getReport();
 		assertEquals(
 				RosterReport.ROSTER_REPORT_HEADER +
-				"A" + RosterReport.NEWLINE +
-				"B" + RosterReport.NEWLINE +
+				"A" + NEWLINE +
+				"B" + NEWLINE +
 				RosterReport.ROSTER_REPORT_FOOTER + "2" +
-				RosterReport.NEWLINE, rosterReport);
-		System.out.println(rosterReport);
+				NEWLINE, rosterReport);
 	}
 
 }

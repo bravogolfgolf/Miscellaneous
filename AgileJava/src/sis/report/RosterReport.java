@@ -1,10 +1,9 @@
 package sis.report;
 
 import sis.studentinfo.*;
+import static sis.report.ReportConstant.NEWLINE;
 
 class RosterReport {
-   static final String NEWLINE =
-      System.getProperty("line.separator");
    static final String ROSTER_REPORT_HEADER =
       "Student" + NEWLINE +
       "-------" + NEWLINE;
