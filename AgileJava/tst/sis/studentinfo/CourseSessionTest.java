@@ -4,6 +4,7 @@ import junit.framework.TestCase;
 import java.util.*;
 
 public class CourseSessionTest extends TestCase {
+	private static int CREDITS = 3;
 	private CourseSession session;
 	private Date startDate;
 
@@ -24,12 +25,15 @@ public class CourseSessionTest extends TestCase {
 		session.enroll(student1);
 		assertEquals(1, session.getNumberOfStudents());
 		assertEquals(student1, session.get(0));
+		assertEquals(CREDITS,student1.getCredits());
 
 		Student student2 = new Student("Coralee DeVaughn");
 		session.enroll(student2);
 		assertEquals(2, session.getNumberOfStudents());
 		assertEquals(student1, session.get(0));
 		assertEquals(student2, session.get(1));
+		assertEquals(CREDITS,student1.getCredits());
+		assertEquals(CREDITS,student2.getCredits());
 	}
 
 	public void testCourseDates() {
@@ -46,6 +50,8 @@ public class CourseSessionTest extends TestCase {
 		assertEquals(2,CourseSession.getCount());
 	}
 	CourseSession createCourseSession(){
-		return CourseSession.create("ENGL", "101", startDate);
+		CourseSession session = CourseSession.create("ENGL", "101", startDate);
+		session.setNumberOfCredits(CourseSessionTest.CREDITS);
+		return session;
 	}
 }

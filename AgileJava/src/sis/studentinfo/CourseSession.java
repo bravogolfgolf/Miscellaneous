@@ -13,6 +13,7 @@ public class CourseSession {
 	private String number;
 	private ArrayList<Student> students = new ArrayList<Student>();
 	private Date startDate;
+	private int numberOfCredits;
 
 	private CourseSession(String department, String number, Date startDate){
 		this.department = department;
@@ -38,6 +39,7 @@ public class CourseSession {
 
 	public void enroll(Student student) {
 		students.add(student);
+		student.addCredits(numberOfCredits);
 	}
 
 	Student get(int index) {
@@ -65,6 +67,9 @@ public class CourseSession {
 				sessionLength * daysInWeek - daysFromFridayToMonday;
 		calendar.add(Calendar.DAY_OF_YEAR, numberOfDays);
 		return calendar.getTime();
+	}
+	void setNumberOfCredits(int numberOfCredits){
+		this.numberOfCredits = numberOfCredits;
 	}
 	static int getCount(){
 		return count;
