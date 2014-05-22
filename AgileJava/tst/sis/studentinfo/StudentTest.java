@@ -55,12 +55,13 @@ public class StudentTest extends TestCase {
 	}
 	public void testHonorStudent(){
 		Student honorStudent = createStudent("HonorStudent");
-		assertFalse(honorStudent.getHonor());
-		honorStudent.setHonor();
-		assertTrue(honorStudent.getHonor());
+		assertEquals(RegularGradeStrategy.class, honorStudent.getGradeStrategy().getClass());
+		HonorGradeStrategy honorGradeStrategy = new HonorGradeStrategy();
+		honorStudent.setGradeStrategy(honorGradeStrategy);
+		assertTrue(honorStudent.getGradeStrategy().equals(honorGradeStrategy));
 	}
 	public void testCalculateHonorGpa(){
-		Student honorStudent  = createHonorStudent("TestHonorGrade");
+		Student honorStudent = createHonorStudent("TestHonorGrade");
 		assertEquals(0.0,honorStudent.getGradePointAverage(),GRADE_TOLERANCE);
 		honorStudent.addGrade(Student.Grade.A);
 		assertEquals(5.0,honorStudent.getGradePointAverage(),GRADE_TOLERANCE);
@@ -76,7 +77,7 @@ public class StudentTest extends TestCase {
 
 	Student createHonorStudent(String name){
 		Student honorStudent = new Student(name);
-		honorStudent.setHonor();
+		honorStudent.setGradeStrategy(new HonorGradeStrategy());
 		return honorStudent;
 	}
 	Student createStudent(String name){
