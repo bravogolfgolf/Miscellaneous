@@ -10,7 +10,7 @@ public class Student {
 	private int credits = 0;
 	private String state = "";
 	private List<Student.Grade> grades = new ArrayList<Student.Grade>();
-	GradeStrategy gradeStrategy = new RegularGradeStrategy();
+	GradeStrategy gradeStrategy = new BaseGradeStrategy();
 
 	public Student(String name) {
 		this.name = name;

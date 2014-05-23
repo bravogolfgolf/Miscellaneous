@@ -55,7 +55,7 @@ public class StudentTest extends TestCase {
 	}
 	public void testHonorStudent(){
 		Student honorStudent = createStudent("HonorStudent");
-		assertEquals(RegularGradeStrategy.class, honorStudent.getGradeStrategy().getClass());
+		assertEquals(BaseGradeStrategy.class, honorStudent.getGradeStrategy().getClass());
 		HonorGradeStrategy honorGradeStrategy = new HonorGradeStrategy();
 		honorStudent.setGradeStrategy(honorGradeStrategy);
 		assertTrue(honorStudent.getGradeStrategy().equals(honorGradeStrategy));
