@@ -1,7 +1,6 @@
 package sis.studentinfo;
 
 import java.util.*;
-import sis.report.CourseReport;
 
 /**
  * This class provides a representation of a single-semester
