@@ -1,7 +1,6 @@
 package sis.summer;
 
 import java.util.*;
-
 import sis.studentinfo.*;
 
 public class SummerCourseSession extends CourseSession{
