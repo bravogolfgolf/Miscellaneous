@@ -29,6 +29,7 @@ abstract public class Session implements Comparable<Session> {
 	void setNumberOfCredits(int numberOfCredits){
 		this.numberOfCredits = numberOfCredits;
 	}
+	
 	public String getDepartment() {
 		return department;
 	}
@@ -44,7 +45,6 @@ abstract public class Session implements Comparable<Session> {
 	public void enroll(Student student) {
 		student.addCredits(numberOfCredits);
 		students.add(student);
-
 	}
 
 	Student get(int index) {
@@ -58,6 +58,7 @@ abstract public class Session implements Comparable<Session> {
 	public List<Student> getAllStudents() {
 		return students;
 	}
+	
 	abstract protected int getSessionLength();
 
 	public Date getEndDate() {
@@ -69,5 +70,4 @@ abstract public class Session implements Comparable<Session> {
 		calendar.add(Calendar.DAY_OF_YEAR, numberOfDays);
 		return calendar.getTime();
 	}
-
 }

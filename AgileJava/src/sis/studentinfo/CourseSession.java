@@ -22,6 +22,7 @@ public class CourseSession extends Session {
 	static void incrementCount(){
 		count++;
 	}
+	@Override
 	protected int getSessionLength(){
 		return 16;
 	}
