@@ -1,6 +1,7 @@
 package sis.studentinfo;
 
 import java.util.*;
+import java.lang.String.*;
 
 public class Student {
 	public enum Grade {
@@ -22,32 +23,68 @@ public class Student {
 	static String IN_STATE = "CO";
 	static final int CREDITS_REQUIRED_FOR_FULL_TIME = 12;
 	private String name;
+	private String firstName = "";
+	private String middleName = "";
+	private String lastName;
 	private int credits = 0;
 	private String state = "";
 	private List<Student.Grade> grades = new ArrayList<Student.Grade>();
 	GradeStrategy gradeStrategy = new BaseGradeStrategy();
 
-	public Student(String name) {
-		this.name = name;
+	public Student(String fullName) {
+		this.name = fullName;
+		List<String> nameParts = split(fullName);
+		setName(nameParts);
 	}
+
+	private List<String> split(String fullName) {
+		List<String> results = new ArrayList<String>();
+		for(String name : fullName.split(" ")){
+			results.add(name);
+		}
+		return results;
+	}
+
+	private void setName(List<String> nameParts) {
+		if (nameParts.size() == 1){
+			this.lastName = nameParts.get(0);
+		}else
+			if(nameParts.size() == 2){
+				this.firstName = nameParts.get(0);
+				this.lastName = nameParts.get(1);
+			}else
+				if(nameParts.size() == 3){
+					this.firstName = nameParts.get(0);
+					this.middleName = nameParts.get(1);
+					this.lastName = nameParts.get(2);
+				}
+
+	}
+
 	public String getName() {
 		return name;
 	}
+
 	boolean isFullTime(){
 		return getCredits() >= CREDITS_REQUIRED_FOR_FULL_TIME; 
 	}
+
 	void addCredits(int credits){
 		this.credits += credits;
 	}
+
 	int getCredits(){
 		return credits;
 	}
+
 	void setState(String state){
 		this.state = state;
 	}
+
 	boolean isInState(){
 		return state.equals(Student.IN_STATE);
 	}
+
 	double getGradePointAverage() {
 		if (grades.isEmpty()) {
 			return 0.0;
@@ -58,13 +95,28 @@ public class Student {
 		}
 		return numerator / grades.size();
 	}
+
 	void addGrade(Grade grade) {
 		grades.add(grade);
 	}
+
 	void setGradeStrategy(GradeStrategy gradeStrategy) {
 		this.gradeStrategy = gradeStrategy;
 	}
+
 	GradeStrategy getGradeStrategy() {
 		return gradeStrategy;
+	}
+
+	public String getFirstName() {
+		return firstName;
+	}
+
+	public String getMiddleName() {
+		return middleName;
+	}
+
+	public String getLastName() {
+		return lastName;
 	}
 }
