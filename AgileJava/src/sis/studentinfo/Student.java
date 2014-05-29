@@ -1,7 +1,6 @@
 package sis.studentinfo;
 
 import java.util.*;
-import java.lang.String.*;
 
 public class Student {
 	public enum Grade {
