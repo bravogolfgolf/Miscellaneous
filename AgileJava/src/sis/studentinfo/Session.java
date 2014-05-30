@@ -74,8 +74,17 @@ abstract public class Session implements Comparable<Session> {
 		return calendar.getTime();
 	}
 
-	public void setUrl(String url) throws MalformedURLException {
-		this.url = new URL(url);
+	public void setUrl(String url) throws SessionException {
+		try {
+			this.url = new URL(url);
+		}
+		catch (MalformedURLException e) {
+			log(e);
+			throw new SessionException(e);
+		}
+	}
+
+	private void log(MalformedURLException e) {		
 	}
 
 	public URL getUrl() {

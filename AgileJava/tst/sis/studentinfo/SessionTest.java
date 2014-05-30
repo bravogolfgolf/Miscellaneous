@@ -56,7 +56,7 @@ abstract public class SessionTest extends TestCase{
 		assertTrue(sessionA2.compareTo(sessionA1) > 0);
 
 	}
-	public void testSessionUrl() throws MalformedURLException {
+	public void testSessionUrl() throws SessionException {
 		final String url = "http://www.university.edu/ENGL/101";
 		session.setUrl(url);
 		assertEquals("http://www.university.edu/ENGL/101",session.getUrl().toString());
@@ -66,7 +66,10 @@ abstract public class SessionTest extends TestCase{
 		try {
 			session.setUrl(url);
 			fail("Expected MalformedURLException");
-		} catch (MalformedURLException success) {
+		}
+		catch (SessionException expectedException){
+			Throwable cause = expectedException.getCause();
+			assertEquals(MalformedURLException.class, cause.getClass());
 		}
 	}
 }

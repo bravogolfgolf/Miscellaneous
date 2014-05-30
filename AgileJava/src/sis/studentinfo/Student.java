@@ -33,6 +33,11 @@ public class Student {
 	public Student(String fullName) {
 		this.name = fullName;
 		List<String> nameParts = split(fullName);
+		final int maximumNumberOfNameParts = 3;
+		if (nameParts.size() > maximumNumberOfNameParts) {
+			String message = "Student name '" + getName() + "' contains nore than " + maximumNumberOfNameParts + " parts.";
+			throw new StudentNameFormatException(message);
+		}
 		setName(nameParts);
 	}
 

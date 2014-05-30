@@ -94,7 +94,15 @@ public class StudentTest extends TestCase {
 		honorStudent.addGrade(Student.Grade.F);
 		assertEquals(2.8,honorStudent.getGradePointAverage(),GRADE_TOLERANCE);
 	}
-
+	public void testBadlyFormattedName(){
+		try{
+			Student student = new Student("A B C D");
+			fail("Expected StudentNameFormatException");
+		}
+		catch (StudentNameFormatException exception){
+			assertEquals("Student name 'A B C D' contains nore than 3 parts.",exception.getMessage());
+		}
+	}
 	Student createHonorStudent(String name){
 		Student honorStudent = new Student(name);
 		honorStudent.setGradeStrategy(new HonorGradeStrategy());
