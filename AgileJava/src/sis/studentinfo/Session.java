@@ -1,5 +1,7 @@
 package sis.studentinfo;
 
+import java.net.MalformedURLException;
+import java.net.URL;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
@@ -12,6 +14,7 @@ abstract public class Session implements Comparable<Session> {
 	private ArrayList<Student> students = new ArrayList<Student>();
 	private Date startDate;
 	private int numberOfCredits;
+	private URL url;
 
 	protected Session(String department, String number, Date startDate){
 		this.department = department;
@@ -29,7 +32,7 @@ abstract public class Session implements Comparable<Session> {
 	void setNumberOfCredits(int numberOfCredits){
 		this.numberOfCredits = numberOfCredits;
 	}
-	
+
 	public String getDepartment() {
 		return department;
 	}
@@ -58,7 +61,7 @@ abstract public class Session implements Comparable<Session> {
 	public List<Student> getAllStudents() {
 		return students;
 	}
-	
+
 	abstract protected int getSessionLength();
 
 	public Date getEndDate() {
@@ -69,5 +72,13 @@ abstract public class Session implements Comparable<Session> {
 		int numberOfDays = getSessionLength() * daysInWeek - daysFromFridayToMonday;
 		calendar.add(Calendar.DAY_OF_YEAR, numberOfDays);
 		return calendar.getTime();
+	}
+
+	public void setUrl(String url) throws MalformedURLException {
+		this.url = new URL(url);
+	}
+
+	public URL getUrl() {
+		return url;
 	}
 }
