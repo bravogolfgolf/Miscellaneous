@@ -1,5 +1,7 @@
 package sis.studentinfo;
 
+import java.util.logging.*;
+
 import junit.framework.*;
 
 public class StudentTest extends TestCase {
@@ -95,14 +97,21 @@ public class StudentTest extends TestCase {
 		assertEquals(2.8,honorStudent.getGradePointAverage(),GRADE_TOLERANCE);
 	}
 	public void testBadlyFormattedName(){
+		final String studentName = "A B C D";
+		Handler handler = new TestHandler();
+		Student.logger.addHandler(handler);
+		
 		try{
-			Student student = new Student("A B C D");
+			Student student = new Student(studentName);
 			fail("Expected StudentNameFormatException");
 		}
 		catch (StudentNameFormatException exception){
-			assertEquals("Student name 'A B C D' contains nore than 3 parts.",exception.getMessage());
+			String message = String.format(Student.TOO_MANY_NAME_PARTS_MSG, studentName, Student.MAXIMUM_NUMBER_OF_NAME_PARTS);
+			assertEquals(message,exception.getMessage());
+			assertEquals(message,((TestHandler) handler).getMessage());
 		}
 	}
+	
 	Student createHonorStudent(String name){
 		Student honorStudent = new Student(name);
 		honorStudent.setGradeStrategy(new HonorGradeStrategy());

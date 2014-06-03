@@ -84,7 +84,9 @@ abstract public class Session implements Comparable<Session> {
 		}
 	}
 
-	private void log(MalformedURLException e) {		
+	private void log(Exception e) {
+	//	e.printStackTrace();
+		e.getStackTrace();
 	}
 
 	public URL getUrl() {

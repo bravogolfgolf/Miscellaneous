@@ -1,6 +1,7 @@
 package sis.studentinfo;
 
 import java.util.*;
+import java.util.logging.*;
 
 public class Student {
 	public enum Grade {
@@ -19,8 +20,11 @@ public class Student {
 			return points;
 		}
 	}
+	static final Logger logger = Logger.getLogger(Student.class.getName());
 	static String IN_STATE = "CO";
 	static final int CREDITS_REQUIRED_FOR_FULL_TIME = 12;
+	static final int MAXIMUM_NUMBER_OF_NAME_PARTS = 3;
+	static final String TOO_MANY_NAME_PARTS_MSG = "Student name '%s' contains more than %d parts.";
 	private String name;
 	private String firstName = "";
 	private String middleName = "";
@@ -33,9 +37,9 @@ public class Student {
 	public Student(String fullName) {
 		this.name = fullName;
 		List<String> nameParts = split(fullName);
-		final int maximumNumberOfNameParts = 3;
-		if (nameParts.size() > maximumNumberOfNameParts) {
-			String message = "Student name '" + getName() + "' contains nore than " + maximumNumberOfNameParts + " parts.";
+		if (nameParts.size() > MAXIMUM_NUMBER_OF_NAME_PARTS) {
+			String message = String.format(TOO_MANY_NAME_PARTS_MSG, fullName, MAXIMUM_NUMBER_OF_NAME_PARTS);
+			logger.info(message);
 			throw new StudentNameFormatException(message);
 		}
 		setName(nameParts);
