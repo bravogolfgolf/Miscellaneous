@@ -9,36 +9,30 @@ import java.util.GregorianCalendar;
 import java.util.List;
 
 abstract public class Session implements Comparable<Session> {
-	private String department;
-	private String number;
+	private Course course;
 	private ArrayList<Student> students = new ArrayList<Student>();
 	private Date startDate;
 	private int numberOfCredits;
 	private URL url;
 
-	protected Session(String department, String number, Date startDate){
-		this.department = department;
-		this.number = number;
+	protected Session(Course course, Date startDate){
+		this.course = course;
 		this.startDate = startDate;
 	}
 
 	public int compareTo(Session that) {
-		if (this.getDepartment().compareTo(that.getDepartment()) == 0){
-			return this.getNumber().compareTo(that.getNumber());
+		if (this.getCourse().getDepartment().compareTo(that.getCourse().getDepartment()) == 0){
+			return this.getCourse().getNumber().compareTo(that.getCourse().getNumber());
 		}
-		return this.getDepartment().compareTo(that.getDepartment());
+		return this.getCourse().getDepartment().compareTo(that.getCourse().getDepartment());
+	}
+
+	public Course getCourse() {
+		return course;
 	}
 
 	void setNumberOfCredits(int numberOfCredits){
 		this.numberOfCredits = numberOfCredits;
-	}
-
-	public String getDepartment() {
-		return department;
-	}
-
-	public String getNumber() {
-		return number;
 	}
 
 	int getNumberOfStudents() {
@@ -85,7 +79,7 @@ abstract public class Session implements Comparable<Session> {
 	}
 
 	private void log(Exception e) {
-	//	e.printStackTrace();
+		//	e.printStackTrace();
 		e.getStackTrace();
 	}
 

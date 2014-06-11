@@ -8,7 +8,7 @@ import static sis.report.ReportConstant.NEWLINE;
 public class RosterReportTest extends TestCase {
 	public void testRosterReport() {
 		CourseSession session =
-				CourseSession.create("ENGL", "101", DateUtil.createDate(2003, 1, 6));
+				CourseSession.create(new Course("ENGL", "101"), DateUtil.createDate(2003, 1, 6));
 
 		session.enroll(new Student("A"));
 		session.enroll(new Student("B"));

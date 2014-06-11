@@ -12,15 +12,15 @@ abstract public class SessionTest extends TestCase{
 
 	public void setUp() {
 		startDate = DateUtil.createDate(2003, 1, 6);
-		session = createSession("ENGL","101",startDate);
+		session = createSession(new Course("ENGL","101"),startDate);
 		session.setNumberOfCredits(CREDITS);
 	}
 
-	abstract protected Session createSession(String department, String number, Date date);
+	abstract protected Session createSession(Course course, Date date);
 
 	public void testCreate() {
-		assertEquals("ENGL", session.getDepartment());
-		assertEquals("101", session.getNumber());
+		assertEquals("ENGL", session.getCourse().getDepartment());
+		assertEquals("101", session.getCourse().getNumber());
 		assertEquals(0, session.getNumberOfStudents());
 		assertEquals(startDate, session.getStartDate());
 	}
@@ -43,15 +43,15 @@ abstract public class SessionTest extends TestCase{
 
 	public void testCompareble(){
 		Date date = new Date();
-		CourseSession sessionA1 = CourseSession.create("ABC", "101", date);
-		CourseSession sessionB1 = CourseSession.create("BCD", "101", date);
+		CourseSession sessionA1 = CourseSession.create(new Course("ABC", "101"), date);
+		CourseSession sessionB1 = CourseSession.create(new Course("BCD", "101"), date);
 		assertTrue(sessionA1.compareTo(sessionB1) < 0);
 		assertTrue(sessionB1.compareTo(sessionA1) > 0);
 
-		CourseSession sessionA0 = CourseSession.create("ABC", "101", date);
+		CourseSession sessionA0 = CourseSession.create(new Course("ABC", "101"), date);
 		assertEquals(0,sessionA1.compareTo(sessionA0));
 
-		CourseSession sessionA2 = CourseSession.create("ABC", "201", date);
+		CourseSession sessionA2 = CourseSession.create(new Course("ABC", "201"), date);
 		assertTrue(sessionA1.compareTo(sessionA2) < 0);
 		assertTrue(sessionA2.compareTo(sessionA1) > 0);
 

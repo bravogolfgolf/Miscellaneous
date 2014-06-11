@@ -19,9 +19,9 @@ public class CourseReport {
 	}
 	void writeBody(StringBuilder builder){
 		for (CourseSession session: sessions){
-			builder.append(session.getDepartment());
+			builder.append(session.getCourse().getDepartment());
 			builder.append(" ");
-			builder.append(session.getNumber().toString() + 
+			builder.append(session.getCourse().getNumber().toString() + 
 					NEWLINE);
 		}
 	}
