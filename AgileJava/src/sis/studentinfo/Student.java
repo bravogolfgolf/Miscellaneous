@@ -33,6 +33,7 @@ public class Student {
 	private String state = "";
 	private List<Student.Grade> grades = new ArrayList<Student.Grade>();
 	GradeStrategy gradeStrategy = new BaseGradeStrategy();
+	private String id;
 
 	public Student(String fullName) {
 		this.name = fullName;
@@ -126,5 +127,14 @@ public class Student {
 
 	public String getLastName() {
 		return lastName;
+	}
+
+	public void setId(String id) {
+		this.id = id;
+		
+	}
+
+	public String getId() {
+		return id;
 	}
 }
