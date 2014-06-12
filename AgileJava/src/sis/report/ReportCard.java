@@ -14,9 +14,9 @@ class ReportCard {
 	private Map<Student.Grade, String> messages = null;
 
 	String getMessage(Student.Grade grade) {
-		return getMessage().get(grade);
+		return getMessages().get(grade);
 	}
-	private Map<Student.Grade, String> getMessage(){
+	Map<Student.Grade, String> getMessages(){
 		if (messages == null){
 			loadMessages();
 		}
