@@ -16,6 +16,7 @@ public class CourseTest extends TestCase {
 
 		Course courseB = new Course("ENGL","201");
 		assertFalse(courseA.equals(courseB));
+		assertFalse(courseA.equals("ENGL-201"));
 		
 		//reflexivity
 		assertEquals(courseA, courseA);

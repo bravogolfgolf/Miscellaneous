@@ -19,9 +19,8 @@ public class Course {
 	}
 	@Override
 	public boolean equals(Object object){
-		if(object == null){
-			return false;
-		}
+		if(object == null) return false;
+		if(this.getClass() != object.getClass()) return false;
 		Course that = (Course)object;
 		return this.department.equals(that.department) && this.number.equals(that.number);
 	}
