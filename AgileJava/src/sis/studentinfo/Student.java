@@ -3,6 +3,8 @@ package sis.studentinfo;
 import java.util.*;
 import java.util.logging.*;
 
+import sis.studentinfo.Student.Flag;
+
 public class Student {
 	public enum Grade {
 		A(4.0),
@@ -20,6 +22,18 @@ public class Student {
 			return points;
 		}
 	}
+	public enum Flag{
+		ON_CAMPUS(1),
+		TAX_EXEMPT(2),
+		MINOR(4),
+		TROUBLEMAKER(8);
+
+		private int mask;
+
+		Flag(int mask){
+			this.mask = mask;
+		}
+	}
 	static final Logger logger = Logger.getLogger(Student.class.getName());
 	static String IN_STATE = "CO";
 	static final int CREDITS_REQUIRED_FOR_FULL_TIME = 12;
@@ -34,6 +48,7 @@ public class Student {
 	private List<Student.Grade> grades = new ArrayList<Student.Grade>();
 	GradeStrategy gradeStrategy = new BaseGradeStrategy();
 	private String id;
+	private int settings = 0x0;
 
 	public Student(String fullName) {
 		this.name = fullName;
@@ -131,10 +146,33 @@ public class Student {
 
 	public void setId(String id) {
 		this.id = id;
-		
+
 	}
 
 	public String getId() {
 		return id;
 	}
+
+	public void set(Flag...flags) {
+		for(Flag flag:flags)
+			settings = settings | flag.mask;
+	}
+
+	public boolean isOn(Flag flag) {
+		if((settings & flag.mask) == flag.mask)
+			return true;
+		return false;
+	}
+
+	public boolean isOff(Flag flag) {
+		if((settings & flag.mask) != flag.mask)
+			return true;
+		return false;
+	}
+
+	public void unset(Flag...flags) {
+		for(Flag flag:flags) 
+			settings = settings & ~flag.mask;
+	}
+
 }

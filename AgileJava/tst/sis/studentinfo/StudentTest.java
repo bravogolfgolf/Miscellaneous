@@ -100,7 +100,7 @@ public class StudentTest extends TestCase {
 		final String studentName = "A B C D";
 		Handler handler = new TestHandler();
 		Student.logger.addHandler(handler);
-		
+
 		try{
 			Student student = new Student(studentName);
 			fail("Expected StudentNameFormatException");
@@ -110,8 +110,29 @@ public class StudentTest extends TestCase {
 			assertEquals(message,exception.getMessage());
 			assertEquals(message,((TestHandler) handler).getMessage());
 		}
+
+
 	}
-	
+	public void testFlags(){
+		Student student = new Student("Test Flag");
+		student.set(
+				Student.Flag.ON_CAMPUS,
+				Student.Flag.TAX_EXEMPT,
+				Student.Flag.MINOR);
+		assertTrue(student.isOn(Student.Flag.ON_CAMPUS));
+		assertTrue(student.isOn(Student.Flag.TAX_EXEMPT));
+		assertTrue(student.isOn(Student.Flag.MINOR));
+
+		assertFalse(student.isOff(Student.Flag.ON_CAMPUS));
+		assertTrue(student.isOff(Student.Flag.TROUBLEMAKER));
+
+		student.unset(Student.Flag.ON_CAMPUS);
+		assertTrue(student.isOff(Student.Flag.ON_CAMPUS));
+		assertTrue(student.isOn(Student.Flag.TAX_EXEMPT));
+		assertTrue(student.isOn(Student.Flag.MINOR));
+
+	}
+
 	Student createHonorStudent(String name){
 		Student honorStudent = new Student(name);
 		honorStudent.setGradeStrategy(new HonorGradeStrategy());
