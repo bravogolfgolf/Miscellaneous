@@ -1,45 +1,54 @@
 package sis.report;
 
+import java.io.*;
+
 import sis.studentinfo.*;
 import static sis.report.ReportConstant.NEWLINE;
 
 class RosterReport {
-   static final String ROSTER_REPORT_HEADER =
-      "Student" + NEWLINE +
-      "-------" + NEWLINE;
-   static final String ROSTER_REPORT_FOOTER =
-      NEWLINE + "# students = ";
+	static final String ROSTER_REPORT_HEADER =
+			"Student" + NEWLINE +
+			"-------" + NEWLINE;
+	static final String ROSTER_REPORT_FOOTER =
+			NEWLINE + "# students = ";
 
-   private CourseSession session;
+	private Session session;
+	private Writer writer;
 
-   RosterReport(CourseSession session) {
-      this.session = session;
-   }
+	RosterReport(Session session) {
+		this.session = session;
+	}
 
-   String getReport() {
-      StringBuilder buffer = new StringBuilder();
+	void writeReport(Writer writer) throws IOException  {
+		this.writer = writer;
+		writeHeader();
+		writeBody();
+		writeFooter();
+	}
 
-      writeHeader(buffer);
-      writeBody(buffer);
-      writeFooter(buffer);
+	void writeHeader() throws IOException {
+		writer.write(ROSTER_REPORT_HEADER);
+	}
 
-      return buffer.toString();
-   }
+	void writeBody() throws IOException {
+		for (Student student: session.getAllStudents()) {
+			writer.write(student.getName());
+			writer.write(NEWLINE);
+		}
+	}
 
-   void writeHeader(StringBuilder buffer) {
-      buffer.append(ROSTER_REPORT_HEADER);
-   }
+	void writeFooter() throws IOException {
+		writer.write(
+				ROSTER_REPORT_FOOTER + session.getAllStudents().size() + NEWLINE);
+	}
 
-   void writeBody(StringBuilder buffer) {
-      for (Student student: session.getAllStudents()) {
-         buffer.append(student.getName());
-         buffer.append(NEWLINE);
-      }
-   }
-
-   void writeFooter(StringBuilder buffer) {
-      buffer.append(
-         ROSTER_REPORT_FOOTER + session.getAllStudents().size() + NEWLINE);
-
-   }
+	public void writeReport(String fileName) throws IOException {
+		Writer bufferedWriter = new BufferedWriter(new FileWriter(fileName));
+		try{
+			writeReport(bufferedWriter);
+		}
+		finally{
+			bufferedWriter.close();
+		}
+	}
 }
