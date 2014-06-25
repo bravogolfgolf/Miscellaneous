@@ -10,6 +10,8 @@ public class StudentUI {
 	public static final String MENU = "(A)dd or (Q)uit";
 	public static final String ADD_OPTION = "A";
 	public static final String QUIT_OPTION = "Q";
+	public static final String NAME_PROMPT = "Name:";
+	public static final String ADDED_MESSAGE = "Added";
 
 	public StudentUI(BufferedReader reader, BufferedWriter writer) {
 		this.reader = reader;
@@ -21,7 +23,10 @@ public class StudentUI {
 			write(MENU);
 			line = reader.readLine();
 			if (line.equals(ADD_OPTION)){
-				// TODO: first figure out how to get this file and assoc testfile up to github;
+				write(StudentUI.NAME_PROMPT);
+				line = reader.readLine();
+				
+				write(StudentUI.ADDED_MESSAGE);
 			}
 		}while (!line.equals(QUIT_OPTION));
 	}
