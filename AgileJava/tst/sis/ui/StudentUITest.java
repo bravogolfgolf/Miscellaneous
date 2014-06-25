@@ -21,6 +21,8 @@ public class StudentUITest extends TestCase {
 		StudentUI ui = new StudentUI(reader,writer);
 		ui.run();
 		assertEquals(expectedOutput.toString(),outputStream.toString());
+		System.out.println(expectedOutput.toString());
+		System.out.println(outputStream.toString());
 	}
 
 	private void setup(StringBuffer expectedOutput, StringBuffer input) {
@@ -31,6 +33,11 @@ public class StudentUITest extends TestCase {
 		expectedOutput.append(StudentUI.ADDED_MESSAGE);
 		expectedOutput.append(StudentUI.MENU);
 		input.append(line(StudentUI.QUIT_OPTION));
+		System.out.println("- Start Setup -");
+		System.out.println(expectedOutput.toString());
+		System.out.println("---");
+		System.out.println(input.toString());
+		System.out.println("- End Setup -");
 	}
 
 	private String line(String input) {
