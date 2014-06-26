@@ -19,47 +19,27 @@ public class CourseCatalog {
 	}
 
 	public void store(String filename) throws IOException {
-		DataOutputStream output = null;
+		ObjectOutputStream output = null;
 		try{
-			FileOutputStream fileOutputStream = new FileOutputStream(filename);
-			output = new DataOutputStream(fileOutputStream);
-			output.writeInt(sessions.size());
-			for(Session session:sessions){
-				output.writeLong(session.getStartDate().getTime());
-				output.writeInt(session.getNumberOfCredits());
-				output.writeUTF(session.getCourse().getDepartment());
-				output.writeUTF(session.getCourse().getNumber());
-			}
+			output = new ObjectOutputStream(new FileOutputStream(filename));
+			output.writeObject(sessions);
 		}
 		finally{
 			output.close();
 		}
 	}
 
-	public void load(String filename) throws IOException {
-		DataInputStream input = null;
+	public void load(String filename) throws ClassNotFoundException, IOException {
+		ObjectInputStream input = null;
 		try{
-			int count;
-			FileInputStream fileInputStream = new FileInputStream(filename);
-			input = new DataInputStream(fileInputStream);
+			input = new ObjectInputStream(new FileInputStream(filename));
 			clearAll();
-			count = input.readInt();
-			for (int i = 0; i < count ; i++){
-				long date = input.readLong();
-				int credits = input.readInt();
-				String department = input.readUTF();
-				String number = input.readUTF();
-				Session session;
-				
-				session = CourseSession.create(new Course(department, number), new Date(date));
-				session.setNumberOfCredits(credits);
-				sessions.add(session);
-			}
-		}
-		finally{
-			input.close();
-		}
-
+			sessions = (List<Session>)input.readObject();
 	}
+	finally{
+		input.close();
+	}
+
+}
 
 }

@@ -1,5 +1,6 @@
 package sis.studentinfo;
 
+import java.io.Serializable;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.ArrayList;
@@ -8,7 +9,7 @@ import java.util.Date;
 import java.util.GregorianCalendar;
 import java.util.List;
 
-abstract public class Session implements Comparable<Session> {
+abstract public class Session implements Comparable<Session>, Serializable {
 	private Course course;
 	private ArrayList<Student> students = new ArrayList<Student>();
 	private Date startDate;

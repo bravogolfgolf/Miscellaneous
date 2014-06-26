@@ -23,7 +23,7 @@ public class CourseCatalogTest extends TestCase {
 		catalog.add(session2);
 	}
 
-	public void testStoreAndLoad() throws IOException{
+	public void testStoreAndLoad() throws IOException, ClassNotFoundException{
 		final String filename = "CourseCatalogTest.testAdd.dat";
 		catalog.store(filename);
 		catalog.clearAll();
