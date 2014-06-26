@@ -5,6 +5,7 @@ import java.io.Serializable;
 public class Course implements Serializable {
 	private String department;
 	private String number;
+	public static final long serialVersionUID = 10L;
 
 
 	public Course(String department, String number) {

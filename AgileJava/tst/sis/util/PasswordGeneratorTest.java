@@ -3,6 +3,7 @@ package sis.util;
 import junit.framework.*;
 
 public class PasswordGeneratorTest extends TestCase {
+	
 	public void testGeneratePassword(){
 		PasswordGenerator generator = new PasswordGenerator();
 		generator.setRandom(new MockRandom('A'));
@@ -13,6 +14,7 @@ public class PasswordGeneratorTest extends TestCase {
 
 	class MockRandom extends java.util.Random {
 		private int i;
+		public static final long serialVersionUID = 30L;
 		MockRandom(char startCharValue){
 			i = startCharValue - PasswordGenerator.LOW_END_PASSWORD_CHAR;
 		}

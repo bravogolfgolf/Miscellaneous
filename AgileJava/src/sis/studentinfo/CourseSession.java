@@ -4,6 +4,7 @@ import java.util.*;
 
 public class CourseSession extends Session {
 	private static int count;
+	public static final long serialVersionUID = 11L;
 
 	public static CourseSession create(Course course, Date startDate) {
 		return new CourseSession(course , startDate);

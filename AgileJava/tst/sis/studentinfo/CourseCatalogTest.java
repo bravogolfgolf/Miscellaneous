@@ -19,6 +19,7 @@ public class CourseCatalogTest extends TestCase {
 		session1.setNumberOfCredits(3);
 		session2 = CourseSession.create(course2, DateUtil.createDate(2005, 1, 17));
 		session2.setNumberOfCredits(5);
+		session2.enroll(new Student("Brian Gibson"));
 		catalog.add(session1);
 		catalog.add(session2);
 	}
@@ -33,6 +34,11 @@ public class CourseCatalogTest extends TestCase {
 		assertEquals(2,sessions.size());
 		assertSession(session1,sessions.get(0));
 		assertSession(session2,sessions.get(1));
+		
+		Session session = sessions.get(1);
+		assertSession(session2,session);
+		Student student = session.getAllStudents().get(0);
+		assertEquals("Gibson",student.getLastName());
 	}
 
 	private void assertSession(Session expected, Session retrieved) {

@@ -1,20 +1,16 @@
 package sis.studentinfo;
 
-import java.io.Serializable;
-import java.net.MalformedURLException;
-import java.net.URL;
-import java.util.ArrayList;
-import java.util.Calendar;
-import java.util.Date;
-import java.util.GregorianCalendar;
-import java.util.List;
+import java.io.*;
+import java.net.*;
+import java.util.*;
 
 abstract public class Session implements Comparable<Session>, Serializable {
 	private Course course;
-	private ArrayList<Student> students = new ArrayList<Student>();
+	private transient ArrayList<Student> students = new ArrayList<Student>();
 	private Date startDate;
 	private int numberOfCredits;
 	private URL url;
+	public static final long serialVersionUID = 20L;
 
 	protected Session(Course course, Date startDate){
 		this.course = course;
@@ -37,7 +33,7 @@ abstract public class Session implements Comparable<Session>, Serializable {
 	}
 
 	int getNumberOfCredits(){
-		 return numberOfCredits;
+		return numberOfCredits;
 	}
 
 	int getNumberOfStudents() {
@@ -90,5 +86,22 @@ abstract public class Session implements Comparable<Session>, Serializable {
 
 	public URL getUrl() {
 		return url;
+	}
+
+	private void writeObject(ObjectOutputStream output) throws IOException{
+		output.defaultWriteObject();
+		output.writeInt(students.size());
+		for(Student student : students){
+			output.writeUTF(student.getLastName());
+		}
+	}
+	private void readObject(ObjectInputStream input) throws IOException, ClassNotFoundException{
+		input.defaultReadObject();
+		int size = input.readInt();
+		students = new ArrayList<Student>();
+		for (int i = 0; i < size; i++){
+			String lastName = input.readUTF();
+			students.add(Student.findByLastName(lastName));
+		}
 	}
 }

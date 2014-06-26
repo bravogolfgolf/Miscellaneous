@@ -3,8 +3,6 @@ package sis.studentinfo;
 import java.util.*;
 import java.util.logging.*;
 
-import sis.studentinfo.Student.Flag;
-
 public class Student {
 	public enum Grade {
 		A(4.0),
@@ -173,6 +171,10 @@ public class Student {
 	public void unset(Flag...flags) {
 		for(Flag flag:flags) 
 			settings = settings & ~flag.mask;
+	}
+
+	public static Student findByLastName(String lastName) {
+		return new Student(lastName);
 	}
 
 }
