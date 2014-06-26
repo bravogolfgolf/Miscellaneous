@@ -35,6 +35,10 @@ abstract public class Session implements Comparable<Session> {
 		this.numberOfCredits = numberOfCredits;
 	}
 
+	int getNumberOfCredits(){
+		 return numberOfCredits;
+	}
+
 	int getNumberOfStudents() {
 		return students.size();
 	}
