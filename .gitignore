@@ -2,4 +2,6 @@ AgileJava/.settings/
 AgileJava/.classpath
 AgileJava/.project
 AgileJava/.DS_Store
+AgileJava/*.dat
+AgileJava/bin/sis/.DS_Store
 *.class
