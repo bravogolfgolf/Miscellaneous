@@ -1,16 +1,32 @@
 package sis.studentinfo;
 
-import java.util.*;
+import java.io.IOException;
+
+import sis.db.*;
 
 public class StudentDirectory{
-	private Map<String, Student> students = new HashMap<String, Student>();
+	private static final String DIR_BASENAME = "studentDir";
+	private DataFile db;
 
-	public void add(Student student) {
-		students.put(student.getId(), student);
+	StudentDirectory() {
+		db = DataFile.open(DIR_BASENAME);
 	}
 
-	public Student findbyId(String id) {
-		return students.get(id);
+	public void add(Student student) throws IOException {
+		db.add(student.getId(),student);	
+	}
+
+	public Object findbyId(String id) {
+		return db.findBy(id);
+	}
+
+	public void close() {
+		db.close();
+
+	}
+
+	public void remove() {
+		db.deleteFiles();
 	}
 
 }
