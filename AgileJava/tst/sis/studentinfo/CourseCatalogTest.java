@@ -1,6 +1,5 @@
 package sis.studentinfo;
 
-import java.io.*;
 import java.util.*;
 import junit.framework.*;
 
@@ -24,7 +23,7 @@ public class CourseCatalogTest extends TestCase {
 		catalog.add(session2);
 	}
 
-	public void testStoreAndLoad() throws IOException, ClassNotFoundException{
+	public void testStoreAndLoad() throws Exception{
 		final String filename = "CourseCatalogTest.testAdd.dat";
 		catalog.store(filename);
 		catalog.clearAll();

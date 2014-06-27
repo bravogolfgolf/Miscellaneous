@@ -29,17 +29,17 @@ public class CourseCatalog {
 		}
 	}
 
-	public void load(String filename) throws ClassNotFoundException, IOException {
+	public void load(String filename) throws Exception {
 		ObjectInputStream input = null;
 		try{
 			input = new ObjectInputStream(new FileInputStream(filename));
 			clearAll();
 			sessions = (List<Session>)input.readObject();
-	}
-	finally{
-		input.close();
-	}
+		}
+		finally{
+			input.close();
+		}
 
-}
+	}
 
 }
