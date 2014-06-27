@@ -29,6 +29,8 @@ public class CourseCatalog {
 		}
 	}
 
+
+	@SuppressWarnings("unchecked")
 	public void load(String filename) throws Exception {
 		ObjectInputStream input = null;
 		try{

@@ -102,6 +102,7 @@ public class StudentTest extends TestCase {
 		Student.logger.addHandler(handler);
 
 		try{
+			@SuppressWarnings("unused")
 			Student student = new Student(studentName);
 			fail("Expected StudentNameFormatException");
 		}
