@@ -6,6 +6,7 @@ import junit.framework.*;
 
 public class StudentDirectoryTest extends TestCase {
 	private StudentDirectory dir;
+	
 	protected void setUp() throws IOException {
 		dir = new StudentDirectory();
 	}

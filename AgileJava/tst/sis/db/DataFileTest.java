@@ -17,31 +17,58 @@ public class DataFileTest extends TestCase {
 		db = DataFile.create(FILEBASE);
 		assertEquals(0,db.size());
 
-		testData1 = new TestData(ID1, "daum1a", 1);
-		testData1 = new TestData(ID2, "daum2a", 2);
+		testData1 = new TestData(ID1, "datum1a", 1);
+		testData2 = new TestData(ID2, "datum2a", 2);
 	}
 
-	protected void tearDown() {
+	protected void tearDown() throws IOException {
 		db.close();
 		db.deleteFiles();
 	}
 
-	public void testAdd() throws IOException {
+	public void testAdd() throws Exception {
 		db.add(ID1, testData1);
 		assertEquals(1,db.size());
-		
+
 		db.add(ID2, testData2);
 		assertEquals(2,db.size());
-	
-		assertEquals(testData1,db.findBy(ID1));
-		assertEquals(testData2,db.findBy(ID2));
+
+		assertTestDataEquals(testData1,(TestData)db.findBy(ID1));
+		assertTestDataEquals(testData2,(TestData)db.findBy(ID2));
+
+		db = DataFile.create(FILEBASE);
+		assertEquals(0,db.size());
 	}
 
-	@SuppressWarnings("serial")
+	public void testPersistence() throws Exception {
+		db.add(ID1, testData1);
+		db.add(ID2, testData2);
+		db.close();
+
+		db = DataFile.open(FILEBASE);
+		assertEquals(2,db.size());
+
+		assertTestDataEquals(testData1,(TestData)db.findBy(ID1));
+		assertTestDataEquals(testData2,(TestData)db.findBy(ID2));
+
+		db = DataFile.create(FILEBASE);
+		assertEquals(0,db.size());
+	}
+
+	public void testKeyNotFound() throws IOException {
+		assertNull(db.findBy(ID2));
+	}
+
+	private void assertTestDataEquals(TestData expected, TestData actual){
+		assertEquals(expected.id,actual.id);
+		assertEquals(expected.field1,actual.field1);
+		assertEquals(expected.field2,actual.field2);
+	}
+
 	static class TestData implements Serializable {
-		private String id;
-		private String field1;
-		private int field2;
+		String id;
+		String field1;
+		int field2;
 		TestData(String id, String field1, int field2){
 			this.id = id;
 			this.field1 = field1;

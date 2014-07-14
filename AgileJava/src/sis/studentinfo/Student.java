@@ -1,9 +1,11 @@
 package sis.studentinfo;
 
+import java.io.*;
 import java.util.*;
-import java.util.logging.*;
+import java.util.logging.Logger;
 
-public class Student {
+public class Student implements Serializable {
+
 	public enum Grade {
 		A(4.0),
 		B(3.0),
@@ -32,6 +34,7 @@ public class Student {
 			this.mask = mask;
 		}
 	}
+	
 	static final Logger logger = Logger.getLogger(Student.class.getName());
 	static String IN_STATE = "CO";
 	static final int CREDITS_REQUIRED_FOR_FULL_TIME = 12;
@@ -176,5 +179,4 @@ public class Student {
 	public static Student findByLastName(String lastName) {
 		return new Student(lastName);
 	}
-
 }

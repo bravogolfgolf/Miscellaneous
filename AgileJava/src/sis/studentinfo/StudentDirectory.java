@@ -8,7 +8,7 @@ public class StudentDirectory{
 	private static final String DIR_BASENAME = "studentDir";
 	private DataFile db;
 
-	StudentDirectory() {
+	StudentDirectory() throws IOException {
 		db = DataFile.open(DIR_BASENAME);
 	}
 
@@ -16,11 +16,11 @@ public class StudentDirectory{
 		db.add(student.getId(),student);	
 	}
 
-	public Object findbyId(String id) {
+	public Object findbyId(String id) throws IOException {
 		return db.findBy(id);
 	}
 
-	public void close() {
+	public void close() throws IOException {
 		db.close();
 
 	}

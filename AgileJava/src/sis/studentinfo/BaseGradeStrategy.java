@@ -1,6 +1,8 @@
 package sis.studentinfo;
 
-public  class BaseGradeStrategy implements GradeStrategy {
+import java.io.Serializable;
+
+public class BaseGradeStrategy implements GradeStrategy, Serializable {
 	public double getPointsForGrade(Student.Grade grade){
 		return grade.getPoints();
 	}
