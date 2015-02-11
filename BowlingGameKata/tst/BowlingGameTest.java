@@ -32,7 +32,7 @@ public class BowlingGameTest extends TestCase {
 		int remainingRolls = 17;
 		int pins = 0;
 		rollMany(remainingRolls, pins);
-		assertEquals(20,g.score());
+		assertEquals(16,g.score());
 	}
 
 }
