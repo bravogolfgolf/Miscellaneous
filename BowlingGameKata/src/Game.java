@@ -8,8 +8,15 @@ public class Game {
 
 	public int score() {
 		int score = 0;
-		for (int i = 0; i < rolls.length; i++)
-			score = score + rolls[i];
+		int frame = 0;
+		int i = 0;
+		while (i < rolls.length){
+			frame = rolls[i] + rolls[i+1];
+			if (frame == 10)
+				frame = frame + rolls[i+2];
+			score = score + frame;
+			i = i + 2;
+		}
 		return score;
 	}
 }
