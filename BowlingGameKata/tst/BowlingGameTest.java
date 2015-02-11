@@ -7,17 +7,22 @@ public class BowlingGameTest extends TestCase {
 		g = new Game();
 	}
 
+	private void rollMany(int rolls, int pins){
+		for(int i = 0; i < rolls; i++)
+			g.roll(pins);		
+	}
+
 	public void testGutterGame() throws Exception {
 		int rolls = 20;
 		int pins = 0;
-		for(int i = 0; i < rolls; i++)
-			g.roll(pins);
+		rollMany(rolls, pins);
 		assertEquals(0,g.score());
 	}
 
 	public void testAllOnes() throws Exception {
-		for(int i=0;i<20;i++)
-			g.roll(1);
+		int rolls = 20;
+		int pins = 1;
+		rollMany(rolls, pins);
 		assertEquals(20,g.score());
 	}
 }
