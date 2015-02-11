@@ -3,19 +3,15 @@ public class Game {
 	private int currentRoll = 0;
 
 	public void roll(int pins){
-		rolls[currentRoll = currentRoll +1] = pins;
+		rolls[currentRoll++] = pins;
 	}
 
 	public int score() {
 		int score = 0;
-		int frame = 0;
 		int i = 0;
-		while (i < rolls.length){
-			frame = rolls[i] + rolls[i+1];
-			if (frame == 10)
-				frame = frame + rolls[i+2];
-			score = score + frame;
-			i = i + 2;
+		for (int frame = 0; frame < 10; frame++)  {
+			score += rolls[i] + rolls[i+1];
+			i += 2;
 		}
 		return score;
 	}
