@@ -26,14 +26,14 @@ public class BowlingGameTest extends TestCase {
 		assertEquals(20,g.score());
 	}
 	
-//	public void testOneSpare() throws Exception {
-//		g.roll(5);
-//		g.roll(5);
-//		g.roll(3);
-//		int remainingRolls = 17;
-//		int pins = 0;
-//		rollMany(remainingRolls, pins);
-//		assertEquals(16,g.score());
-//	}
+	public void testOneSpare() throws Exception {
+		g.roll(5);
+		g.roll(5);
+		g.roll(3);
+		int remainingRolls = 17;
+		int pins = 0;
+		rollMany(remainingRolls, pins);
+		assertEquals(16,g.score());
+	}
 
 }
