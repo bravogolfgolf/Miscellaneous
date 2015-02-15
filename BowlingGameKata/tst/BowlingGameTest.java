@@ -27,13 +27,17 @@ public class BowlingGameTest extends TestCase {
 	}
 	
 	public void testOneSpare() throws Exception {
-		g.roll(5);
-		g.roll(5);
+		rollSpare();
 		g.roll(3);
 		int remainingRolls = 17;
 		int pins = 0;
 		rollMany(remainingRolls, pins);
 		assertEquals(16,g.score());
+	}
+
+	private void rollSpare() {
+		g.roll(5);
+		g.roll(5);
 	}
 
 }
