@@ -7,11 +7,6 @@ public class BowlingGameTest extends TestCase {
 		g = new Game();
 	}
 
-	private void rollMany(int rolls, int pins){
-		for(int i = 0; i < rolls; i++)
-			g.roll(pins);		
-	}
-
 	public void testGutterGame() throws Exception {
 		int rolls = 20;
 		int pins = 0;
@@ -25,7 +20,7 @@ public class BowlingGameTest extends TestCase {
 		rollMany(rolls, pins);
 		assertEquals(20,g.score());
 	}
-	
+
 	public void testOneSpare() throws Exception {
 		rollSpare();
 		g.roll(3);
@@ -36,12 +31,22 @@ public class BowlingGameTest extends TestCase {
 	}
 
 	public void testOneStrike() throws Exception {
-	    rollStrike(); // strike
-	    g.roll(3);
-	    g.roll(4);
-	    rollMany(16, 0);
-	    assertEquals(24, g.score());
-	  }
+		rollStrike();
+		g.roll(3);
+		g.roll(4);
+		rollMany(16, 0);
+		assertEquals(24, g.score());
+	}
+
+	public void testPerfectGame() throws Exception {
+		rollMany(12,10);
+		assertEquals(300, g.score());
+	}
+
+	private void rollMany(int rolls, int pins){
+		for(int i = 0; i < rolls; i++)
+			g.roll(pins);		
+	}
 
 	private void rollStrike() {
 		g.roll(10);
