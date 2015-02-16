@@ -1,9 +1,8 @@
-/.DS_Store
-BowlingGameKata/.DS_Store
-BowlingGameKata/bin/.DS_Store
-BowlingGameKata/.settings/
-BowlingGameKata/.classpath
-BowlingGameKata/.project
+/bin/
+/.settings/
+/bin/.DS_Store
+.classpath
+.project
+.DS_Store
 *.dat
 *.class
-/bin/
