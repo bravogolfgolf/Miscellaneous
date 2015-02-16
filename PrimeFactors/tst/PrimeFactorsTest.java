@@ -1,7 +1,4 @@
 import java.util.ArrayList;
-
-import org.junit.Ignore;
-
 import junit.framework.TestCase;
 
 
@@ -45,9 +42,5 @@ public class PrimeFactorsTest extends TestCase{
 	public void testEight() throws Exception {
 		createList(2,2,2);
 		assertEquals(list, pm.find(8));
-	}
-	public void testNine() throws Exception {
-		createList(3,3);
-		assertEquals(list, pm.find(9));
 	}
 }

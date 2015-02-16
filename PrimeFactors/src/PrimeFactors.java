@@ -4,10 +4,11 @@ public class PrimeFactors {
 
 	public ArrayList<Integer> find(int numberToFactor ) {
 		ArrayList<Integer> factors = new ArrayList<Integer>();
+		int candidate = 2;
 		if (numberToFactor > 1){
-			while (numberToFactor % 2 == 0){
-				factors.add(2);
-				numberToFactor /= 2;
+			while (numberToFactor % candidate == 0){
+				factors.add(candidate);
+				numberToFactor /= candidate;
 			}
 		}
 		if (numberToFactor > 1)
