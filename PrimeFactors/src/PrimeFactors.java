@@ -6,9 +6,9 @@ public class PrimeFactors {
 		ArrayList<Integer> factors = new ArrayList<Integer>();
 		int candidate = 2;
 		while (numberToFactor > 1){
-			while (numberToFactor % candidate == 0){
+			for (;numberToFactor % candidate == 0; numberToFactor /= candidate){
 				factors.add(candidate);
-				numberToFactor /= candidate;
+				
 			}
 			candidate++;
 		}
