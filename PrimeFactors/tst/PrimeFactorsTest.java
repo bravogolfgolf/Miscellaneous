@@ -31,4 +31,16 @@ public class PrimeFactorsTest extends TestCase{
 		createList(5);
 		assertEquals(list, pm.find(5));
 	}
+	public void testSix() throws Exception {
+		createList(2,3);
+		assertEquals(list, pm.find(6));
+	}
+	public void testSeven() throws Exception {
+		createList(7);
+		assertEquals(list, pm.find(7));
+	}
+	public void testEight() throws Exception {
+		createList(2,2,2);
+		assertEquals(list, pm.find(8));
+	}
 }
