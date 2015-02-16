@@ -12,8 +12,6 @@ public class PrimeFactors {
 			}
 			candidate++;
 		}
-		if (numberToFactor > 1)
-			factors.add(numberToFactor);
 		return factors;
 	}
 }
