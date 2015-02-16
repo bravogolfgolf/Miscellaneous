@@ -1,1 +1,8 @@
+/.DS_Store
+/bin/.DS_Store
+/.settings/
+/.classpath
+/.project
+*.dat
+*.class
 /bin/
