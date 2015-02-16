@@ -2,7 +2,7 @@ import java.util.ArrayList;
 
 public class PrimeFactors {
 
-	public ArrayList<Integer> find(int numberToFactor ) {
+	public static ArrayList<Integer> find(int numberToFactor ) {
 		ArrayList<Integer> factors = new ArrayList<Integer>();
 		
 		for (int candidate = 2; numberToFactor > 1; candidate++){

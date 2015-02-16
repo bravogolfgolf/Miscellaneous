@@ -4,7 +4,6 @@ import junit.framework.TestCase;
 
 public class PrimeFactorsTest extends TestCase{
 
-	private PrimeFactors pm = new PrimeFactors();
 	private ArrayList<Integer> list = new ArrayList<Integer>();
 
 	private void createList(int...ints) {
@@ -13,46 +12,46 @@ public class PrimeFactorsTest extends TestCase{
 	}
 	
 	public void testOne() throws Exception {
-		assertEquals(list, pm.find(1));
+		assertEquals(list, PrimeFactors.find(1));
 	}
 	public void testTwo() throws Exception {
 		createList(2);
-		assertEquals(list, pm.find(2));
+		assertEquals(list, PrimeFactors.find(2));
 	}
 	public void testThree() throws Exception {
 		createList(3);
-		assertEquals(list, pm.find(3));
+		assertEquals(list, PrimeFactors.find(3));
 	}
 	public void testFour() throws Exception {
 		createList(2,2);
-		assertEquals(list, pm.find(4));
+		assertEquals(list, PrimeFactors.find(4));
 	}
 	public void testFive() throws Exception {
 		createList(5);
-		assertEquals(list, pm.find(5));
+		assertEquals(list, PrimeFactors.find(5));
 	}
 	public void testSix() throws Exception {
 		createList(2,3);
-		assertEquals(list, pm.find(6));
+		assertEquals(list, PrimeFactors.find(6));
 	}
 	public void testSeven() throws Exception {
 		createList(7);
-		assertEquals(list, pm.find(7));
+		assertEquals(list, PrimeFactors.find(7));
 	}
 	public void testEight() throws Exception {
 		createList(2,2,2);
-		assertEquals(list, pm.find(8));
+		assertEquals(list, PrimeFactors.find(8));
 	}
 	public void testNine() throws Exception {
 		createList(3,3);
-		assertEquals(list, pm.find(9));
+		assertEquals(list, PrimeFactors.find(9));
 	}
 	public void testTen() throws Exception {
 		createList(2,5);
-		assertEquals(list, pm.find(10));
+		assertEquals(list, PrimeFactors.find(10));
 	}
 	public void test5181970() throws Exception {
 		createList(2,5,59,8783);
-		assertEquals(list, pm.find(5181970));
+		assertEquals(list, PrimeFactors.find(5181970));
 	}
 }
