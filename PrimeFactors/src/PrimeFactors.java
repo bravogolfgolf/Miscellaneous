@@ -1,6 +1,8 @@
+import java.util.ArrayList;
+
 public class PrimeFactors {
 
-	public int find(int howManyPrimeFactors) {
-		return 1;
+	public ArrayList<Integer> find(int howManyPrimeFactors) {
+		return new ArrayList<Integer>();
 	}
 }

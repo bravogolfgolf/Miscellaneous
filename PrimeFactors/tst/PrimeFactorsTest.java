@@ -1,8 +1,10 @@
+import java.util.ArrayList;
 import junit.framework.TestCase;
 
 public class PrimeFactorsTest extends TestCase {
 	public void testOne(){
 		PrimeFactors primefactors = new PrimeFactors();
-		assertEquals(1, primefactors.find(1));
+		ArrayList<Integer> knownList = new ArrayList<Integer>();
+		assertEquals(knownList, primefactors.find(1));
 	}
 }
