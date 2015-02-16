@@ -2,9 +2,9 @@ import java.util.ArrayList;
 
 public class PrimeFactors {
 
-	public ArrayList<Integer> find(int i) {
+	public ArrayList<Integer> find(int numberToFactor ) {
 		ArrayList<Integer> factors = new ArrayList<Integer>();
-		if (i>1)
+		if (numberToFactor > 1)
 			factors.add(2);
 		return factors;
 	}
