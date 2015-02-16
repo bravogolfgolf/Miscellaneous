@@ -3,6 +3,8 @@ import java.util.ArrayList;
 public class PrimeFactors {
 
 	public ArrayList<Integer> find(int howManyPrimeFactors) {
-		return new ArrayList<Integer>();
+		ArrayList<Integer> primeFactors = new ArrayList<Integer>();
+		primeFactors.add(1);
+		return primeFactors;
 	}
 }
