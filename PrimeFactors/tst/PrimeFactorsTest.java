@@ -11,12 +11,16 @@ public class PrimeFactorsTest extends TestCase{
 		assertEquals(list,pm.find(1));
 	}
 	public void testTwo() throws Exception {
-		list.add(2);
+		createList(2);
 		assertEquals(list,pm.find(2));
 	}
 	public void testThree() throws Exception {
-		list.add(3);
+		createList(3);
 		assertEquals(list,pm.find(3));
 	}
+	private void createList(int i) {
+		list.add(i);
+	}
+	
 
 }
