@@ -51,4 +51,8 @@ public class PrimeFactorsTest extends TestCase{
 		createList(2,5);
 		assertEquals(list, pm.find(10));
 	}
+	public void test5181970() throws Exception {
+		createList(2,5,59,8783);
+		assertEquals(list, pm.find(5181970));
+	}
 }
