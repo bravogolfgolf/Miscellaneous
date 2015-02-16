@@ -47,5 +47,8 @@ public class PrimeFactorsTest extends TestCase{
 		createList(3,3);
 		assertEquals(list, pm.find(9));
 	}
-
+	public void testTen() throws Exception {
+		createList(2,5);
+		assertEquals(list, pm.find(10));
+	}
 }
