@@ -98,4 +98,9 @@ public class ConvertArabicToRomanTest extends TestCase {
 		assertEquals("XC", arabic.toRoman(90));
 	}
 
+	@Test
+	public void test199ToCXCIX() throws Exception {
+		assertEquals("CXCIX", arabic.toRoman(199));
+	}
+
 }
