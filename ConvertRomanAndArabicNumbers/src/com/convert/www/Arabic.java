@@ -5,7 +5,11 @@ public class Arabic {
 	public static String toRoman(int arabicNumber) {
 		StringBuffer sb = new StringBuffer();
 
-		if (arabicNumber == 5) {
+		if (arabicNumber == 6) {
+			sb.append("VI");
+		}
+		
+		else if (arabicNumber == 5) {
 			sb.append("V");
 		}
 		else if (arabicNumber == 4) {
