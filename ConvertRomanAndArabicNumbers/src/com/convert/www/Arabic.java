@@ -29,8 +29,8 @@ public class Arabic {
 		return sb.toString();
 	}
 
-	private void appendOnes(int arabicNumber) {
-		for(int i = 1; i <= arabicNumber; i++)
+	private void appendOnes(int numberOfOnesToAppend) {
+		for(int i = 1; i <= numberOfOnesToAppend; i++)
 			sb.append("I");
 	}
 }
