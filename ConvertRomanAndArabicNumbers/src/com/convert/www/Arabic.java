@@ -5,7 +5,12 @@ public class Arabic {
 	public static String toRoman(int arabicNumber) {
 		StringBuffer sb = new StringBuffer();
 
-		if (arabicNumber == 6) {
+		if (arabicNumber == 9) {
+			sb.append("I");
+			sb.append("X");
+		}
+		
+		else if (arabicNumber == 6) {
 			sb.append("VI");
 		}
 		
