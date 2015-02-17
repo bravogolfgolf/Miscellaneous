@@ -4,5 +4,8 @@ import junit.framework.TestCase;
 
 public class ConvertArabicToRomanTest extends TestCase {
 
+	@Test
+	public void testOnetoI() throws Exception {
+	}
 
 }
