@@ -6,6 +6,8 @@ public class ConvertArabicToRomanTest extends TestCase {
 
 	@Test
 	public void testOnetoI() throws Exception {
+		assertEquals("I", Arabic.toRoman(1));
+
 	}
 
 }
