@@ -5,13 +5,13 @@ public class Arabic {
 	int hundredsPlaceHolder = 0;
 	int tensPlaceHolder = 0;
 	int onesPlaceHolder = 0;
-	
+
 	StringBuffer numbersRepresentingSymbols = new StringBuffer();
 	StringBuffer romanNumber = new StringBuffer();
 
 	public String toRoman(int arabicNumber) {
 		determineVauleOfEachPlaceHolders(arabicNumber);
-		appendProperSymbols(thousandsPlaceHolder, 1000);
+		appendProperSymbolsForThousands(thousandsPlaceHolder, 1000);
 		appendProperSymbols(hundredsPlaceHolder, 100);
 		appendProperSymbols(tensPlaceHolder, 10);
 		appendProperSymbols(onesPlaceHolder, 1);
@@ -24,6 +24,10 @@ public class Arabic {
 		hundredsPlaceHolder = Math.round(((arabicNumber - (thousandsPlaceHolder * 1000)) / 100) - 0.5f);
 		tensPlaceHolder = Math.round(((arabicNumber - (thousandsPlaceHolder * 1000) - (hundredsPlaceHolder * 100)) / 10) - 0.5f);
 		onesPlaceHolder = arabicNumber - (thousandsPlaceHolder * 1000) - (hundredsPlaceHolder * 100) - (tensPlaceHolder * 10);
+	}
+
+	private void appendProperSymbolsForThousands(int number, int multiplier) {
+		appendOne(number,multiplier);
 	}
 
 	private void appendProperSymbols(int number, int multiplier) {
@@ -58,7 +62,7 @@ public class Arabic {
 		Integer numbersRepresentingSymbol = 5 * multiplier;
 		numbersRepresentingSymbols.append(numbersRepresentingSymbol.toString() + ",");
 	}
-	
+
 	private void appendTen(int multiplier) {
 		Integer numbersRepresentingSymbol = 10 * multiplier;
 		numbersRepresentingSymbols.append(numbersRepresentingSymbol.toString() + ",");

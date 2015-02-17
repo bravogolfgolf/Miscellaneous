@@ -118,4 +118,9 @@ public class ConvertArabicToRomanTest extends TestCase {
 		assertEquals("M", arabic.toRoman(1000));
 	}
 
+	@Test
+	public void test4000ToM() throws Exception {
+		assertEquals("MMMM", arabic.toRoman(4000));
+	}
+
 }
