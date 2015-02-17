@@ -10,9 +10,9 @@ public class Arabic {
 			sb.append("X");
 		}
 		
-		else if (arabicNumber == 6) {
+		else if (arabicNumber > 5) {
 			sb.append("V");
-			sb.append("I");
+			appendOnes(arabicNumber % 5, sb);
 		}
 		
 		else if (arabicNumber == 5) {
@@ -24,9 +24,13 @@ public class Arabic {
 			sb.append("V");
 
 		}
-		else { for(int i = 1; i <= arabicNumber; i++)
-			sb.append("I");
+		else { appendOnes(arabicNumber, sb);
 		}
 		return sb.toString();
+	}
+
+	private static void appendOnes(int arabicNumber, StringBuffer sb) {
+		for(int i = 1; i <= arabicNumber; i++)
+			sb.append("I");
 	}
 }
