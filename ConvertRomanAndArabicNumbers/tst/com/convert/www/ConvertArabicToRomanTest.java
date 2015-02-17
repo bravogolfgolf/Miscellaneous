@@ -57,5 +57,40 @@ public class ConvertArabicToRomanTest extends TestCase {
 	public void testTenToX() throws Exception {
 		assertEquals("X", arabic.toRoman(10));
 	}
+	
+	@Test
+	public void test11ToXI() throws Exception {
+		assertEquals("XI", arabic.toRoman(11));
+	}
+	
+	@Test
+	public void test14ToXIV() throws Exception {
+		assertEquals("XIV", arabic.toRoman(14));
+	}
+
+	@Test
+	public void test15ToXV() throws Exception {
+		assertEquals("XV", arabic.toRoman(15));
+	}
+
+	@Test
+	public void test18ToXVIII() throws Exception {
+		assertEquals("XVIII", arabic.toRoman(18));
+	}
+
+	@Test
+	public void test19ToXIX() throws Exception {
+		assertEquals("XIX", arabic.toRoman(19));
+	}
+
+	@Test
+	public void test20ToXX() throws Exception {
+		assertEquals("XX", arabic.toRoman(20));
+	}
+
+	@Test
+	public void test40ToXL() throws Exception {
+		assertEquals("XL", arabic.toRoman(40));
+	}
 
 }
