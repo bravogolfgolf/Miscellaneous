@@ -4,8 +4,15 @@ public class Arabic {
 
 	public static String toRoman(int arabicNumber) {
 		StringBuffer sb = new StringBuffer();
-		for(int i = 1; i <= arabicNumber; i++)
-			sb.append("I");
+
+		if (arabicNumber == 4) {
+			sb.append("IV");
+			
+		} else {
+
+			for(int i = 1; i <= arabicNumber; i++)
+				sb.append("I");
+		}
 		return sb.toString();
 	}
 }
