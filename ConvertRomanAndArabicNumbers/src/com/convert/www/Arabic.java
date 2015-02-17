@@ -66,6 +66,7 @@ public class Arabic {
 			case 5: romanNumber.append("V"); break;
 			case 10: romanNumber.append("X"); break;
 			case 50: romanNumber.append("L"); break;
+			case 100: romanNumber.append("C"); break;
 			}	   
 		}
 	}
