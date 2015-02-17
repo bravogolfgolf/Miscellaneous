@@ -1,6 +1,7 @@
 package com.convert.www;
 
 public class Arabic {
+	int thousandsPlaceHolder = 0;
 	int hundredsPlaceHolder = 0;
 	int tensPlaceHolder = 0;
 	int onesPlaceHolder = 0;
@@ -10,6 +11,7 @@ public class Arabic {
 
 	public String toRoman(int arabicNumber) {
 		determineVauleOfEachPlaceHolders(arabicNumber);
+		appendProperSymbols(thousandsPlaceHolder, 1000);
 		appendProperSymbols(hundredsPlaceHolder, 100);
 		appendProperSymbols(tensPlaceHolder, 10);
 		appendProperSymbols(onesPlaceHolder, 1);
@@ -18,9 +20,10 @@ public class Arabic {
 	}
 
 	private void determineVauleOfEachPlaceHolders(int arabicNumber) {
-		hundredsPlaceHolder = Math.round((arabicNumber / 100) - 0.5f);
-		tensPlaceHolder = Math.round(((arabicNumber - (hundredsPlaceHolder * 100)) / 10) - 0.5f);
-		onesPlaceHolder = arabicNumber - (hundredsPlaceHolder * 100) - (tensPlaceHolder * 10);
+		thousandsPlaceHolder = Math.round((arabicNumber / 1000) - 0.5f);
+		hundredsPlaceHolder = Math.round(((arabicNumber - (thousandsPlaceHolder * 1000)) / 100) - 0.5f);
+		tensPlaceHolder = Math.round(((arabicNumber - (thousandsPlaceHolder * 1000) - (hundredsPlaceHolder * 100)) / 10) - 0.5f);
+		onesPlaceHolder = arabicNumber - (thousandsPlaceHolder * 1000) - (hundredsPlaceHolder * 100) - (tensPlaceHolder * 10);
 	}
 
 	private void appendProperSymbols(int number, int multiplier) {
