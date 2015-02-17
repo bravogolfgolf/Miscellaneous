@@ -24,4 +24,8 @@ public class ConvertArabicToRomanTest extends TestCase {
 	public void testFourToIV() throws Exception {
 		assertEquals("IV", Arabic.toRoman(4));
 	}
+	@Test
+	public void testFiveToV() throws Exception {
+		assertEquals("V", Arabic.toRoman(5));
+	}
 }
