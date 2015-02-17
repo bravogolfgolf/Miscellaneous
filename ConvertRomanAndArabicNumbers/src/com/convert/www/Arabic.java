@@ -71,6 +71,7 @@ public class Arabic {
 			case 10: romanNumber.append("X"); break;
 			case 50: romanNumber.append("L"); break;
 			case 100: romanNumber.append("C"); break;
+			case 500: romanNumber.append("D"); break;
 			}	   
 		}
 	}
