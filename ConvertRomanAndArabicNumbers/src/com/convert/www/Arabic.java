@@ -1,10 +1,10 @@
 package com.convert.www;
 
 public class Arabic {
-
-	public static String toRoman(int arabicNumber) {
-		StringBuffer sb = new StringBuffer();
-
+	StringBuffer sb = new StringBuffer();
+	
+	public String toRoman(int arabicNumber) {
+		
 		if (arabicNumber == 9) {
 			sb.append("I");
 			sb.append("X");
@@ -12,7 +12,7 @@ public class Arabic {
 		
 		else if (arabicNumber > 5) {
 			sb.append("V");
-			appendOnes(arabicNumber % 5, sb);
+			appendOnes(arabicNumber % 5);
 		}
 		
 		else if (arabicNumber == 5) {
@@ -24,12 +24,12 @@ public class Arabic {
 			sb.append("V");
 
 		}
-		else { appendOnes(arabicNumber, sb);
+		else { appendOnes(arabicNumber);
 		}
 		return sb.toString();
 	}
 
-	private static void appendOnes(int arabicNumber, StringBuffer sb) {
+	private void appendOnes(int arabicNumber) {
 		for(int i = 1; i <= arabicNumber; i++)
 			sb.append("I");
 	}
