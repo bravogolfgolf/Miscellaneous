@@ -11,14 +11,17 @@ public class Arabic {
 		}
 		
 		else if (arabicNumber == 6) {
-			sb.append("VI");
+			sb.append("V");
+			sb.append("I");
 		}
 		
 		else if (arabicNumber == 5) {
 			sb.append("V");
 		}
+		
 		else if (arabicNumber == 4) {
-			sb.append("IV");
+			sb.append("I");
+			sb.append("V");
 
 		}
 		else { for(int i = 1; i <= arabicNumber; i++)

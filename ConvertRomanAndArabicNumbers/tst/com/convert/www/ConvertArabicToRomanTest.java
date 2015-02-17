@@ -37,6 +37,11 @@ public class ConvertArabicToRomanTest extends TestCase {
 		assertEquals("VI", Arabic.toRoman(6));
 	}
 	@Test
+	public void testSevenToVII() throws Exception {
+		assertEquals("VII", Arabic.toRoman(7));
+	}
+
+	@Test
 	public void testNineToIX() throws Exception {
 		assertEquals("IX", Arabic.toRoman(9));
 	}
