@@ -107,4 +107,9 @@ public class ConvertArabicToRomanTest extends TestCase {
 	public void test499ToCDCXCIX() throws Exception {
 		assertEquals("CDXCIX", arabic.toRoman(499));
 	}
+	
+	@Test
+	public void test999ToCMXCIX() throws Exception {
+		assertEquals("CMXCIX", arabic.toRoman(999));
+	}
 }
