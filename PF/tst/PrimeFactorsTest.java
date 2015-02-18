@@ -17,7 +17,9 @@ public class PrimeFactorsTest {
 		assertEquals(list(5),determinePrimeFactors(5));
 		assertEquals(list(2,3),determinePrimeFactors(6));
 		assertEquals(list(7),determinePrimeFactors(7));
-		assertEquals(list(2,2,2),determinePrimeFactors(8));	}
+		assertEquals(list(2,2,2),determinePrimeFactors(8));
+		assertEquals(list(3,3),determinePrimeFactors(9));
+	}
 
 	private List<Integer> determinePrimeFactors(int i) {
 		List<Integer> factors = new ArrayList<Integer>();
