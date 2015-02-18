@@ -28,6 +28,10 @@ public class PrimeFactorsTest {
 				factors.add(2);
 				i/=2;
 			}
+			while (i%3==0){
+				factors.add(3);
+				i/=3;
+			}
 			if(i>1)
 			factors.add(i);
 		}
