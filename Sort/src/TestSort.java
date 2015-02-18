@@ -15,13 +15,19 @@ public class TestSort {
 	public void testSortArrays() {
 		assertEquals(list(),sort());
 		assertEquals(list(1),sort(1));
+		assertEquals(list(1,2),sort(1,2));
+//		assertEquals(list(1,2),sort(2,1));
 	}
 
 	private List<Integer> sort(Integer...ints) {
-		ArrayList<Integer> arrayList = new ArrayList<Integer>();
+		ArrayList<Integer> result = new ArrayList<Integer>();
+		ArrayList<Integer> unprocessed = new ArrayList<Integer>();
 		if (ints.length > 0){
-			arrayList.add(1);
+			for (Integer i : ints){
+				unprocessed.add(i);
+				result = unprocessed;				
+			}
 		}
-		return arrayList;
+		return result;
 	}
 }
