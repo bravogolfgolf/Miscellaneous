@@ -1,18 +1,18 @@
 import static org.junit.Assert.*;
-
-import java.util.Arrays;
-import java.util.List;
-
+import java.util.*;
 import org.junit.Test;
 
 public class PrimeFactorsTest {
 
+	private List<Integer> list(Integer...ints) {return Arrays.asList(ints);}
+
 	@Test
-	public void testOne() {
-		assertEquals(list(),PrimeFactors.determinePrimeFactors(1));
+	public void factors() {
+		assertEquals(list(),determinePrimeFactors(1));
 	}
 
-	private List<Integer> list() {
-		return Arrays.asList();
+	private List<Integer> determinePrimeFactors(int i) {
+		return null;
 	}
+
 }
