@@ -15,7 +15,10 @@ public class PrimeFactorsTest {
 	}
 
 	private List<Integer> determinePrimeFactors(int i) {
-		return new ArrayList<Integer>();
+		List<Integer> factors = new ArrayList<Integer>();
+		if(i > 1)
+			factors.add(2);
+		return factors;
 	}
 
 }
