@@ -23,17 +23,13 @@ public class PrimeFactorsTest {
 
 	private List<Integer> determinePrimeFactors(int i) {
 		List<Integer> factors = new ArrayList<Integer>();
-		if(i > 1){
-			while (i%2==0){
-				factors.add(2);
-				i/=2;
+		int divisor = 2;
+		while(i > 1){
+			while (i%divisor==0){
+				factors.add(divisor);
+				i/=divisor;
 			}
-			while (i%3==0){
-				factors.add(3);
-				i/=3;
-			}
-			if(i>1)
-			factors.add(i);
+			divisor++;			
 		}
 		return factors;
 	}
