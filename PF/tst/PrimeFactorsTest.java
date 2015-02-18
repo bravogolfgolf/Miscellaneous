@@ -11,6 +11,7 @@ public class PrimeFactorsTest {
 	@Test
 	public void factors() throws Exception {
 		assertEquals(list(),determinePrimeFactors(1));
+		assertEquals(list(2),determinePrimeFactors(2));
 	}
 
 	private List<Integer> determinePrimeFactors(int i) {
