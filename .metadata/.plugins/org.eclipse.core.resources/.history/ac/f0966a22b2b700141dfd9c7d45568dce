@@ -1,0 +1,21 @@
+import static org.junit.Assert.*;
+
+import java.util.ArrayList;
+import java.util.List;
+
+import org.junit.Test;
+
+
+public class TestSort {
+
+	@Test
+	public void testSortArrays() {
+		assertEquals(list(),sort());
+	}
+
+	private List<Integer> list(Integer...ints) {
+		List<Integer> list = new ArrayList<Integer>();
+		return null;
+	}
+
+}
