@@ -25,9 +25,8 @@ public class PrimeFactorsTest {
 		List<Integer> factors = new ArrayList<Integer>();
 		
 		for (int divisor = 2; i > 1; divisor++){
-			while (i%divisor==0){
+			for (;i%divisor==0;i/=divisor){
 				factors.add(divisor);
-				i/=divisor;
 			}			
 		}
 		return factors;
