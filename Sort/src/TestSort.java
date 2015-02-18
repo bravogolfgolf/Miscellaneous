@@ -14,11 +14,14 @@ public class TestSort {
 	@Test
 	public void testSortArrays() {
 		assertEquals(list(),sort());
+		assertEquals(list(1),sort(1));
 	}
 
-	private List<Integer> sort() {
-		return new ArrayList<Integer>();
+	private List<Integer> sort(Integer...ints) {
+		ArrayList<Integer> arrayList = new ArrayList<Integer>();
+		if (ints.length > 0){
+			arrayList.add(1);
+		}
+		return arrayList;
 	}
-
-
 }
