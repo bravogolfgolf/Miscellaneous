@@ -13,6 +13,7 @@ public class PrimeFactorsTest {
 		assertEquals(list(),determinePrimeFactors(1));
 		assertEquals(list(2),determinePrimeFactors(2));
 		assertEquals(list(3),determinePrimeFactors(3));
+		assertEquals(list(2,2),determinePrimeFactors(4));
 	}
 
 	private List<Integer> determinePrimeFactors(int i) {
