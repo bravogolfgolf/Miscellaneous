@@ -23,12 +23,9 @@ public class PrimeFactorsTest {
 
 	private List<Integer> determinePrimeFactors(int i) {
 		List<Integer> factors = new ArrayList<Integer>();
-		
-		for (int divisor = 2; i > 1; divisor++){
-			for (;i%divisor==0;i/=divisor){
+		for (int divisor = 2; i > 1; divisor++)
+			for (;i%divisor==0;i/=divisor)
 				factors.add(divisor);
-			}			
-		}
 		return factors;
 	}
 }
