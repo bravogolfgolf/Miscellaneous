@@ -18,9 +18,14 @@ public class PrimeFactorsTest {
 
 	private List<Integer> determinePrimeFactors(int i) {
 		List<Integer> factors = new ArrayList<Integer>();
-		if(i > 1)
+		if(i > 1){
+			if (i%2==0){
+				factors.add(2);
+				i/=2;
+			}
+			if(i>1)
 			factors.add(i);
+		}
 		return factors;
 	}
-
 }
