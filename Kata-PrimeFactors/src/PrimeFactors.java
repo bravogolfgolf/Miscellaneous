@@ -9,7 +9,7 @@ public class PrimeFactors {
 				factors.add(2);
 				input /= 2;
 			}
-			if (input % 3 == 0){
+			while (input % 3 == 0){
 				factors.add(3);
 				input /= 3;
 			}

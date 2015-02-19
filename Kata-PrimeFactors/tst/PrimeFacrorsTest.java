@@ -15,6 +15,8 @@ public class PrimeFacrorsTest {
 		assertEquals(list(7), PrimeFactors.find(7));
 		assertEquals(list(2,2,2), PrimeFactors.find(8));
 		assertEquals(list(3,3), PrimeFactors.find(9));
+		assertEquals(list(3,3,3), PrimeFactors.find(27));
+		
 	}
 
 	private List<Integer> list(Integer...ints) {
