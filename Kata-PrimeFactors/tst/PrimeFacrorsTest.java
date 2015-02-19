@@ -8,6 +8,7 @@ public class PrimeFacrorsTest {
 	public void testPrimeFactors() {
 		assertEquals(list(), PrimeFactors.find(1));
 		assertEquals(list(2), PrimeFactors.find(2));
+		assertEquals(list(3), PrimeFactors.find(3));
 	}
 
 	private List<Integer> list(Integer...ints) {
