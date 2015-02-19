@@ -1,25 +1,25 @@
 package bowlingGame;
+import junit.framework.TestCase;
 
-import static org.junit.Assert.*;
+public class BowlingGameTest extends TestCase {
+	private BowlingGame bg;
 
-import org.junit.Test;
-
-public class BowlingGameTest {
-
-	@Test
-	public void testBowlAllGutterBallsGame() {
-		BowlingGame bg = new BowlingGame();	
-		for(int i = 1; i <= 20; i++)
-			bg.roll(0);
-		assertEquals(0, bg.score());
+	protected void setUp(){
+		bg = new BowlingGame();
 	}
 
-	@Test
-	public void testBowlNonSpareNonStrikeGame() {
-		BowlingGame bg = new BowlingGame();	
-		for(int i = 1; i <= 20; i++)
-			bg.roll(4);
-		assertEquals(80, bg.score());
+	public void testGutterGame() throws Exception {
+		rollMany(20,0);
+		assertEquals(0,bg.score());
+	}
+	
+	public void testBowlNonSpareNonStrikeGame() throws Exception {
+		rollMany(20,4);
+		assertEquals(80,bg.score());
 	}
 
+	private void rollMany(int rolls, int pins){
+		for(int i = 0; i < rolls; i++)
+			bg.roll(pins);		
+	}
 }
