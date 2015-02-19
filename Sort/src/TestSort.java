@@ -19,7 +19,7 @@ public class TestSort {
 		assertEquals(list(1,2),sort(2,1));
 		assertEquals(list(1,2,3),sort(1,2,3));
 		assertEquals(list(1,2,3),sort(2,1,3));
-
+		assertEquals(list(1,2,3),sort(2,3,1));
 	}
 
 	private List<Integer> sort(Integer...ints) {
