@@ -1,8 +1,8 @@
 package primeFactors;
 
+import static primeFactors.PrimeFactors.find;
 import static org.junit.Assert.*;
 import java.util.*;
-
 import org.junit.Test;
 
 public class PrimeFacrorsTest {
@@ -11,11 +11,11 @@ public class PrimeFacrorsTest {
 
 	@Test
 	public void testPrimeFactors() {
-		assertEquals(list(), PrimeFactors.find(1));
-		assertEquals(list(2), PrimeFactors.find(2));
-/*		assertEquals(list(3), find(3));
+		assertEquals(list(), find(1));
+		assertEquals(list(2), find(2));
+		assertEquals(list(3), find(3));
 		assertEquals(list(2,2), find(4));
-		assertEquals(list(5), find(5));
+/*		assertEquals(list(5), find(5));
 		assertEquals(list(2,3), find(6));
 		assertEquals(list(7), find(7));
 		assertEquals(list(2,2,2), find(8));
