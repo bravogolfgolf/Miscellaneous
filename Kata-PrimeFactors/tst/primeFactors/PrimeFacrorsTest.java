@@ -1,15 +1,16 @@
 package primeFactors;
 import static org.junit.Assert.*;
-import java.util.*;
+
+import java.util.ArrayList;
+
 import org.junit.Test;
-import static primeFactors.PrimeFactors.find;
 
 public class PrimeFacrorsTest {
 
 	@Test
 	public void testPrimeFactors() {
-		assertEquals(list(), find(1));
-		assertEquals(list(2), find(2));
+		assertEquals(list(), PrimeFactors.find(1));
+/*		assertEquals(list(2), find(2));
 		assertEquals(list(3), find(3));
 		assertEquals(list(2,2), find(4));
 		assertEquals(list(5), find(5));
@@ -20,9 +21,11 @@ public class PrimeFacrorsTest {
 		assertEquals(list(3,3,3), find(27));
 		assertEquals(list(2,3,3,7,11,31,151,331), find(2147483646));
 		assertEquals(list(2147483647), find(2147483647));
+*/	}
+
+	private ArrayList<Integer> list() {
+		// TODO Auto-generated method stub
+		return new ArrayList<Integer>();
 	}
 
-	private List<Integer> list(Integer...ints) {
-		return Arrays.asList(ints);
-	}
 }
