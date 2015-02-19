@@ -24,6 +24,4 @@ public class PrimeFacrorsTest {
 		assertEquals(list(2,3,3,7,11,31,151,331), find(2147483646));
 		assertEquals(list(2147483647), find(2147483647));
 	}
-
-
 }
