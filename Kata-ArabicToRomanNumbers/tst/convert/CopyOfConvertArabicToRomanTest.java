@@ -1,6 +1,8 @@
-package com.convert.www;
+package convert;
 
 import org.junit.Test;
+
+import convert.ArabicNumber;
 import junit.framework.TestCase;
 
 public class CopyOfConvertArabicToRomanTest extends TestCase {

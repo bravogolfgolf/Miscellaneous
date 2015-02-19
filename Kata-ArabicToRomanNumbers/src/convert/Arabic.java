@@ -1,4 +1,4 @@
-package com.convert.www;
+package convert;
 
 public class Arabic {
 	int thousandsPlaceHolder = 0;
