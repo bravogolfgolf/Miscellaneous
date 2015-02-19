@@ -1,14 +1,19 @@
 package bowlingGame;
 
+import java.util.*;
+
 public class BowlingGame {
 
+	private List<Integer> rolls = new ArrayList<Integer>();
 	private int score = 0;
-	
-	public int score() {
-		return score;
-	}
 
 	public void roll(int i) {
-		score = score + i;	
+		rolls.add(i);	
+	}
+
+	public int score() {
+		for(Integer i : rolls)
+			score+=rolls.get(i);
+		return score;
 	}
 }

@@ -17,7 +17,7 @@ public class BowlingGameTest extends TestCase {
 		rollMany(20,4);
 		assertEquals(80,bg.score());
 	}
-
+		
 	private void rollMany(int rolls, int pins){
 		for(int i = 0; i < rolls; i++)
 			bg.roll(pins);		
