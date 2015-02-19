@@ -6,17 +6,18 @@ public class PrimeFacrorsTest {
 
 	@Test
 	public void testPrimeFactors() {
-		assertEquals(list(), PrimeFactors.find(1));
-		assertEquals(list(2), PrimeFactors.find(2));
-		assertEquals(list(3), PrimeFactors.find(3));
-		assertEquals(list(2,2), PrimeFactors.find(4));
-		assertEquals(list(5), PrimeFactors.find(5));
-		assertEquals(list(2,3), PrimeFactors.find(6));
-		assertEquals(list(7), PrimeFactors.find(7));
-		assertEquals(list(2,2,2), PrimeFactors.find(8));
-		assertEquals(list(3,3), PrimeFactors.find(9));
-		assertEquals(list(3,3,3), PrimeFactors.find(27));
-		
+		assertEquals(list(), PrimeFactors.generate(1));
+		assertEquals(list(2), PrimeFactors.generate(2));
+		assertEquals(list(3), PrimeFactors.generate(3));
+		assertEquals(list(2,2), PrimeFactors.generate(4));
+		assertEquals(list(5), PrimeFactors.generate(5));
+		assertEquals(list(2,3), PrimeFactors.generate(6));
+		assertEquals(list(7), PrimeFactors.generate(7));
+		assertEquals(list(2,2,2), PrimeFactors.generate(8));
+		assertEquals(list(3,3), PrimeFactors.generate(9));
+		assertEquals(list(3,3,3), PrimeFactors.generate(27));
+		assertEquals(list(2,3,3,7,11,31,151,331), PrimeFactors.generate(2147483646));
+		assertEquals(list(2147483647), PrimeFactors.generate(2147483647));
 	}
 
 	private List<Integer> list(Integer...ints) {
