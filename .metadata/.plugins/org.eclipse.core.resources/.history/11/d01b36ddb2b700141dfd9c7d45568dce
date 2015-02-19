@@ -1,9 +1,0 @@
-/bin/
-/.settings/
-/.metadata/
-/bin/.DS_Store
-.classpath
-.project
-.DS_Store
-*.dat
-*.class
