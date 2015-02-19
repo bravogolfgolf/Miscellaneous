@@ -36,8 +36,8 @@ public class TestSort {
 						Integer low = result.get(i);						
 						result.set(i, high);
 						result.set(i+1, low);
-						
 					}
+					i = 0;
 				}
 		}
 		return result;
