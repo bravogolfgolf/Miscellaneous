@@ -1,7 +1,7 @@
 package primeFactors;
-import static org.junit.Assert.*;
 
-import java.util.ArrayList;
+import static org.junit.Assert.*;
+import java.util.*;
 
 import org.junit.Test;
 
@@ -23,8 +23,7 @@ public class PrimeFacrorsTest {
 		assertEquals(list(2147483647), find(2147483647));
 */	}
 
-	private ArrayList<Integer> list() {
-		// TODO Auto-generated method stub
+	private List<Integer> list() {
 		return new ArrayList<Integer>();
 	}
 

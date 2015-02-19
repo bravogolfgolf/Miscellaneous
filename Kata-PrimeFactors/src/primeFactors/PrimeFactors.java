@@ -1,12 +1,10 @@
 package primeFactors;
 
-import java.util.ArrayList;
+import java.util.*;
 
 public class PrimeFactors {
 
-	public static ArrayList<Integer> find(int i) {
-		// TODO Auto-generated method stub
+	public static List<Integer> find(int i) {
 		return new ArrayList<Integer>();
 	}
-
 }
