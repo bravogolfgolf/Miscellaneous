@@ -17,6 +17,7 @@ public class TestSort {
 		assertEquals(list(1,2), Sorter.sort(2,1));
 		assertEquals(list(1,2,2), Sorter.sort(1,2,2));
 		assertEquals(list(1,2,2), Sorter.sort(2,1,2));
+		assertEquals(list(1,2,2), Sorter.sort(2,2,1));
 	}
 }
 	
