@@ -7,8 +7,8 @@ import org.junit.Test;
 public class TestStringCalculator {
 
 	@Test
-	public void test() {
-		fail("Not yet implemented");
+	public void testEmptyStingReturns0() {
+		assertEquals("",StringCalculator.toCalculate(""));
 	}
 
 }
