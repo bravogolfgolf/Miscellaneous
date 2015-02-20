@@ -15,6 +15,7 @@ public class ConvertArabicToRomanTest {
 		checkRomanNumerals("L",50);
 		checkRomanNumerals("C",100);
 		checkRomanNumerals("D",500);
+		checkRomanNumerals("M",1000);
 	}
 	
 	@Test
