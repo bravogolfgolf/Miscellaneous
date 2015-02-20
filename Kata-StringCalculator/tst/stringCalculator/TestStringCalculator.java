@@ -26,6 +26,16 @@ public class TestStringCalculator {
 	public void testStingWith1And2Returns3() {
 		checkStringCalculatorResuts("1,2",3);
 	}
+
+	@Test
+	public void testStingOflongListReturnsCorrectSum() {
+		checkStringCalculatorResuts("1,2,56,2,3,45,76,98436",98621);
+	}
+
+	@Test
+	public void testStingNewLineAndCommas() {
+		checkStringCalculatorResuts("1\n2,3",6);
+	}
 	
 	private void checkStringCalculatorResuts(String input, int result) {
 		assertEquals(result,toCalculate(input));

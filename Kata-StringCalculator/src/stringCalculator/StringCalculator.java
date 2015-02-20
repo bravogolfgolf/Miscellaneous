@@ -5,7 +5,7 @@ public class StringCalculator {
 	public static int toCalculate(String commaDelimited) {
 		int sum = 0;
 		if(isNotEmpty(commaDelimited)){
-			String[] numbers = commaDelimited.split(",");
+			String[] numbers = commaDelimited.split("[,\\n]");
 			for( String item : numbers)
 				sum = sum + Integer.parseInt(item.toString());
 		}
