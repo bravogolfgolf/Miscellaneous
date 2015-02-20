@@ -22,6 +22,11 @@ public class TestStringCalculator {
 		checkStringCalculatorResuts("2",2);
 	}
 	
+	@Test
+	public void testStingWith1And2Returns3() {
+		checkStringCalculatorResuts("1,2",3);
+	}
+	
 	private void checkStringCalculatorResuts(String input, int result) {
 		assertEquals(result,toCalculate(input));
 	}
