@@ -17,6 +17,11 @@ public class TestStringCalculator {
 		checkStringCalculatorResuts("1",1);
 	}
 
+	@Test
+	public void testStingWith2Returns2() {
+		checkStringCalculatorResuts("2",2);
+	}
+	
 	private void checkStringCalculatorResuts(String input, int result) {
 		assertEquals(result,toCalculate(input));
 	}
