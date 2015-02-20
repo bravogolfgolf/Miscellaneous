@@ -27,7 +27,7 @@ public class ConvertArabicToRomanTest {
 	public void testSubtraction() {
 		checkRomanNumerals("IV",4);
 		checkRomanNumerals("IX",9);
-		
+		checkRomanNumerals("XL",40);
 	}
 	
 	private void checkRomanNumerals(String roman, int arabic) {
