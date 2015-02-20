@@ -1,6 +1,7 @@
 package convert;
 
 public enum Symbol {
+	CM(900),
 	D(500),
 	CD(400),
 	C(100),
