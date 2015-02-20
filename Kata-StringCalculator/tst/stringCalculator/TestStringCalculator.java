@@ -8,7 +8,7 @@ public class TestStringCalculator {
 
 	@Test
 	public void testEmptyStingReturns0() {
-		assertEquals("",StringCalculator.toCalculate(""));
+		assertEquals(0,StringCalculator.toCalculate(""));
 	}
 
 }
