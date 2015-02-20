@@ -31,6 +31,7 @@ public class ConvertArabicToRomanTest {
 		checkRomanNumerals("IX",9);
 		checkRomanNumerals("XL",40);
 		checkRomanNumerals("XC",90);
+		checkRomanNumerals("CD",400);
 		
 	}
 	
