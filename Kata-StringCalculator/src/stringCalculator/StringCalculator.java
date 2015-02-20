@@ -2,13 +2,17 @@ package stringCalculator;
 
 public class StringCalculator {
 
-	public static int toCalculate(String input) {
-		int result = 0;
-		if(input != ""){
-			String[] list = input.split(",");
-			for( String item : list)
-				result = result + Integer.parseInt(item.toString());
+	public static int toCalculate(String commaDelimited) {
+		int sum = 0;
+		if(isNotEmpty(commaDelimited)){
+			String[] numbers = commaDelimited.split(",");
+			for( String item : numbers)
+				sum = sum + Integer.parseInt(item.toString());
 		}
-		return result;
+		return sum;
+	}
+
+	private static boolean isNotEmpty(String input) {
+		return !input.isEmpty();
 	}
 }
