@@ -8,13 +8,16 @@ public class StringCalculator {
 
 			String[] defaultDelimiter = delimited.split("[\n]",2);
 			char[] characters= defaultDelimiter[0].toCharArray();
-			char delimiter = '\n';
+			String delimiterRegularExpression = "," + "\n";
+			
 			if(characters.length > 2)
 				if( characters[0] == '/' || characters[1] == '/') {
-					delimiter = characters[2];
+					delimiterRegularExpression = delimiterRegularExpression + characters[2];
+					System.out.println(delimiterRegularExpression);
 					delimited = defaultDelimiter[1];
 				}
-			String[] numbers = delimited.split("[,\\n" + delimiter + "]");
+			System.out.println(delimiterRegularExpression);
+			String[] numbers = delimited.split("[" + delimiterRegularExpression + "]");
 			for( String item : numbers)
 				sum = sum + Integer.parseInt(item.toString());
 		}
