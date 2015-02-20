@@ -2,10 +2,10 @@ package stringCalculator;
 
 public class StringCalculator {
 
-	public static int toCalculate(String commaDelimited) {
+	public static int add(String delimited) {
 		int sum = 0;
-		if(isNotEmpty(commaDelimited)){
-			String[] numbers = commaDelimited.split("[,\\n]");
+		if(isNotEmpty(delimited)){
+			String[] numbers = delimited.split("[,\\n]");
 			for( String item : numbers)
 				sum = sum + Integer.parseInt(item.toString());
 		}

@@ -1,7 +1,7 @@
 package stringCalculator;
 
 import static org.junit.Assert.*;
-import static stringCalculator.StringCalculator.toCalculate;
+import static stringCalculator.StringCalculator.add;
 
 import org.junit.Test;
 
@@ -38,6 +38,6 @@ public class TestStringCalculator {
 	}
 	
 	private void checkStringCalculatorResuts(String input, int result) {
-		assertEquals(result,toCalculate(input));
+		assertEquals(result,add(input));
 	}
 }
