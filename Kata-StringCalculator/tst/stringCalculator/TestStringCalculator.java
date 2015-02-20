@@ -37,6 +37,11 @@ public class TestStringCalculator {
 		checkStringCalculatorResuts("1\n2,3",6);
 	}
 	
+	@Test
+	public void testStingDefaultDelimiter() {
+		checkStringCalculatorResuts("//;\n1;2",3);
+	}
+	
 	private void checkStringCalculatorResuts(String input, int result) {
 		assertEquals(result,add(input));
 	}
