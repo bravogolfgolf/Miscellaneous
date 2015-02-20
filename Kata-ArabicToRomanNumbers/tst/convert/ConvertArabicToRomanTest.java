@@ -17,11 +17,16 @@ public class ConvertArabicToRomanTest {
 	public void testAddition() {
 		checkRomanNumerals("II",2);
 		checkRomanNumerals("III",3);
+		checkRomanNumerals("VI",6);
+		checkRomanNumerals("VII",7);
+		checkRomanNumerals("VIII",8);
 	}
 	
 	@Test
 	public void testSubtraction() {
 		checkRomanNumerals("IV",4);
+		checkRomanNumerals("IX",9);
+		
 	}
 	
 	private void checkRomanNumerals(String roman, int arabic) {
