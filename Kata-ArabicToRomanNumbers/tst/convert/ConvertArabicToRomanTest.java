@@ -10,6 +10,7 @@ public class ConvertArabicToRomanTest {
 	@Test
 	public void testNumerals() {
 		checkRomanNumerals("I",1);
+		checkRomanNumerals("V",5);
 	}
 	
 	@Test
