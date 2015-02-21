@@ -34,7 +34,8 @@ public class StringCalculator {
 	}
 
 	private boolean hasDefaultDelimiter(String input) {
-		return input.substring(0,2).equals("//");
+		final String DELIMITER_MARKER = "//";
+		return input.substring(0,2).equals(DELIMITER_MARKER);
 	}
 
 	private void modifyDelimiterRegularExpression(String input) {
