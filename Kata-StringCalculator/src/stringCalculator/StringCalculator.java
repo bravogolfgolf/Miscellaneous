@@ -26,14 +26,13 @@ public class StringCalculator {
 			if (input.substring(0,2).equals("//"))
 				delimiterRegularExpression += input.substring(2,3);
 	}
-	
+
 	private static void delimitInput(String input) {
-		String local = input;
 		if (input.length() > 2)
 			if (input.substring(0,2).equals("//")){
 				String[] splitInput = input.split("[\n]",2);
-				local = splitInput[1];
+				input = splitInput[1];
 			}
-		delimited = local.split("[" + delimiterRegularExpression + "]");
+		delimited = input.split("[" + delimiterRegularExpression + "]");
 	}
 }
