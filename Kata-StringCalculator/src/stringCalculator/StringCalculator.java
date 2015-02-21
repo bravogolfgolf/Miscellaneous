@@ -53,8 +53,9 @@ public class StringCalculator {
 	}
 
 	private static int sumDelimited(int sum) {
-		for(String item : delimited)
-			sum += Integer.parseInt(item.toString());
+		for(String item : delimited){
+				sum += Integer.parseInt(item.toString());			
+		}
 		return sum;
 	}
 }
