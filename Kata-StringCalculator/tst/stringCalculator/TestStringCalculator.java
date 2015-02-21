@@ -46,6 +46,16 @@ public class TestStringCalculator {
 		checkStringCalculatorResuts("//|\n1|2,3\n4",10);
 	}
 	
+	@Test (expected = NumberFormatException.class)
+	public void testNegativeThrowsException() {
+		checkStringCalculatorResuts("//|\n1|2,3\n-4",6);
+	}
+
+	@Test (expected = NumberFormatException.class)
+	public void testNegativeThrowsExceptionOther() {
+		checkStringCalculatorResuts("//|\n1|2,-3\n-4",3);
+	}
+
 	private void checkStringCalculatorResuts(String input, int result) {
 		StringCalculator sc = new StringCalculator();
 		assertEquals(result, sc.add(input));

@@ -20,6 +20,7 @@ public class StringCalculator {
 					modifyDelimiterRegularExpression(input);
 					removeDefaultDelimiterFrom(input);}
 			createArraysFrom(unSplitString);
+			checkForException();
 			calculate();
 		}
 		return sum;
@@ -60,6 +61,31 @@ public class StringCalculator {
 				negative.add(Integer.parseInt(temp[i].toString()));
 			}
 		}
+	}
+
+	private void checkForException() {
+		try {
+			hasNegatives();
+		} catch (NumberFormatException e) {
+			String message = formatMessage();
+			System.out.println(message);
+			throw new NumberFormatException(message);
+		}
+	}
+
+	private String formatMessage() {
+		String message = "negatives not allowed: [";
+		message += negative.get(0).toString();
+		for(int i = 1; i < negative.size(); i++){
+			message += ", " + negative.get(i).toString();
+		}
+		message += "]";
+		return message;
+	}
+
+	private void hasNegatives() throws NumberFormatException {
+		if(!negative.isEmpty())
+			throw new NumberFormatException();
 	}
 
 	private void calculate() {
