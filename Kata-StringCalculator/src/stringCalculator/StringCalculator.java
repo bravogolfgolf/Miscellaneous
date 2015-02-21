@@ -11,8 +11,7 @@ public class StringCalculator {
 		if(isNotEmpty(input)){		
 			setDelimiterRegularExpression(input);
 			delimitInput(input);
-			for( String item : delimited)
-				sum += Integer.parseInt(item.toString());
+			sum = sumDelimited(sum);
 		}
 		return sum;
 	}
@@ -42,9 +41,8 @@ public class StringCalculator {
 
 	private static void delimitInput(String input) {
 		if (isLenghtGreaterThan2(input))
-			if (hasDefaultDelimiter(input)){
+			if (hasDefaultDelimiter(input))
 				input = removeDefaultDelimiterFromInput(input);
-			}
 		delimited = input.split("[" + delimiterRegularExpression + "]");
 	}
 
@@ -52,5 +50,11 @@ public class StringCalculator {
 		String[] splitInput = input.split(NEW_LINE,2);
 		input = splitInput[1];
 		return input;
+	}
+
+	private static int sumDelimited(int sum) {
+		for(String item : delimited)
+			sum += Integer.parseInt(item.toString());
+		return sum;
 	}
 }
