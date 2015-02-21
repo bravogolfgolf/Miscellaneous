@@ -22,14 +22,22 @@ public class StringCalculator {
 
 	private static void setDelimiterRegularExpression(String input) {
 		delimiterRegularExpression = "," + "\n";
-		if (input.length() > 2)
-			if (input.substring(0,2).equals("//"))
+		if (isLenghtGreaterThan2(input))
+			if (hasDefaultDelimiter(input))
 				delimiterRegularExpression += input.substring(2,3);
 	}
 
+	private static boolean hasDefaultDelimiter(String input) {
+		return input.substring(0,2).equals("//");
+	}
+
+	private static boolean isLenghtGreaterThan2(String input) {
+		return input.length() > 2;
+	}
+
 	private static void delimitInput(String input) {
-		if (input.length() > 2)
-			if (input.substring(0,2).equals("//")){
+		if (isLenghtGreaterThan2(input))
+			if (hasDefaultDelimiter(input)){
 				String[] splitInput = input.split("[\n]",2);
 				input = splitInput[1];
 			}
