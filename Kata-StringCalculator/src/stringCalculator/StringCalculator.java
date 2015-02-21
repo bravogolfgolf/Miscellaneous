@@ -9,7 +9,7 @@ public class StringCalculator {
 		int sum = 0;
 		if(isNotEmpty(input)){		
 			setDelimiterRegularExpression(input);
-			delimited = delimitInput(input);
+			delimitInput(input);
 			for( String item : delimited)
 				sum += Integer.parseInt(item.toString());
 		}
@@ -27,13 +27,13 @@ public class StringCalculator {
 				delimiterRegularExpression += input.substring(2,3);
 	}
 	
-	private static String[] delimitInput(String input) {
-		String delimited = input;
+	private static void delimitInput(String input) {
+		String local = input;
 		if (input.length() > 2)
 			if (input.substring(0,2).equals("//")){
 				String[] splitInput = input.split("[\n]",2);
-				delimited = splitInput[1];
+				local = splitInput[1];
 			}
-		return delimited.split("[" + delimiterRegularExpression + "]");
+		delimited = local.split("[" + delimiterRegularExpression + "]");
 	}
 }
