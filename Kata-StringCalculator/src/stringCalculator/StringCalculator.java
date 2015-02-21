@@ -1,7 +1,8 @@
 package stringCalculator;
 
 public class StringCalculator {
-
+	private static final String COMMA = ",";
+	private static final String NEW_LINE = System.getProperty("line.separator");
 	private static String delimited[];
 	private static String delimiterRegularExpression = "";
 
@@ -21,10 +22,14 @@ public class StringCalculator {
 	}
 
 	private static void setDelimiterRegularExpression(String input) {
-		delimiterRegularExpression = "," + "\n";
+		delimiterRegularExpression = COMMA + NEW_LINE;
 		if (isLenghtGreaterThan2(input))
 			if (hasDefaultDelimiter(input))
-				delimiterRegularExpression += input.substring(2,3);
+				delimiterRegularExpression += defaultDelimiterFromInput(input);
+	}
+
+	private static String defaultDelimiterFromInput(String input) {
+		return input.substring(2,3);
 	}
 
 	private static boolean hasDefaultDelimiter(String input) {
@@ -38,7 +43,7 @@ public class StringCalculator {
 	private static void delimitInput(String input) {
 		if (isLenghtGreaterThan2(input))
 			if (hasDefaultDelimiter(input)){
-				String[] splitInput = input.split("[\n]",2);
+				String[] splitInput = input.split(NEW_LINE,2);
 				input = splitInput[1];
 			}
 		delimited = input.split("[" + delimiterRegularExpression + "]");
