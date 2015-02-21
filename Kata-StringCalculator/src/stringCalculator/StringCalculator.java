@@ -1,29 +1,32 @@
 package stringCalculator;
 
-public class StringCalculator {
-	private static final String COMMA = ",";
-	private static final String NEW_LINE = System.getProperty("line.separator");
-	private static String delimiterRegularExpression = "";
-	private static String unSplitString;
-	private static String delimited[];
+import java.util.ArrayList;
+import java.util.List;
 
-	public static int add(String input) {
-		int sum = 0;
+public class StringCalculator {
+	private final String COMMA = ",";
+	private final String NEW_LINE = System.getProperty("line.separator");
+	private String delimiterRegularExpression = "";
+	private String unSplitString;
+	private List<Integer> positive = new ArrayList<Integer>();
+	int sum = 0;
+
+	public int add(String input) {
 		unSplitString = input;
 
 		if(isNotEmpty(input)){		
 			setDelimiterRegularExpression(input);
 			createArray(unSplitString);
-			sum = calculate(sum);
+			calculate();
 		}
 		return sum;
 	}
 
-	private static boolean isNotEmpty(String input) {
+	private boolean isNotEmpty(String input) {
 		return !input.isEmpty();
 	}
 
-	private static void setDelimiterRegularExpression(String input) {
+	private void setDelimiterRegularExpression(String input) {
 		delimiterRegularExpression = COMMA + NEW_LINE;
 		if (isLenghtGreaterThan2(input))
 			if (hasDefaultDelimiter(input)){
@@ -32,30 +35,33 @@ public class StringCalculator {
 			}
 	}
 
-	private static boolean isLenghtGreaterThan2(String input) {
+	private boolean isLenghtGreaterThan2(String input) {
 		return input.length() > 2;
 	}
 
-	private static boolean hasDefaultDelimiter(String input) {
+	private boolean hasDefaultDelimiter(String input) {
 		return input.substring(0,2).equals("//");
 	}
 
-	private static String defaultDelimiterFrom(String input) {
+	private String defaultDelimiterFrom(String input) {
 		return input.substring(2,3);
 	}
 
-	private static String removeDefaultDelimiterFrom(String input) {
+	private String removeDefaultDelimiterFrom(String input) {
 		String[] splitInput = input.split(NEW_LINE,2);
 		return splitInput[1];
 	}
 
-	private static void createArray(String input) {
-		delimited = input.split("[" + delimiterRegularExpression + "]");
+	private void createArray(String input) {
+		String[] temp = input.split("[" + delimiterRegularExpression + "]");
+		for(int i = 0; i < temp.length; i++){
+			positive.add(Integer.parseInt(temp[i].toString()));
+		}
+
 	}
 
-	private static int calculate(int sum) {
-		for(String item : delimited)
-			sum += Integer.parseInt(item.toString());			
-		return sum;
+	private void calculate() {
+		for(int i : positive)
+			sum += i;
 	}
 }
