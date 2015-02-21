@@ -9,6 +9,7 @@ public class StringCalculator {
 	private String delimiterRegularExpression = "";
 	private String unSplitString;
 	private List<Integer> positive = new ArrayList<Integer>();
+	private List<Integer> negative = new ArrayList<Integer>();
 	int sum = 0;
 
 	public int add(String input) {
@@ -16,7 +17,7 @@ public class StringCalculator {
 
 		if(isNotEmpty(input)){		
 			setDelimiterRegularExpression(input);
-			createArray(unSplitString);
+			createArrays(unSplitString);
 			calculate();
 		}
 		return sum;
@@ -52,12 +53,15 @@ public class StringCalculator {
 		return splitInput[1];
 	}
 
-	private void createArray(String input) {
+	private void createArrays(String input) {
 		String[] temp = input.split("[" + delimiterRegularExpression + "]");
 		for(int i = 0; i < temp.length; i++){
-			positive.add(Integer.parseInt(temp[i].toString()));
+			if (Integer.parseInt(temp[i].toString()) >0){
+				positive.add(Integer.parseInt(temp[i].toString()));				
+			}else{
+				negative.add(Integer.parseInt(temp[i].toString()));
+			}
 		}
-
 	}
 
 	private void calculate() {

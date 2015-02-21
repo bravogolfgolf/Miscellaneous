@@ -41,6 +41,11 @@ public class TestStringCalculator {
 		checkStringCalculatorResuts("//;\n1;2",3);
 	}
 	
+	@Test
+	public void testStingDefaultDelimiterOther() {
+		checkStringCalculatorResuts("//|\n1|2,3\n4",10);
+	}
+	
 	private void checkStringCalculatorResuts(String input, int result) {
 		StringCalculator sc = new StringCalculator();
 		assertEquals(result, sc.add(input));
