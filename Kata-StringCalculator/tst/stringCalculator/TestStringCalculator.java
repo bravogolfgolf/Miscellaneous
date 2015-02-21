@@ -7,6 +7,9 @@ import org.junit.rules.ExpectedException;
 
 public class TestStringCalculator {
 
+	@Rule
+	public ExpectedException thrown = ExpectedException.none();
+
 	@Test
 	public void testEmptyStingReturns0() {
 		checkStringCalculatorResuts("",0);
@@ -47,22 +50,19 @@ public class TestStringCalculator {
 		checkStringCalculatorResuts("//|\n1|2,3\n4",10);
 	}
 
-	@Test (expected = NumberFormatException.class)
+	@Test (expected = IllegalArgumentException.class)
 	public void testNegativeThrowsException() {
 		checkStringCalculatorResuts("//|\n1|2,3\n-4",6);
 	}
 
-	@Test (expected = NumberFormatException.class)
+	@Test (expected = IllegalArgumentException.class)
 	public void testNegativeThrowsExceptionOther() {
 		checkStringCalculatorResuts("//|\n1|2,-3\n-4",3);
 	}
 
-	@Rule
-	public ExpectedException thrown = ExpectedException.none();
-
 	@Test
 	public void throwsExceptionWhenNegativeNumbersAreGiven() {
-		thrown.expect(NumberFormatException.class);
+		thrown.expect(IllegalArgumentException.class);
 		thrown.expectMessage("negatives not allowed: [-1, -2]");
 		StringCalculator sc = new StringCalculator();
 		sc.add("-1,-2,3");

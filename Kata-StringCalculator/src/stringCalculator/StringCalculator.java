@@ -66,11 +66,19 @@ public class StringCalculator {
 	private void checkForException() {
 		try {
 			hasNegatives();
-		} catch (NumberFormatException e) {
+		} catch (IllegalArgumentException e) {
 			String message = formatMessage();
-			System.out.println(message);
-			throw new NumberFormatException(message);
+			throw new IllegalArgumentException(message);
 		}
+	}
+
+	private void hasNegatives() throws IllegalArgumentException {
+		if(isNotEmpty(negative))
+			throw new IllegalArgumentException();
+	}
+
+	private boolean isNotEmpty(List<Integer> negative) {
+		return !negative.isEmpty();
 	}
 
 	private String formatMessage() {
@@ -81,11 +89,6 @@ public class StringCalculator {
 		}
 		message += "]";
 		return message;
-	}
-
-	private void hasNegatives() throws NumberFormatException {
-		if(!negative.isEmpty())
-			throw new NumberFormatException();
 	}
 
 	private void calculate() {
