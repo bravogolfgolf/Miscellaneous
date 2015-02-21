@@ -28,24 +28,29 @@ public class StringCalculator {
 				delimiterRegularExpression += defaultDelimiterFromInput(input);
 	}
 
-	private static String defaultDelimiterFromInput(String input) {
-		return input.substring(2,3);
+	private static boolean isLenghtGreaterThan2(String input) {
+		return input.length() > 2;
 	}
 
 	private static boolean hasDefaultDelimiter(String input) {
 		return input.substring(0,2).equals("//");
 	}
 
-	private static boolean isLenghtGreaterThan2(String input) {
-		return input.length() > 2;
+	private static String defaultDelimiterFromInput(String input) {
+		return input.substring(2,3);
 	}
 
 	private static void delimitInput(String input) {
 		if (isLenghtGreaterThan2(input))
 			if (hasDefaultDelimiter(input)){
-				String[] splitInput = input.split(NEW_LINE,2);
-				input = splitInput[1];
+				input = removeDefaultDelimiterFromInput(input);
 			}
 		delimited = input.split("[" + delimiterRegularExpression + "]");
+	}
+
+	private static String removeDefaultDelimiterFromInput(String input) {
+		String[] splitInput = input.split(NEW_LINE,2);
+		input = splitInput[1];
+		return input;
 	}
 }
