@@ -42,10 +42,10 @@ public class StringCalculator {
 	private void createArraysFrom(String input) {
 		final String ON_ALL_NON_NUMBER_CHARACTERS_EXCEPT_MINUS_SIGN = "[\\D&&[^-]]+";
 		String[] temp = input.split(ON_ALL_NON_NUMBER_CHARACTERS_EXCEPT_MINUS_SIGN);
-		for(int i = 0; i < temp.length; i++){
-			if (isGreaterThanThis(temp, i)) {;}			
-			else if (isNegative(temp, i)) {negative.add(Integer.parseInt(temp[i].toString()));}
-			else if (isPositive(temp, i)){positive.add(Integer.parseInt(temp[i].toString()));}
+		for(int value = 0; value < temp.length; value++){
+			if (isGreaterThanThis(temp, value)) {;}			
+			else if (isNegative(temp, value)) {negative.add(Integer.parseInt(temp[value].toString()));}
+			else if (isPositive(temp, value)){positive.add(Integer.parseInt(temp[value].toString()));}
 		}
 	}
 
