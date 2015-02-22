@@ -40,7 +40,8 @@ public class StringCalculator {
 	}
 
 	private void createArraysFrom(String input) {
-		String[] temp = input.split("[\\D&&[^-]]+");
+		final String ON_ALL_NON_NUMBER_CHARACTERS_EXCEPT_MINUS_SIGN = "[\\D&&[^-]]+";
+		String[] temp = input.split(ON_ALL_NON_NUMBER_CHARACTERS_EXCEPT_MINUS_SIGN);
 		for(int i = 0; i < temp.length; i++){
 			if (isGreaterThanThis(temp, i)) {;}			
 			else if (isNegative(temp, i)) {negative.add(Integer.parseInt(temp[i].toString()));}
