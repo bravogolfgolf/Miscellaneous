@@ -27,4 +27,19 @@ public class PrimeFactorsTest {
 	public void testPrimeFactors4() {
 		assertEquals(list(2,2), PrimeFactors.find(4));
 	}
+	
+	@Test
+	public void testPrimeFactors5() {
+		assertEquals(list(5), PrimeFactors.find(5));
+	}
+	
+	@Test
+	public void testPrimeFactors6() {
+		assertEquals(list(2,3), PrimeFactors.find(6));
+	}
+	
+	@Test
+	public void testPrimeFactors7() {
+		assertEquals(list(7), PrimeFactors.find(7));
+	}		
 }
