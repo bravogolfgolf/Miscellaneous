@@ -54,7 +54,7 @@ public class StringCalculator {
 	}
 
 	private void createArraysFrom(String input) {
-		String[] temp = input.split("[" + delimiterRegularExpression + "]");
+		String[] temp = input.split("[\\D&&[^-]]+");
 		for(int i = 0; i < temp.length; i++){
 			if (ignoreNumbersGreaterThanThis(temp, i)) {;}			
 			else if (isNegative(temp, i)) {negative.add(Integer.parseInt(temp[i].toString()));}
