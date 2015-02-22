@@ -1,7 +1,6 @@
 package stringCalculator;
 
 import static org.junit.Assert.*;
-
 import org.junit.*;
 import org.junit.rules.ExpectedException;
 
@@ -32,7 +31,7 @@ public class TestStringCalculator {
 
 	@Test
 	public void testStingOflongListReturnsCorrectSum() {
-		checkStringCalculatorResuts("1,2,56,2,3,45,76,98436",98621);
+		checkStringCalculatorResuts("1,2,56,2,3,45,76,98436",185);
 	}
 
 	@Test
@@ -47,17 +46,7 @@ public class TestStringCalculator {
 
 	@Test
 	public void testStingDefaultDelimiterOther() {
-		checkStringCalculatorResuts("//|\n1|2,3\n4",10);
-	}
-
-	@Test (expected = IllegalArgumentException.class)
-	public void testNegativeThrowsException() {
-		checkStringCalculatorResuts("//|\n1|2,3\n-4",6);
-	}
-
-	@Test (expected = IllegalArgumentException.class)
-	public void testNegativeThrowsExceptionOther() {
-		checkStringCalculatorResuts("//|\n1|2,-3\n-4",3);
+		checkStringCalculatorResuts("//|\n1|2,3\n1000",1006);
 	}
 
 	@Test
@@ -66,6 +55,11 @@ public class TestStringCalculator {
 		thrown.expectMessage("negatives not allowed: [-1, -2]");
 		StringCalculator sc = new StringCalculator();
 		sc.add("-1,-2,3");
+	}
+
+	@Test
+	public void testIgnoreNumbersOver1000() {
+		checkStringCalculatorResuts("//#\n1\n2,3#4,1001",10);
 	}
 
 	private void checkStringCalculatorResuts(String input, int result) {

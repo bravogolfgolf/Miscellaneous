@@ -55,12 +55,22 @@ public class StringCalculator {
 	private void createArraysFrom(String input) {
 		String[] temp = input.split("[" + delimiterRegularExpression + "]");
 		for(int i = 0; i < temp.length; i++){
-			if (Integer.parseInt(temp[i].toString()) >0){
-				positive.add(Integer.parseInt(temp[i].toString()));				
-			}else{
-				negative.add(Integer.parseInt(temp[i].toString()));
-			}
+			if (ignoreNumbersGreaterThanThis(temp, i)) {;}			
+			else if (isNegative(temp, i)) {negative.add(Integer.parseInt(temp[i].toString()));}
+			else if (isPositive(temp, i)){positive.add(Integer.parseInt(temp[i].toString()));}
 		}
+	}
+
+	private boolean ignoreNumbersGreaterThanThis(String[] temp, int i) {
+		return Integer.parseInt(temp[i].toString()) > 1000;
+	}
+
+	private boolean isNegative(String[] temp, int i) {
+		return Integer.parseInt(temp[i].toString()) < 0;
+	}
+
+	private boolean isPositive(String[] temp, int i) {
+		return Integer.parseInt(temp[i].toString()) >= 0;
 	}
 
 	private void checkForException() {
