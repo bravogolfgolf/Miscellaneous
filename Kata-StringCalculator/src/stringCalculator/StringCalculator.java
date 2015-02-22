@@ -4,9 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class StringCalculator {
-	private final String COMMA = ",";
 	private final String NEW_LINE = System.getProperty("line.separator");
-	private String delimiterRegularExpression = COMMA + NEW_LINE;
 	private String unSplitString;
 	private List<Integer> positive = new ArrayList<Integer>();
 	private List<Integer> negative = new ArrayList<Integer>();
@@ -17,7 +15,6 @@ public class StringCalculator {
 		if(isNotEmpty(input)){		
 			if (checkForDefaultDelimiter(input))
 				if (hasDefaultDelimiter(input)) {
-					modifyDelimiterRegularExpression(input);
 					removeDefaultDelimiterFrom(input);}
 			createArraysFrom(unSplitString);
 			checkForException();
@@ -31,21 +28,13 @@ public class StringCalculator {
 	}
 
 	private boolean checkForDefaultDelimiter(String input) {
+		
 		return input.length() > 2;
 	}
 
 	private boolean hasDefaultDelimiter(String input) {
 		final String DELIMITER_MARKER = "//";
 		return input.substring(0,2).equals(DELIMITER_MARKER);
-	}
-
-	private void modifyDelimiterRegularExpression(String input) {
-		delimiterRegularExpression += getDefaultDelimiterFrom(input);
-	}
-
-	private String getDefaultDelimiterFrom(String input) {
-		String[] splitInput = input.split(NEW_LINE,2);
-		return splitInput[0].substring(2,3);
 	}
 
 	private void removeDefaultDelimiterFrom(String input) {
