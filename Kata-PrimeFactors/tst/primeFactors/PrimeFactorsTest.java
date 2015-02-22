@@ -41,5 +41,12 @@ public class PrimeFactorsTest {
 	@Test
 	public void testPrimeFactors7() {
 		assertEquals(list(7), PrimeFactors.find(7));
-	}		
+	}
+
+	@Test
+	public void testPrimeFactors8() {
+		assertEquals(list(2,2,2), PrimeFactors.find(8));
+	}	
+	
+
 }
