@@ -61,7 +61,12 @@ public class TestStringCalculator {
 	public void testIgnoreNumbersOver1000() {
 		checkStringCalculatorResuts("//#\n1\n2,3#4,1001",10);
 	}
-
+	 
+	@Test
+	public void testDelimitersOfMultiLenght() {
+		checkStringCalculatorResuts("//[***]\n1***2***3",6);
+	}
+	
 	private void checkStringCalculatorResuts(String input, int result) {
 		StringCalculator sc = new StringCalculator();
 		assertEquals(result, sc.add(input));

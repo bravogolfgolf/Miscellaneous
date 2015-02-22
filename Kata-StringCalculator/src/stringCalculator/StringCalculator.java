@@ -44,7 +44,8 @@ public class StringCalculator {
 	}
 
 	private String getDefaultDelimiterFrom(String input) {
-		return input.substring(2,3);
+		String[] splitInput = input.split(NEW_LINE,2);
+		return splitInput[0].substring(2,3);
 	}
 
 	private void removeDefaultDelimiterFrom(String input) {
