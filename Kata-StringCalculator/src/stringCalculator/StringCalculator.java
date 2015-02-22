@@ -45,7 +45,7 @@ public class StringCalculator {
 		for(int value = 0; value < temp.length; value++){
 			if (isGreaterThanThisThenIgnore(temp[value])) {;}			
 			else if (isNegative(temp[value])) {negative.add(Integer.parseInt(temp[value]));}
-			else if (isPositive(temp[value])){positive.add(Integer.parseInt(temp[value]));}
+			else if (isPositive(temp[value])) {positive.add(Integer.parseInt(temp[value]));}
 		}
 	}
 
