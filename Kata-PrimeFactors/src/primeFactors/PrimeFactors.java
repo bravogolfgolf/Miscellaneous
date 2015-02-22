@@ -6,18 +6,11 @@ public class PrimeFactors {
 
 	public static List<Integer> find(int i) {
 		ArrayList<Integer> primeFactors = new ArrayList<Integer>();
-		if(i > 1)
-			while (i%2 == 0){
-				primeFactors.add(2);
-				i/=2;
+		for(int divisor = 2; i > 1; divisor++)
+			while (i % divisor == 0){
+				primeFactors.add(divisor);
+				i /= divisor;
 			}
-		while (i%3 == 0){
-			primeFactors.add(3);
-			i/=3;
-		}
-		if(i > 1)
-			primeFactors.add(i);
 		return primeFactors;
 	}
-
 }
