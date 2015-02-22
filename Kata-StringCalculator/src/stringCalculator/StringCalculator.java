@@ -44,21 +44,21 @@ public class StringCalculator {
 		String[] temp = input.split(ON_ALL_NON_NUMBER_CHARACTERS_EXCEPT_MINUS_SIGN);
 		for(int value = 0; value < temp.length; value++){
 			if (isGreaterThanThisThenIgnore(temp, value)) {;}			
-			else if (isNegative(temp, value)) {negative.add(Integer.parseInt(temp[value].toString()));}
-			else if (isPositive(temp, value)){positive.add(Integer.parseInt(temp[value].toString()));}
+			else if (isNegative(temp, value)) {negative.add(Integer.parseInt(temp[value]));}
+			else if (isPositive(temp, value)){positive.add(Integer.parseInt(temp[value]));}
 		}
 	}
 
 	private boolean isGreaterThanThisThenIgnore(String[] temp, int i) {
-		return Integer.parseInt(temp[i].toString()) > 1000;
+		return Integer.parseInt(temp[i]) > 1000;
 	}
 
 	private boolean isNegative(String[] temp, int i) {
-		return Integer.parseInt(temp[i].toString()) < 0;
+		return Integer.parseInt(temp[i]) < 0;
 	}
 
 	private boolean isPositive(String[] temp, int i) {
-		return Integer.parseInt(temp[i].toString()) >= 0;
+		return Integer.parseInt(temp[i]) >= 0;
 	}
 
 	private void checkForException() {
