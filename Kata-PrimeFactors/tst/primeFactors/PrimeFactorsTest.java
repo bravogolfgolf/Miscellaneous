@@ -1,13 +1,12 @@
 package primeFactors;
 
 import static org.junit.Assert.*;
-
 import java.util.*;
-
 import org.junit.Test;
 
 public class PrimeFactorsTest {
 
+	private List<Integer> list(Integer...ints) { List<Integer> arrayList = Arrays.asList(ints);	return arrayList; }
 
 	@Test
 	public void testPrimeFactors1() {
@@ -19,8 +18,4 @@ public class PrimeFactorsTest {
 		assertEquals(list(2), PrimeFactors.find(2));
 	}
 
-	private List<Integer> list(Integer...ints) {
-		List<Integer> arrayList = Arrays.asList(ints);
-		return arrayList;
-	}
 }
