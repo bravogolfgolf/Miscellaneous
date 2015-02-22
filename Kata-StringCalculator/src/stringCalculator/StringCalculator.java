@@ -12,8 +12,8 @@ public class StringCalculator {
 	public int add(String input) {
 		unSplitString = input;
 		if(isNotEmpty(input)){		
-			if (hasDefaultDelimiter(input)) {
-				removeDefaultDelimiterFrom(input);}
+			if (hasDefaultDelimiter(input))
+				removeDefaultDelimiterFrom(input);
 			createArraysFrom(unSplitString);
 			checkForException();
 			calculate();
@@ -43,13 +43,13 @@ public class StringCalculator {
 		final String ON_ALL_NON_NUMBER_CHARACTERS_EXCEPT_MINUS_SIGN = "[\\D&&[^-]]+";
 		String[] temp = input.split(ON_ALL_NON_NUMBER_CHARACTERS_EXCEPT_MINUS_SIGN);
 		for(int value = 0; value < temp.length; value++){
-			if (isGreaterThanThis(temp, value)) {;}			
+			if (isGreaterThanThisThenIgnore(temp, value)) {;}			
 			else if (isNegative(temp, value)) {negative.add(Integer.parseInt(temp[value].toString()));}
 			else if (isPositive(temp, value)){positive.add(Integer.parseInt(temp[value].toString()));}
 		}
 	}
 
-	private boolean isGreaterThanThis(String[] temp, int i) {
+	private boolean isGreaterThanThisThenIgnore(String[] temp, int i) {
 		return Integer.parseInt(temp[i].toString()) > 1000;
 	}
 
