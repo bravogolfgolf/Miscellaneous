@@ -62,12 +62,10 @@ public class StringCalculator {
 	}
 
 	private void checkForException() {
-		try {
-			hasNegatives();
-		} catch (IllegalArgumentException e) {
+		try {hasNegatives();}
+		catch (IllegalArgumentException e) {
 			String message = formatMessage();
-			throw new IllegalArgumentException(message);
-		}
+			throw new IllegalArgumentException(message);}
 	}
 
 	private void hasNegatives() throws IllegalArgumentException {
@@ -82,9 +80,8 @@ public class StringCalculator {
 	private String formatMessage() {
 		String message = "negatives not allowed: [";
 		message += negative.get(0).toString();
-		for(int i = 1; i < negative.size(); i++){
+		for(int i = 1; i < negative.size(); i++)
 			message += ", " + negative.get(i).toString();
-		}
 		message += "]";
 		return message;
 	}

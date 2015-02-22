@@ -67,6 +67,12 @@ public class TestStringCalculator {
 		checkStringCalculatorResuts("//[***]\n1***2***3",6);
 	}
 	
+	@Test
+	public void testMultipleDelimitersOfMultiLenght() {
+		checkStringCalculatorResuts("//[***];[##########][^^][|||||]\n1,2\n|||||3^^4;5##########6***7,2000",28);
+	}
+
+	
 	private void checkStringCalculatorResuts(String input, int result) {
 		StringCalculator sc = new StringCalculator();
 		assertEquals(result, sc.add(input));
