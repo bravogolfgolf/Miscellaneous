@@ -4,7 +4,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class StringCalculator {
-	private final String NEW_LINE = System.getProperty("line.separator");
 	private String unSplitString;
 	private List<Integer> positive = new ArrayList<Integer>();
 	private List<Integer> negative = new ArrayList<Integer>();
@@ -13,9 +12,8 @@ public class StringCalculator {
 	public int add(String input) {
 		unSplitString = input;
 		if(isNotEmpty(input)){		
-			if (checkForDefaultDelimiter(input))
-				if (hasDefaultDelimiter(input)) {
-					removeDefaultDelimiterFrom(input);}
+			if (hasDefaultDelimiter(input)) {
+				removeDefaultDelimiterFrom(input);}
 			createArraysFrom(unSplitString);
 			checkForException();
 			calculate();
@@ -27,17 +25,16 @@ public class StringCalculator {
 		return !input.isEmpty();
 	}
 
-	private boolean checkForDefaultDelimiter(String input) {
-		
-		return input.length() > 2;
-	}
-
 	private boolean hasDefaultDelimiter(String input) {
 		final String DELIMITER_MARKER = "//";
-		return input.substring(0,2).equals(DELIMITER_MARKER);
+		if (input.length() > 2)
+			if (input.substring(0,2).equals(DELIMITER_MARKER))
+				return true;
+		return false;
 	}
 
 	private void removeDefaultDelimiterFrom(String input) {
+		final String NEW_LINE = System.getProperty("line.separator");
 		String[] splitInput = input.split(NEW_LINE,2);
 		unSplitString =  splitInput[1];
 	}
@@ -45,13 +42,13 @@ public class StringCalculator {
 	private void createArraysFrom(String input) {
 		String[] temp = input.split("[\\D&&[^-]]+");
 		for(int i = 0; i < temp.length; i++){
-			if (ignoreNumbersGreaterThanThis(temp, i)) {;}			
+			if (isGreaterThanThis(temp, i)) {;}			
 			else if (isNegative(temp, i)) {negative.add(Integer.parseInt(temp[i].toString()));}
 			else if (isPositive(temp, i)){positive.add(Integer.parseInt(temp[i].toString()));}
 		}
 	}
 
-	private boolean ignoreNumbersGreaterThanThis(String[] temp, int i) {
+	private boolean isGreaterThanThis(String[] temp, int i) {
 		return Integer.parseInt(temp[i].toString()) > 1000;
 	}
 
