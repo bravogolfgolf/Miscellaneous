@@ -2,11 +2,11 @@ package marsRover;
 
 public class Point {
 	private int x;
-	int y;
+	private int y;
 
-	public Point(int x, int j) {
+	public Point(int x, int y) {
 		this.x = x;
-		y=j;
+		this.y = y;
 	}
 
 	public int getX() {
