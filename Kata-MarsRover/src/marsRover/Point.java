@@ -1,10 +1,10 @@
 package marsRover;
 
 public class Point {
-	int x;
+	private int x;
 
-	public Point(int i, int j) {
-		x=i;
+	public Point(int x, int j) {
+		this.x = x;
 	}
 
 	public int getX() {
