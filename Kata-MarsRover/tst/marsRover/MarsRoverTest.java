@@ -7,8 +7,14 @@ import org.junit.Test;
 public class MarsRoverTest {
 
 	@Test
-	public void test() {
-		fail("Not yet implemented");
+	public void testXCoordinate() {
+		Point point = new Point();	
+		assertEquals(0,point.getX());
 	}
 
+	@Test
+	public void testYCoordinate() {
+		Point point = new Point();	
+		assertEquals(0,point.getY());
+	}
 }
