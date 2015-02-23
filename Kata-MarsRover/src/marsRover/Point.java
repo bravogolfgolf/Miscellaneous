@@ -1,9 +1,14 @@
 package marsRover;
 
 public class Point {
+	int x;
+
+	public Point(int i, int j) {
+		x=i;
+	}
 
 	public int getX() {
-		return 0;
+		return x;
 	}
 
 	public int getY() {
