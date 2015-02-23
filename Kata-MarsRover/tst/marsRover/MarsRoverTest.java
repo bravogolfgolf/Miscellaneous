@@ -23,4 +23,10 @@ public class MarsRoverTest {
 		Point point = new Point(1,0);	
 		assertEquals(1,point.getX());
 	}
+	
+	@Test
+	public void testgetYCoordinate1() {
+		Point point = new Point(0,2);	
+		assertEquals(2,point.getY());
+	}
 }
