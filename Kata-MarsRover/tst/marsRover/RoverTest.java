@@ -119,10 +119,29 @@ public class RoverTest {
 	}
 
 	@Test
-	public void testMoveForward() {
+	public void testMoveForwardNorth() {
 		createRover(x, y, direction);
 		rover.move("F");
 		assertEquals(0,rover.getPostion().getX());
 		assertEquals(1,rover.getPostion().getY());
+	}
+	
+	@Test
+	public void testMoveForwardWest() {
+		direction = "W";
+		createRover(x, y, direction);
+		rover.move("F");
+		assertEquals(1,rover.getPostion().getX());
+		assertEquals(0,rover.getPostion().getY());
+	}
+	
+	@Test
+	public void testMoveForwardSouth() {
+		y = 1;
+		direction = "S";
+		createRover(x, y, direction);
+		rover.move("F");
+		assertEquals(0,rover.getPostion().getX());
+		assertEquals(0,rover.getPostion().getY());
 	}
 }

@@ -36,8 +36,8 @@ public class Rover {
 		switch (Compass.valueOf(direction)){
 		case N: postion.setY((postion.getY() + 1)); break;
 		case E: break;
-		case S: break;
-		case W: break;
+		case S: postion.setY((postion.getY() - 1)); break;
+		case W: postion.setX((postion.getX() + 1));
 		}
 	}
 
