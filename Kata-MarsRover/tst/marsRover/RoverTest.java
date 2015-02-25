@@ -27,4 +27,10 @@ public class RoverTest {
 		Rover rover = new Rover(45,20, 'N');
 		assertEquals('N',rover.getDirection());
 	}
+	
+	@Test
+	public void testDifferentDirection() {
+		Rover rover = new Rover(45,20, 'W');
+		assertEquals('W',rover.getDirection());
+	}
 }
