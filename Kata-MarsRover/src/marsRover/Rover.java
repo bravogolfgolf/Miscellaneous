@@ -18,8 +18,8 @@ public class Rover {
 		return direction;
 	}
 
-	public void move(String c) {
-		switch (Instruction.valueOf(c)) {
+	public void move(String instruction) {
+		switch (Instruction.valueOf(instruction)) {
 		case R:
 			if (direction == "N"){
 				direction = "E";
