@@ -5,32 +5,54 @@ import static org.junit.Assert.*;
 import org.junit.Test;
 
 public class RoverTest {
+	Point postion;
+	Rover rover;
+
+	private Rover createRover(int x, int y, char direction) {
+		return new Rover(x, y, direction);
+	}
+
+	private Point createPoint(int x, int y) {
+		return new Point(x, y);
+	}
 
 	@Test
 	public void testInitialPostion() {
-		Point postion = new Point(21,20);
-		Rover rover = new Rover(21,20, 'N');
+		int x = 21;
+		int y = 20;
+		char direction = 'N';
+		postion = createPoint(x, y);
+		rover = createRover(x, y, direction);
 		assertEquals(postion.getX(),rover.getPostion().getX());
 		assertEquals(postion.getY(),rover.getPostion().getY());
 	}
-	
+
 	@Test
 	public void testDifferentInitialPostion() {
-		Point postion = new Point(45,20);
-		Rover rover = new Rover(45,20, 'W');
+		int x = 45;
+		int y = 20;
+		char direction = 'W';
+		postion = createPoint(x, y);
+		rover = createRover(x, y, direction);
 		assertEquals(postion.getX(),rover.getPostion().getX());
 		assertEquals(postion.getY(),rover.getPostion().getY());
 	}
 	
 	@Test
 	public void testInitialDirection() {
-		Rover rover = new Rover(45,20, 'N');
+		int x = 45;
+		int y = 20;
+		char direction = 'N';
+		rover = createRover(x, y, direction);
 		assertEquals('N',rover.getDirection());
 	}
 	
 	@Test
 	public void testDifferentDirection() {
-		Rover rover = new Rover(45,20, 'W');
+		int x = 45;
+		int y = 20;
+		char direction = 'W';
+		rover = createRover(x, y, direction);
 		assertEquals('W',rover.getDirection());
 	}
 }
