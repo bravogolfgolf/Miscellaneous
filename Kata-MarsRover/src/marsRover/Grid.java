@@ -2,7 +2,7 @@ package marsRover;
 
 public class Grid {
 	private int height;
-	private int width = 11;
+	private int width;
 
 	public Grid(int height, int width) {
 		this.height = height;
