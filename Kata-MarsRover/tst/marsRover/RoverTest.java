@@ -78,4 +78,14 @@ public class RoverTest {
 		rover.move("R");
 		assertEquals("S",rover.getDirection());
 	}
+	
+	@Test
+	public void testFacingSouthThenTurnRight() {
+		x = 10;
+		y = 10;
+		direction = "S";
+		rover = createRover(x, y, direction);
+		rover.move("R");
+		assertEquals("W",rover.getDirection());
+	}
 }

@@ -29,6 +29,10 @@ public class Rover {
 				direction = "S";
 				break;
 			}
+			if (direction == "S"){
+				direction = "W";
+				break;
+			}
 		default:
 			break;
 		}
