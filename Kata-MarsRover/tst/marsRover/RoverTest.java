@@ -25,8 +25,6 @@ public class RoverTest {
 
 	@Test
 	public void testInitialPostion() {
-		x = 21;
-		y = 20;
 		createPoint(x, y);
 		createRover(x, y, direction);
 		assertEquals(postion.getX(),rover.getPostion().getX());
@@ -47,15 +45,12 @@ public class RoverTest {
 
 	@Test
 	public void testInitialDirection() {
-		direction = "N";
 		createRover(x, y, direction);
 		assertEquals("N",rover.getDirection());
 	}
 
 	@Test
 	public void testDifferentDirection() {
-		x = 45;
-		y = 20;
 		direction = "W";
 		createRover(x, y, direction);
 		assertEquals("W",rover.getDirection());
@@ -106,6 +101,7 @@ public class RoverTest {
 		rover.move("L");
 		assertEquals("S",rover.getDirection());
 	}
+	
 	@Test
 	public void testFacingSouthThenTurnLeft() {
 		direction = "S";
@@ -113,6 +109,7 @@ public class RoverTest {
 		rover.move("L");
 		assertEquals("E",rover.getDirection());
 	}
+	
 	@Test
 	public void testFacingEastThenTurnLeft() {
 		direction = "E";

@@ -36,7 +36,6 @@ public class Rover {
 		case S: direction = "W"; break;
 		case W: direction = "N"; break;
 		}
-
 	}
 
 	private void turnLeftFrom(String direction2) {
