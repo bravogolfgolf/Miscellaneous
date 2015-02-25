@@ -1,7 +1,8 @@
 package marsRover;
 
 public enum Instruction {
-	R(1);
+	R(1),
+	L(2);
 
 	private final int value;
 

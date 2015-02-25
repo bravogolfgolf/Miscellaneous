@@ -23,6 +23,9 @@ public class Rover {
 		case R:
 			turnRightFrom(direction);
 			break;
+		case L:
+			turnLeftFrom(direction);
+			break;
 		}
 	}
 
@@ -34,5 +37,14 @@ public class Rover {
 		case W: direction = "N"; break;
 		}
 
+	}
+
+	private void turnLeftFrom(String direction2) {
+		switch (Compass.valueOf(direction)){
+		case N: direction = "W"; break;
+		case W: direction = "S"; break;		
+		case S: direction = "E"; break;
+		case E: direction = "N"; break;
+		}
 	}
 }
