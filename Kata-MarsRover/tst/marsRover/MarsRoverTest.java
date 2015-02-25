@@ -29,4 +29,11 @@ public class MarsRoverTest {
 		Point point = new Point(0,2);	
 		assertEquals(2,point.getY());
 	}
+	
+	@Test
+	public void testCreateGrid() {
+		Grid grid = new Grid(10,11);	
+		assertEquals(10,grid.getHeight());
+	}
+	
 }
