@@ -1,7 +1,6 @@
 package marsRover;
 
 import static org.junit.Assert.*;
-
 import org.junit.Test;
 
 public class RoverTest {
@@ -54,5 +53,15 @@ public class RoverTest {
 		char direction = 'W';
 		rover = createRover(x, y, direction);
 		assertEquals('W',rover.getDirection());
+	}
+	
+	@Test
+	public void testFaceNorthThenTurnRight() {
+		int x = 10;
+		int y = 10;
+		char direction = 'N';
+		rover = createRover(x, y, direction);
+		rover.move('R');
+		assertEquals('E',rover.getDirection());
 	}
 }

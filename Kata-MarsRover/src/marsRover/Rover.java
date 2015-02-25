@@ -18,4 +18,9 @@ public class Rover {
 		return direction;
 	}
 
+	public void move(char c) {
+		// TODO Auto-generated method stub
+		
+	}
+
 }
