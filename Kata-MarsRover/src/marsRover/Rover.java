@@ -21,20 +21,18 @@ public class Rover {
 	public void move(String instruction) {
 		switch (Instruction.valueOf(instruction)) {
 		case R:
-			if (direction == "N"){
-				direction = "E";
-				break;
-			}
-			if (direction == "E"){
-				direction = "S";
-				break;
-			}
-			if (direction == "S"){
-				direction = "W";
-				break;
-			}
-		default:
+			turnRightFrom(direction);
 			break;
 		}
+	}
+
+	private void turnRightFrom(String direction2){
+		switch (Compass.valueOf(direction)){
+		case N: direction = "E"; break;
+		case E: direction = "S"; break;
+		case S: direction = "W"; break;
+		case W: direction = "N"; break;
+		}
+
 	}
 }
