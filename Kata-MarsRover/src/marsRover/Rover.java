@@ -8,6 +8,11 @@ public class Rover {
 		// TODO Auto-generated constructor stub
 	}
 
+	public Rover(int i, int j) {
+		Point point = new Point(i,j);
+		this.postion = point;
+	}
+
 	public Point getPostion() {
 		// TODO Auto-generated method stub
 		return postion;

@@ -15,9 +15,9 @@ public class RoverTest {
 	}
 	
 	@Test
-	public void test5DifferentInitialPostion() {
+	public void testDifferentInitialPostion() {
 		Point postion = new Point(45,20);
-		Rover rover = new Rover(postion);
+		Rover rover = new Rover(45,20);
 		assertEquals(postion.getX(),rover.getPostion().getX());
 		assertEquals(postion.getY(),rover.getPostion().getY());
 	}
