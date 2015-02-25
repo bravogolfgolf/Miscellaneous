@@ -19,7 +19,7 @@ public class Rover {
 	}
 
 	public void move(char c) {
-		// TODO Auto-generated method stub
+		this.direction = 'E';
 		
 	}
 
