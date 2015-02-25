@@ -21,4 +21,10 @@ public class RoverTest {
 		assertEquals(postion.getX(),rover.getPostion().getX());
 		assertEquals(postion.getY(),rover.getPostion().getY());
 	}
+	
+	@Test
+	public void testInitialDirection() {
+		Rover rover = new Rover(45,20, 'N');
+		assertEquals('N',rover.getDirection());
+	}
 }

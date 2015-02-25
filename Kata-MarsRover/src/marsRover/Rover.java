@@ -12,4 +12,9 @@ public class Rover {
 		return postion;
 	}
 
+	public Object getDirection() {
+		// TODO Auto-generated method stub
+		return 'N';
+	}
+
 }
