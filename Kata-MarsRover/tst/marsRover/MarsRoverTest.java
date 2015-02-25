@@ -31,9 +31,15 @@ public class MarsRoverTest {
 	}
 	
 	@Test
-	public void testCreateGrid() {
+	public void testCreateGridAndHeight() {
 		Grid grid = new Grid(10,11);	
 		assertEquals(10,grid.getHeight());
 	}
 	
+	@Test
+	public void testGridWidth() {
+		Grid grid = new Grid(10,11);	
+		assertEquals(11,grid.getWidth());
+	}
+
 }

@@ -9,4 +9,9 @@ public class Grid {
 		return 10;
 	}
 
+	public Object getWidth() {
+		// TODO Auto-generated method stub
+		return 11;
+	}
+
 }
