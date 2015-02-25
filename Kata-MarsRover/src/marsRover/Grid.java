@@ -1,17 +1,21 @@
 package marsRover;
 
 public class Grid {
+	private int height;
+	int width = 11;
 
 	public Grid(int i, int j) {
+		height = i;
+		width = j;
 	}
 
 	public Object getHeight() {
-		return 10;
+		return height;
 	}
 
 	public Object getWidth() {
 		// TODO Auto-generated method stub
-		return 11;
+		return width;
 	}
 
 }
