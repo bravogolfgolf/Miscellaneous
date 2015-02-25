@@ -2,9 +2,9 @@ package marsRover;
 
 public class Rover {
 	private Point postion;
-	private char direction;
+	private String direction;
 
-	public Rover(int x, int y, char direction) {
+	public Rover(int x, int y, String direction) {
 		Point point = new Point(x,y);
 		this.postion = point;
 		this.direction = direction;
@@ -14,13 +14,12 @@ public class Rover {
 		return postion;
 	}
 
-	public char getDirection() {
+	public String getDirection() {
 		return direction;
 	}
 
-	public void move(char c) {
-		this.direction = 'E';
-		
+	public void move(String c) {
+			this.direction = "E";
 	}
 
 }
