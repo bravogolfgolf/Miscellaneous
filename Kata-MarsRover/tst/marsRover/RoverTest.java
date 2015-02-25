@@ -93,7 +93,7 @@ public class RoverTest {
 		rover.move("L");
 		assertEquals("W",rover.getDirection());
 	}
-	
+
 	@Test
 	public void testFacingWestThenTurnLeft() {
 		direction = "W";
@@ -101,7 +101,7 @@ public class RoverTest {
 		rover.move("L");
 		assertEquals("S",rover.getDirection());
 	}
-	
+
 	@Test
 	public void testFacingSouthThenTurnLeft() {
 		direction = "S";
@@ -109,12 +109,20 @@ public class RoverTest {
 		rover.move("L");
 		assertEquals("E",rover.getDirection());
 	}
-	
+
 	@Test
 	public void testFacingEastThenTurnLeft() {
 		direction = "E";
 		createRover(x, y, direction);
 		rover.move("L");
 		assertEquals("N",rover.getDirection());
+	}
+
+	@Test
+	public void testMoveForward() {
+		createRover(x, y, direction);
+		rover.move("F");
+		assertEquals(0,rover.getPostion().getX());
+		assertEquals(1,rover.getPostion().getY());
 	}
 }

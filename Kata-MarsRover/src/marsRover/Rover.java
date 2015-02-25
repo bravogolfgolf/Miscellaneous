@@ -26,6 +26,18 @@ public class Rover {
 		case L:
 			turnLeftFrom(direction);
 			break;
+		case F:
+			forwardInThis(direction);
+			break;
+		}
+	}
+
+	private void forwardInThis(String direction2) {
+		switch (Compass.valueOf(direction)){
+		case N: postion.setY((postion.getY() + 1)); break;
+		case E: break;
+		case S: break;
+		case W: break;
 		}
 	}
 
