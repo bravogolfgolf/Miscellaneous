@@ -67,7 +67,7 @@ public class RoverTest {
 		assertEquals("E",rover.getDirection());
 	}
 	
-	@Ignore
+	@Test
 	public void testFacingEastThenTurnRight() {
 		int x = 10;
 		int y = 10;

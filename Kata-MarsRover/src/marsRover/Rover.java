@@ -19,7 +19,18 @@ public class Rover {
 	}
 
 	public void move(String c) {
-			this.direction = "E";
+		switch (Instruction.valueOf(c)) {
+		case R:
+			if (direction == "N"){
+				direction = "E";
+				break;
+			}
+			if (direction == "E"){
+				direction = "S";
+				break;
+			}
+		default:
+			break;
+		}
 	}
-
 }
