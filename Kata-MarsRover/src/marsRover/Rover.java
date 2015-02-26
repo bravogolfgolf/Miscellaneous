@@ -66,58 +66,58 @@ public class Rover {
 	private void goforward() {
 		switch (direction) {
 		case N: if (onTopEdgeOfGrid()) {wrapToBottomEdgeOfGrid();} else {moveUpOnGrid();} break;
-		case E: if (onRightEdgeOfGrid()) {wrapToLeftEdgeOfGrid();} else {moveRightOnGrid();} break;
 		case S: if (onBottomEdgeOfGrid()) {wrapToTopEdgeOfGrid();} else {moveDownOnGrid();} break;
+		case E: if (onRightEdgeOfGrid()) {wrapToLeftEdgeOfGrid();} else {moveRightOnGrid();} break;
 		case W: if (onLeftEdgeOfGrid()) {wrapToRightEdgeOfGrid();} else {moveLeftOnGrid();} break;
 		}
-	}
-
-	private void moveLeftOnGrid() {
-		x -= 1;
-	}
-
-	private void wrapToRightEdgeOfGrid() {
-		x = planet.getWidth();
-	}
-
-	private boolean onLeftEdgeOfGrid() {
-		return x == 0;
-	}
-
-	private void moveDownOnGrid() {
-		y -= 1;
-	}
-
-	private void wrapToTopEdgeOfGrid() {
-		y = 9;
-	}
-
-	private boolean onBottomEdgeOfGrid() {
-		return y == 0;
-	}
-
-	private int moveRightOnGrid() {
-		return x += 1;
-	}
-
-	private int wrapToLeftEdgeOfGrid() {
-		return x = 0;
-	}
-
-	private boolean onRightEdgeOfGrid() {
-		return x == planet.getWidth();
-	}
-
-	private void wrapToBottomEdgeOfGrid() {
-		y = 0;
 	}
 
 	private boolean onTopEdgeOfGrid() {
 		return y == planet.getHeight();
 	}
 
+	private boolean onBottomEdgeOfGrid() {
+		return y == 0;
+	}
+	
+	private boolean onRightEdgeOfGrid() {
+		return x == planet.getWidth();
+	}
+
+	private boolean onLeftEdgeOfGrid() {
+		return x == 0;
+	}
+	
+	private void wrapToBottomEdgeOfGrid() {
+		y = 0;
+	}
+	
+	private void wrapToTopEdgeOfGrid() {
+		y = 9;
+	}
+	
+	private void wrapToRightEdgeOfGrid() {
+		x = planet.getWidth();
+	}
+	
+	private int wrapToLeftEdgeOfGrid() {
+		return x = 0;
+	}
+	
 	private void moveUpOnGrid() {
 		y += 1;
+	}
+	
+	private void moveDownOnGrid() {
+		y -= 1;
+	}
+
+	private int moveRightOnGrid() {
+		return x += 1;
+	}
+	
+	private void moveLeftOnGrid() {
+		x -= 1;
 	}
 
 	private void goBackward() {
