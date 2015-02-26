@@ -30,6 +30,18 @@ public class Rover {
 		case F:
 			goforward();
 			break;
+		case B:
+			goBackward();
+			break;
+		}
+	}
+
+	private void goBackward() {
+		switch (direction) {
+		case N: y -= 1; break;
+//		case E: x -= 1; break;
+//		case S: y -= 1; break;
+//		case W: x += 1; break;
 		}
 	}
 
