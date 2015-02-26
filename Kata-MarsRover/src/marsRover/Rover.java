@@ -12,15 +12,15 @@ public class Rover {
 		this.direction = Compass.valueOf(direction);
 	}
 
-	public void placeOnGrid(Grid mars) {	
-		planet = mars;
+	public void placeOnGrid(Grid planet) {	
+		this.planet = planet;
 	}
 
 	public Grid getGridDimesions() {
 		return planet;
 	}
 
-	public Point getPostion() {
+	public Point getPosition() {
 		return new Point(x, y);
 	}
 
@@ -32,7 +32,7 @@ public class Rover {
 		switch (Instruction.valueOf(instruction)) {
 		case R: turnRight(); break;
 		case L: turnLeft(); break;
-		case F: goforward(); break;
+		case F: goForward(); break;
 		case B: goBackward(); break;
 		}
 	}
@@ -55,7 +55,7 @@ public class Rover {
 		}
 	}
 
-	private void goforward() {
+	private void goForward() {
 		switch (direction) {
 		case N: if (onTopEdgeOfGrid()) {wrapToBottomEdgeOfGrid();} else {moveUpOnGrid();} break;
 		case S: if (onBottomEdgeOfGrid()) {wrapToTopEdgeOfGrid();} else {moveDownOnGrid();} break;
@@ -89,12 +89,12 @@ public class Rover {
 		return x == 0;
 	}
 	
-	private void wrapToBottomEdgeOfGrid() {
-		y = 0;
+	private void wrapToTopEdgeOfGrid() {
+		y = planet.getHeight();
 	}
 	
-	private void wrapToTopEdgeOfGrid() {
-		y = 9;
+	private void wrapToBottomEdgeOfGrid() {
+		y = 0;
 	}
 	
 	private void wrapToRightEdgeOfGrid() {
@@ -113,8 +113,8 @@ public class Rover {
 		y -= 1;
 	}
 
-	private int moveRightOnGrid() {
-		return x += 1;
+	private void moveRightOnGrid() {
+		x += 1;
 	}
 	
 	private void moveLeftOnGrid() {
