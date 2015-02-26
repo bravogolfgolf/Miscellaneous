@@ -1,49 +1,45 @@
 package marsRover;
 
-import static org.junit.Assert.*;
+import junit.framework.TestCase;
 import org.junit.Test;
 
-public class RoverTest {
+public class RoverTest extends TestCase {
 	private Rover rover;
 	private Grid mars;
 	private String direction = "N";
 	private int x = 0;
 	private int y = 0;
-	int height = 10;
-	int width = 10;
+	private int height = 9;
+	private int width = 9;
 
 	protected void setUp(){
-		createRover(x, y, direction);
+		createRoverOnGrid(x, y, direction);
 	}
 
-	private void createRover(int x, int y, String direction) {
+	private void createRoverOnGrid(int x, int y, String direction) {
 		rover = new Rover(x, y, direction);
 		mars = new Grid(height, width);
+		rover.placeOnGrid(mars);
 	}
 
 	@Test
 	public void testPlaceRoverOnGrid() {
-		createRover(x, y, direction);
-		Grid mars = new Grid(10,10);
-		rover.placeOnGrid(mars);
-		assertEquals(10,rover.getGridDimesions().getHeight());
-		assertEquals(10,rover.getGridDimesions().getWidth());
+		assertEquals(9,rover.getGridDimesions().getHeight());
+		assertEquals(9,rover.getGridDimesions().getWidth());
 	}
 
 	@Test
 	public void testGridDifferentDimensions() {
-		createRover(x, y, direction);
 		height = 11;
 		width = 12;
 		mars = new Grid(height, width);
-		rover.placeOnGrid(mars);
+		createRoverOnGrid(x, y, direction);
 		assertEquals(11,rover.getGridDimesions().getHeight());
 		assertEquals(12,rover.getGridDimesions().getWidth());
 	}
 
 	@Test
 	public void testInitialPostion() {
-		createRover(x, y, direction);
 		assertEquals(0, rover.getPostion().getX());
 		assertEquals(0, rover.getPostion().getY());
 	}
@@ -53,100 +49,108 @@ public class RoverTest {
 		x = 45;
 		y = 20;
 		direction = "W";
-		createRover(x, y, direction);
+		createRoverOnGrid(x, y, direction);
 		assertEquals(x, rover.getPostion().getX());
 		assertEquals(y, rover.getPostion().getY());
 	}
 
 	@Test
 	public void testInitialDirection() {
-		createRover(x, y, direction);
 		assertEquals("N",rover.getDirection());
 	}
 
 	@Test
 	public void testDifferentDirection() {
 		direction = "W";
-		createRover(x, y, direction);
+		createRoverOnGrid(x, y, direction);
 		assertEquals("W",rover.getDirection());
 	}
 
 
 	@Test
 	public void testFacingNorthThenTurnRight() {
-		createRover(x, y, direction);
-		rover.move("R");
+		turnRight();
 		assertEquals("E",rover.getDirection());
+	}
+
+	protected void turnRight() {
+		rover.move("R");
 	}
 
 	@Test
 	public void testFacingEastThenTurnRight() {
 		direction = "E";
-		createRover(x, y, direction);
-		rover.move("R");
+		createRoverOnGrid(x, y, direction);
+		turnRight();
 		assertEquals("S",rover.getDirection());
 	}
 
 	@Test
 	public void testFacingSouthThenTurnRight() {
 		direction = "S";
-		createRover(x, y, direction);
-		rover.move("R");
+		createRoverOnGrid(x, y, direction);
+		turnRight();
 		assertEquals("W",rover.getDirection());
 	}
 
 	@Test
 	public void testFacingWestThenTurnRight() {
 		direction = "W";
-		createRover(x, y, direction);
-		rover.move("R");
+		createRoverOnGrid(x, y, direction);
+		turnRight();
 		assertEquals("N",rover.getDirection());
 	}
 
 	@Test
 	public void testFacingNorthThenTurnLeft() {
-		createRover(x, y, direction);
-		rover.move("L");
+		turnLeft();
 		assertEquals("W",rover.getDirection());
+	}
+
+	protected void turnLeft() {
+		rover.move("L");
 	}
 
 	@Test
 	public void testFacingWestThenTurnLeft() {
 		direction = "W";
-		createRover(x, y, direction);
-		rover.move("L");
+		createRoverOnGrid(x, y, direction);
+		turnLeft();
 		assertEquals("S",rover.getDirection());
 	}
 
 	@Test
 	public void testFacingSouthThenTurnLeft() {
 		direction = "S";
-		createRover(x, y, direction);
-		rover.move("L");
+		createRoverOnGrid(x, y, direction);
+		turnLeft();
 		assertEquals("E",rover.getDirection());
 	}
 
 	@Test
 	public void testFacingEastThenTurnLeft() {
 		direction = "E";
-		createRover(x, y, direction);
-		rover.move("L");
+		createRoverOnGrid(x, y, direction);
+		turnLeft();
 		assertEquals("N",rover.getDirection());
 	}
 
 	@Test
 	public void testMoveForwardNorth() {
-		createRover(x, y, direction);
-		rover.move("F");
+		goForward();
 		assertEquals(0,rover.getPostion().getX());
 		assertEquals(1,rover.getPostion().getY());
+	}
+
+	protected void goForward() {
+		rover.move("F");
 	}
 
 	@Test
 	public void testMoveForwardWest() {
 		direction = "W";
-		createRover(x, y, direction);
-		rover.move("F");
+		createRoverOnGrid(x, y, direction);
+		goForward();
 		assertEquals(1,rover.getPostion().getX());
 		assertEquals(0,rover.getPostion().getY());
 	}
@@ -155,8 +159,8 @@ public class RoverTest {
 	public void testMoveForwardSouth() {
 		y = 1;
 		direction = "S";
-		createRover(x, y, direction);
-		rover.move("F");
+		createRoverOnGrid(x, y, direction);
+		goForward();
 		assertEquals(0,rover.getPostion().getX());
 		assertEquals(0,rover.getPostion().getY());
 	}
@@ -165,8 +169,8 @@ public class RoverTest {
 	public void testMoveForwardEast() {
 		x = 1;
 		direction = "E";
-		createRover(x, y, direction);
-		rover.move("F");
+		createRoverOnGrid(x, y, direction);
+		goForward();
 		assertEquals(0,rover.getPostion().getX());
 		assertEquals(0,rover.getPostion().getY());
 	}
@@ -174,8 +178,8 @@ public class RoverTest {
 	@Test
 	public void testMoveBackNorth() {
 		y = 1;
-		createRover(x, y, direction);
-		rover.move("B");
+		createRoverOnGrid(x, y, direction);
+		goBackward();
 		assertEquals(0,rover.getPostion().getX());
 		assertEquals(0,rover.getPostion().getY());
 	}
@@ -184,17 +188,21 @@ public class RoverTest {
 	public void testMoveBackEast() {
 		x = 1;
 		direction = "E";
-		createRover(x, y, direction);
-		rover.move("B");
+		createRoverOnGrid(x, y, direction);
+		goBackward();
 		assertEquals(0,rover.getPostion().getX());
 		assertEquals(0,rover.getPostion().getY());
+	}
+
+	protected void goBackward() {
+		rover.move("B");
 	}
 
 	@Test
 	public void testMoveBackSouth() {
 		direction = "S";
-		createRover(x, y, direction);
-		rover.move("B");
+		createRoverOnGrid(x, y, direction);
+		goBackward();
 		assertEquals(0,rover.getPostion().getX());
 		assertEquals(1,rover.getPostion().getY());
 	}
@@ -202,8 +210,8 @@ public class RoverTest {
 	@Test
 	public void testMoveBackWest() {
 		direction = "W";
-		createRover(x, y, direction);
-		rover.move("B");
+		createRoverOnGrid(x, y, direction);
+		goBackward();
 		assertEquals(1,rover.getPostion().getX());
 		assertEquals(0,rover.getPostion().getY());
 	}
