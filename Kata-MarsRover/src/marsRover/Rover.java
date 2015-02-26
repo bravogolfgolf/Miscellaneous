@@ -30,26 +30,18 @@ public class Rover {
 
 	public void move(String instruction) {
 		switch (Instruction.valueOf(instruction)) {
-		case R:
-			turnRight();
-			break;
-		case L:
-			turnLeft();
-			break;
-		case F:
-			goforward();
-			break;
-		case B:
-			goBackward();
-			break;
+		case R: turnRight(); break;
+		case L: turnLeft(); break;
+		case F: goforward(); break;
+		case B: goBackward(); break;
 		}
 	}
 
 	private void turnRight(){
 		switch (direction){
 		case N: direction = Compass.E; break;
-		case E: direction = Compass.S; break;
 		case S: direction = Compass.W; break;
+		case E: direction = Compass.S; break;
 		case W: direction = Compass.N; break;
 		}
 	}
@@ -57,9 +49,9 @@ public class Rover {
 	private void turnLeft() {
 		switch (direction){
 		case N: direction = Compass.W; break;
-		case W: direction = Compass.S; break;		
 		case S: direction = Compass.E; break;
 		case E: direction = Compass.N; break;
+		case W: direction = Compass.S; break;		
 		}
 	}
 
@@ -69,6 +61,15 @@ public class Rover {
 		case S: if (onBottomEdgeOfGrid()) {wrapToTopEdgeOfGrid();} else {moveDownOnGrid();} break;
 		case E: if (onRightEdgeOfGrid()) {wrapToLeftEdgeOfGrid();} else {moveRightOnGrid();} break;
 		case W: if (onLeftEdgeOfGrid()) {wrapToRightEdgeOfGrid();} else {moveLeftOnGrid();} break;
+		}
+	}
+	
+	private void goBackward() {
+		switch (direction) {
+		case N: moveDownOnGrid(); break;
+		case S: moveUpOnGrid(); break;
+		case E: moveLeftOnGrid(); break;
+		case W: moveRightOnGrid(); break;
 		}
 	}
 
@@ -118,14 +119,5 @@ public class Rover {
 	
 	private void moveLeftOnGrid() {
 		x -= 1;
-	}
-
-	private void goBackward() {
-		switch (direction) {
-		case N: moveDownOnGrid(); break;
-		case E: moveLeftOnGrid(); break;
-		case S: moveUpOnGrid(); break;
-		case W: moveRightOnGrid(); break;
-		}
 	}
 }
