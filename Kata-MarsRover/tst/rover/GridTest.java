@@ -1,33 +1,31 @@
 package rover;
 
-import static org.junit.Assert.*;
+import junit.framework.TestCase;
+
 import org.junit.Test;
 
-public class GridTest {
+public class GridTest extends TestCase{
+	private Grid grid;
+	private int height = 10;
+	int width = 11;
+
+	private void createGrid(int height, int width) {
+		grid = new Grid(height,width);
+	}
 
 	@Test
-	public void testGridHeight() {
-		Grid grid = new Grid(10,11);	
+	public void testGridHeightAndWidth() {
+		createGrid(height, width);	
 		assertEquals(10,grid.getHeight());
-	}
-	
-	@Test
-	public void testGridWidth() {
-		Grid grid = new Grid(10,11);	
 		assertEquals(11,grid.getWidth());
 	}
 
 	@Test
-	public void testDifferentHeight() {
-		Grid grid = new Grid(14,11);	
-		assertEquals(14,grid.getHeight());
+	public void testDifferentHeightAndWidth() {
+		int height = 12;
+		int width = 13;
+		createGrid(height, width);
+		assertEquals(12,grid.getHeight());
+		assertEquals(13,grid.getWidth());
 	}
-	
-	@Test
-	public void testDifferentWidth() {
-		Grid grid = new Grid(14,20);	
-		assertEquals(20,grid.getWidth());
-	}
-
-
 }
