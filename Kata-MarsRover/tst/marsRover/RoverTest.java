@@ -5,9 +5,12 @@ import org.junit.Test;
 
 public class RoverTest {
 	private Rover rover;
+	private Grid mars;
+	private String direction = "N";
 	private int x = 0;
 	private int y = 0;
-	private String direction = "N";
+	int height = 10;
+	int width = 10;
 
 	protected void setUp(){
 		createRover(x, y, direction);
@@ -15,6 +18,7 @@ public class RoverTest {
 
 	private void createRover(int x, int y, String direction) {
 		rover = new Rover(x, y, direction);
+		mars = new Grid(height, width);
 	}
 
 	@Test
@@ -25,16 +29,18 @@ public class RoverTest {
 		assertEquals(10,rover.getGridDimesions().getHeight());
 		assertEquals(10,rover.getGridDimesions().getWidth());
 	}
-	
+
 	@Test
 	public void testGridDifferentDimensions() {
 		createRover(x, y, direction);
-		Grid mars = new Grid(11,11);
+		height = 11;
+		width = 12;
+		mars = new Grid(height, width);
 		rover.placeOnGrid(mars);
 		assertEquals(11,rover.getGridDimesions().getHeight());
-		assertEquals(11,rover.getGridDimesions().getWidth());
+		assertEquals(12,rover.getGridDimesions().getWidth());
 	}
-	
+
 	@Test
 	public void testInitialPostion() {
 		createRover(x, y, direction);
@@ -201,5 +207,5 @@ public class RoverTest {
 		assertEquals(1,rover.getPostion().getX());
 		assertEquals(0,rover.getPostion().getY());
 	}
-	
+
 }
