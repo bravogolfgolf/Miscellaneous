@@ -1,6 +1,7 @@
 package marsRover;
 
 public class Rover {
+	Grid planet;
 	private Compass direction;
 	private int x;
 	private int y;
@@ -11,8 +12,8 @@ public class Rover {
 		this.direction = Compass.valueOf(direction);
 	}
 
-	
-	
+
+
 	public Point getPostion() {
 		return new Point(x, y);
 	}
@@ -55,7 +56,7 @@ public class Rover {
 		case E: direction = Compass.N; break;
 		}
 	}
-	
+
 	private void goforward() {
 		switch (direction) {
 		case N: y += 1; break;
@@ -75,9 +76,10 @@ public class Rover {
 	}
 
 	public void placeOnGrid(Grid mars) {	
+		planet = mars;
 	}
 
 	public Object getGridDimesions() {
-		return 10;
+		return planet.getHeight();
 	}
 }

@@ -190,4 +190,12 @@ public class RoverTest {
 		rover.placeOnGrid(mars);
 		assertEquals(10,rover.getGridDimesions());
 	}
+	
+	@Test
+	public void testGridDifferentDimensions() {
+		createRover(x, y, direction);
+		Grid mars = new Grid(11,11);
+		rover.placeOnGrid(mars);
+		assertEquals(11,rover.getGridDimesions());
+	}
 }
