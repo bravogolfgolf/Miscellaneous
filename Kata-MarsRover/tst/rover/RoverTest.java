@@ -1,9 +1,7 @@
 package rover;
 
 import junit.framework.TestCase;
-
-import org.junit.Ignore;
-import org.junit.Test;
+import org.junit.*;
 
 import rover.Grid;
 import rover.Rover;
