@@ -32,6 +32,13 @@ public class GridTest extends TestCase{
 	@Test
 	public void testHasObstacleAt() {
 		createGrid(height, width);
+		assertEquals(false, grid.hasObstacleAt(1, 1));
+	}
+	
+	@Test
+	public void testAddObstacleAt() {
+		createGrid(height, width);
+		grid.addObstacleAt(1, 1);
 		assertEquals(true, grid.hasObstacleAt(1, 1));
 	}
 }
