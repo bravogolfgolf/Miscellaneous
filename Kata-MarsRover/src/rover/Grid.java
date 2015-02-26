@@ -17,4 +17,7 @@ public class Grid {
 		return width;
 	}
 
+	public boolean hasObstacleAt(int x, int y) {
+		return true;
+	}
 }
