@@ -116,7 +116,7 @@ public class RoverTest {
 		assertEquals(0,rover.getPostion().getX());
 		assertEquals(1,rover.getPostion().getY());
 	}
-	
+
 	@Test
 	public void testMoveForwardWest() {
 		direction = "W";
@@ -125,7 +125,7 @@ public class RoverTest {
 		assertEquals(1,rover.getPostion().getX());
 		assertEquals(0,rover.getPostion().getY());
 	}
-	
+
 	@Test
 	public void testMoveForwardSouth() {
 		y = 1;
@@ -135,7 +135,7 @@ public class RoverTest {
 		assertEquals(0,rover.getPostion().getX());
 		assertEquals(0,rover.getPostion().getY());
 	}
-	
+
 	@Test
 	public void testMoveForwardEast() {
 		x = 1;
@@ -154,7 +154,7 @@ public class RoverTest {
 		assertEquals(0,rover.getPostion().getX());
 		assertEquals(0,rover.getPostion().getY());
 	}
-	
+
 	@Test
 	public void testMoveBackEast() {
 		x = 1;
@@ -164,7 +164,7 @@ public class RoverTest {
 		assertEquals(0,rover.getPostion().getX());
 		assertEquals(0,rover.getPostion().getY());
 	}
-	
+
 	@Test
 	public void testMoveBackSouth() {
 		direction = "S";
@@ -173,7 +173,7 @@ public class RoverTest {
 		assertEquals(0,rover.getPostion().getX());
 		assertEquals(1,rover.getPostion().getY());
 	}
-	
+
 	@Test
 	public void testMoveBackWest() {
 		direction = "W";
@@ -181,5 +181,12 @@ public class RoverTest {
 		rover.move("B");
 		assertEquals(1,rover.getPostion().getX());
 		assertEquals(0,rover.getPostion().getY());
+	}
+	@Test
+	public void testPlaceRoverOnGrid() {
+		createRover(x, y, direction);
+		Grid mars = new Grid(10,10);
+		rover.placeOnGrid(mars);
+		assertEquals(10,rover.getGridDimesions());
 	}
 }

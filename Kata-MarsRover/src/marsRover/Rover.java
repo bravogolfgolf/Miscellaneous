@@ -11,6 +11,8 @@ public class Rover {
 		this.direction = Compass.valueOf(direction);
 	}
 
+	
+	
 	public Point getPostion() {
 		return new Point(x, y);
 	}
@@ -70,5 +72,19 @@ public class Rover {
 		case S: y += 1; break;
 		case W: x += 1; break;
 		}
+	}
+
+
+
+	public void placeOnGrid(Grid mars) {
+		// TODO Auto-generated method stub
+		
+	}
+
+
+
+	public Object getGridDimesions() {
+		// TODO Auto-generated method stub
+		return 10;
 	}
 }
