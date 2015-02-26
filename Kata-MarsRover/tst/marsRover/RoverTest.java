@@ -1,6 +1,8 @@
 package marsRover;
 
 import junit.framework.TestCase;
+
+import org.junit.Ignore;
 import org.junit.Test;
 
 public class RoverTest extends TestCase {
@@ -148,10 +150,11 @@ public class RoverTest extends TestCase {
 
 	@Test
 	public void testMoveForwardWest() {
+		x = 1;
 		direction = "W";
 		createRoverOnGrid(x, y, direction);
 		goForward();
-		assertEquals(1,rover.getPostion().getX());
+		assertEquals(0,rover.getPostion().getX());
 		assertEquals(0,rover.getPostion().getY());
 	}
 
@@ -167,11 +170,10 @@ public class RoverTest extends TestCase {
 
 	@Test
 	public void testMoveForwardEast() {
-		x = 1;
 		direction = "E";
 		createRoverOnGrid(x, y, direction);
 		goForward();
-		assertEquals(0,rover.getPostion().getX());
+		assertEquals(1,rover.getPostion().getX());
 		assertEquals(0,rover.getPostion().getY());
 	}
 
@@ -215,7 +217,7 @@ public class RoverTest extends TestCase {
 		assertEquals(1,rover.getPostion().getX());
 		assertEquals(0,rover.getPostion().getY());
 	}
-	
+
 	@Test
 	public void testMoveForwardNorthWrap() {
 		y = 9;
