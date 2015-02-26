@@ -15,7 +15,7 @@ public class Rover {
 	public void placeOnGrid(Grid mars) {	
 		planet = mars;
 	}
-	
+
 	public Grid getGridDimesions() {
 		return planet;
 	}
@@ -65,7 +65,14 @@ public class Rover {
 
 	private void goforward() {
 		switch (direction) {
-		case N: y += 1; break;
+		case N:
+			if (y == planet.getHeight()) {
+				y = 0;				
+			} else {
+				y += 1;				
+			}
+			break;
+
 		case E: x -= 1; break;
 		case S: y -= 1; break;
 		case W: x += 1; break;

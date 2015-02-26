@@ -215,5 +215,13 @@ public class RoverTest extends TestCase {
 		assertEquals(1,rover.getPostion().getX());
 		assertEquals(0,rover.getPostion().getY());
 	}
-
+	
+	@Test
+	public void testMoveForwardNorthWrap() {
+		y = 9;
+		createRoverOnGrid(x, y, direction);
+		goForward();
+		assertEquals(0,rover.getPostion().getX());
+		assertEquals(0,rover.getPostion().getY());
+	}
 }
