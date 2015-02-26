@@ -75,7 +75,7 @@ public class RoverTest extends TestCase {
 		assertEquals("E",rover.getDirection());
 	}
 
-	protected void turnRight() {
+	private void turnRight() {
 		rover.move("R");
 	}
 
@@ -109,7 +109,7 @@ public class RoverTest extends TestCase {
 		assertEquals("W",rover.getDirection());
 	}
 
-	protected void turnLeft() {
+	private void turnLeft() {
 		rover.move("L");
 	}
 
@@ -144,7 +144,7 @@ public class RoverTest extends TestCase {
 		assertEquals(1,rover.getPostion().getY());
 	}
 
-	protected void goForward() {
+	private void goForward() {
 		rover.move("F");
 	}
 
@@ -196,7 +196,7 @@ public class RoverTest extends TestCase {
 		assertEquals(0,rover.getPostion().getY());
 	}
 
-	protected void goBackward() {
+	private void goBackward() {
 		rover.move("B");
 	}
 
