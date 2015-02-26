@@ -36,24 +36,6 @@ public class Rover {
 		}
 	}
 
-	private void goBackward() {
-		switch (direction) {
-		case N: y -= 1; break;
-		case E: x -= 1; break;
-		case S: y += 1; break;
-		case W: x += 1; break;
-		}
-	}
-
-	private void goforward() {
-		switch (direction) {
-		case N: y += 1; break;
-		case E: x -= 1; break;
-		case S: y -= 1; break;
-		case W: x += 1; break;
-		}
-	}
-
 	private void turnRight(){
 		switch (direction){
 		case N: direction = Compass.E; break;
@@ -69,6 +51,24 @@ public class Rover {
 		case W: direction = Compass.S; break;		
 		case S: direction = Compass.E; break;
 		case E: direction = Compass.N; break;
+		}
+	}
+	
+	private void goforward() {
+		switch (direction) {
+		case N: y += 1; break;
+		case E: x -= 1; break;
+		case S: y -= 1; break;
+		case W: x += 1; break;
+		}
+	}
+
+	private void goBackward() {
+		switch (direction) {
+		case N: y -= 1; break;
+		case E: x -= 1; break;
+		case S: y += 1; break;
+		case W: x += 1; break;
 		}
 	}
 }
