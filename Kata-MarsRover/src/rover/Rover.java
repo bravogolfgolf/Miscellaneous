@@ -1,4 +1,4 @@
-package marsRover;
+package rover;
 
 public class Rover {
 	private Grid planet;

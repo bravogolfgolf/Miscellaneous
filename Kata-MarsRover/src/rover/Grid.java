@@ -1,4 +1,4 @@
-package marsRover;
+package rover;
 
 public class Grid {
 	private int height;

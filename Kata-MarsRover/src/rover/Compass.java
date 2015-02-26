@@ -1,4 +1,4 @@
-package marsRover;
+package rover;
 
 public enum Compass {
 	N(0),

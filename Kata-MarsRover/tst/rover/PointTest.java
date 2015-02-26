@@ -1,8 +1,10 @@
-package marsRover;
+package rover;
 
 import static org.junit.Assert.*;
 
 import org.junit.Test;
+
+import rover.Point;
 
 public class PointTest {
 

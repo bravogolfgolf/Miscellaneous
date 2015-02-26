@@ -1,9 +1,12 @@
-package marsRover;
+package rover;
 
 import junit.framework.TestCase;
 
 import org.junit.Ignore;
 import org.junit.Test;
+
+import rover.Grid;
+import rover.Rover;
 
 public class RoverTest extends TestCase {
 	private Rover rover;

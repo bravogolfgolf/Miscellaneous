@@ -1,4 +1,4 @@
-package marsRover;
+package rover;
 
 public enum Instruction {
 	R(1),
