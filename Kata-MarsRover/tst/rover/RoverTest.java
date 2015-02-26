@@ -3,9 +3,6 @@ package rover;
 import junit.framework.TestCase;
 import org.junit.*;
 
-import rover.Grid;
-import rover.Rover;
-
 public class RoverTest extends TestCase {
 	private Rover rover;
 	private Grid mars;

@@ -1,10 +1,7 @@
 package rover;
 
 import static org.junit.Assert.*;
-
 import org.junit.Test;
-
-import rover.Grid;
 
 public class GridTest {
 
