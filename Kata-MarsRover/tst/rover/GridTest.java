@@ -41,4 +41,14 @@ public class GridTest extends TestCase{
 		grid.addObstacleAt(1, 1);
 		assertEquals(true, grid.hasObstacleAt(1, 1));
 	}
+	
+	@Test
+	public void testAddMultiObstacleAt() {
+		createGrid(height, width);
+		grid.addObstacleAt(1, 1);
+		grid.addObstacleAt(2, 3);
+		assertEquals(true, grid.hasObstacleAt(1, 1));
+		assertEquals(false, grid.hasObstacleAt(1, 2));
+		assertEquals(true, grid.hasObstacleAt(2, 3));
+	}
 }

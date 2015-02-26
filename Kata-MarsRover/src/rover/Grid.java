@@ -21,9 +21,14 @@ public class Grid {
 	}
 
 	public boolean hasObstacleAt(int x, int y) {
-		if (obstacles.isEmpty()) {return false;}
-		else if (obstacles.get(0).getX() == x || obstacles.get(0).getY() == y) {return true;}
-		else {return false;}
+		if (!obstacles.isEmpty()) {
+			for (int i = 0; i < obstacles.size(); i++) {
+				if (obstacles.get(i).getX() == x && obstacles.get(i).getY() == y) {
+					return true;
+				}
+			}
+		}
+		return false;
 	}
 
 	public void addObstacleAt(int x, int y) {
