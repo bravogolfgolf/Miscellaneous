@@ -1,14 +1,14 @@
 package marsRover;
 
 public class Rover {
-	private String direction;
+	private Compass direction;
 	private int x;
 	private int y;
 
 	public Rover(int x, int y, String direction) {
 		this.x = x;
 		this.y = y;
-		this.direction = direction;
+		this.direction = Compass.valueOf(direction);
 	}
 
 	public Point getPostion() {
@@ -16,25 +16,25 @@ public class Rover {
 	}
 
 	public String getDirection() {
-		return direction;
+		return direction.toString();
 	}
 
 	public void move(String instruction) {
 		switch (Instruction.valueOf(instruction)) {
 		case R:
-			turnRightFrom(direction);
+			turnRightFrom();
 			break;
 		case L:
-			turnLeftFrom(direction);
+			turnLeftFrom();
 			break;
 		case F:
-			forwardInThis(direction);
+			forwardInThis();
 			break;
 		}
 	}
 
-	private void forwardInThis(String direction2) {
-		switch (Compass.valueOf(direction)){
+	private void forwardInThis() {
+		switch (direction) {
 		case N: y += 1; break;
 		case E: x -= 1; break;
 		case S: y -= 1; break;
@@ -42,21 +42,21 @@ public class Rover {
 		}
 	}
 
-	private void turnRightFrom(String direction2){
-		switch (Compass.valueOf(direction)){
-		case N: direction = "E"; break;
-		case E: direction = "S"; break;
-		case S: direction = "W"; break;
-		case W: direction = "N"; break;
+	private void turnRightFrom(){
+		switch (direction){
+		case N: direction = Compass.E; break;
+		case E: direction = Compass.S; break;
+		case S: direction = Compass.W; break;
+		case W: direction = Compass.N; break;
 		}
 	}
 
-	private void turnLeftFrom(String direction2) {
-		switch (Compass.valueOf(direction)){
-		case N: direction = "W"; break;
-		case W: direction = "S"; break;		
-		case S: direction = "E"; break;
-		case E: direction = "N"; break;
+	private void turnLeftFrom() {
+		switch (direction){
+		case N: direction = Compass.W; break;
+		case W: direction = Compass.S; break;		
+		case S: direction = Compass.E; break;
+		case E: direction = Compass.N; break;
 		}
 	}
 }
