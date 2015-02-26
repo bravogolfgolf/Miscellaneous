@@ -68,7 +68,7 @@ public class Rover {
 		switch (direction) {
 		case N: if(onBottomEdgeOfGrid()) {wrapToTopEdgeOfGrid();} else {moveDownOnGrid();} break;
 		case S: moveUpOnGrid(); break;
-		case E: moveLeftOnGrid(); break;
+		case E: if(onLeftEdgeOfGrid()) {wrapToRightEdgeOfGrid();} else {moveLeftOnGrid();} break;
 		case W: moveRightOnGrid(); break;
 		}
 	}
