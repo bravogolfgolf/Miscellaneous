@@ -18,6 +18,24 @@ public class RoverTest {
 	}
 
 	@Test
+	public void testPlaceRoverOnGrid() {
+		createRover(x, y, direction);
+		Grid mars = new Grid(10,10);
+		rover.placeOnGrid(mars);
+		assertEquals(10,rover.getGridDimesions().getHeight());
+		assertEquals(10,rover.getGridDimesions().getWidth());
+	}
+	
+	@Test
+	public void testGridDifferentDimensions() {
+		createRover(x, y, direction);
+		Grid mars = new Grid(11,11);
+		rover.placeOnGrid(mars);
+		assertEquals(11,rover.getGridDimesions().getHeight());
+		assertEquals(11,rover.getGridDimesions().getWidth());
+	}
+	
+	@Test
 	public void testInitialPostion() {
 		createRover(x, y, direction);
 		assertEquals(0, rover.getPostion().getX());
@@ -46,6 +64,7 @@ public class RoverTest {
 		createRover(x, y, direction);
 		assertEquals("W",rover.getDirection());
 	}
+
 
 	@Test
 	public void testFacingNorthThenTurnRight() {
@@ -183,21 +202,4 @@ public class RoverTest {
 		assertEquals(0,rover.getPostion().getY());
 	}
 	
-	@Test
-	public void testPlaceRoverOnGrid() {
-		createRover(x, y, direction);
-		Grid mars = new Grid(10,10);
-		rover.placeOnGrid(mars);
-		assertEquals(10,rover.getGridDimesions().getHeight());
-		assertEquals(10,rover.getGridDimesions().getWidth());
-	}
-	
-	@Test
-	public void testGridDifferentDimensions() {
-		createRover(x, y, direction);
-		Grid mars = new Grid(11,11);
-		rover.placeOnGrid(mars);
-		assertEquals(11,rover.getGridDimesions().getHeight());
-		assertEquals(11,rover.getGridDimesions().getWidth());
-	}
 }
