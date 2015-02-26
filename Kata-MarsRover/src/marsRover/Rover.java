@@ -65,25 +65,30 @@ public class Rover {
 
 	private void goforward() {
 		switch (direction) {
-		case N:
-			if (y == planet.getHeight()) {
-				y = 0;				
-			} else {
-				y += 1;				
-			}
-			break;
-
+		case N: if (onTopEdgeOfGrid()) {wrapToBottomEdgeOfGrid();} else {moveUpGrid();}break;
 		case E: x -= 1; break;
 		case S: y -= 1; break;
 		case W: x += 1; break;
 		}
 	}
 
+	protected void wrapToBottomEdgeOfGrid() {
+		y = 0;
+	}
+
+	protected boolean onTopEdgeOfGrid() {
+		return y == planet.getHeight();
+	}
+
+	protected void moveUpGrid() {
+		y += 1;
+	}
+
 	private void goBackward() {
 		switch (direction) {
 		case N: y -= 1; break;
 		case E: x -= 1; break;
-		case S: y += 1; break;
+		case S: moveUpGrid(); break;
 		case W: x += 1; break;
 		}
 	}
