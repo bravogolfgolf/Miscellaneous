@@ -1,7 +1,7 @@
 package marsRover;
 
 public class Rover {
-	Grid planet;
+	private Grid planet;
 	private Compass direction;
 	private int x;
 	private int y;
@@ -12,7 +12,13 @@ public class Rover {
 		this.direction = Compass.valueOf(direction);
 	}
 
-
+	public void placeOnGrid(Grid mars) {	
+		planet = mars;
+	}
+	
+	public Grid getGridDimesions() {
+		return planet;
+	}
 
 	public Point getPostion() {
 		return new Point(x, y);
@@ -73,13 +79,5 @@ public class Rover {
 		case S: y += 1; break;
 		case W: x += 1; break;
 		}
-	}
-
-	public void placeOnGrid(Grid mars) {	
-		planet = mars;
-	}
-
-	public Object getGridDimesions() {
-		return planet.getHeight();
 	}
 }
