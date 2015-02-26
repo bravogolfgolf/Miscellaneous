@@ -67,9 +67,21 @@ public class Rover {
 		switch (direction) {
 		case N: if (onTopEdgeOfGrid()) {wrapToBottomEdgeOfGrid();} else {moveUpGrid();} break;
 		case E: if (onRightEdgeOfGrid()) {wrapToLeftEdgeOfGrid();} else {moveRightOnGrid();} break;
-		case S: y -= 1; break;
+		case S: if (onBottomEdgeOfGrid()) {wrapToTopEdgeOfGrid();} else {moveDownOnGrid();} break;
 		case W: x -= 1; break;
 		}
+	}
+
+	private void moveDownOnGrid() {
+		y -= 1;
+	}
+
+	private void wrapToTopEdgeOfGrid() {
+		y = 9;
+	}
+
+	private boolean onBottomEdgeOfGrid() {
+		return y == 0;
 	}
 
 	private int moveRightOnGrid() {
@@ -98,7 +110,7 @@ public class Rover {
 
 	private void goBackward() {
 		switch (direction) {
-		case N: y -= 1; break;
+		case N: moveDownOnGrid(); break;
 		case E: x -= 1; break;
 		case S: moveUpGrid(); break;
 		case W: moveRightOnGrid(); break;
