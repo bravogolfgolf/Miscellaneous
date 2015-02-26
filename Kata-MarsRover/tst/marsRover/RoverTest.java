@@ -154,4 +154,14 @@ public class RoverTest {
 		assertEquals(0,rover.getPostion().getX());
 		assertEquals(0,rover.getPostion().getY());
 	}
+	
+	@Test
+	public void testMoveBackEast() {
+		x = 1;
+		direction = "E";
+		createRover(x, y, direction);
+		rover.move("B");
+		assertEquals(0,rover.getPostion().getX());
+		assertEquals(0,rover.getPostion().getY());
+	}
 }
