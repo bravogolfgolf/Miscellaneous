@@ -22,18 +22,18 @@ public class Rover {
 	public void move(String instruction) {
 		switch (Instruction.valueOf(instruction)) {
 		case R:
-			turnRightFrom();
+			turnRight();
 			break;
 		case L:
-			turnLeftFrom();
+			turnLeft();
 			break;
 		case F:
-			forwardInThis();
+			goforward();
 			break;
 		}
 	}
 
-	private void forwardInThis() {
+	private void goforward() {
 		switch (direction) {
 		case N: y += 1; break;
 		case E: x -= 1; break;
@@ -42,7 +42,7 @@ public class Rover {
 		}
 	}
 
-	private void turnRightFrom(){
+	private void turnRight(){
 		switch (direction){
 		case N: direction = Compass.E; break;
 		case E: direction = Compass.S; break;
@@ -51,7 +51,7 @@ public class Rover {
 		}
 	}
 
-	private void turnLeftFrom() {
+	private void turnLeft() {
 		switch (direction){
 		case N: direction = Compass.W; break;
 		case W: direction = Compass.S; break;		
