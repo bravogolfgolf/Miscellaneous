@@ -66,7 +66,7 @@ public class Rover {
 	
 	private void goBackward() {
 		switch (direction) {
-		case N: moveDownOnGrid(); break;
+		case N: if(onBottomEdgeOfGrid()) {wrapToTopEdgeOfGrid();} else {moveDownOnGrid();} break;
 		case S: moveUpOnGrid(); break;
 		case E: moveLeftOnGrid(); break;
 		case W: moveRightOnGrid(); break;
