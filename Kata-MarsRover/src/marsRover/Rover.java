@@ -66,9 +66,9 @@ public class Rover {
 	private void goforward() {
 		switch (direction) {
 		case N: if (onTopEdgeOfGrid()) {wrapToBottomEdgeOfGrid();} else {moveUpGrid();}break;
-		case E: x -= 1; break;
+		case E: x += 1; break;
 		case S: y -= 1; break;
-		case W: x += 1; break;
+		case W: x -= 1; break;
 		}
 	}
 
