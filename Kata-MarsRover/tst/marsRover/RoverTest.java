@@ -182,6 +182,7 @@ public class RoverTest {
 		assertEquals(1,rover.getPostion().getX());
 		assertEquals(0,rover.getPostion().getY());
 	}
+	
 	@Test
 	public void testPlaceRoverOnGrid() {
 		createRover(x, y, direction);

@@ -74,17 +74,10 @@ public class Rover {
 		}
 	}
 
-
-
-	public void placeOnGrid(Grid mars) {
-		// TODO Auto-generated method stub
-		
+	public void placeOnGrid(Grid mars) {	
 	}
 
-
-
 	public Object getGridDimesions() {
-		// TODO Auto-generated method stub
 		return 10;
 	}
 }
