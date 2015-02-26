@@ -1,17 +1,18 @@
 package marsRover;
 
 public class Rover {
-	private Point postion;
 	private String direction;
+	private int x;
+	private int y;
 
 	public Rover(int x, int y, String direction) {
-		Point point = new Point(x,y);
-		this.postion = point;
+		this.x = x;
+		this.y = y;
 		this.direction = direction;
 	}
 
 	public Point getPostion() {
-		return postion;
+		return new Point(x, y);
 	}
 
 	public String getDirection() {
@@ -34,10 +35,10 @@ public class Rover {
 
 	private void forwardInThis(String direction2) {
 		switch (Compass.valueOf(direction)){
-		case N: postion.setY((postion.getY() + 1)); break;
-		case E: postion.setX((postion.getX() - 1)); break;
-		case S: postion.setY((postion.getY() - 1)); break;
-		case W: postion.setX((postion.getX() + 1));
+		case N: y += 1; break;
+		case E: x -= 1; break;
+		case S: y -= 1; break;
+		case W: x += 1; break;
 		}
 	}
 

@@ -4,7 +4,6 @@ import static org.junit.Assert.*;
 import org.junit.Test;
 
 public class RoverTest {
-	private Point postion;
 	private Rover rover;
 	private int x = 0;
 	private int y = 0;
@@ -12,35 +11,27 @@ public class RoverTest {
 
 	protected void setUp(){
 		createRover(x, y, direction);
-		createPoint(x, y);
 	}
 
 	private void createRover(int x, int y, String direction) {
 		rover = new Rover(x, y, direction);
 	}
 
-	private void createPoint(int x, int y) {
-		postion = new Point(x, y);
-	}
-
 	@Test
 	public void testInitialPostion() {
-		createPoint(x, y);
 		createRover(x, y, direction);
-		assertEquals(postion.getX(),rover.getPostion().getX());
-		assertEquals(postion.getY(),rover.getPostion().getY());
+		assertEquals(0, rover.getPostion().getX());
+		assertEquals(0, rover.getPostion().getY());
 	}
-
 
 	@Test
 	public void testDifferentInitialPostion() {
 		x = 45;
 		y = 20;
 		direction = "W";
-		createPoint(x, y);
 		createRover(x, y, direction);
-		assertEquals(postion.getX(),rover.getPostion().getX());
-		assertEquals(postion.getY(),rover.getPostion().getY());
+		assertEquals(x, rover.getPostion().getX());
+		assertEquals(y, rover.getPostion().getY());
 	}
 
 	@Test
