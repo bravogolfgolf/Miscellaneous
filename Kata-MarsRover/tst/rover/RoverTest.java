@@ -1,10 +1,12 @@
 package rover;
 
-import junit.framework.TestCase;
+import static org.junit.Assert.*;
 
 import org.junit.*;
+import org.junit.rules.ExpectedException;
+import org.omg.CosNaming.NamingContextPackage.CannotProceed;
 
-public class RoverTest extends TestCase {
+public class RoverTest {
 	private Rover rover;
 	private Grid mars;
 	private String direction = "N";
@@ -13,18 +15,18 @@ public class RoverTest extends TestCase {
 	private int height = 9;
 	private int width = 9;
 
-	protected void setUp(){
-		createRoverOnGrid(x, y, direction);
-	}
-
 	private void createRoverOnGrid(int x, int y, String direction) {
 		rover = new Rover(x, y, direction);
 		mars = new Grid(height, width);
 		rover.placeOnGrid(mars);
 	}
 
+	@Rule
+	public ExpectedException thrown = ExpectedException.none();
+
 	@Test
 	public void testPlaceRoverOnGrid() {
+		createRoverOnGrid(x, y, direction);
 		assertEquals(9,rover.getGridDimesions().getHeight());
 		assertEquals(9,rover.getGridDimesions().getWidth());
 	}
@@ -41,6 +43,7 @@ public class RoverTest extends TestCase {
 
 	@Test
 	public void testInitialPostion() {
+		createRoverOnGrid(x, y, direction);
 		assertEquals(0, rover.getPosition().getX());
 		assertEquals(0, rover.getPosition().getY());
 	}
@@ -57,6 +60,7 @@ public class RoverTest extends TestCase {
 
 	@Test
 	public void testInitialDirection() {
+		createRoverOnGrid(x, y, direction);
 		assertEquals("N",rover.getDirection());
 	}
 
@@ -70,6 +74,7 @@ public class RoverTest extends TestCase {
 
 	@Test
 	public void testFacingNorthThenTurnRight() {
+		createRoverOnGrid(x, y, direction);
 		turnRight();
 		assertEquals("E",rover.getDirection());
 	}
@@ -104,6 +109,7 @@ public class RoverTest extends TestCase {
 
 	@Test
 	public void testFacingNorthThenTurnLeft() {
+		createRoverOnGrid(x, y, direction);
 		turnLeft();
 		assertEquals("W",rover.getDirection());
 	}
@@ -138,6 +144,7 @@ public class RoverTest extends TestCase {
 
 	@Test
 	public void testMoveForwardNorth() {
+		createRoverOnGrid(x, y, direction);
 		goForward();
 		assertEquals(0,rover.getPosition().getX());
 		assertEquals(1,rover.getPosition().getY());
@@ -261,7 +268,7 @@ public class RoverTest extends TestCase {
 		assertEquals(0,rover.getPosition().getX());
 		assertEquals(9,rover.getPosition().getY());
 	}
-	
+
 	@Test
 	public void testMoveBackEastWrap() {
 		direction = "E";
@@ -270,7 +277,7 @@ public class RoverTest extends TestCase {
 		assertEquals(9,rover.getPosition().getX());
 		assertEquals(0,rover.getPosition().getY());
 	}
-	
+
 	@Test
 	public void testMoveBackSouthWrap() {
 		y = 9;
@@ -280,7 +287,7 @@ public class RoverTest extends TestCase {
 		assertEquals(0,rover.getPosition().getX());
 		assertEquals(0,rover.getPosition().getY());
 	}
-	
+
 	@Test
 	public void testMoveBackWestWrap() {
 		x = 9;
@@ -290,22 +297,30 @@ public class RoverTest extends TestCase {
 		assertEquals(0,rover.getPosition().getX());
 		assertEquals(0,rover.getPosition().getY());
 	}
-	
+
 	@Test
-	public void testFoundObstacleForward() throws Exception {
+	public void testFoundObstacleForward() {
 		createRoverOnGrid(x, y, direction);
 		mars.addObstacleAt(0, 1);
 		goForward();
 		assertEquals(0,rover.getPosition().getX());
 		assertEquals(0,rover.getPosition().getY());
 	}
-	
+
 	@Test
-	public void testFoundObstacleBack() throws Exception {
+	public void testFoundObstacleBack() {
 		createRoverOnGrid(x, y, direction);
 		mars.addObstacleAt(0, 9);
 		goBackward();
 		assertEquals(0,rover.getPosition().getX());
 		assertEquals(0,rover.getPosition().getY());
+	}
+
+	@Test
+	public void throwsExceptionEncouterObstacle() {
+		thrown.expect(CannotProceed.class);
+		createRoverOnGrid(x, y, direction);
+		mars.addObstacleAt(0, 9);
+		goBackward();
 	}
 }
