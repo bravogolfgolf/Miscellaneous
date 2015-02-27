@@ -29,19 +29,13 @@ public class Rover {
 	}
 
 	public void move(String instruction) {
-		int tempX = x;
-		int tempY = y;
+		int preservedX = x;
+		int preservedY = y;
 
 		switch (Instruction.valueOf(instruction)) {
 		case R: turnRight(); break;
 		case L: turnLeft(); break;
-		case F:
-			goForward();
-			if(planet.hasObstacleAt(x, y)){
-				x = tempX;
-				y = tempY;
-			}
-			break;
+		case F: goForward(); if(planet.hasObstacleAt(x, y)) {doNotMove(preservedX, preservedY);} break;
 		case B: goBackward(); break;
 		}
 	}
@@ -82,6 +76,11 @@ public class Rover {
 		}
 	}
 
+	private void doNotMove(int preservedX, int preservedY) {
+		x = preservedX;
+		y = preservedY;
+	}
+	
 	private boolean onTopEdgeOfGrid() {
 		return y == planet.getHeight();
 	}
