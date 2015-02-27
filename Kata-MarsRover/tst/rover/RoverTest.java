@@ -1,6 +1,7 @@
 package rover;
 
 import junit.framework.TestCase;
+
 import org.junit.*;
 
 public class RoverTest extends TestCase {
@@ -286,6 +287,15 @@ public class RoverTest extends TestCase {
 		direction = "W";
 		createRoverOnGrid(x, y, direction);
 		goBackward();
+		assertEquals(0,rover.getPosition().getX());
+		assertEquals(0,rover.getPosition().getY());
+	}
+	
+	@Test
+	public void testFoundObstacle() throws Exception {
+		createRoverOnGrid(x, y, direction);
+		mars.addObstacleAt(0, 1);
+		goForward();
 		assertEquals(0,rover.getPosition().getX());
 		assertEquals(0,rover.getPosition().getY());
 	}

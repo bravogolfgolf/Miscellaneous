@@ -29,10 +29,19 @@ public class Rover {
 	}
 
 	public void move(String instruction) {
+		int tempX = x;
+		int tempY = y;
+
 		switch (Instruction.valueOf(instruction)) {
 		case R: turnRight(); break;
 		case L: turnLeft(); break;
-		case F: goForward(); break;
+		case F:
+			goForward();
+			if(planet.hasObstacleAt(x, y)){
+				x = tempX;
+				y = tempY;
+			}
+			break;
 		case B: goBackward(); break;
 		}
 	}
@@ -63,7 +72,7 @@ public class Rover {
 		case W: if (onLeftEdgeOfGrid()) {wrapToRightEdgeOfGrid();} else {moveLeftOnGrid();} break;
 		}
 	}
-	
+
 	private void goBackward() {
 		switch (direction) {
 		case N: if(onBottomEdgeOfGrid()) {wrapToTopEdgeOfGrid();} else {moveDownOnGrid();} break;
@@ -80,7 +89,7 @@ public class Rover {
 	private boolean onBottomEdgeOfGrid() {
 		return y == 0;
 	}
-	
+
 	private boolean onRightEdgeOfGrid() {
 		return x == planet.getWidth();
 	}
@@ -88,27 +97,27 @@ public class Rover {
 	private boolean onLeftEdgeOfGrid() {
 		return x == 0;
 	}
-	
+
 	private void wrapToTopEdgeOfGrid() {
 		y = planet.getHeight();
 	}
-	
+
 	private void wrapToBottomEdgeOfGrid() {
 		y = 0;
 	}
-	
+
 	private void wrapToRightEdgeOfGrid() {
 		x = planet.getWidth();
 	}
-	
+
 	private int wrapToLeftEdgeOfGrid() {
 		return x = 0;
 	}
-	
+
 	private void moveUpOnGrid() {
 		y += 1;
 	}
-	
+
 	private void moveDownOnGrid() {
 		y -= 1;
 	}
@@ -116,7 +125,7 @@ public class Rover {
 	private void moveRightOnGrid() {
 		x += 1;
 	}
-	
+
 	private void moveLeftOnGrid() {
 		x -= 1;
 	}
