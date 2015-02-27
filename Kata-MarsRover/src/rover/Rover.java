@@ -36,20 +36,7 @@ public class Rover {
 		case R: turnRight(); break;
 		case L: turnLeft(); break;
 		case F: goForward(); checkForObstacle(preservedX, preservedY); break;
-		case B:
-			goBackward();
-			checkForObstacle(preservedX, preservedY);
-			break;
-		}
-	}
-
-	private void checkForObstacle(int preservedX, int preservedY) {
-		try {if(planet.hasObstacleAt(x, y)) {
-			throw new UnsupportedOperationException();
-		}
-		} catch (UnsupportedOperationException e) {
-			doNotMove(preservedX, preservedY);
-			throw new UnsupportedOperationException("Obstacle Encoutered");
+		case B: goBackward(); checkForObstacle(preservedX, preservedY); break;
 		}
 	}
 
@@ -89,11 +76,21 @@ public class Rover {
 		}
 	}
 
+	private void checkForObstacle(int preservedX, int preservedY) {
+		try {if(planet.hasObstacleAt(x, y))
+			throw new UnsupportedOperationException();
+		}
+		catch (UnsupportedOperationException e) {
+			doNotMove(preservedX, preservedY);
+			throw new UnsupportedOperationException("Obstacle Encoutered");
+		}
+	}
+	
 	private void doNotMove(int preservedX, int preservedY) {
 		x = preservedX;
 		y = preservedY;
 	}
-
+	
 	private boolean onTopEdgeOfGrid() {
 		return y == planet.getHeight();
 	}
