@@ -292,10 +292,19 @@ public class RoverTest extends TestCase {
 	}
 	
 	@Test
-	public void testFoundObstacle() throws Exception {
+	public void testFoundObstacleForward() throws Exception {
 		createRoverOnGrid(x, y, direction);
 		mars.addObstacleAt(0, 1);
 		goForward();
+		assertEquals(0,rover.getPosition().getX());
+		assertEquals(0,rover.getPosition().getY());
+	}
+	
+	@Test
+	public void testFoundObstacleBack() throws Exception {
+		createRoverOnGrid(x, y, direction);
+		mars.addObstacleAt(0, 9);
+		goBackward();
 		assertEquals(0,rover.getPosition().getX());
 		assertEquals(0,rover.getPosition().getY());
 	}

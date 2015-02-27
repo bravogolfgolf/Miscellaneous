@@ -36,7 +36,7 @@ public class Rover {
 		case R: turnRight(); break;
 		case L: turnLeft(); break;
 		case F: goForward(); if(planet.hasObstacleAt(x, y)) {doNotMove(preservedX, preservedY);} break;
-		case B: goBackward(); break;
+		case B: goBackward(); if(planet.hasObstacleAt(x, y)) {doNotMove(preservedX, preservedY);} break;
 		}
 	}
 
