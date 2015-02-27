@@ -35,7 +35,7 @@ public class Rover {
 		switch (Instruction.valueOf(instruction)) {
 		case R: turnRight(); break;
 		case L: turnLeft(); break;
-		case F: goForward(); if(planet.hasObstacleAt(x, y)) {doNotMove(preservedX, preservedY);} break;
+		case F: goForward(); checkForObstacle(preservedX, preservedY); break;
 		case B:
 			goBackward();
 			checkForObstacle(preservedX, preservedY);

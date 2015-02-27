@@ -297,7 +297,7 @@ public class RoverTest {
 		assertEquals(0,rover.getPosition().getY());
 	}
 
-	@Test
+	@Test (expected = UnsupportedOperationException.class)
 	public void testFoundObstacleForward() {
 		createRoverOnGrid(x, y, direction);
 		mars.addObstacleAt(0, 1);
@@ -316,11 +316,20 @@ public class RoverTest {
 	}
 
 	@Test
-	public void throwsExceptionEncouterObstacle() {
+	public void throwsExceptionEncouterObstacleBackward() {
 		thrown.expect(UnsupportedOperationException.class);
 		thrown.expectMessage("Obstacle Encoutered");
 		createRoverOnGrid(x, y, direction);
 		mars.addObstacleAt(0, 9);
 		goBackward();
+	}
+	
+	@Test
+	public void throwsExceptionEncouterObstacleForward() {
+		thrown.expect(UnsupportedOperationException.class);
+		thrown.expectMessage("Obstacle Encoutered");
+		createRoverOnGrid(x, y, direction);
+		mars.addObstacleAt(0, 1);
+		goForward();
 	}
 }
