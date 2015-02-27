@@ -4,7 +4,6 @@ import static org.junit.Assert.*;
 
 import org.junit.*;
 import org.junit.rules.ExpectedException;
-import org.omg.CosNaming.NamingContextPackage.CannotProceed;
 
 public class RoverTest {
 	private Rover rover;
@@ -307,7 +306,7 @@ public class RoverTest {
 		assertEquals(0,rover.getPosition().getY());
 	}
 
-	@Test
+	@Test (expected = UnsupportedOperationException.class)
 	public void testFoundObstacleBack() {
 		createRoverOnGrid(x, y, direction);
 		mars.addObstacleAt(0, 9);
@@ -318,7 +317,8 @@ public class RoverTest {
 
 	@Test
 	public void throwsExceptionEncouterObstacle() {
-		thrown.expect(CannotProceed.class);
+		thrown.expect(UnsupportedOperationException.class);
+		thrown.expectMessage("Obstacle Encoutered");
 		createRoverOnGrid(x, y, direction);
 		mars.addObstacleAt(0, 9);
 		goBackward();
