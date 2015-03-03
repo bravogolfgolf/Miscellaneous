@@ -30,13 +30,17 @@ public class Money implements Expression {
 		return new Sum(this, addend);
 	}
 	
-	public Money reduce(String to) {
-		return this;
+	public Money reduce(Bank bank, String to) {
+		int rate = bank.rate(currency, to);
+		return new Money(amount / rate, to);
 	}
 
 	public boolean equals(Object object) {
 		Money money = (Money) object;
 		return amount == money.amount
 				&& currency.equals(money.currency);
+	}
+	public String toString(){
+		return amount + " " + currency;
 	}
 }
