@@ -70,4 +70,16 @@ public class MoneyTest {
 	public void testIdentityRate() {
 		assertEquals(1, new Bank().rate("USD", "USD"));
 	}
+	
+	@Test
+	public void testMixedAddition() {
+		Expression fiveDollars = Money.dollar(5);
+		Expression tenFranc = Money.franc(10);
+		Bank bank = new Bank();
+		bank.addRate("CHF", "USD", 2);
+		Money result = bank.reduce(fiveDollars.plus(tenFranc), "USD");
+		assertEquals(Money.dollar(10), result);
+		
+		
+	}
 }
