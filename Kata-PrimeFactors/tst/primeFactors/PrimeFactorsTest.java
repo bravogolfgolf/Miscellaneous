@@ -14,4 +14,9 @@ public class PrimeFactorsTest {
 	public void testPrimeFactorsOf2() throws Exception {
 		assertEquals("2", PrimeFactors.calculate(2));
 	}
+	
+	@Test
+	public void testPrimeFactorsOf3() throws Exception {
+		assertEquals("3", PrimeFactors.calculate(3));
+	}
 }
