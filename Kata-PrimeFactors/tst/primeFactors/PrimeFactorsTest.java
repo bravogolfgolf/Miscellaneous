@@ -18,9 +18,8 @@ public class PrimeFactorsTest {
 	}
 
 	@Test
-	@Ignore
 	public void testPrimeFactorsOf2() throws Exception {
-		assertEquals("2", PrimeFactors.calculate(2));
+		assertEquals(creatList(2), PrimeFactors.calculate(2));
 	}
 
 	@Test
