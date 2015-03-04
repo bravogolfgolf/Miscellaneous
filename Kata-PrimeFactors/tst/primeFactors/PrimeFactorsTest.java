@@ -61,4 +61,9 @@ public class PrimeFactorsTest {
 	public void testPrimeFactorsOf27() throws Exception {
 		assertEquals(creatList(3,3,3), PrimeFactors.calculate(27));
 	}
+	
+	@Test
+	public void testPrimeFactorsOf2147483646() throws Exception {
+		assertEquals(creatList(2,3,3,7,11,31,151,331), PrimeFactors.calculate(2147483646));
+	}
 }
