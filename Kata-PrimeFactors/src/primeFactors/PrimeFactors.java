@@ -1,10 +1,10 @@
 package primeFactors;
 
-import java.util.ArrayList;
+import java.util.*;
 
 public class PrimeFactors {
 
-	public static ArrayList<Integer> calculate(int input) {
+	public static List<Integer> calculate(int input) {
 		return new ArrayList<Integer>();
 	}
 }
