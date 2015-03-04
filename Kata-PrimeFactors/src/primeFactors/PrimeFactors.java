@@ -8,7 +8,7 @@ public class PrimeFactors {
 		ArrayList<Integer> arrayList = new ArrayList<Integer>();
 
 		if(input > 1){
-			if(input % 2 == 0){
+			while(input % 2 == 0){
 				arrayList.add(2);
 				input /= 2;
 			}
