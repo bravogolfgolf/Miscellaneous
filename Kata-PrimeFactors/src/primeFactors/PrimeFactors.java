@@ -12,6 +12,10 @@ public class PrimeFactors {
 				arrayList.add(2);
 				input /= 2;
 			}
+			while(input % 3 == 0){
+				arrayList.add(3);
+				input /= 3;
+			}
 			if(input > 1)
 				arrayList.add(input);						
 		}
