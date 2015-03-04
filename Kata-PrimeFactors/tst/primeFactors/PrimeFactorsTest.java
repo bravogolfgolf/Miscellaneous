@@ -23,8 +23,7 @@ public class PrimeFactorsTest {
 	}
 
 	@Test
-	@Ignore
 	public void testPrimeFactorsOf3() throws Exception {
-		assertEquals("3", PrimeFactors.calculate(3));
+		assertEquals(creatList(3), PrimeFactors.calculate(3));
 	}
 }
