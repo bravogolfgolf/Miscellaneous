@@ -33,20 +33,26 @@ public class Rover {
 		int preservedY = y;
 
 		switch (Instruction.valueOf(instruction)) {
-		case R: turnRight(); break;
+		case R: direction = Movement.turnRight(direction); break;
 		case L: turnLeft(); break;
 		case F: goForward(); checkForObstacle(preservedX, preservedY); break;
 		case B: goBackward(); checkForObstacle(preservedX, preservedY); break;
 		}
 	}
 
-	private void turnRight(){
-		switch (direction){
-		case N: direction = Compass.E; break;
-		case S: direction = Compass.W; break;
-		case E: direction = Compass.S; break;
-		case W: direction = Compass.N; break;
+	private void checkForObstacle(int preservedX, int preservedY) {
+		try {if(planet.hasObstacleAt(x, y))
+			throw new UnsupportedOperationException();
 		}
+		catch (UnsupportedOperationException e) {
+			doNotMove(preservedX, preservedY);
+			throw new UnsupportedOperationException("Obstacle Encoutered");
+		}
+	}
+
+	private void doNotMove(int preservedX, int preservedY) {
+		x = preservedX;
+		y = preservedY;
 	}
 
 	private void turnLeft() {
@@ -76,21 +82,6 @@ public class Rover {
 		}
 	}
 
-	private void checkForObstacle(int preservedX, int preservedY) {
-		try {if(planet.hasObstacleAt(x, y))
-			throw new UnsupportedOperationException();
-		}
-		catch (UnsupportedOperationException e) {
-			doNotMove(preservedX, preservedY);
-			throw new UnsupportedOperationException("Obstacle Encoutered");
-		}
-	}
-	
-	private void doNotMove(int preservedX, int preservedY) {
-		x = preservedX;
-		y = preservedY;
-	}
-	
 	private boolean onTopEdgeOfGrid() {
 		return y == planet.getHeight();
 	}
