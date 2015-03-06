@@ -9,9 +9,13 @@ public class Rover {
 	public Rover(int x, int y, String direction) {
 		this.x = x;
 		this.y = y;
-		this.direction = Compass.valueOf(direction);
+		setDirection(direction);
 	}
 
+	public void setDirection(String direction) {
+		this.direction = Compass.valueOf(direction);
+	}
+	
 	public void placeOnGrid(Grid planet) {	
 		this.planet = planet;
 	}
