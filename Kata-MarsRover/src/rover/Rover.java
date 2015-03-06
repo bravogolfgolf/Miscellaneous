@@ -34,7 +34,7 @@ public class Rover {
 
 		switch (Instruction.valueOf(instruction)) {
 		case R: direction = Movement.turnRight(direction); break;
-		case L: turnLeft(); break;
+		case L: direction = Movement.turnLeft(direction); break;
 		case F: goForward(); checkForObstacle(preservedX, preservedY); break;
 		case B: goBackward(); checkForObstacle(preservedX, preservedY); break;
 		}
@@ -53,15 +53,6 @@ public class Rover {
 	private void doNotMove(int preservedX, int preservedY) {
 		x = preservedX;
 		y = preservedY;
-	}
-
-	private void turnLeft() {
-		switch (direction){
-		case N: direction = Compass.W; break;
-		case S: direction = Compass.E; break;
-		case E: direction = Compass.N; break;
-		case W: direction = Compass.S; break;		
-		}
 	}
 
 	private void goForward() {

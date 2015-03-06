@@ -11,4 +11,14 @@ public class Movement {
 		default: return direction;
 		}
 	}
+
+	public static Compass turnLeft(Compass direction) {
+		switch (direction){
+		case N: return Compass.W;
+		case S: return Compass.E;
+		case E: return Compass.N;
+		case W: return Compass.S;
+		default: return direction;
+		}
+	}
 }
