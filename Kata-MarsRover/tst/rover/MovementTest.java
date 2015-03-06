@@ -20,12 +20,4 @@ public class MovementTest {
 		assertEquals(Compass.N,Movement.turnLeft(Compass.E));
 		assertEquals(Compass.S,Movement.turnLeft(Compass.W));
 	}
-
-	@Test
-	public void testGoForward() {
-		assertEquals(Compass.W,Movement.turnLeft(Compass.N));
-		assertEquals(Compass.E,Movement.turnLeft(Compass.S));
-		assertEquals(Compass.N,Movement.turnLeft(Compass.E));
-		assertEquals(Compass.S,Movement.turnLeft(Compass.W));
-	}
 }
