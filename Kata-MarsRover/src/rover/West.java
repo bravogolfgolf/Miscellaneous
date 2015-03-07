@@ -39,7 +39,20 @@ public class West extends Direction {
 
 	@Override
 	Point goBackward(int x, int y, Grid planet) {
-		// TODO Auto-generated method stub
-		return null;
+		if(onRightEdgeOfGrid(x, planet)) x = wrapToLeftEdgeOfGrid(x);
+		else x = moveRightOnGrid(x);
+		return new Point(x, y);
+	}
+
+	private boolean onRightEdgeOfGrid(int x, Grid planet) {
+		return x == planet.getWidth();
+	}
+
+	private int wrapToLeftEdgeOfGrid(int x) {
+		return x = 0;
+	}
+
+	private int moveRightOnGrid(int x) {
+		return x += 1;
 	}
 }
