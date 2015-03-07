@@ -47,15 +47,13 @@ public class Rover {
 	}
 
 	public void move(String instruction) {
-		int preservedX = x;
-		int preservedY = y;
 		Point preservedPosition = new Point(x, y);
 
 		switch (Instruction.valueOf(instruction)) {
 		case R: turnRight(); break;
 		case L: turnLeft(); break;
-		case F: goForward(); checkForObstacle(preservedX, preservedY); break;
-		case B: goBackward(); checkForObstacle(preservedX, preservedY); break;
+		case F: goForward(); checkForObstacle(preservedPosition); break;
+		case B: goBackward(); checkForObstacle(preservedPosition); break;
 		}
 	}
 
@@ -79,17 +77,17 @@ public class Rover {
 		y = direction.goBackward(x, y, planet).getY();	
 	}
 
-	private void checkForObstacle(int preservedX, int preservedY) {
+	private void checkForObstacle(Point preservedPosition) {
 		try {if(planet.hasObstacleAt(position))
 			throw new UnsupportedOperationException();
 		}
 		catch (UnsupportedOperationException e) {
-			doNotMove(preservedX, preservedY);
+			doNotMove(preservedPosition);
 			throw new UnsupportedOperationException("Obstacle Encoutered");
 		}
 	}
 
-	private void doNotMove(int preservedX, int preservedY) {
-		setPosition(preservedX, preservedY);
+	private void doNotMove(Point preservedPosition) {
+		setPosition(preservedPosition);
 	}
 }
