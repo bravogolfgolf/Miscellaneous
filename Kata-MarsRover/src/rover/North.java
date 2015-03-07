@@ -41,8 +41,7 @@ public class North extends Direction {
 	
 	@Override
 	Point goBackward(Point position, Grid planet) {
-		// TODO Auto-generated method stub
-		return null;
+		return goBackward(position.getX(), position.getY(), planet);
 	}
 
 	@Override

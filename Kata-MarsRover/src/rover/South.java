@@ -38,11 +38,10 @@ public class South extends Direction {
 	private int moveDownOnGrid(int y) {
 		return y -= 1;
 	}
-	
+
 	@Override
 	Point goBackward(Point position, Grid planet) {
-		// TODO Auto-generated method stub
-		return null;
+		return goBackward(position.getX(), position.getY(), planet);
 	}
 
 	@Override
