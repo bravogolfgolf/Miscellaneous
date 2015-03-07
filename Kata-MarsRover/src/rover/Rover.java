@@ -1,17 +1,30 @@
 package rover;
 
 public class Rover {
-	private Grid planet;
+	private Point position;
 	private Direction direction;
+	private Grid planet;
 	private int x;
 	private int y;
 
 	public Rover(int x, int y, String direction) {
 		this.x = x;
 		this.y = y;
+		setPosition(x, y);
 		setDirection(direction);
 	}
+	
+	public void setPosition(int x, int y) {
+		setPosition(new Point(x , y));
+	}
 
+	public void setPosition(Point position) {
+		this.position = position;
+	}
+
+	public Point getPosition1() {
+		return position;
+	}
 	public void setDirection(String direction) {
 		switch (Compass.valueOf(direction)) {
 		case N: this.direction = new North(); break;
@@ -83,4 +96,5 @@ public class Rover {
 		x = preservedX;
 		y = preservedY;
 	}
+
 }
