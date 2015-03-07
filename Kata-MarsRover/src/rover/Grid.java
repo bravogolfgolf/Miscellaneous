@@ -26,11 +26,7 @@ public class Grid {
 	}
 
 	public boolean hasObstacleAt(Point position){
-		return hasObstacleAt(position.getX(), position.getY());
-	}
-	
-	private boolean hasObstacleAt(int x, int y) {
-		Point input = new Point(x, y);
+		Point input = position;
 		Point currentObstacle;
 		if (isNotEmpty(obstacles)) {
 			for (int i = 0; i < obstacles.size(); i++) {
