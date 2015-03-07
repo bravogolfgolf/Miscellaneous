@@ -24,7 +24,7 @@ public class Rover {
 	public String getDirection() {
 		return direction.getDirection().toString();
 	}
-	
+
 	public void placeOnGrid(Grid planet) {	
 		this.planet = planet;
 	}
@@ -58,18 +58,15 @@ public class Rover {
 	}
 
 	private void goForward() {
-		Point p;
-		switch (direction.getDirection()) {
-		case N: p = direction.goForward(x, y, planet); x = p.getX(); y = p.getY(); break;		
-		case S: p = direction.goForward(x, y, planet); x = p.getX(); y = p.getY(); break;
-		case E: p = direction.goForward(x, y, planet); x = p.getX(); y = p.getY(); break;
-		case W: p = direction.goForward(x, y, planet); x = p.getX(); y = p.getY(); break;
-		}
+		Point p = direction.goForward(x, y, planet);
+		x = p.getX();
+		y = p.getY();	
 	}
 
 	private void goBackward() {
+		Point p;
 		switch (direction.getDirection()) {
-		case N: if(onBottomEdgeOfGrid()) {wrapToTopEdgeOfGrid();} else {moveDownOnGrid();} break;
+		case N: p = direction.goBackward(x, y, planet); x = p.getX(); y = p.getY();	 break;
 		case S: if(onTopEdgeOfGrid()) {wrapToBottomEdgeOfGrid();} else {moveUpOnGrid();} break;
 		case E: if(onLeftEdgeOfGrid()) {wrapToRightEdgeOfGrid();} else {moveLeftOnGrid();} break;
 		case W: if(onRightEdgeOfGrid()) {wrapToLeftEdgeOfGrid();} else {moveRightOnGrid();} break;
@@ -95,20 +92,12 @@ public class Rover {
 		return y == planet.getHeight();
 	}
 
-	private boolean onBottomEdgeOfGrid() {
-		return y == 0;
-	}
-
 	private boolean onRightEdgeOfGrid() {
 		return x == planet.getWidth();
 	}
 
 	private boolean onLeftEdgeOfGrid() {
 		return x == 0;
-	}
-
-	private void wrapToTopEdgeOfGrid() {
-		y = planet.getHeight();
 	}
 
 	private void wrapToBottomEdgeOfGrid() {
@@ -125,10 +114,6 @@ public class Rover {
 
 	private void moveUpOnGrid() {
 		y += 1;
-	}
-
-	private void moveDownOnGrid() {
-		y -= 1;
 	}
 
 	private void moveRightOnGrid() {

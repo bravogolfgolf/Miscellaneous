@@ -18,17 +18,11 @@ public class West extends Direction {
 	}
 
 	@Override
-	Point goForward(int startX, int startY, Grid planet) {
-		int endX = startX;
-		int endY = startY;
+	Point goForward(int x, int y, Grid planet) {
 
-		if (onLeftEdgeOfGrid(startX)) {
-			endX = wrapToRightEdgeOfGrid(startX, planet);
-		} 
-		else {
-			endX = moveLeftOnGrid(startX);
-		}
-		return new Point(endX, endY);
+		if (onLeftEdgeOfGrid(x)) x = wrapToRightEdgeOfGrid(x, planet);
+		else x = moveLeftOnGrid(x);
+		return new Point(x, y);
 	}
 
 	private boolean onLeftEdgeOfGrid(int x) {
@@ -41,5 +35,11 @@ public class West extends Direction {
 
 	private int moveLeftOnGrid(int x) {
 		return x -= 1;
+	}
+
+	@Override
+	Point goBackward(int x, int y, Grid planet) {
+		// TODO Auto-generated method stub
+		return null;
 	}
 }

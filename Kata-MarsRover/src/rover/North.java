@@ -18,19 +18,13 @@ public class North extends Direction {
 	}
 
 	@Override
-	Point goForward(int startX, int startY, Grid planet) {
-		int endX = startX;
-		int endY = startY;
-		
-		if (onTopEdgeOfGrid(startY, planet)) {
-			endY = wrapToBottomEdgeOfGrid(startY);
-		}
-		else {
-			endY = moveUpOnGrid(startY);
-		}
-		return new Point(endX, endY);
-	}
+	Point goForward(int x, int y, Grid planet) {
 	
+		if (onTopEdgeOfGrid(y, planet)) y = wrapToBottomEdgeOfGrid(y);
+		else y = moveUpOnGrid(y);
+		return new Point(x, y);
+	}
+
 	private boolean onTopEdgeOfGrid(int y, Grid planet) {
 		return y == planet.getHeight();
 	}
@@ -42,4 +36,24 @@ public class North extends Direction {
 	private int moveUpOnGrid(int y) {
 		return y += 1;
 	}
+
+	@Override
+	Point goBackward(int x, int y, Grid planet) {
+		if(onBottomEdgeOfGrid(y)) y = wrapToTopEdgeOfGrid(y, planet);
+		else y = moveDownOnGrid(y);
+		return new Point(x, y);
+	}
+	
+	private boolean onBottomEdgeOfGrid(int y) {
+		return y == 0;
+	}
+
+	private int wrapToTopEdgeOfGrid(int y, Grid planet) {
+		return y = planet.getHeight();
+	}
+	
+	private int moveDownOnGrid(int y) {
+		return y -= 1;
+	}
+
 }

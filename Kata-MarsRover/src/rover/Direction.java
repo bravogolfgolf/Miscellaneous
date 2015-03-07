@@ -4,5 +4,6 @@ abstract class Direction {
 	abstract Compass getDirection();
 	abstract Direction turnRight();
 	abstract Direction turnLeft();
-	abstract Point goForward(int startX, int startY, Grid planet);
+	abstract Point goForward(int x, int y, Grid planet);
+	abstract Point goBackward(int x, int y, Grid planet);
 }
