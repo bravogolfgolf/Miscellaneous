@@ -40,13 +40,12 @@ public class South extends Direction {
 	}
 
 	@Override
-	Point goBackward(Point position, Grid planet) {
-		return goBackward(position.getX(), position.getY(), planet);
+	Point goBackward(int inX, int inY, Grid planet) {
+		return null;
 	}
 
 	@Override
-	Point goBackward(int inX, int inY, Grid planet) {
-		Point position = new Point(inX,inY);
+	Point goBackward(Point position, Grid planet) {
 		int x = position.getX();
 		int y = position.getY();
 		

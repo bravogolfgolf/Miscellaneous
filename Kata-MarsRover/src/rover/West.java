@@ -38,18 +38,17 @@ public class West extends Direction {
 	private int moveLeftOnGrid(int x) {
 		return x -= 1;
 	}
-	
-	@Override
-	Point goBackward(Point position, Grid planet) {
-		return goBackward(position.getX(), position.getY(), planet);
-	}
 
 	@Override
 	Point goBackward(int inX, int inY, Grid planet) {
-		Point position = new Point(inX,inY);
+		return null;
+	}
+
+	@Override
+	Point goBackward(Point position, Grid planet) {
 		int x = position.getX();
 		int y = position.getY();
-		
+
 		if(onRightEdgeOfGrid(x, planet)) x = wrapToLeftEdgeOfGrid(x);
 		else x = moveRightOnGrid(x);
 		return new Point(x, y);
