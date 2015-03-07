@@ -4,12 +4,8 @@ public class Rover {
 	private Point position;
 	private Direction direction;
 	private Grid planet;
-	private int x;
-	private int y;
 
 	public Rover(int x, int y, String direction) {
-		this.x = x;
-		this.y = y;
 		setPosition(x, y);
 		setDirection(direction);
 	}
@@ -47,7 +43,7 @@ public class Rover {
 	}
 
 	public void move(String instruction) {
-		Point preservedPosition = new Point(x, y);
+		Point preservedPosition = position;
 
 		switch (Instruction.valueOf(instruction)) {
 		case R: turnRight(); break;
