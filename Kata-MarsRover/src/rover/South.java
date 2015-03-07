@@ -39,7 +39,21 @@ public class South extends Direction {
 
 	@Override
 	Point goBackward(int x, int y, Grid planet) {
-		// TODO Auto-generated method stub
-		return null;
+		if(onTopEdgeOfGrid(y, planet)) y = wrapToBottomEdgeOfGrid(y);
+		else y = moveUpOnGrid(y);
+		return new Point(x, y);
 	}
+
+	private boolean onTopEdgeOfGrid(int y, Grid planet) {
+		return y == planet.getHeight();
+	}
+
+	private int wrapToBottomEdgeOfGrid(int y) {
+		return y = 0;
+	}
+
+	private int moveUpOnGrid(int y) {
+		return y += 1;
+	}
+
 }

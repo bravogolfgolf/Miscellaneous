@@ -66,8 +66,8 @@ public class Rover {
 	private void goBackward() {
 		Point p;
 		switch (direction.getDirection()) {
-		case N: p = direction.goBackward(x, y, planet); x = p.getX(); y = p.getY();	 break;
-		case S: if(onTopEdgeOfGrid()) {wrapToBottomEdgeOfGrid();} else {moveUpOnGrid();} break;
+		case N: p = direction.goBackward(x, y, planet); x = p.getX(); y = p.getY(); break;
+		case S: p = direction.goBackward(x, y, planet); x = p.getX(); y = p.getY(); break;
 		case E: if(onLeftEdgeOfGrid()) {wrapToRightEdgeOfGrid();} else {moveLeftOnGrid();} break;
 		case W: if(onRightEdgeOfGrid()) {wrapToLeftEdgeOfGrid();} else {moveRightOnGrid();} break;
 		}
@@ -88,10 +88,6 @@ public class Rover {
 		y = preservedY;
 	}
 
-	private boolean onTopEdgeOfGrid() {
-		return y == planet.getHeight();
-	}
-
 	private boolean onRightEdgeOfGrid() {
 		return x == planet.getWidth();
 	}
@@ -100,20 +96,12 @@ public class Rover {
 		return x == 0;
 	}
 
-	private void wrapToBottomEdgeOfGrid() {
-		y = 0;
-	}
-
 	private void wrapToRightEdgeOfGrid() {
 		x = planet.getWidth();
 	}
 
 	private int wrapToLeftEdgeOfGrid() {
 		return x = 0;
-	}
-
-	private void moveUpOnGrid() {
-		y += 1;
 	}
 
 	private void moveRightOnGrid() {
