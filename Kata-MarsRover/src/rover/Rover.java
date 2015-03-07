@@ -66,7 +66,7 @@ public class Rover {
 	}
 
 	private void goForward() {
-		setPosition(direction.goForward(x, y, planet));	
+		setPosition(direction.goForward(position, planet));
 	}
 
 	private void goBackward() {

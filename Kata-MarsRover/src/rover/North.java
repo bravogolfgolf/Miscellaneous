@@ -16,6 +16,11 @@ public class North extends Direction {
 	Direction turnLeft() {
 		return new West();
 	}
+	
+	@Override
+	Point goForward(Point position, Grid planet) {
+		return goForward(position.getX(), position.getY(), planet);
+	}
 
 	@Override
 	Point goForward(int x, int y, Grid planet) {

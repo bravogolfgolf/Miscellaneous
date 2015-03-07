@@ -18,6 +18,11 @@ public class West extends Direction {
 	}
 
 	@Override
+	Point goForward(Point position, Grid planet) {
+		return goForward(position.getX(), position.getY(), planet);
+	}
+	
+	@Override
 	Point goForward(int x, int y, Grid planet) {
 
 		if (onLeftEdgeOfGrid(x)) x = wrapToRightEdgeOfGrid(x, planet);
