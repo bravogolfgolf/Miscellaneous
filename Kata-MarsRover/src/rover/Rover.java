@@ -10,18 +10,19 @@ public class Rover {
 		setDirection(direction);
 	}
 
-	public void setPosition(int x, int y) {
+	private void setPosition(int x, int y) {
 		setPosition(new Point(x , y));
 	}
 
-	public void setPosition(Point position) {
+	private void setPosition(Point position) {
 		this.position = position;
 	}
 
 	public Point getPosition() {
 		return position;
 	}
-	public void setDirection(String direction) {
+	
+	private void setDirection(String direction) {
 		switch (Compass.valueOf(direction)) {
 		case N: this.direction = new North(); break;
 		case S: this.direction = new South(); break;
@@ -34,11 +35,11 @@ public class Rover {
 		return direction.getDirection().toString();
 	}
 
-	public void placeOnGrid(Grid planet) {	
+	public void landOnPlanet(Grid planet) {	
 		this.planet = planet;
 	}
 
-	public Grid getGridDimesions() {
+	public Grid getPlanetGrid() {
 		return planet;
 	}
 

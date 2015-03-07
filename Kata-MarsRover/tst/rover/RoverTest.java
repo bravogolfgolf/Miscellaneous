@@ -16,7 +16,7 @@ public class RoverTest {
 	private void createRoverOnGrid(int x, int y, String direction) {
 		rover = new Rover(x, y, direction);
 		mars = new Grid(height, width);
-		rover.placeOnGrid(mars);
+		rover.landOnPlanet(mars);
 	}
 
 	@Rule
@@ -25,8 +25,8 @@ public class RoverTest {
 	@Test
 	public void testPlaceRoverOnGrid() {
 		createRoverOnGrid(x, y, direction);
-		assertEquals(9,rover.getGridDimesions().getHeight());
-		assertEquals(9,rover.getGridDimesions().getWidth());
+		assertEquals(9,rover.getPlanetGrid().getHeight());
+		assertEquals(9,rover.getPlanetGrid().getWidth());
 	}
 
 	@Test
@@ -35,8 +35,8 @@ public class RoverTest {
 		width = 12;
 		mars = new Grid(height, width);
 		createRoverOnGrid(x, y, direction);
-		assertEquals(11,rover.getGridDimesions().getHeight());
-		assertEquals(12,rover.getGridDimesions().getWidth());
+		assertEquals(11,rover.getPlanetGrid().getHeight());
+		assertEquals(12,rover.getPlanetGrid().getWidth());
 	}
 
 	@Test
