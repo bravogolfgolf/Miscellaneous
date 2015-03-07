@@ -13,7 +13,7 @@ public class Rover {
 		setPosition(x, y);
 		setDirection(direction);
 	}
-	
+
 	public void setPosition(int x, int y) {
 		setPosition(new Point(x , y));
 	}
@@ -22,7 +22,7 @@ public class Rover {
 		this.position = position;
 	}
 
-	public Point getPosition1() {
+	public Point getPosition() {
 		return position;
 	}
 	public void setDirection(String direction) {
@@ -46,13 +46,10 @@ public class Rover {
 		return planet;
 	}
 
-	public Point getPosition() {
-		return new Point(x, y);
-	}
-
 	public void move(String instruction) {
 		int preservedX = x;
 		int preservedY = y;
+		Point preservedPosition = new Point(x, y);
 
 		switch (Instruction.valueOf(instruction)) {
 		case R: turnRight(); break;
@@ -71,15 +68,15 @@ public class Rover {
 	}
 
 	private void goForward() {
-		Point p = direction.goForward(x, y, planet);
-		x = p.getX();
-		y = p.getY();	
+		setPosition(direction.goForward(x, y, planet));	
+		x = direction.goForward(x, y, planet).getX();
+		y = direction.goForward(x, y, planet).getY();	
 	}
 
 	private void goBackward() {
-		Point p = direction.goBackward(x, y, planet);
-		x = p.getX();
-		y = p.getY();
+		setPosition(direction.goBackward(x, y, planet));
+		x = direction.goBackward(x, y, planet).getX();
+		y = direction.goBackward(x, y, planet).getY();	
 	}
 
 	private void checkForObstacle(int preservedX, int preservedY) {
@@ -93,8 +90,6 @@ public class Rover {
 	}
 
 	private void doNotMove(int preservedX, int preservedY) {
-		x = preservedX;
-		y = preservedY;
+		setPosition(preservedX, preservedY);
 	}
-
 }
