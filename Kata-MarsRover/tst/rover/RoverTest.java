@@ -59,14 +59,14 @@ public class RoverTest {
 	@Test
 	public void testInitialDirection() {
 		createRoverOnGrid(x, y, direction);
-		assertEquals("N",rover.getDirection());
+		assertEquals("N",rover.getHeading());
 	}
 
 	@Test
 	public void testDifferentDirection() {
 		direction = "W";
 		createRoverOnGrid(x, y, direction);
-		assertEquals("W",rover.getDirection());
+		assertEquals("W",rover.getHeading());
 	}
 
 
@@ -74,7 +74,7 @@ public class RoverTest {
 	public void testFacingNorthThenTurnRight() {
 		createRoverOnGrid(x, y, direction);
 		turnRight();
-		assertEquals("E",rover.getDirection());
+		assertEquals("E",rover.getHeading());
 	}
 
 	private void turnRight() {
@@ -86,7 +86,7 @@ public class RoverTest {
 		direction = "E";
 		createRoverOnGrid(x, y, direction);
 		turnRight();
-		assertEquals("S",rover.getDirection());
+		assertEquals("S",rover.getHeading());
 	}
 
 	@Test
@@ -94,7 +94,7 @@ public class RoverTest {
 		direction = "S";
 		createRoverOnGrid(x, y, direction);
 		turnRight();
-		assertEquals("W",rover.getDirection());
+		assertEquals("W",rover.getHeading());
 	}
 
 	@Test
@@ -102,14 +102,14 @@ public class RoverTest {
 		direction = "W";
 		createRoverOnGrid(x, y, direction);
 		turnRight();
-		assertEquals("N",rover.getDirection());
+		assertEquals("N",rover.getHeading());
 	}
 
 	@Test
 	public void testFacingNorthThenTurnLeft() {
 		createRoverOnGrid(x, y, direction);
 		turnLeft();
-		assertEquals("W",rover.getDirection());
+		assertEquals("W",rover.getHeading());
 	}
 
 	private void turnLeft() {
@@ -121,7 +121,7 @@ public class RoverTest {
 		direction = "W";
 		createRoverOnGrid(x, y, direction);
 		turnLeft();
-		assertEquals("S",rover.getDirection());
+		assertEquals("S",rover.getHeading());
 	}
 
 	@Test
@@ -129,7 +129,7 @@ public class RoverTest {
 		direction = "S";
 		createRoverOnGrid(x, y, direction);
 		turnLeft();
-		assertEquals("E",rover.getDirection());
+		assertEquals("E",rover.getHeading());
 	}
 
 	@Test
@@ -137,7 +137,7 @@ public class RoverTest {
 		direction = "E";
 		createRoverOnGrid(x, y, direction);
 		turnLeft();
-		assertEquals("N",rover.getDirection());
+		assertEquals("N",rover.getHeading());
 	}
 
 	@Test

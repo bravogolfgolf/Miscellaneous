@@ -24,15 +24,23 @@ public class Rover {
 	
 	private void setDirection(String direction) {
 		switch (Compass.valueOf(direction)) {
-		case N: this.direction = new North(); break;
-		case S: this.direction = new South(); break;
-		case E: this.direction = new East(); break;
-		case W: this.direction = new West(); break;
+		case N: setDirection(new North()); break;
+		case S: setDirection(new South()); break;
+		case E: setDirection(new East()); break;
+		case W: setDirection(new West()); break;
 		}
 	}
 
-	public String getDirection() {
-		return direction.getDirection().toString();
+	private void setDirection(Direction direction){
+		this.direction = direction;
+	}
+	
+	private Direction getDirection() {
+		return direction;
+	}
+	
+	public String getHeading() {
+		return getDirection().getDirection().toString();
 	}
 
 	public void landOnPlanet(Grid planet) {	
@@ -44,7 +52,7 @@ public class Rover {
 	}
 
 	public void move(String instruction) {
-		Point preservedPosition = position;
+		Point preservedPosition = getPosition();
 
 		switch (Instruction.valueOf(instruction)) {
 		case R: turnRight(); break;
@@ -55,23 +63,23 @@ public class Rover {
 	}
 
 	private void turnRight(){
-		this.direction = this.direction.turnRight();
+		setDirection(getDirection().turnRight());
 	}
 
 	private void turnLeft() {
-		this.direction = this.direction.turnLeft();
+		setDirection(getDirection().turnLeft());
 	}
 
 	private void goForward() {
-		setPosition(direction.goForward(position, planet));
+		setPosition(getDirection().goForward(getPosition(), getPlanetGrid()));
 	}
 
 	private void goBackward() {
-		setPosition(direction.goBackward(position, planet));
+		setPosition(getDirection().goBackward(getPosition(), getPlanetGrid()));
 	}
 
 	private void checkForObstacle(Point preservedPosition) {
-		try {if(planet.hasObstacleAt(position))
+		try {if(getPlanetGrid().hasObstacleAt(getPosition()))
 			throw new UnsupportedOperationException();
 		}
 		catch (UnsupportedOperationException e) {
