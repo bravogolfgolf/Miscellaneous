@@ -16,15 +16,18 @@ public class North extends Direction {
 	Direction turnLeft() {
 		return new West();
 	}
-	
+
 	@Override
 	Point goForward(Point position, Grid planet) {
 		return goForward(position.getX(), position.getY(), planet);
 	}
 
 	@Override
-	Point goForward(int x, int y, Grid planet) {
-	
+	Point goForward(int inX, int inY, Grid planet) {
+		Point position = new Point(inX,inY);
+		int x = position.getX();
+		int y = position.getY();
+
 		if (onTopEdgeOfGrid(y, planet)) y = wrapToBottomEdgeOfGrid(y);
 		else y = moveUpOnGrid(y);
 		return new Point(x, y);
@@ -48,7 +51,7 @@ public class North extends Direction {
 		else y = moveDownOnGrid(y);
 		return new Point(x, y);
 	}
-	
+
 	private boolean onBottomEdgeOfGrid(int y) {
 		return y == 0;
 	}
@@ -56,7 +59,7 @@ public class North extends Direction {
 	private int wrapToTopEdgeOfGrid(int y, Grid planet) {
 		return y = planet.getHeight();
 	}
-	
+
 	private int moveDownOnGrid(int y) {
 		return y -= 1;
 	}
