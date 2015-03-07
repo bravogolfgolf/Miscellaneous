@@ -18,12 +18,14 @@ public class South extends Direction {
 	}
 
 	@Override
-	Point goForward(Point position, Grid planet) {
-		return goForward(position.getX(), position.getY(), planet);
+	Point goForward(int inX, int inY, Grid planet) {
+		return null;
 	}
-	
+
 	@Override
-	Point goForward(int x, int y, Grid planet) {
+	Point goForward(Point position, Grid planet) {
+		int x = position.getX();
+		int y = position.getY();
 
 		if (onBottomEdgeOfGrid(y)) y = wrapToTopEdgeOfGrid(y, planet);
 		else y = moveDownOnGrid(y);
