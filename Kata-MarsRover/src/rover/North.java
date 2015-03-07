@@ -38,6 +38,12 @@ public class North extends Direction {
 	private int moveUpOnGrid(int y) {
 		return y += 1;
 	}
+	
+	@Override
+	Point goBackward(Point position, Grid planet) {
+		// TODO Auto-generated method stub
+		return null;
+	}
 
 	@Override
 	Point goBackward(int x, int y, Grid planet) {

@@ -38,6 +38,12 @@ public class West extends Direction {
 	private int moveLeftOnGrid(int x) {
 		return x -= 1;
 	}
+	
+	@Override
+	Point goBackward(Point position, Grid planet) {
+		// TODO Auto-generated method stub
+		return null;
+	}
 
 	@Override
 	Point goBackward(int x, int y, Grid planet) {
