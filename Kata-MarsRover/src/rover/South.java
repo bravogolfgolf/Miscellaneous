@@ -3,7 +3,17 @@ package rover;
 public class South extends Direction {
 
 	@Override
-	String getDirection() {
-		return "S";
+	Compass getDirection() {
+		return Compass.S;
+	}
+
+	@Override
+	Direction turnRight() {
+		return new West();
+	}
+
+	@Override
+	Direction turnLeft() {
+		return new East();
 	}
 }

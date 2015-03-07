@@ -1,5 +1,7 @@
 package rover;
 
 abstract class Direction {
-	abstract String getDirection();
+	abstract Compass getDirection();
+	abstract Direction turnRight();
+	abstract Direction turnLeft();
 }

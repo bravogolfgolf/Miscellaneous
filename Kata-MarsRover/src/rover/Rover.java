@@ -2,7 +2,7 @@ package rover;
 
 public class Rover {
 	private Grid planet;
-	private Compass direction;
+	private Direction direction;
 	private int x;
 	private int y;
 
@@ -13,7 +13,16 @@ public class Rover {
 	}
 
 	public void setDirection(String direction) {
-		this.direction = Compass.valueOf(direction);
+		switch (Compass.valueOf(direction)) {
+		case N: this.direction = new North(); break;
+		case S: this.direction = new South(); break;
+		case E: this.direction = new East(); break;
+		case W: this.direction = new West(); break;
+		}
+	}
+
+	public String getDirection() {
+		return direction.getDirection().toString();
 	}
 	
 	public void placeOnGrid(Grid planet) {	
@@ -26,10 +35,6 @@ public class Rover {
 
 	public Point getPosition() {
 		return new Point(x, y);
-	}
-
-	public String getDirection() {
-		return direction.toString();
 	}
 
 	public void move(String instruction) {
@@ -45,25 +50,15 @@ public class Rover {
 	}
 
 	private void turnRight(){
-		switch (direction){
-		case N: direction = Compass.E; break;
-		case S: direction = Compass.W; break;
-		case E: direction = Compass.S; break;
-		case W: direction = Compass.N; break;
-		}
+		this.direction = this.direction.turnRight();
 	}
 
 	private void turnLeft() {
-		switch (direction){
-		case N: direction = Compass.W; break;
-		case S: direction = Compass.E; break;
-		case E: direction = Compass.N; break;
-		case W: direction = Compass.S; break;		
-		}
+		this.direction = this.direction.turnLeft();
 	}
 
 	private void goForward() {
-		switch (direction) {
+		switch (direction.getDirection()) {
 		case N: if (onTopEdgeOfGrid()) {wrapToBottomEdgeOfGrid();} else {moveUpOnGrid();} break;
 		case S: if (onBottomEdgeOfGrid()) {wrapToTopEdgeOfGrid();} else {moveDownOnGrid();} break;
 		case E: if (onRightEdgeOfGrid()) {wrapToLeftEdgeOfGrid();} else {moveRightOnGrid();} break;
@@ -72,7 +67,7 @@ public class Rover {
 	}
 
 	private void goBackward() {
-		switch (direction) {
+		switch (direction.getDirection()) {
 		case N: if(onBottomEdgeOfGrid()) {wrapToTopEdgeOfGrid();} else {moveDownOnGrid();} break;
 		case S: if(onTopEdgeOfGrid()) {wrapToBottomEdgeOfGrid();} else {moveUpOnGrid();} break;
 		case E: if(onLeftEdgeOfGrid()) {wrapToRightEdgeOfGrid();} else {moveLeftOnGrid();} break;
@@ -89,12 +84,12 @@ public class Rover {
 			throw new UnsupportedOperationException("Obstacle Encoutered");
 		}
 	}
-	
+
 	private void doNotMove(int preservedX, int preservedY) {
 		x = preservedX;
 		y = preservedY;
 	}
-	
+
 	private boolean onTopEdgeOfGrid() {
 		return y == planet.getHeight();
 	}
