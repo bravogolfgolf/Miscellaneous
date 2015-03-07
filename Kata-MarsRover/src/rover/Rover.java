@@ -67,14 +67,10 @@ public class Rover {
 
 	private void goForward() {
 		setPosition(direction.goForward(x, y, planet));	
-		x = direction.goForward(x, y, planet).getX();
-		y = direction.goForward(x, y, planet).getY();	
 	}
 
 	private void goBackward() {
 		setPosition(direction.goBackward(x, y, planet));
-		x = direction.goBackward(x, y, planet).getX();
-		y = direction.goBackward(x, y, planet).getY();	
 	}
 
 	private void checkForObstacle(Point preservedPosition) {
