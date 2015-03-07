@@ -64,13 +64,9 @@ public class Rover {
 	}
 
 	private void goBackward() {
-		Point p;
-		switch (direction.getDirection()) {
-		case N: p = direction.goBackward(x, y, planet); x = p.getX(); y = p.getY(); break;
-		case S: p = direction.goBackward(x, y, planet); x = p.getX(); y = p.getY(); break;
-		case E: p = direction.goBackward(x, y, planet); x = p.getX(); y = p.getY(); break;
-		case W: p = direction.goBackward(x, y, planet); x = p.getX(); y = p.getY(); break;
-		}
+		Point p = direction.goBackward(x, y, planet);
+		x = p.getX();
+		y = p.getY();
 	}
 
 	private void checkForObstacle(int preservedX, int preservedY) {
