@@ -58,11 +58,12 @@ public class Rover {
 	}
 
 	private void goForward() {
+		Point p;
 		switch (direction.getDirection()) {
-		case N: if (onTopEdgeOfGrid()) {wrapToBottomEdgeOfGrid();} else {moveUpOnGrid();} break;
-		case S: if (onBottomEdgeOfGrid()) {wrapToTopEdgeOfGrid();} else {moveDownOnGrid();} break;
-		case E: if (onRightEdgeOfGrid()) {wrapToLeftEdgeOfGrid();} else {moveRightOnGrid();} break;
-		case W: if (onLeftEdgeOfGrid()) {wrapToRightEdgeOfGrid();} else {moveLeftOnGrid();} break;
+		case N: p = direction.goForward(x, y, planet); x = p.getX(); y = p.getY(); break;		
+		case S: p = direction.goForward(x, y, planet); x = p.getX(); y = p.getY(); break;
+		case E: p = direction.goForward(x, y, planet); x = p.getX(); y = p.getY(); break;
+		case W: p = direction.goForward(x, y, planet); x = p.getX(); y = p.getY(); break;
 		}
 	}
 
