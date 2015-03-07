@@ -5,6 +5,5 @@ abstract class Direction {
 	abstract Direction turnRight();
 	abstract Direction turnLeft();
 	abstract Point goForward(Point position, Grid planet);
-	abstract Point goBackward(int x, int y, Grid planet);
 	abstract Point goBackward(Point position, Grid planet);
 }

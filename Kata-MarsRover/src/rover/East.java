@@ -40,11 +40,6 @@ public class East extends Direction {
 	}
 	
 	@Override
-	Point goBackward(int inX, int inY, Grid planet) {
-		return null;
-	}
-
-	@Override
 	Point goBackward(Point position, Grid planet) {
 		int x = position.getX();
 		int y = position.getY();
