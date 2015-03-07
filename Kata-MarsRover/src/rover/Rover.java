@@ -80,7 +80,7 @@ public class Rover {
 	}
 
 	private void checkForObstacle(int preservedX, int preservedY) {
-		try {if(planet.hasObstacleAt(x, y))
+		try {if(planet.hasObstacleAt(position))
 			throw new UnsupportedOperationException();
 		}
 		catch (UnsupportedOperationException e) {

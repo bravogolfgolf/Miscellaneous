@@ -33,21 +33,21 @@ public class GridTest extends TestCase{
 
 	@Test
 	public void testHasObstacleAt() {
-		assertEquals(false, grid.hasObstacleAt(1, 1));
+		assertEquals(false, grid.hasObstacleAt(new Point(1, 1)));
 	}
 
 	@Test
 	public void testAddObstacleAt() {
 		grid.addObstacleAt(1, 1);
-		assertEquals(true, grid.hasObstacleAt(1, 1));
+		assertEquals(true, grid.hasObstacleAt(new Point(1, 1)));
 	}
 
 	@Test
 	public void testAddMultiObstacleAt() {
 		grid.addObstacleAt(1, 1);
 		grid.addObstacleAt(2, 3);
-		assertEquals(true, grid.hasObstacleAt(1, 1));
-		assertEquals(false, grid.hasObstacleAt(1, 2));
-		assertEquals(true, grid.hasObstacleAt(2, 3));
+		assertEquals(true, grid.hasObstacleAt(new Point(1, 1)));
+		assertEquals(false, grid.hasObstacleAt(new Point (1, 2)));
+		assertEquals(true, grid.hasObstacleAt(new Point(2, 3)));
 	}
 }
