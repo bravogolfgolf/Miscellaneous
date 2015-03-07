@@ -45,7 +45,11 @@ public class North extends Direction {
 	}
 
 	@Override
-	Point goBackward(int x, int y, Grid planet) {
+	Point goBackward(int inX, int inY, Grid planet) {
+		Point position = new Point(inX,inY);
+		int x = position.getX();
+		int y = position.getY();
+
 		if(onBottomEdgeOfGrid(y)) y = wrapToTopEdgeOfGrid(y, planet);
 		else y = moveDownOnGrid(y);
 		return new Point(x, y);
