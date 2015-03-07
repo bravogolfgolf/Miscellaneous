@@ -55,5 +55,4 @@ public class South extends Direction {
 	private int moveUpOnGrid(int y) {
 		return y += 1;
 	}
-
 }

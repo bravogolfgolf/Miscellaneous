@@ -38,8 +38,21 @@ public class East extends Direction {
 	}
 
 	@Override
-	Point goBackward(int x, int y, Grid planet) {
-		// TODO Auto-generated method stub
-		return null;
+	Point goBackward(int x, int y, Grid planet) {	
+		if(onLeftEdgeOfGrid(x)) x = wrapToRightEdgeOfGrid(x,planet);
+		else x = moveLeftOnGrid(x);
+		return new Point(x, y);
+	}
+
+	private boolean onLeftEdgeOfGrid(int x) {
+		return x == 0;
+	}
+	
+	private int wrapToRightEdgeOfGrid(int x, Grid planet) {
+		return x = planet.getWidth();
+	}
+	
+	private int moveLeftOnGrid(int x) {
+		return x -= 1;
 	}
 }
