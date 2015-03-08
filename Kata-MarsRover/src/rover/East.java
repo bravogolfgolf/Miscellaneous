@@ -26,18 +26,6 @@ public class East extends Direction {
 		else x = moveRightOnGrid(x);
 		return new Point(x, y);
 	}
-
-	private boolean onRightEdgeOfGrid(int x, Grid planet) {
-		return x == planet.getWidth();
-	}
-
-	private int wrapToLeftEdgeOfGrid(int x) {
-		return x = 0;
-	}
-
-	private int moveRightOnGrid(int x) {
-		return x += 1;
-	}
 	
 	@Override
 	Point goBackward(Point position, Grid planet) {
@@ -47,17 +35,5 @@ public class East extends Direction {
 		if(onLeftEdgeOfGrid(x)) x = wrapToRightEdgeOfGrid(x,planet);
 		else x = moveLeftOnGrid(x);
 		return new Point(x, y);
-	}
-
-	private boolean onLeftEdgeOfGrid(int x) {
-		return x == 0;
-	}
-	
-	private int wrapToRightEdgeOfGrid(int x, Grid planet) {
-		return x = planet.getWidth();
-	}
-	
-	private int moveLeftOnGrid(int x) {
-		return x -= 1;
 	}
 }

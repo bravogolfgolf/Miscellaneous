@@ -27,18 +27,6 @@ public class West extends Direction {
 		return new Point(x, y);
 	}
 
-	private boolean onLeftEdgeOfGrid(int x) {
-		return x == 0;
-	}
-
-	private int wrapToRightEdgeOfGrid(int x, Grid planet) {
-		return x = planet.getWidth();
-	}
-
-	private int moveLeftOnGrid(int x) {
-		return x -= 1;
-	}
-
 	@Override
 	Point goBackward(Point position, Grid planet) {
 		int x = position.getX();
@@ -47,17 +35,5 @@ public class West extends Direction {
 		if(onRightEdgeOfGrid(x, planet)) x = wrapToLeftEdgeOfGrid(x);
 		else x = moveRightOnGrid(x);
 		return new Point(x, y);
-	}
-
-	private boolean onRightEdgeOfGrid(int x, Grid planet) {
-		return x == planet.getWidth();
-	}
-
-	private int wrapToLeftEdgeOfGrid(int x) {
-		return x = 0;
-	}
-
-	private int moveRightOnGrid(int x) {
-		return x += 1;
 	}
 }
