@@ -40,7 +40,7 @@ public class Rover {
 	}
 	
 	public String getHeading() {
-		return getDirection().getDirection().toString();
+		return getDirection().getCompass().toString();
 	}
 
 	public void landOnPlanet(Grid planet) {	

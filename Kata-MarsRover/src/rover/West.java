@@ -3,7 +3,7 @@ package rover;
 public class West extends Direction {
 
 	@Override
-	Compass getDirection() {
+	Compass getCompass() {
 		return Compass.W;
 	}
 
