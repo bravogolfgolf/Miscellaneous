@@ -24,7 +24,9 @@ public class South extends Direction {
 
 		if (onBottomEdgeOfGrid(y)) y = wrapToTopEdgeOfGrid(y, planet);
 		else y = moveDownOnGrid(y);
+		
 		if(hasObstacleAt(new Point(x,y), planet)) return goBackward(new Point(x,y), planet);
+		
 		return new Point(x, y);
 	}
 
