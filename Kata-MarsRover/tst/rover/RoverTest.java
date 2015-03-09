@@ -331,4 +331,25 @@ public class RoverTest {
 		mars.addObstacleAt(0, 1);
 		goForward();
 	}
+	
+	@Test
+	public void throwsExceptionEncouterObstacleBackwardSouth() {
+		thrown.expect(UnsupportedOperationException.class);
+		thrown.expectMessage("Obstacle Encoutered");
+		direction = "S";
+		createRoverOnGrid(x, y, direction);
+		mars.addObstacleAt(0, 1);
+		goBackward();
+	}
+	
+	@Test
+	public void throwsExceptionEncouterObstacleForwardSouth() {
+		thrown.expect(UnsupportedOperationException.class);
+		thrown.expectMessage("Obstacle Encoutered");
+		direction = "S";
+		createRoverOnGrid(x, y, direction);
+		mars.addObstacleAt(0, 9);
+		goForward();
+	}
+
 }

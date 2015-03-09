@@ -21,4 +21,18 @@ abstract class Direction {
 	int moveDownOnGrid(int y) {return y -= 1;}
 	int moveLeftOnGrid(int x) {return x -= 1;}
 	int moveRightOnGrid(int x) {return x += 1;}
+	
+	boolean hasObstacleAt(Point position, Grid planet) {
+		boolean result = false;
+		try {
+			if(planet.hasObstacleAt(position)){
+				result = true;
+				throw new UnsupportedOperationException();
+			}
+		}
+		catch (UnsupportedOperationException e) {
+			throw new UnsupportedOperationException("Obstacle Encoutered");
+		}
+		return result;
+	}
 }

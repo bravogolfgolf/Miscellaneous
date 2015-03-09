@@ -50,14 +50,10 @@ public class Rover {
 	}
 
 	public void move(String instruction) {
-		Point preservedPosition = getPosition();
-
 		if (instruction == "R") turnRight();
 		if (instruction == "L") turnLeft();
 		if (instruction == "F") goForward();
 		if (instruction == "B") goBackward();
-
-		checkForObstacle(preservedPosition);
 	}
 
 	private void turnRight(){
@@ -74,19 +70,5 @@ public class Rover {
 
 	private void goBackward() {
 		setPosition(getDirection().goBackward(getPosition(), getPlanetGrid()));
-	}
-
-	private void checkForObstacle(Point preservedPosition) {
-		try {if(getPlanetGrid().hasObstacleAt(getPosition()))
-			throw new UnsupportedOperationException();
-		}
-		catch (UnsupportedOperationException e) {
-			doNotMove(preservedPosition);
-			throw new UnsupportedOperationException("Obstacle Encoutered");
-		}
-	}
-
-	private void doNotMove(Point preservedPosition) {
-		setPosition(preservedPosition);
 	}
 }

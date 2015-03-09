@@ -24,6 +24,7 @@ public class East extends Direction {
 
 		if (onRightEdgeOfGrid(x, planet)) x = wrapToLeftEdgeOfGrid(x);
 		else x = moveRightOnGrid(x);
+		if(hasObstacleAt(new Point(x,y), planet)) return goBackward(new Point(x,y), planet);
 		return new Point(x, y);
 	}
 
@@ -34,6 +35,7 @@ public class East extends Direction {
 
 		if(onLeftEdgeOfGrid(x)) x = wrapToRightEdgeOfGrid(x,planet);
 		else x = moveLeftOnGrid(x);
+		if(hasObstacleAt(new Point(x,y), planet)) return goForward(new Point(x,y), planet);
 		return new Point(x, y);
 	}
 }
