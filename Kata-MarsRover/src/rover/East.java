@@ -6,6 +6,9 @@ public class East extends Direction {
 	Compass getCompass() {
 		return Compass.E;
 	}
+	
+	String getCompassSting(){
+		return "E";}
 
 	@Override
 	Direction turnRight() {

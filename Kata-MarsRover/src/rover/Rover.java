@@ -40,8 +40,7 @@ public class Rover {
 	}
 
 	public String getHeading() {
-		if (direction instanceof North) {return getDirection().getCompassSting();}
-		return getDirection().getCompass().toString();
+		return getDirection().getCompassSting();
 	}
 
 	public void landOnPlanet(Grid planet) {	

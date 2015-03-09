@@ -7,6 +7,9 @@ public class West extends Direction {
 		return Compass.W;
 	}
 
+	String getCompassSting(){
+		return "W";}
+	
 	@Override
 	Direction turnRight() {
 		return new North();

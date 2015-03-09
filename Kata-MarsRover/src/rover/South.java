@@ -6,7 +6,11 @@ public class South extends Direction {
 	Compass getCompass() {
 		return Compass.S;
 	}
-
+	
+	@Override
+	String getCompassSting(){
+		return "S";}
+	
 	@Override
 	Direction turnRight() {
 		return new West();
