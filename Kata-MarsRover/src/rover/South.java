@@ -3,14 +3,10 @@ package rover;
 public class South extends Direction {
 
 	@Override
-	Compass getCompass() {
-		return Compass.S;
-	}
-	
-	@Override
 	String getCompassSting(){
-		return "S";}
-	
+		return "S";
+	}
+
 	@Override
 	Direction turnRight() {
 		return new West();
@@ -35,7 +31,7 @@ public class South extends Direction {
 	Point goBackward(Point position, Grid planet) {
 		int x = position.getX();
 		int y = position.getY();
-		
+
 		if(onTopEdgeOfGrid(y, planet)) y = wrapToBottomEdgeOfGrid(y);
 		else y = moveUpOnGrid(y);
 		return new Point(x, y);

@@ -1,7 +1,6 @@
 package rover;
 
 abstract class Direction {
-	abstract Compass getCompass();
 	String getCompassSting(){
 		return null;}
 	abstract Direction turnRight();

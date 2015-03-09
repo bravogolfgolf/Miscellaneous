@@ -3,12 +3,9 @@ package rover;
 public class West extends Direction {
 
 	@Override
-	Compass getCompass() {
-		return Compass.W;
-	}
-
 	String getCompassSting(){
-		return "W";}
+		return "W";
+		}
 	
 	@Override
 	Direction turnRight() {
