@@ -23,12 +23,10 @@ public class Rover {
 	}
 
 	private void setDirection(String direction) {
-		switch (Compass.valueOf(direction)) {
-		case N: setDirection(new North()); break;
-		case S: setDirection(new South()); break;
-		case E: setDirection(new East()); break;
-		case W: setDirection(new West()); break;
-		}
+		if(direction == "N") setDirection(new North());
+		if(direction == "S") setDirection(new South());
+		if(direction == "E") setDirection(new East());
+		if(direction == "W") setDirection(new West());
 	}
 
 	private void setDirection(Direction direction){
@@ -53,12 +51,12 @@ public class Rover {
 
 	public void move(String instruction) {
 		Point preservedPosition = getPosition();
-		
+
 		if (instruction == "R") turnRight();
 		if (instruction == "L") turnLeft();
 		if (instruction == "F") goForward();
 		if (instruction == "B") goBackward();
-		
+
 		checkForObstacle(preservedPosition);
 	}
 
