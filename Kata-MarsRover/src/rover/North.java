@@ -6,7 +6,12 @@ public class North extends Direction {
 	Compass getCompass() {
 		return Compass.N;
 	}
-
+	
+	@Override
+	String getCompassSting(){
+		return "N";
+	}
+	
 	@Override
 	Direction turnRight() {
 		return new East();
