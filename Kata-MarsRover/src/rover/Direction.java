@@ -1,8 +1,7 @@
 package rover;
 
 abstract class Direction {
-	String getCompassSting(){
-		return null;}
+	abstract String getCompassSting();
 	abstract Direction turnRight();
 	abstract Direction turnLeft();
 	abstract Point goForward(Point position, Grid planet);
