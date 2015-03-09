@@ -3,7 +3,7 @@ package rover;
 public class South extends Direction {
 
 	@Override
-	String getCompassSting(){
+	String getCompassPoint(){
 		return "S";
 	}
 

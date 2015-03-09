@@ -3,7 +3,7 @@ package rover;
 public class West extends Direction {
 
 	@Override
-	String getCompassSting(){
+	String getCompassPoint(){
 		return "W";
 		}
 	

@@ -3,7 +3,7 @@ package rover;
 public class North extends Direction {
 
 	@Override
-	String getCompassSting(){
+	String getCompassPoint(){
 		return "N";
 	}
 	

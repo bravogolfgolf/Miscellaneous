@@ -3,7 +3,7 @@ package rover;
 public class East extends Direction {
 
 	@Override
-	String getCompassSting(){
+	String getCompassPoint(){
 		return "E";
 	}
 

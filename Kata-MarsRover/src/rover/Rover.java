@@ -38,7 +38,7 @@ public class Rover {
 	}
 
 	public String getHeading() {
-		return getDirection().getCompassSting();
+		return getDirection().getCompassPoint();
 	}
 
 	public void landOnPlanet(Grid planet) {	
