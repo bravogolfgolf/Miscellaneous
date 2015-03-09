@@ -21,7 +21,7 @@ public class Rover {
 	public Point getPosition() {
 		return position;
 	}
-	
+
 	private void setDirection(String direction) {
 		switch (Compass.valueOf(direction)) {
 		case N: setDirection(new North()); break;
@@ -34,11 +34,11 @@ public class Rover {
 	private void setDirection(Direction direction){
 		this.direction = direction;
 	}
-	
+
 	private Direction getDirection() {
 		return direction;
 	}
-	
+
 	public String getHeading() {
 		return getDirection().getCompass().toString();
 	}
@@ -53,13 +53,13 @@ public class Rover {
 
 	public void move(String instruction) {
 		Point preservedPosition = getPosition();
-
-		switch (Instruction.valueOf(instruction)) {
-		case R: turnRight(); break;
-		case L: turnLeft(); break;
-		case F: goForward(); checkForObstacle(preservedPosition); break;
-		case B: goBackward(); checkForObstacle(preservedPosition); break;
-		}
+		
+		if (instruction == "R") turnRight();
+		if (instruction == "L") turnLeft();
+		if (instruction == "F") goForward();
+		if (instruction == "B") goBackward();
+		
+		checkForObstacle(preservedPosition);
 	}
 
 	private void turnRight(){
