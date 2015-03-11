@@ -23,15 +23,15 @@ public class PrimesGenerator {
 	}
 
 	private static void crossOutMultiples() {
-		int maxPrimeFactor = calcMaxPrimeFactor();
-		for(int i = 2; i < maxPrimeFactor; i++) {
+		int limit = determineIterationLimit();
+		for(int i = 2; i < limit; i++) {
 			if (notCrossed(i)) {
 				crossOutMultiples(i);
 			}
 		}
 	}
 
-	private static int calcMaxPrimeFactor() {
+	private static int determineIterationLimit() {
 		return (int) Math.sqrt(crossedOut.length) + 1;
 	}
 	
