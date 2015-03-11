@@ -18,7 +18,6 @@ public class PrimesGenerator {
 
 	private static void initializeArrayOfIntegers(int maxValue) {
 		isCrossed = new boolean[maxValue + 1];
-		isCrossed[0] = isCrossed[1] = true;
 		for(int i = 2; i < isCrossed.length; i++)
 			isCrossed[i] = false;
 	}
@@ -39,13 +38,13 @@ public class PrimesGenerator {
 		int i;
 		
 		int count = 0;
-		for(i = 0; i < isCrossed.length; i++) {
+		for(i = 2; i < isCrossed.length; i++) {
 			if (!isCrossed[i])
 				count++;
 		}
 		
 		result = new int[count];
-		for (i = 0,j = 0;i < isCrossed.length; i++) {
+		for (i = 2,j = 0;i < isCrossed.length; i++) {
 			if (!isCrossed[i])
 				result[j++] = i;
 		}
