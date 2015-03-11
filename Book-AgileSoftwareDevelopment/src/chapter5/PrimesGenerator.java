@@ -23,14 +23,16 @@ public class PrimesGenerator {
 	}
 
 	private static void crossOutMultiples() {
-		int i;
-		int j;
-		for(i = 2; i < Math.sqrt(isCrossed.length) + 1; i++) {
+		for(int i = 2; i < Math.sqrt(isCrossed.length) + 1; i++) {
 			if (!isCrossed[i]) {
-				for (j = 2 * i; j < isCrossed.length; j += i)
-					isCrossed[j] = true;
+				crossOutMultiples(i);
 			}
 		}
+	}
+
+	private static void crossOutMultiples(int i) {
+		for (int multiple = 2 * i; multiple < isCrossed.length; multiple += i)
+			isCrossed[multiple] = true;
 	}
 	
 	private static void putUncrossedIntegersIntoResult() {
@@ -44,7 +46,7 @@ public class PrimesGenerator {
 		}
 		
 		result = new int[count];
-		for (i = 2,j = 0;i < isCrossed.length; i++) {
+		for (i = 2, j = 0;i < isCrossed.length; i++) {
 			if (!isCrossed[i])
 				result[j++] = i;
 		}
