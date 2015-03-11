@@ -1,6 +1,6 @@
 package chapter5;
 
-public class GeneratePrimes {
+public class PrimesGenerator {
 
 	public static int[] generatePrimes(int maxValue) {
 
