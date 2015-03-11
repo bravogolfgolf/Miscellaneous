@@ -1,7 +1,7 @@
 package chapter5;
 
 public class PrimesGenerator {
-	static boolean[] isCrossed;
+	static boolean[] crossedOut;
 	static int[] result;
 
 	public static int[] generatePrimes(int maxValue) {
@@ -9,17 +9,17 @@ public class PrimesGenerator {
 		if (maxValue < 2)
 			return new int[0];
 		else {
-			initializeArrayOfIntegers(maxValue);
+			uncrossIntegersUpTo(maxValue);
 			crossOutMultiples();
 			putUncrossedIntegersIntoResult();
 			return result;
 		}
 	}
 
-	private static void initializeArrayOfIntegers(int maxValue) {
-		isCrossed = new boolean[maxValue + 1];
-		for(int i = 2; i < isCrossed.length; i++)
-			isCrossed[i] = false;
+	private static void uncrossIntegersUpTo(int maxValue) {
+		crossedOut = new boolean[maxValue + 1];
+		for(int i = 2; i < crossedOut.length; i++)
+			crossedOut[i] = false;
 	}
 
 	private static void crossOutMultiples() {
@@ -32,21 +32,21 @@ public class PrimesGenerator {
 	}
 
 	private static int calcMaxPrimeFactor() {
-		return (int) Math.sqrt(isCrossed.length) + 1;
+		return (int) Math.sqrt(crossedOut.length) + 1;
 	}
 	
 	private static boolean notCrossed(int i) {
-		return !isCrossed[i];
+		return !crossedOut[i];
 	}
 
 	private static void crossOutMultiples(int i) {
-		for (int multiple = 2 * i; multiple < isCrossed.length; multiple += i)
-			isCrossed[multiple] = true;
+		for (int multiple = 2 * i; multiple < crossedOut.length; multiple += i)
+			crossedOut[multiple] = true;
 	}
 	
 	private static void putUncrossedIntegersIntoResult() {
 		result = new int[numberOfUncrossedIntegers()];
-		for (int i = 2, j = 0;i < isCrossed.length; i++) {
+		for (int i = 2, j = 0;i < crossedOut.length; i++) {
 			if (notCrossed(i))
 				result[j++] = i;
 		}
@@ -54,7 +54,7 @@ public class PrimesGenerator {
 
 	private static int numberOfUncrossedIntegers() {
 		int count = 0;
-		for(int i = 2; i < isCrossed.length; i++) {
+		for(int i = 2; i < crossedOut.length; i++) {
 			if (notCrossed(i))
 				count++;
 		}
