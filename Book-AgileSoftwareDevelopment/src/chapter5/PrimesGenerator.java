@@ -24,7 +24,7 @@ public class PrimesGenerator {
 
 	private static void crossOutMultiples() {
 		for(int i = 2; i < Math.sqrt(isCrossed.length) + 1; i++) {
-			if (!isCrossed[i]) {
+			if (notCrossed(i)) {
 				crossOutMultiples(i);
 			}
 		}
@@ -41,14 +41,18 @@ public class PrimesGenerator {
 		
 		int count = 0;
 		for(i = 2; i < isCrossed.length; i++) {
-			if (!isCrossed[i])
+			if (notCrossed(i))
 				count++;
 		}
 		
 		result = new int[count];
 		for (i = 2, j = 0;i < isCrossed.length; i++) {
-			if (!isCrossed[i])
+			if (notCrossed(i))
 				result[j++] = i;
 		}
+	}
+
+	private static boolean notCrossed(int i) {
+		return !isCrossed[i];
 	}
 }
