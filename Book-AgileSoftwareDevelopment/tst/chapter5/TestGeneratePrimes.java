@@ -33,4 +33,20 @@ public class TestGeneratePrimes {
 		assertEquals(centArray.length, 25);
 		assertEquals(centArray[24], 97);
 	}
+
+	@Test
+	public void testExhaustive() {
+		for (int i = 99; i < 100; i++)
+			verifyPrimeList(PrimesGenerator.generatePrimes(i));
+	}
+
+	private void verifyPrimeList(int[] list) {
+		for (int i = 0; i < list.length; i++)
+			verifyPrime(list[i]);
+	}
+
+	private void verifyPrime(int i) {
+		for(int factor = 2; factor < i; factor++)
+			assert(i % factor != 0);
+	}
 }

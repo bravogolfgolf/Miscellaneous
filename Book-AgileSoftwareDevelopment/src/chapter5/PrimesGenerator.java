@@ -1,8 +1,8 @@
 package chapter5;
 
 public class PrimesGenerator {
-	static boolean[] crossedOut;
-	static int[] result;
+	private static boolean[] crossedOut;
+	private static int[] result;
 
 	public static int[] generatePrimes(int maxValue) {
 
@@ -32,7 +32,7 @@ public class PrimesGenerator {
 	}
 
 	private static int determineIterationLimit() {
-		return (int) Math.sqrt(crossedOut.length) + 1;
+		return (int) Math.sqrt(crossedOut.length);
 	}
 	
 	private static boolean notCrossed(int i) {
