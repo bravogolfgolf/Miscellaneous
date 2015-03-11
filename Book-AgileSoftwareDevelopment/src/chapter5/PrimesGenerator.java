@@ -34,6 +34,10 @@ public class PrimesGenerator {
 	private static int calcMaxPrimeFactor() {
 		return (int) Math.sqrt(isCrossed.length) + 1;
 	}
+	
+	private static boolean notCrossed(int i) {
+		return !isCrossed[i];
+	}
 
 	private static void crossOutMultiples(int i) {
 		for (int multiple = 2 * i; multiple < isCrossed.length; multiple += i)
@@ -55,9 +59,5 @@ public class PrimesGenerator {
 				count++;
 		}
 		return count;
-	}
-
-	private static boolean notCrossed(int i) {
-		return !isCrossed[i];
 	}
 }
