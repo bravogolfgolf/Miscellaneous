@@ -41,8 +41,7 @@ public class PrimesGenerator {
 	}
 	
 	private static void putUncrossedIntegersIntoResult() {
-		int count = numberOfUncrossedIntegers();
-		result = new int[count];
+		result = new int[numberOfUncrossedIntegers()];
 		for (int i = 2, j = 0;i < isCrossed.length; i++) {
 			if (notCrossed(i))
 				result[j++] = i;
