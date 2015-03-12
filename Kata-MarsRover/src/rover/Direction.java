@@ -3,11 +3,14 @@ package rover;
 abstract class Direction {
 
 	static Direction create(String direction) {	
-		if(direction == "N") return new North();
-		if(direction == "S") return new South();
-		if(direction == "E") return new East();
-		if(direction == "W") return new West();
-		return null;
+		
+		Direction d = (Direction) new North();
+		
+		if(direction == "N") d = new North();
+		if(direction == "S") d = new South();
+		if(direction == "E") d = new East();
+		if(direction == "W") d = new West();
+		return d;
 	}
 
 	abstract String getCompassPoint();
