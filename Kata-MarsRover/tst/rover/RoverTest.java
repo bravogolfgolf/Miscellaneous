@@ -322,7 +322,7 @@ public class RoverTest {
 		mars.addObstacleAt(0, 9);
 		goBackward();
 	}
-	
+
 	@Test
 	public void throwsExceptionEncouterObstacleForward() {
 		thrown.expect(UnsupportedOperationException.class);
@@ -331,7 +331,7 @@ public class RoverTest {
 		mars.addObstacleAt(0, 1);
 		goForward();
 	}
-	
+
 	@Test
 	public void throwsExceptionEncouterObstacleBackwardSouth() {
 		thrown.expect(UnsupportedOperationException.class);
@@ -341,7 +341,7 @@ public class RoverTest {
 		mars.addObstacleAt(0, 1);
 		goBackward();
 	}
-	
+
 	@Test
 	public void throwsExceptionEncouterObstacleForwardSouth() {
 		thrown.expect(UnsupportedOperationException.class);
@@ -352,4 +352,11 @@ public class RoverTest {
 		goForward();
 	}
 
+	@Test
+	public void throwsExceptionForIncorrectDirection() {
+		thrown.expect(IllegalArgumentException.class);
+		thrown.expectMessage("Incorrect direction value");
+		direction = "X";
+		createRoverOnGrid(x, y, direction);
+	}
 }
