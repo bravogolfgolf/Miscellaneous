@@ -7,7 +7,7 @@ public class Rover {
 
 	public Rover(int x, int y, String direction) {
 		setPosition(x, y);
-		setDirection(direction);
+		setDirection(Direction.create(direction));
 	}
 
 	private void setPosition(int x, int y) {
@@ -20,13 +20,6 @@ public class Rover {
 
 	public Point getPosition() {
 		return position;
-	}
-
-	private void setDirection(String direction) {
-		if(direction == "N") setDirection(new North());
-		if(direction == "S") setDirection(new South());
-		if(direction == "E") setDirection(new East());
-		if(direction == "W") setDirection(new West());
 	}
 
 	private void setDirection(Direction direction){
