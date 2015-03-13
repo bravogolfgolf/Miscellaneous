@@ -2,17 +2,17 @@ package chapter11;
 
 public class Button {
 	private boolean button = false;
-	Lamp lamp;;
+	SwitchableDevice device;
 
-	public Button(Lamp lamp) {
-		this.lamp = lamp;	}
+	public Button(SwitchableDevice device) {
+		this.device = device;	}
 
 	public void click() {
 		if (button){
-			lamp.turnOff();
+			device.turnOff();
 		}
 		else {
-			lamp.turnOn();
+			device.turnOn();
 		}
 		button = !button; 
 	}

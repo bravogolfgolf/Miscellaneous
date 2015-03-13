@@ -1,6 +1,6 @@
 package chapter11;
 
-public class Lamp {
+public class Lamp implements SwitchableDevice{
 	boolean light;
 
 	public boolean getState() {

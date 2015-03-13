@@ -23,4 +23,22 @@ public class ButtonTest {
 		assertEquals(false,lamp.getState());	
 	}
 
+	@Test
+	public void testButtonOnSecondLamp() {
+		SecondLamp lamp = new SecondLamp();
+		Button button = new Button(lamp);
+		button.click();
+		assertEquals(1,lamp.getState());	
+	}
+	
+	@Test
+	public void testButtonOffSecondLamp() {
+		SecondLamp lamp = new SecondLamp();
+		Button button = new Button(lamp);
+		button.click();
+		button.click();
+		assertEquals(0,lamp.getState());	
+	}
+	
+	
 }
