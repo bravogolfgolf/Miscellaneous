@@ -19,6 +19,7 @@ public class ButtonTest {
 		Lamp lamp = new Lamp();
 		Button button = new Button(lamp);
 		button.click();
+		assertEquals(true,lamp.getState());
 		button.click();
 		assertEquals(false,lamp.getState());	
 	}
@@ -36,6 +37,7 @@ public class ButtonTest {
 		SecondLampWrapper lamp = new SecondLampWrapper();
 		Button button = new Button(lamp);
 		button.click();
+		assertEquals(1,lamp.getState());	
 		button.click();
 		assertEquals(0,lamp.getState());	
 	}
