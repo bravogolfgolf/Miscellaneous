@@ -3,10 +3,13 @@ package rover;
 public class Point {
 	private int x;
 	private int y;
+	private int z;
 
-	public Point(int x, int y) {
+
+	public Point(int x, int y, int z) {
 		this.setX(x);
 		this.setY(y);
+		this.setZ(z);
 
 	}
 
@@ -26,4 +29,13 @@ public class Point {
 		this.x = x;	
 	}
 
+	public int getZ() {
+		return z;
+	}
+
+	private void setZ(int z) {
+		this.z = z;	
+	}
+
 }
+

@@ -5,13 +5,13 @@ public class Rover {
 	private Direction direction;
 	private Grid planet;
 
-	public Rover(int x, int y, String direction) {
-		setPosition(x, y);
+	public Rover(int x, int y, int z, String direction) {
+		setPosition(x, y, z);
 		setDirection(Direction.create(direction));
 	}
 
-	private void setPosition(int x, int y) {
-		setPosition(new Point(x , y));
+	private void setPosition(int x, int y, int z) {
+		setPosition(new Point(x , y, z));
 	}
 
 	private void setPosition(Point position) {

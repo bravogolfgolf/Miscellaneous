@@ -20,8 +20,8 @@ public class Grid {
 		return width;
 	}
 	
-	public void addObstacleAt(int x, int y) {
-		Point obstacle = new Point(x, y);
+	public void addObstacleAt(int x, int y, int z) {
+		Point obstacle = new Point(x,y,z);
 		obstacles.add(obstacle);
 	}
 

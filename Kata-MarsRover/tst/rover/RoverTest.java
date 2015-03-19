@@ -10,11 +10,12 @@ public class RoverTest {
 	private String direction = "N";
 	private int x = 0;
 	private int y = 0;
+	private int z = 0;
 	private int height = 9;
 	private int width = 9;
 
 	private void createRoverOnGrid(int x, int y, String direction) {
-		rover = new Rover(x, y, direction);
+		rover = new Rover(x, y, z, direction);
 		mars = new Grid(height, width);
 		rover.landOnPlanet(mars);
 	}
@@ -299,7 +300,7 @@ public class RoverTest {
 	@Test (expected = Grid.ObstacleEncoutered.class)
 	public void testFoundObstacleForward() {
 		createRoverOnGrid(x, y, direction);
-		mars.addObstacleAt(0, 1);
+		mars.addObstacleAt(0, 1, 0);
 		goForward();
 		assertEquals(0,rover.getPosition().getX());
 		assertEquals(0,rover.getPosition().getY());
@@ -308,7 +309,7 @@ public class RoverTest {
 	@Test (expected = Grid.ObstacleEncoutered.class)
 	public void testFoundObstacleBack() {
 		createRoverOnGrid(x, y, direction);
-		mars.addObstacleAt(0, 9);
+		mars.addObstacleAt(0, 9, 0);
 		goBackward();
 		assertEquals(0,rover.getPosition().getX());
 		assertEquals(0,rover.getPosition().getY());
@@ -318,7 +319,7 @@ public class RoverTest {
 	public void throwsExceptionEncouterObstacleBackward() {
 		thrown.expect(Grid.ObstacleEncoutered.class);
 		createRoverOnGrid(x, y, direction);
-		mars.addObstacleAt(0, 9);
+		mars.addObstacleAt(0, 9, 0);
 		goBackward();
 	}
 
@@ -326,7 +327,7 @@ public class RoverTest {
 	public void throwsExceptionEncouterObstacleForward() {
 		thrown.expect(Grid.ObstacleEncoutered.class);
 		createRoverOnGrid(x, y, direction);
-		mars.addObstacleAt(0, 1);
+		mars.addObstacleAt(0, 1, 0);
 		goForward();
 	}
 
@@ -335,7 +336,7 @@ public class RoverTest {
 		thrown.expect(Grid.ObstacleEncoutered.class);
 		direction = "S";
 		createRoverOnGrid(x, y, direction);
-		mars.addObstacleAt(0, 1);
+		mars.addObstacleAt(0, 1, 0);
 		goBackward();
 	}
 
@@ -344,7 +345,7 @@ public class RoverTest {
 		thrown.expect(Grid.ObstacleEncoutered.class);
 		direction = "S";
 		createRoverOnGrid(x, y, direction);
-		mars.addObstacleAt(0, 9);
+		mars.addObstacleAt(0, 9, 0);
 		goForward();
 	}
 
