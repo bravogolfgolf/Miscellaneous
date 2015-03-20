@@ -48,7 +48,7 @@ public class ApplicationUI {
 				line = reader.readLine();
 				System.out.println(line);
 				if(line.equals(FORWARD_OPTION)){
-					rover.move("F");
+					rover.move(line);
 					writeln(STATUS);
 				}
 			}
