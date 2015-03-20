@@ -1,6 +1,13 @@
 package rover;
 
 import static org.junit.Assert.*;
+
+import java.io.BufferedReader;
+import java.io.ByteArrayInputStream;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
+
 import org.junit.*;
 import org.junit.rules.ExpectedException;
 
@@ -142,19 +149,30 @@ public class RoverTest {
 	}
 
 	@Test
-	public void testMoveForwardNorth() {
+	public void testMoveForwardNorth() throws IOException {
 		createRoverOnGrid(x, y, direction);
 		goForward();
 		assertEquals(0,rover.getPosition().getX());
 		assertEquals(1,rover.getPosition().getY());
 	}
 
-	private void goForward() {
+	private void goForward() throws IOException {
+		StringBuffer input = new StringBuffer();
+		input.append(line(ApplicationUI.FORWARD_OPTION));
+		byte[] buffer = input.toString().getBytes();
+		InputStream inputStream = new ByteArrayInputStream(buffer);
+		InputStreamReader inputStreamReader = new InputStreamReader(inputStream);
+		BufferedReader reader = new BufferedReader(inputStreamReader);	
+		String line = reader.readLine();
 		rover.move("F");
 	}
 
+	private String line(String str) {
+		return String.format("%s%n", str);
+	}
+
 	@Test
-	public void testMoveForwardWest() {
+	public void testMoveForwardWest() throws IOException {
 		x = 1;
 		direction = "W";
 		createRoverOnGrid(x, y, direction);
@@ -164,7 +182,7 @@ public class RoverTest {
 	}
 
 	@Test
-	public void testMoveForwardSouth() {
+	public void testMoveForwardSouth() throws IOException {
 		y = 1;
 		direction = "S";
 		createRoverOnGrid(x, y, direction);
@@ -174,7 +192,7 @@ public class RoverTest {
 	}
 
 	@Test
-	public void testMoveForwardEast() {
+	public void testMoveForwardEast() throws IOException {
 		direction = "E";
 		createRoverOnGrid(x, y, direction);
 		goForward();
@@ -224,7 +242,7 @@ public class RoverTest {
 	}
 
 	@Test
-	public void testMoveForwardNorthWrap() {
+	public void testMoveForwardNorthWrap() throws IOException {
 		y = 9;
 		createRoverOnGrid(x, y, direction);
 		goForward();
@@ -233,7 +251,7 @@ public class RoverTest {
 	}
 
 	@Test
-	public void testMoveForwardEastWrap() {
+	public void testMoveForwardEastWrap() throws IOException {
 		x = 9;
 		direction = "E";
 		createRoverOnGrid(x, y, direction);
@@ -243,7 +261,7 @@ public class RoverTest {
 	}
 
 	@Test
-	public void testMoveForwardSouthWrap() {
+	public void testMoveForwardSouthWrap() throws IOException {
 		direction = "S";
 		createRoverOnGrid(x, y, direction);
 		goForward();
@@ -252,7 +270,7 @@ public class RoverTest {
 	}
 
 	@Test
-	public void testMoveForwardWestWrap() {
+	public void testMoveForwardWestWrap() throws IOException {
 		direction = "W";
 		createRoverOnGrid(x, y, direction);
 		goForward();
@@ -298,7 +316,7 @@ public class RoverTest {
 	}
 
 	@Test (expected = Grid.ObstacleEncoutered.class)
-	public void testFoundObstacleForward() {
+	public void testFoundObstacleForward() throws IOException {
 		createRoverOnGrid(x, y, direction);
 		mars.addObstacleAt(0, 1, 0);
 		goForward();
@@ -324,7 +342,7 @@ public class RoverTest {
 	}
 
 	@Test
-	public void throwsExceptionEncouterObstacleForward() {
+	public void throwsExceptionEncouterObstacleForward() throws IOException {
 		thrown.expect(Grid.ObstacleEncoutered.class);
 		createRoverOnGrid(x, y, direction);
 		mars.addObstacleAt(0, 1, 0);
@@ -341,7 +359,7 @@ public class RoverTest {
 	}
 
 	@Test
-	public void throwsExceptionEncouterObstacleForwardSouth() {
+	public void throwsExceptionEncouterObstacleForwardSouth() throws IOException {
 		thrown.expect(Grid.ObstacleEncoutered.class);
 		direction = "S";
 		createRoverOnGrid(x, y, direction);
