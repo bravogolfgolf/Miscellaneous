@@ -43,10 +43,10 @@ public class Rover {
 	}
 
 	public void move(String instruction) {
-		if (instruction == "R") turnRight();
-		if (instruction == "L") turnLeft();
-		if (instruction == "F") goForward();
-		if (instruction == "B") goBackward();
+		if (instruction.equals("R")) turnRight();
+		if (instruction.equals("L")) turnLeft();
+		if (instruction.equals("F")) goForward();
+		if (instruction.equals("B")) goBackward();
 	}
 
 	private void turnRight(){

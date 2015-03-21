@@ -8,7 +8,7 @@ import java.io.IOException;
 
 
 public class ApplicationUI {
-	static final String MENU = "(S)tart or (Q)uit?";
+	static final String MENU = "(Q)uit";
 	static final String START_OPTION = "S";
 	static final String QUIT_OPTION = "Q";
 	static final String FORWARD_OPTION = "F";
@@ -25,35 +25,27 @@ public class ApplicationUI {
 		this.reader = reader;
 		this.writer = writer;
 
-//		this.reader = new BufferedReader(new InputStreamReader(System.in));
-//		this.writer = new BufferedWriter(new OutputStreamWriter(System.out));
+		//		this.reader = new BufferedReader(new InputStreamReader(System.in));
+		//		this.writer = new BufferedWriter(new OutputStreamWriter(System.out));
 		rover = new Rover(0, 0, 0, "N");
 		grid = new Grid(9, 9);
 		rover.landOnPlanet(grid);
 	}
 
-//	public static final void main(String[] args) throws IOException {
-//		new ApplicationUI().run();
-//	}	
+	//	public static final void main(String[] args) throws IOException {
+	//		new ApplicationUI().run();
+	//	}	
 
 	public void run() throws IOException {
-		String line;
+		String line = "";
 		write(MENU);
-		line = reader.readLine();
-		System.out.println(line);
-
-		if(line.equals(START_OPTION)) {
+		writeln(STATUS);
+		while (!line.equals(QUIT_OPTION)) {
+			writeln(INSTRUCTION_PROMPT);
+			line = reader.readLine();
+			rover.move(line);
 			writeln(STATUS);
-			do {
-				line = reader.readLine();
-				System.out.println(line);
-				if(line.equals("F")){
-					rover.move(line);
-					System.out.println(line);
-					writeln(STATUS);
-				}
-			}
-			while (!line.equals(QUIT_OPTION));
+			line = reader.readLine();
 		}
 	}
 

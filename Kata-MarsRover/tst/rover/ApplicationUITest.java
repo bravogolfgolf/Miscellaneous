@@ -45,10 +45,11 @@ public class ApplicationUITest {
 
 	private void setup(StringBuffer expectedOutput, StringBuffer input) {
 		expectedOutput.append(ApplicationUI.MENU);
-		input.append(line(ApplicationUI.START_OPTION));
 		expectedOutput.append(status1(ApplicationUI.STATUS));
-		input.append(line(ApplicationUI.FORWARD_OPTION));	
+		expectedOutput.append(status1(ApplicationUI.INSTRUCTION_PROMPT));
+		input.append(line(ApplicationUI.FORWARD_OPTION));
 		expectedOutput.append(status2(ApplicationUI.STATUS));
+//		expectedOutput.append(status1(ApplicationUI.INSTRUCTION_PROMPT));
 		input.append(line(ApplicationUI.QUIT_OPTION));
 	}
 
