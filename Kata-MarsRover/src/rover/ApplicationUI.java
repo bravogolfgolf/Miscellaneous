@@ -10,11 +10,9 @@ import java.io.OutputStreamWriter;
 
 
 public class ApplicationUI {
-	static final String MENU = "(Q)uit";
-	static final String START_OPTION = "S";
 	static final String QUIT_OPTION = "Q";
 	static final String FORWARD_OPTION = "F";
-	static final String INSTRUCTION_PROMPT = "Use (L)eft, (R)ight (F)orward and (B)ackwards to move rover.";
+	static final String INSTRUCTION_PROMPT = "Use (L)eft, (R)ight (F)orward and (B)ackwards to move rover. Use to (Q)uit.";
 	static final String STATUS = "Heading: %s; Position x = %d, y = %d, z = %d";
 
 	private Rover rover;
@@ -24,13 +22,12 @@ public class ApplicationUI {
 	private BufferedWriter writer;	
 
 	public ApplicationUI() {
-//		this.reader = reader;
-//		this.writer = writer;
-
 		this.reader = new BufferedReader(new InputStreamReader(System.in));
 		this.writer = new BufferedWriter(new OutputStreamWriter(System.out));
+		
 		rover = new Rover(0, 0, 0, "N");
 		grid = new Grid(9, 9);
+		grid.addObstacleAt(1, 1, 0);
 		rover.landOnPlanet(grid);
 	}
 
@@ -40,13 +37,13 @@ public class ApplicationUI {
 
 	public void run() throws IOException {
 		String line = "";
-		write(MENU);
 		writeln(STATUS);
+		writeln(INSTRUCTION_PROMPT);
+		line = reader.readLine();
 		while (!line.equals(QUIT_OPTION)) {
-			writeln(INSTRUCTION_PROMPT);
-			line = reader.readLine();
 			rover.move(line);
 			writeln(STATUS);
+			writeln(INSTRUCTION_PROMPT);
 			line = reader.readLine();
 		}
 	}

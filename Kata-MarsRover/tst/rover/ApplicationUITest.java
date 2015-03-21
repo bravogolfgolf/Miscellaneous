@@ -16,41 +16,33 @@ public class ApplicationUITest {
 		byte[] buffer = input.toString().getBytes();
 
 		InputStream inputStream = new ByteArrayInputStream(buffer);
-//		InputStreamReader inputStreamReader = new InputStreamReader(inputStream);
-//		BufferedReader reader = new BufferedReader(inputStreamReader);
-
 		OutputStream outputStream = new ByteArrayOutputStream();
-//		OutputStreamWriter outputStreamWriter = new OutputStreamWriter(outputStream);
-//		BufferedWriter writer = new BufferedWriter(outputStreamWriter);
 
 		InputStream consoleIn = System.in;
 		PrintStream consoleOut = System.out;
-		
+
 		System.setIn(inputStream);
 		System.setOut(new PrintStream(outputStream));
-		
-		try{
 
-//			ApplicationUI ui = new ApplicationUI(reader , writer);
+		try{
 			ApplicationUI ui = new ApplicationUI();
 			ui.run();
 
 			assertEquals(expectedOutput.toString(), outputStream.toString());
 		}
 		finally{
-		System.setIn(consoleIn);
-		System.setOut(consoleOut);
-		
+			System.setIn(consoleIn);
+			System.setOut(consoleOut);		
 		}
 	}
 
 	private void setup(StringBuffer expectedOutput, StringBuffer input) {
-		expectedOutput.append(ApplicationUI.MENU);
 		expectedOutput.append(status1(ApplicationUI.STATUS));
-		expectedOutput.append(status1(ApplicationUI.INSTRUCTION_PROMPT));
+		expectedOutput.append(line(ApplicationUI.INSTRUCTION_PROMPT));
 		input.append(line(ApplicationUI.FORWARD_OPTION));
 		expectedOutput.append(status2(ApplicationUI.STATUS));
 		input.append(line(ApplicationUI.QUIT_OPTION));
+		expectedOutput.append(line(ApplicationUI.INSTRUCTION_PROMPT));
 	}
 
 	private String status1(String status) {
