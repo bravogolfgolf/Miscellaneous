@@ -3,10 +3,10 @@ package rover;
 abstract class Direction {
 
 	static Direction create(String direction) {			
-		if(direction == "N") return new North();
-		if(direction == "S") return new South();
-		if(direction == "E") return new East();
-		if(direction == "W") return new West();
+		if(direction.equals("N")) return new North();
+		if(direction.equals("S")) return new South();
+		if(direction.equals("E")) return new East();
+		if(direction.equals("W")) return new West();
 		throw new IllegalArgumentException("Incorrect direction value");
 	}
 
