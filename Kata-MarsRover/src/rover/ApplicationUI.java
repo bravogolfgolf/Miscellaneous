@@ -27,7 +27,6 @@ public class ApplicationUI {
 		
 		rover = new Rover(0, 0, 0, "N");
 		grid = new Grid(9, 9);
-		grid.addObstacleAt(1, 1, 0);
 		rover.landOnPlanet(grid);
 	}
 
