@@ -297,7 +297,7 @@ public class RoverTest {
 		assertEquals(0,rover.getPosition().getY());
 	}
 
-	@Test
+	@Test (expected = Grid.ObstacleEncoutered.class)
 	public void testFoundObstacleForward() {
 		createRoverOnGrid(x, y, direction);
 		mars.addObstacleAt(0, 1, 0);
@@ -325,7 +325,7 @@ public class RoverTest {
 
 	@Test
 	public void throwsExceptionEncouterObstacleForward() {
-//		thrown.expect(Grid.ObstacleEncoutered.class);
+		thrown.expect(Grid.ObstacleEncoutered.class);
 		createRoverOnGrid(x, y, direction);
 		mars.addObstacleAt(0, 1, 0);
 		goForward();
