@@ -1,5 +1,7 @@
 package rover;
 
+import rover.Grid.ObstacleEncoutered;
+
 abstract class Direction {
 
 	static Direction create(String direction) {			
@@ -30,4 +32,13 @@ abstract class Direction {
 	int moveDownOnGrid(int y) {return y -= 1;}
 	int moveLeftOnGrid(int x) {return x -= 1;}
 	int moveRightOnGrid(int x) {return x += 1;}
+
+	Point doNotMoveIfObstacleInWay(Point position, Grid planet) {
+		try {
+			if(planet.hasObstacleAt(position));
+			return position;
+		} catch (ObstacleEncoutered e) {
+			return goBackward(position, planet);
+		}
+	}
 }
