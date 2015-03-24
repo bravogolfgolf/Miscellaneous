@@ -8,6 +8,8 @@ import java.io.InputStreamReader;
 //import java.io.OutputStreamWriter;
 import java.io.OutputStreamWriter;
 
+import rover.Grid.ObstacleEncoutered;
+
 
 public class ApplicationUI {
 	static final String QUIT_OPTION = "Q";
@@ -27,6 +29,7 @@ public class ApplicationUI {
 		
 		rover = new Rover(0, 0, 0, "N");
 		grid = new Grid(9, 9);
+		grid.addObstacleAt(1, 1, 0);
 		rover.landOnPlanet(grid);
 	}
 
@@ -40,11 +43,20 @@ public class ApplicationUI {
 		writeln(INSTRUCTION_PROMPT);
 		line = reader.readLine();
 		while (!line.equals(QUIT_OPTION)) {
-			rover.move(line);
+			tryToMove(line);
 			writeln(STATUS);
 			writeln(INSTRUCTION_PROMPT);
 			line = reader.readLine();
 		}
+	}
+
+	private void tryToMove(String line) {
+		try {
+			rover.move(line);			
+		} catch (ObstacleEncoutered e) {
+
+		}
+		
 	}
 
 	private void writeln(String line) throws IOException {

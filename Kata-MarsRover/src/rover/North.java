@@ -6,7 +6,7 @@ public class North extends Direction {
 	String getCompassPoint(){
 		return "N";
 	}
-	
+
 	@Override
 	Direction turnRight() {
 		return new East();
@@ -22,26 +22,28 @@ public class North extends Direction {
 		int x = position.getX();
 		int y = position.getY();
 		int z = position.getZ();
-		
+
 		if (onTopEdgeOfGrid(y, planet)) y = wrapToBottomEdgeOfGrid(y);
 		else y = moveUpOnGrid(y);
-		
-		if(planet.checkForObstacle(new Point(x,y,z))) return goBackward(new Point(x,y,z), planet);
-		
+
+		if(hasObstacleAt(new Point(x,y,z), planet)) {
+			//		if(planet.checkForObstacle(new Point(x,y,z)))
+			return goBackward(new Point(x,y,z), planet);			
+		}
 		return new Point(x,y,z);
 	}
-	
+
 	@Override
 	Point goBackward(Point position, Grid planet) {
 		int x = position.getX();
 		int y = position.getY();
 		int z = position.getZ();
-		
+
 		if(onBottomEdgeOfGrid(y)) y = wrapToTopEdgeOfGrid(y, planet);
 		else y = moveDownOnGrid(y);
 
 		if(planet.checkForObstacle(new Point(x,y,z))) return goBackward(new Point(x,y,z), planet);
-		
+
 		return new Point(x,y,z);
 	}
 }

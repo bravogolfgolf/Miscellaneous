@@ -32,7 +32,7 @@ public class Grid {
 			for (int i = 0; i < obstacles.size(); i++) {
 				 currentObstacle = obstacles.get(i);
 				if (theTwoAreEqual(input, currentObstacle)) {
-					throw new ObstacleEncoutered();
+					throw new ObstacleEncoutered("Obstacle Encoutered");
 				}
 			}
 		}
@@ -49,6 +49,10 @@ public class Grid {
 
 	@SuppressWarnings("serial")
 	static final class ObstacleEncoutered extends RuntimeException {
+
+		public ObstacleEncoutered(String string) {
+			super(string);
+		}
 	}
 }
 

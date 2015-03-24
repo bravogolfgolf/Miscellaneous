@@ -44,8 +44,9 @@ public class GridTest {
 	@Test
 	public void testHasObstacleAtAndThrowsException() {
 		thrown.expect(Grid.ObstacleEncoutered.class);
+		thrown.expectMessage("Obstacle Encoutered");
 		createGrid(height, width);
 		grid.addObstacleAt(1, 1, 0);
-		assertEquals(false, grid.checkForObstacle(new Point(1,1,0)));		
+		grid.checkForObstacle(new Point(1,1,0));		
 	}
 }
