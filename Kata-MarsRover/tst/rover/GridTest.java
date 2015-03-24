@@ -40,6 +40,6 @@ public class GridTest extends TestCase{
 
 	@Test
 	public void testHasObstacleAt() {
-		assertEquals(false, grid.hasObstacleAt(new Point(1,1,0)));
+		assertEquals(false, grid.checkForObstacle(new Point(1,1,0)));
 	}
 }

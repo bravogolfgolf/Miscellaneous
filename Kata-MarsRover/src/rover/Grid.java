@@ -25,7 +25,7 @@ public class Grid {
 		obstacles.add(obstacle);
 	}
 
-	public boolean hasObstacleAt(Point position){
+	public boolean checkForObstacle(Point position){
 		Point input = position;
 		Point currentObstacle;
 		if (isNotEmpty(obstacles)) {
