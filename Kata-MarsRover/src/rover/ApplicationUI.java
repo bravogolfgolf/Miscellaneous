@@ -67,7 +67,7 @@ public class ApplicationUI {
 	}
 
 	private void write(String str) throws IOException {
-		String s = String.format(str, rover.getHeading(), rover.getPosition().getX(), rover.getPosition().getY(), rover.getPosition().getZ());
+		String s = String.format(str, rover.getHeading(), rover.getPosition().x, rover.getPosition().y, rover.getPosition().z);
 		writer.write(s, 0, s.length());
 		writer.flush();
 	}

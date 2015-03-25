@@ -19,9 +19,9 @@ public class South extends Direction {
 
 	@Override
 	Point goForward(Point position, Grid planet) {
-		int x = position.getX();
-		int y = position.getY();
-		int z = position.getZ();
+		x = position.x;
+		y = position.y;
+		z = position.z;
 
 		if (onBottomEdgeOfGrid(y)) y = wrapToTopEdgeOfGrid(y, planet);
 		else y = moveDownOnGrid(y);
@@ -33,9 +33,9 @@ public class South extends Direction {
 
 	@Override
 	Point goBackward(Point position, Grid planet) {
-		int x = position.getX();
-		int y = position.getY();
-		int z = position.getZ();
+		x = position.x;
+		y = position.y;
+		z = position.z;
 
 		if(onTopEdgeOfGrid(y, planet)) y = wrapToBottomEdgeOfGrid(y);
 		else y = moveUpOnGrid(y);

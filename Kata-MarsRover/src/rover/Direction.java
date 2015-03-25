@@ -2,6 +2,10 @@ package rover;
 
 abstract class Direction {
 
+	int x;
+	int y;
+	int z;
+	
 	static Direction create(String direction) {			
 		if(direction.equals("N")) return new North();
 		if(direction.equals("S")) return new South();

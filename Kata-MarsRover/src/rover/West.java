@@ -5,8 +5,8 @@ public class West extends Direction {
 	@Override
 	String getCompassPoint(){
 		return "W";
-		}
-	
+	}
+
 	@Override
 	Direction turnRight() {
 		return new North();
@@ -19,29 +19,29 @@ public class West extends Direction {
 
 	@Override
 	Point goForward(Point position, Grid planet) {
-		int x = position.getX();
-		int y = position.getY();
-		int z = position.getZ();
-		
+		x = position.x;
+		y = position.y;
+		z = position.z;
+
 		if (onLeftEdgeOfGrid(x)) x = wrapToRightEdgeOfGrid(x, planet);
 		else x = moveLeftOnGrid(x);
 
 		planet.checkForObstacle(new Point(x,y,z));
-				
+
 		return new Point(x,y,z);
 	}
 
 	@Override
 	Point goBackward(Point position, Grid planet) {
-		int x = position.getX();
-		int y = position.getY();
-		int z = position.getZ();
-		
+		x = position.x;
+		y = position.y;
+		z = position.z;
+
 		if(onRightEdgeOfGrid(x, planet)) x = wrapToLeftEdgeOfGrid(x);
 		else x = moveRightOnGrid(x);
-		
+
 		planet.checkForObstacle(new Point(x,y,z));
-				
+
 		return new Point(x,y,z);
 	}
 }

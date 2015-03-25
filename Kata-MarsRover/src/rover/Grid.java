@@ -30,7 +30,7 @@ public class Grid {
 		if (isNotEmpty(obstacles)) {
 			for (int i = 0; i < obstacles.size(); i++) {
 				 currentObstacle = obstacles.get(i);
-				if (theTwoAreEqual(position, currentObstacle)) {
+				if (position.equals(currentObstacle)) {
 					throw new ObstacleEncoutered("Obstacle Encoutered");
 				}
 			}
@@ -39,10 +39,6 @@ public class Grid {
 	
 	private boolean isNotEmpty(List<Point> obstacles) {
 		return !obstacles.isEmpty();
-	}
-
-	private boolean theTwoAreEqual(Point input, Point obstacle) {
-		return obstacle.getX() == input.getX() && obstacle.getY() == input.getY();
 	}
 
 	@SuppressWarnings("serial")
