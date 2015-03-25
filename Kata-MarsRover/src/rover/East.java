@@ -19,29 +19,23 @@ public class East extends Direction {
 
 	@Override
 	Point goForward(Point position, Grid planet) {
-		int x = position.getX();
-		int y = position.getY();
-		int z = position.getZ();
 
-		if (onRightEdgeOfGrid(x, planet)) x = wrapToLeftEdgeOfGrid(x);
-		else x = moveRightOnGrid(x);
+		if (onRightEdgeOfGrid(position.x, planet)) position.x = wrapToLeftEdgeOfGrid(position.x);
+		else position.x = moveRightOnGrid(position.x);
 
-		planet.checkForObstacle(new Point(x,y,z));
+		planet.checkForObstacle(position);
 		
-		return new Point(x,y,z);
+		return position;
 	}
 
 	@Override
 	Point goBackward(Point position, Grid planet) {
-		int x = position.getX();
-		int y = position.getY();
-		int z = position.getZ();
 
-		if(onLeftEdgeOfGrid(x)) x = wrapToRightEdgeOfGrid(x,planet);
-		else x = moveLeftOnGrid(x);
+		if(onLeftEdgeOfGrid(position.x)) position.x = wrapToRightEdgeOfGrid(position.x,planet);
+		else position.x = moveLeftOnGrid(position.x);
 
-		planet.checkForObstacle(new Point(x,y,z));
+		planet.checkForObstacle(position);
 		
-		return new Point(x,y,z);
+		return position;
 	}
 }
