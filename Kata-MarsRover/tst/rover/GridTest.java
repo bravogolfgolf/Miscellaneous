@@ -34,13 +34,7 @@ public class GridTest {
 		assertEquals(12,grid.getHeight());
 		assertEquals(13,grid.getWidth());
 	}
-	
-	@Test
-	public void testDoesNotHasObstacleAt() {
-		createGrid(height, width);
-		assertEquals(false, grid.checkForObstacle(new Point(1,1,0)));
-	}
-	
+		
 	@Test
 	public void testHasObstacleAtAndThrowsException() {
 		thrown.expect(Grid.ObstacleEncoutered.class);

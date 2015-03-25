@@ -25,18 +25,16 @@ public class Grid {
 		obstacles.add(obstacle);
 	}
 
-	public boolean checkForObstacle(Point position){
-		Point input = position;
+	public void checkForObstacle(Point position){
 		Point currentObstacle;
 		if (isNotEmpty(obstacles)) {
 			for (int i = 0; i < obstacles.size(); i++) {
 				 currentObstacle = obstacles.get(i);
-				if (theTwoAreEqual(input, currentObstacle)) {
+				if (theTwoAreEqual(position, currentObstacle)) {
 					throw new ObstacleEncoutered("Obstacle Encoutered");
 				}
 			}
 		}
-		return false;
 	}
 	
 	private boolean isNotEmpty(List<Point> obstacles) {
