@@ -38,7 +38,7 @@ public class Rover {
 		this.planet = planet;
 	}
 
-	public Grid getPlanetGrid() {
+	private Grid getPlanetGrid() {
 		return planet;
 	}
 

@@ -19,26 +19,25 @@ public class RoverTest {
 		mars = new Grid(height, width);
 		rover.landOnPlanet(mars);
 	}
+	
+	private void goForward() {
+		rover.move("F");
+	}
+	
+	private void goBackward() {
+		rover.move("B");
+	}
 
+	private void turnRight() {
+		rover.move("R");
+	}
+	
+	private void turnLeft() {
+		rover.move("L");
+	}
+	
 	@Rule
 	public ExpectedException thrown = ExpectedException.none();
-
-	@Test
-	public void testPlaceRoverOnGrid() {
-		createRoverOnGrid(x, y, direction);
-		assertEquals(9,rover.getPlanetGrid().getHeight());
-		assertEquals(9,rover.getPlanetGrid().getWidth());
-	}
-
-	@Test
-	public void testGridDifferentDimensions() {
-		height = 11;
-		width = 12;
-		mars = new Grid(height, width);
-		createRoverOnGrid(x, y, direction);
-		assertEquals(11,rover.getPlanetGrid().getHeight());
-		assertEquals(12,rover.getPlanetGrid().getWidth());
-	}
 
 	@Test
 	public void testInitialPostion() {
@@ -70,16 +69,11 @@ public class RoverTest {
 		assertEquals("W",rover.getHeading());
 	}
 
-
 	@Test
 	public void testFacingNorthThenTurnRight() {
 		createRoverOnGrid(x, y, direction);
 		turnRight();
 		assertEquals("E",rover.getHeading());
-	}
-
-	private void turnRight() {
-		rover.move("R");
 	}
 
 	@Test
@@ -113,10 +107,6 @@ public class RoverTest {
 		assertEquals("W",rover.getHeading());
 	}
 
-	private void turnLeft() {
-		rover.move("L");
-	}
-
 	@Test
 	public void testFacingWestThenTurnLeft() {
 		direction = "W";
@@ -147,10 +137,6 @@ public class RoverTest {
 		goForward();
 		assertEquals(0,rover.getPosition().getX());
 		assertEquals(1,rover.getPosition().getY());
-	}
-
-	private void goForward() {
-		rover.move("F");
 	}
 
 	@Test
@@ -199,10 +185,6 @@ public class RoverTest {
 		goBackward();
 		assertEquals(0,rover.getPosition().getX());
 		assertEquals(0,rover.getPosition().getY());
-	}
-
-	private void goBackward() {
-		rover.move("B");
 	}
 
 	@Test
@@ -297,22 +279,12 @@ public class RoverTest {
 		assertEquals(0,rover.getPosition().getY());
 	}
 
-	@Test (expected = Grid.ObstacleEncoutered.class)
+	@Test
 	public void testFoundObstacleForward() {
+		thrown.expect(Grid.ObstacleEncoutered.class);
 		createRoverOnGrid(x, y, direction);
 		mars.addObstacleAt(0, 1, 0);
 		goForward();
-		assertEquals(0,rover.getPosition().getX());
-		assertEquals(0,rover.getPosition().getY());
-	}
-
-	@Test (expected = Grid.ObstacleEncoutered.class)
-	public void testFoundObstacleBack() {
-		createRoverOnGrid(x, y, direction);
-		mars.addObstacleAt(0, 9, 0);
-		goBackward();
-		assertEquals(0,rover.getPosition().getX());
-		assertEquals(0,rover.getPosition().getY());
 	}
 
 	@Test
@@ -321,14 +293,6 @@ public class RoverTest {
 		createRoverOnGrid(x, y, direction);
 		mars.addObstacleAt(0, 9, 0);
 		goBackward();
-	}
-
-	@Test
-	public void throwsExceptionEncouterObstacleForward() {
-		thrown.expect(Grid.ObstacleEncoutered.class);
-		createRoverOnGrid(x, y, direction);
-		mars.addObstacleAt(0, 1, 0);
-		goForward();
 	}
 
 	@Test
