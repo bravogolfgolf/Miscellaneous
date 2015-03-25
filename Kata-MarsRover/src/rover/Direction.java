@@ -31,14 +31,14 @@ abstract class Direction {
 	int moveLeftOnGrid(int x) {return x -= 1;}
 	int moveRightOnGrid(int x) {return x += 1;}
 	
-	boolean hasObstacleAt(Point point, Grid grid) {
-		boolean obstacleEncountered = false;
+	void hasObstacleAt(Point point, Grid grid) {
+//		boolean obstacleEncountered = false;
 		try {
 			grid.checkForObstacle(point);
 		} catch (Exception e) {
-			obstacleEncountered = true;
+//			obstacleEncountered = true;
 			throw new Grid.ObstacleEncoutered("Obstacle Encoutered");
 		}
-		return obstacleEncountered;
+//		return obstacleEncountered;
 	}
 }

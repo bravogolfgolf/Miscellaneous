@@ -41,9 +41,13 @@ public class ApplicationUITest {
 		expectedOutput.append(line(ApplicationUI.INSTRUCTION_PROMPT));
 		input.append(line(ApplicationUI.FORWARD_OPTION));
 		expectedOutput.append(status2(ApplicationUI.STATUS));
-		input.append(line(ApplicationUI.QUIT_OPTION));
 		expectedOutput.append(line(ApplicationUI.INSTRUCTION_PROMPT));
-	}
+		input.append(line(ApplicationUI.FORWARD_OPTION));
+		expectedOutput.append(line(ApplicationUI.OBSTACLE_MESSAGE));
+		expectedOutput.append(status2(ApplicationUI.STATUS));
+		expectedOutput.append(line(ApplicationUI.INSTRUCTION_PROMPT));
+		input.append(line(ApplicationUI.QUIT_OPTION));
+		}
 
 	private String status1(String status) {
 		return line(String.format(status, "N", 0, 0, 0));

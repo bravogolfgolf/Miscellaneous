@@ -16,7 +16,8 @@ public class ApplicationUI {
 	static final String FORWARD_OPTION = "F";
 	static final String INSTRUCTION_PROMPT = "Use (L)eft, (R)ight (F)orward and (B)ackwards to move rover. Use to (Q)uit.";
 	static final String STATUS = "Heading: %s; Position x = %d, y = %d, z = %d";
-
+	static final String OBSTACLE_MESSAGE = "Obstacle Encoutered";
+	
 	private Rover rover;
 	private Grid grid;
 
@@ -29,7 +30,7 @@ public class ApplicationUI {
 		
 		rover = new Rover(0, 0, 0, "N");
 		grid = new Grid(9, 9);
-		grid.addObstacleAt(1, 1, 0);
+		grid.addObstacleAt(0, 2, 0);
 		rover.landOnPlanet(grid);
 	}
 
@@ -50,11 +51,11 @@ public class ApplicationUI {
 		}
 	}
 
-	private void tryToMove(String line) {
+	private void tryToMove(String line) throws IOException {
 		try {
 			rover.move(line);			
 		} catch (ObstacleEncoutered e) {
-
+			writeln(e.getMessage());
 		}
 		
 	}

@@ -26,10 +26,8 @@ public class North extends Direction {
 		if (onTopEdgeOfGrid(y, planet)) y = wrapToBottomEdgeOfGrid(y);
 		else y = moveUpOnGrid(y);
 
-		if(hasObstacleAt(new Point(x,y,z), planet)) {
-			//		if(planet.checkForObstacle(new Point(x,y,z)))
-			return goBackward(new Point(x,y,z), planet);			
-		}
+		if(planet.checkForObstacle(new Point(x,y,z)));
+
 		return new Point(x,y,z);
 	}
 
