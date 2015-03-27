@@ -21,6 +21,7 @@ public class GameControllerTest {
 
 	private GameController setupGameController() {
 		rover.landOnPlanet(grid);
+		grid.addObstacleAt(0, 2, 0);
 		gameView = new GameView();
 		GameController gc = new GameController(rover, gameView);
 		return gc;
@@ -59,9 +60,17 @@ public class GameControllerTest {
 	}
 
 	@Test
-	public void testMoveRover() {
+	public void testTurnRover() {
 		GameController gc = setupGameController();
 		gc.moveRover("R");
-		assertEquals("E", this.rover.getHeading());
+		assertEquals("E", gc.getHeading());
+	}
+	
+	@Test
+	public void testMoveRover() {
+		Point expected = new Point(0,9,0);
+		GameController gc = setupGameController();
+		gc.moveRover("B");
+		assertTrue(expected.equals(gc.getPosition()));
 	}
 }

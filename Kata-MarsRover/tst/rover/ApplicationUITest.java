@@ -7,7 +7,9 @@ import java.io.*;
 import org.junit.Test;
 
 public class ApplicationUITest {
+	static final String FORWARD_OPTION = "F";
 
+	
 	@Test
 	public void testViewPrintHeading() throws IOException {
 		StringBuffer expectedOutput = new StringBuffer();
@@ -39,10 +41,10 @@ public class ApplicationUITest {
 	private void setup(StringBuffer expectedOutput, StringBuffer input) {
 		expectedOutput.append(status1(ApplicationUI.STATUS));
 		expectedOutput.append(line(ApplicationUI.INSTRUCTION_PROMPT));
-		input.append(line(ApplicationUI.FORWARD_OPTION));
+		input.append(line(FORWARD_OPTION));
 		expectedOutput.append(status2(ApplicationUI.STATUS));
 		expectedOutput.append(line(ApplicationUI.INSTRUCTION_PROMPT));
-		input.append(line(ApplicationUI.FORWARD_OPTION));
+		input.append(line(FORWARD_OPTION));
 		expectedOutput.append(line(ApplicationUI.OBSTACLE_MESSAGE));
 		expectedOutput.append(status2(ApplicationUI.STATUS));
 		expectedOutput.append(line(ApplicationUI.INSTRUCTION_PROMPT));

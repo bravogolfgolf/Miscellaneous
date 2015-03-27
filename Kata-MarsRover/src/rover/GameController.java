@@ -18,4 +18,12 @@ public class GameController {
 	public void moveRover(String instruction) {
 		model.move(instruction);
 	}
+
+	public String getHeading() {
+		return model.getHeading();
+	}
+
+	public Point getPosition() {
+		return model.getPosition();
+	}
 }
