@@ -13,7 +13,7 @@ public class GameControllerTest {
 	static final String TEST_MESSAGE = "Test ViewController Message";
 	private Rover rover = new Rover(0, 0, 0, "N");
 	private Grid grid = new Grid(9, 9);
-	private GameView gameView = new GameView();		
+	private GameView gameView;		
 	
 	@Test
 	public void testUpdateGameView() throws IOException {
@@ -27,6 +27,7 @@ public class GameControllerTest {
 		System.setOut(new PrintStream(outputStream));
 
 		rover.landOnPlanet(grid);
+		gameView = new GameView();
 		GameController gc = new GameController(rover, gameView);
 
 		try{
