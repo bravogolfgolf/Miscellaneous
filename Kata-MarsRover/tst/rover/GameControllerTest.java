@@ -17,7 +17,7 @@ public class GameControllerTest {
 
 	private Rover rover = new Rover(0, 0, 0, "N");
 	private Grid grid = new Grid(9, 9);
-	private GameView gameView;		
+	private View gameView;		
 
 	private GameController setupGameController() {
 		rover.landOnPlanet(grid);

@@ -16,7 +16,7 @@ public class ApplicationUI {
 	private Rover model;
 	private Grid grid;
 
-	private GameView view;
+	private View view;
 	private GameController gc;
 	private BufferedReader reader;
 

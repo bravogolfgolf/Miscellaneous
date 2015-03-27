@@ -24,7 +24,7 @@ public class GameViewTest {
 
 		System.setOut(new PrintStream(outputStream));
 
-		GameView g = new GameView();
+		View g = new GameView();
 
 		try{
 			g.displayOnScreen("Test Message");

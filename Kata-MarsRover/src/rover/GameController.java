@@ -4,11 +4,11 @@ import java.io.IOException;
 
 public class GameController {
 	private Rover model;
-	private GameView view;
+	private View view;
 
-	public GameController(Rover rover, GameView gameView) {
+	public GameController(Rover rover, View view) {
 		this.model = rover;
-		this.view = gameView;
+		this.view = view;
 	}
 
 	public void updateView(String s) throws IOException {
