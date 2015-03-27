@@ -14,7 +14,6 @@ public class GameControllerTest {
 	private Rover rover = new Rover(0, 0, 0, "N");
 	private Grid grid = new Grid(9, 9);
 	private GameView gameView = new GameView();		
-	private GameController gc;
 	
 	@Test
 	public void testUpdateGameView() throws IOException {
@@ -27,9 +26,10 @@ public class GameControllerTest {
 
 		System.setOut(new PrintStream(outputStream));
 
+		rover.landOnPlanet(grid);
+		GameController gc = new GameController(rover, gameView);
+
 		try{
-			rover.landOnPlanet(grid);
-			GameController gc = new GameController(rover, gameView);
 			gc.updateView();
 			assertEquals(expectedOutput.toString(), outputStream.toString());
 		}

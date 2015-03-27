@@ -24,10 +24,10 @@ public class GameViewTest {
 
 		System.setOut(new PrintStream(outputStream));
 
-		try{
-			GameView g = new GameView();
-			g.displayOnScreen("Test Message");
+		GameView g = new GameView();
 
+		try{
+			g.displayOnScreen("Test Message");
 			assertEquals(expectedOutput.toString(), outputStream.toString());
 		}
 		finally{
