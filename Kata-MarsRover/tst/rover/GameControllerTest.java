@@ -1,6 +1,6 @@
 package rover;
 
-import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.*;
 
 import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
@@ -11,12 +11,15 @@ import java.io.PrintStream;
 
 import org.junit.Test;
 
-public class GameViewTest {
-	static final String TEST_MESSAGE = "Test Message";
-
+public class GameControllerTest {
+	static final String TEST_MESSAGE = "Test ViewController Message";
+	private Rover rover = new Rover(0, 0, 0, "N");
+	private Grid grid = new Grid(9, 9);
+	private GameView gameView = new GameView();		
+	private GameController gc;
 	
 	@Test
-	public void testPrintMessageToScreen() throws IOException {
+	public void testUpdateGameView() throws IOException {
 		StringBuffer expectedOutput = new StringBuffer();
 		setup(expectedOutput);
 
@@ -27,9 +30,9 @@ public class GameViewTest {
 		System.setOut(new PrintStream(outputStream));
 
 		try{
-			GameView g = new GameView();
-			g.displayOnScreen("Test Message");
-
+			rover.landOnPlanet(grid);
+			GameController gc = new GameController(rover, gameView);
+			gc.updateView();
 			assertEquals(expectedOutput.toString(), outputStream.toString());
 		}
 		finally{
@@ -45,4 +48,3 @@ public class GameViewTest {
 		return String.format("%s%n", str);
 	}
 }
-
