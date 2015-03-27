@@ -11,7 +11,11 @@ public class GameController {
 		this.view = gameView;
 	}
 
-	public void updateView() throws IOException {
-		view.displayOnScreen("Test ViewController Message");
+	public void updateView(String s) throws IOException {
+		view.displayOnScreen(s);
+	}
+
+	public void moveRover(String instruction) {
+		model.move(instruction);
 	}
 }
