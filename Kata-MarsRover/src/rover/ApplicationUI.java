@@ -13,7 +13,7 @@ public class ApplicationUI {
 	static final String STATUS = "Heading: %s; Position x = %d, y = %d, z = %d";
 	static final String OBSTACLE_MESSAGE = "Obstacle Encoutered";
 
-	private Rover model;
+	private Model model;
 	private Grid grid;
 
 	private View view;
@@ -54,7 +54,7 @@ public class ApplicationUI {
 
 	private void tryToMove(String line) throws IOException {
 		try {
-			gc.moveRover(line);			
+			gc.move(line);			
 		} catch (ObstacleEncoutered e) {
 			writeln(e.getMessage());
 		}

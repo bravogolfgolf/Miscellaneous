@@ -1,6 +1,6 @@
 package rover;
 
-public class Rover {
+public class Rover implements Model {
 	private Point position;
 	private Direction direction;
 	private Grid planet;
@@ -18,6 +18,7 @@ public class Rover {
 		this.position = position;
 	}
 
+	@Override
 	public Point getPosition() {
 		return position;
 	}
@@ -30,10 +31,12 @@ public class Rover {
 		return direction;
 	}
 
+	@Override
 	public String getHeading() {
 		return getDirection().getCompassPoint();
 	}
 
+	@Override
 	public void landOnPlanet(Grid planet) {	
 		this.planet = planet;
 	}
@@ -42,6 +45,7 @@ public class Rover {
 		return planet;
 	}
 
+	@Override
 	public void move(String instruction) {
 		if (instruction.equals("R")) turnRight();
 		if (instruction.equals("L")) turnLeft();

@@ -5,7 +5,7 @@ import org.junit.*;
 import org.junit.rules.ExpectedException;
 
 public class RoverTest {
-	private Rover rover;
+	private Model rover;
 	private Grid mars;
 	private String direction = "N";
 	private int x = 0;

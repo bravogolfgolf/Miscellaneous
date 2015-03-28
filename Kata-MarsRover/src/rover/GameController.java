@@ -3,11 +3,11 @@ package rover;
 import java.io.IOException;
 
 public class GameController {
-	private Rover model;
+	private Model model;
 	private View view;
 
-	public GameController(Rover rover, View view) {
-		this.model = rover;
+	public GameController(Model model, View view) {
+		this.model = model;
 		this.view = view;
 	}
 
@@ -15,7 +15,7 @@ public class GameController {
 		view.displayOnScreen(s);
 	}
 
-	public void moveRover(String instruction) {
+	public void move(String instruction) {
 		model.move(instruction);
 	}
 

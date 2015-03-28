@@ -15,7 +15,7 @@ public class GameControllerTest {
 	StringBuffer expectedOutput = new StringBuffer();
 	OutputStream outputStream = new ByteArrayOutputStream();
 
-	private Rover rover = new Rover(0, 0, 0, "N");
+	private Model rover = new Rover(0, 0, 0, "N");
 	private Grid grid = new Grid(9, 9);
 	private View gameView;		
 
@@ -62,7 +62,7 @@ public class GameControllerTest {
 	@Test
 	public void testTurnRover() {
 		GameController gc = setupGameController();
-		gc.moveRover("R");
+		gc.move("R");
 		assertEquals("E", gc.getHeading());
 	}
 	
@@ -70,7 +70,7 @@ public class GameControllerTest {
 	public void testMoveRover() {
 		Point expected = new Point(0,9,0);
 		GameController gc = setupGameController();
-		gc.moveRover("B");
+		gc.move("B");
 		assertTrue(expected.equals(gc.getPosition()));
 	}
 }
