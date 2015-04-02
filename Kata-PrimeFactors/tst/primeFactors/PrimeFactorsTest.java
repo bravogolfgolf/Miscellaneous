@@ -15,4 +15,9 @@ public class PrimeFactorsTest {
 	public void factorsOf1() {
 		assertEquals(createList(), PrimeFactors.calculate(1));
 	}
+	
+	@Test
+	public void factorsOf2() {
+		assertEquals(createList(2), PrimeFactors.calculate(2));
+	}
 }
