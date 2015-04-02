@@ -13,6 +13,6 @@ public class PrimeFactorsTest {
 	
 	@Test
 	public void factorsOf1() {
-		assertTrue(createList(1).equals(PrimeFactors.calculate(1)));
+		assertEquals(createList(), PrimeFactors.calculate(1));
 	}
 }
