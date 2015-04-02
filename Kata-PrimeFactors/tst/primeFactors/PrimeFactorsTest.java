@@ -1,74 +1,18 @@
 package primeFactors;
 
-import static org.junit.Assert.*;
-
 import java.util.*;
-import org.junit.*;
+import org.junit.Test;
+import static org.junit.Assert.*;
 
 public class PrimeFactorsTest {
 
-	private List<Integer> creatList(Integer...args){
+	private List<Integer> createList(Integer...args) {
 		List<Integer> list = Arrays.asList(args);
 		return list;
 	}
-
-	@Test
-	public void testPrimeFactorsOf1() throws Exception {
-		assertEquals(creatList(), PrimeFactors.calculate(1));
-	}
-
-	@Test
-	public void testPrimeFactorsOf2() throws Exception {
-		assertEquals(creatList(2), PrimeFactors.calculate(2));
-	}
-
-	@Test
-	public void testPrimeFactorsOf3() throws Exception {
-		assertEquals(creatList(3), PrimeFactors.calculate(3));
-	}
 	
 	@Test
-	public void testPrimeFactorsOf4() throws Exception {
-		assertEquals(creatList(2,2), PrimeFactors.calculate(4));
-	}
-	
-	@Test
-	public void testPrimeFactorsOf5() throws Exception {
-		assertEquals(creatList(5), PrimeFactors.calculate(5));
-	}
-	
-	@Test
-	public void testPrimeFactorsOf6() throws Exception {
-		assertEquals(creatList(2,3), PrimeFactors.calculate(6));
-	}
-
-	@Test
-	public void testPrimeFactorsOf7() throws Exception {
-		assertEquals(creatList(7), PrimeFactors.calculate(7));
-	}
-	
-	@Test
-	public void testPrimeFactorsOf8() throws Exception {
-		assertEquals(creatList(2,2,2), PrimeFactors.calculate(8));
-	}
-	
-	@Test
-	public void testPrimeFactorsOf9() throws Exception {
-		assertEquals(creatList(3,3), PrimeFactors.calculate(9));
-	}
-	
-	@Test
-	public void testPrimeFactorsOf27() throws Exception {
-		assertEquals(creatList(3,3,3), PrimeFactors.calculate(27));
-	}
-	
-	@Test
-	public void testPrimeFactorsOf2147483646() throws Exception {
-		assertEquals(creatList(2,3,3,7,11,31,151,331), PrimeFactors.calculate(2147483646));
-	}
-	
-	@Test
-	public void testPrimeFactorsOf2147483647() throws Exception {
-		assertEquals(creatList(2147483647), PrimeFactors.calculate(2147483647));
+	public void factorsOf1() {
+		assertTrue(createList(1).equals(PrimeFactors.calculate(1)));
 	}
 }
