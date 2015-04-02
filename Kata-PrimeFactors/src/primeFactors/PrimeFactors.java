@@ -10,6 +10,10 @@ public class PrimeFactors {
 				list.add(2);
 				number/=2;
 			}
+			while(number % 3 == 0){
+				list.add(3);
+				number/=3;
+			}
 			if(number > 1)
 				list.add(number);			
 		}
