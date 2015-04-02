@@ -30,4 +30,24 @@ public class PrimeFactorsTest {
 	public void factorsOf4() {
 		assertEquals(createList(2,2), PrimeFactors.calculate(4));
 	}
+	
+	@Test
+	public void factorsOf5() {
+		assertEquals(createList(5), PrimeFactors.calculate(5));
+	}
+	
+	@Test
+	public void factorsOf6() {
+		assertEquals(createList(2,3), PrimeFactors.calculate(6));
+	}
+	
+	@Test
+	public void factorsOf7() {
+		assertEquals(createList(7), PrimeFactors.calculate(7));
+	}
+	
+	@Test
+	public void factorsOf8() {
+		assertEquals(createList(2,2,2), PrimeFactors.calculate(8));
+	}
 }
