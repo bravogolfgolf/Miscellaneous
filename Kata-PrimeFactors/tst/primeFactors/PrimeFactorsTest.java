@@ -46,23 +46,23 @@ public class PrimeFactorsTest {
 		assertEquals(createList(2,2,2), PrimeFactors.calculate(8));
 	}
 
-//	@Test
-//	public void factorsOf9() {
-//		assertEquals(createList(3,3), PrimeFactors.calculate(9));
-//	}
-//
-//	@Test
-//	public void factorsOf27() {
-//		assertEquals(createList(3,3,3), PrimeFactors.calculate(27));
-//	}
-//	
-//	@Test
-//	public void factorsOf2147483646() {
-//		assertEquals(createList(2,3,3,7,11,31,151,331), PrimeFactors.calculate(2147483646));
-//	}
-//	
-//	@Test
-//	public void factorsOf2147483647() {
-//		assertEquals(createList(2147483647), PrimeFactors.calculate(2147483647));
-//	}
+	@Test
+	public void factorsOf9() {
+		assertEquals(createList(3,3), PrimeFactors.calculate(9));
+	}
+
+	@Test
+	public void factorsOf27() {
+		assertEquals(createList(3,3,3), PrimeFactors.calculate(27));
+	}
+	
+	@Test
+	public void factorsOf2147483646() {
+		assertEquals(createList(2,3,3,7,11,31,151,331), PrimeFactors.calculate(2147483646));
+	}
+	
+	@Test
+	public void factorsOf2147483647() {
+		assertEquals(createList(2147483647), PrimeFactors.calculate(2147483647));
+	}
 }
