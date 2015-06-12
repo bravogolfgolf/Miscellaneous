@@ -21,11 +21,11 @@ public class PrimeFactorsTest {
 		assertEquals(createList(3), PrimeFactors.calculate(3));
 	}
 
-//	@Test
-//	public void factorsOf4() {
-//		assertEquals(createList(2,2), PrimeFactors.calculate(4));
-//	}
-//
+	@Test
+	public void factorsOf4() {
+		assertEquals(createList(2,2), PrimeFactors.calculate(4));
+	}
+
 //	@Test
 //	public void factorsOf5() {
 //		assertEquals(createList(5), PrimeFactors.calculate(5));
