@@ -36,16 +36,16 @@ public class PrimeFactorsTest {
 		assertEquals(createList(2,3), PrimeFactors.calculate(6));
 	}
 
-//	@Test
-//	public void factorsOf7() {
-//		assertEquals(createList(7), PrimeFactors.calculate(7));
-//	}
-//
-//	@Test
-//	public void factorsOf8() {
-//		assertEquals(createList(2,2,2), PrimeFactors.calculate(8));
-//	}
-//
+	@Test
+	public void factorsOf7() {
+		assertEquals(createList(7), PrimeFactors.calculate(7));
+	}
+
+	@Test
+	public void factorsOf8() {
+		assertEquals(createList(2,2,2), PrimeFactors.calculate(8));
+	}
+
 //	@Test
 //	public void factorsOf9() {
 //		assertEquals(createList(3,3), PrimeFactors.calculate(9));
