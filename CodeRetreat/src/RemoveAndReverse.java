@@ -2,7 +2,10 @@ import java.util.List;
 
 
 public class RemoveAndReverse {
-	public List<String> DoIt(List<String> inputList){
+	
+	public String DoIt(List<String> inputList){
+		String input, output;
+		
 		if (inputList.get(0).equals("reverse")){
 			input = inputList.get(1);
 			output = removeLetters(input);
@@ -10,9 +13,10 @@ public class RemoveAndReverse {
 		}
 
 		else {
-			output = removeLetters(input);
+			output = removeLetters(inputList.get(0));
 		}
 		
+		return output;
 	}
 
 	private static String removeLetters(String input) {
