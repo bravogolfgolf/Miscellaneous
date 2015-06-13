@@ -1,2 +1,2 @@
-count GA
+reverse
 ATUGACRE
