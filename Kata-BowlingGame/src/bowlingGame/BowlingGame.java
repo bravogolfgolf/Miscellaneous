@@ -18,8 +18,8 @@ public class BowlingGame {
 			}
 
 			else {
-				total+=scoreSheet[i];
-				i++;				
+				total= total + scoreSheet[i] + scoreSheet[i+1];
+				i = i + 2;				
 			}
 		return total;
 	}

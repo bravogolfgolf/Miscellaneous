@@ -41,7 +41,7 @@ public class BowlingGameTest {
 	}
 	
 	@Test
-	public void midGmeRollASpare() {
+	public void midGameRollASpare() {
 		rollMany(10,4);
 		bg.roll(5);
 		bg.roll(5);
@@ -49,6 +49,14 @@ public class BowlingGameTest {
 		assertEquals(86,bg.score());
 	}
 
-
-
+	@Test
+	public void tensButNotSparesRoll() {
+		rollMany(10,4);
+		bg.roll(6);
+		bg.roll(3);
+		bg.roll(3);
+		bg.roll(6);
+		rollMany(6,4);
+		assertEquals(82,bg.score());
+	}
 }
