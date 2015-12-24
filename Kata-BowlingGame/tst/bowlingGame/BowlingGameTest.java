@@ -15,14 +15,40 @@ public class BowlingGameTest {
 	}
 
 	@Test
-	public void rollAllGutterBalls() {;
-	int total = bg.rollMany(20,0);
-	assertEquals(0,total);
+	public void rollAllGutterBalls() {
+		rollMany(20,0);
+		assertEquals(0,bg.score());
 	}
+
 
 	@Test
 	public void rollAllOnes() {
-		int total = bg.rollMany(20,1);
-		assertEquals(20,total);
+		rollMany(20,1);
+		assertEquals(20,bg.score());
 	}
-}£
+
+	private void rollMany(int roll, int pins) {
+		for(int i = 0; i < roll; i++)
+			bg.roll(pins);
+	}
+
+	@Test
+	public void rollASpare() {
+		bg.roll(5);
+		bg.roll(5);
+		rollMany(18,4);
+		assertEquals(86,bg.score());
+	}
+	
+	@Test
+	public void midGmeRollASpare() {
+		rollMany(10,4);
+		bg.roll(5);
+		bg.roll(5);
+		rollMany(8,4);
+		assertEquals(86,bg.score());
+	}
+
+
+
+}
