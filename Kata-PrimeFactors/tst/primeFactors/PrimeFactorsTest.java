@@ -51,4 +51,9 @@ public class PrimeFactorsTest {
 	public void factorsOf8() {
 		assertEquals(createList(2,2,2), PrimeFactors.calculate(8));
 	}
+
+	@Test
+	public void factorsOf9() {
+		assertEquals(createList(3,3), PrimeFactors.calculate(9));
+	}
 }
