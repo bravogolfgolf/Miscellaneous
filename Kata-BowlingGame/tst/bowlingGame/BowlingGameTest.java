@@ -73,4 +73,17 @@ public class BowlingGameTest {
 		rollMany(12,4);
 		assertEquals(88,bg.score());
 	}
+	
+	@Test
+	public void strikeRolled() {
+		bg.roll(6);
+		bg.roll(3);
+		bg.roll(10);
+		bg.roll(5);
+		bg.roll(4);
+		bg.roll(3);
+		bg.roll(6);
+		rollMany(12,4);
+		assertEquals(97,bg.score());
+	}
 }
