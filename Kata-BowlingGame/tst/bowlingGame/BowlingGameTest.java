@@ -84,6 +84,6 @@ public class BowlingGameTest {
 		bg.roll(3);
 		bg.roll(6);
 		rollMany(12,4);
-		assertEquals(97,bg.score());
+		assertEquals(94,bg.score());
 	}
 }
