@@ -120,4 +120,10 @@ public class BowlingGameTest {
 		rollMany(12,10);
 		assertEquals(300,bg.score());
 	}
+
+	@Test
+	public void allSpareGame() {
+		rollMany(21,5);
+		assertEquals(150,bg.score());
+	}
 }
