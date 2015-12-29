@@ -13,13 +13,8 @@ public class PrimeFactorsTest {
 	}
 
 	@Test
-	public void factorsOf0() {
-		assertEquals(createList(), PrimeFactors.calculate(0));
-	}
-
-	@Test
 	public void factorsOf1() {
-		assertEquals(createList(1), PrimeFactors.calculate(1));
+		assertEquals(createList(), PrimeFactors.calculate(1));
 	}
 
 	@Test
