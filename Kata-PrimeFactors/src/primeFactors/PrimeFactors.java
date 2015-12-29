@@ -16,6 +16,10 @@ public class PrimeFactors {
 				list.add(3);
 				number = number / 3;				
 			}
+			if(number % 5 == 0) {
+				list.add(5);
+				number = number / 5;				
+			}
 			if(number > 1)
 				list.add(number);
 		}
