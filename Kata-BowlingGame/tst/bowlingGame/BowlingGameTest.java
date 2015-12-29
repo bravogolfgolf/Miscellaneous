@@ -86,4 +86,33 @@ public class BowlingGameTest {
 		rollMany(12,4);
 		assertEquals(94,bg.score());
 	}
+	
+	@Test
+	public void strikeRolledwithSpare() {
+		bg.roll(6);
+		bg.roll(3);
+		bg.roll(10);
+		bg.roll(6);
+		bg.roll(4);
+		bg.roll(3);
+		bg.roll(6);
+		rollMany(12,4);
+		assertEquals(99,bg.score());
+	}
+
+	@Test
+	public void strikeRolledlast() {
+		bg.roll(6);
+		bg.roll(3);
+		bg.roll(5);
+		bg.roll(4);
+		bg.roll(3);
+		bg.roll(6);
+		rollMany(12,4);
+		bg.roll(10);
+		bg.roll(2);
+		bg.roll(6);
+		assertEquals(93,bg.score());
+	}
+
 }

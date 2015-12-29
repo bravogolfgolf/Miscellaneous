@@ -11,22 +11,22 @@ public class BowlingGame {
 
 	public int score(){
 		int total = 0;
-		for(int i = 0; i < scoreSheet.length - 1;)
-			if(scoreSheet[i] == 10) {
-				total = total + 10 + scoreSheet[i+1] + scoreSheet[i+2];
-				i = i + 1;
-			}
+			for(int i = 0, j = 0; j < 10; j++) {
+				if(scoreSheet[i] == 10) {
+					total = total + 10 + scoreSheet[i+1] + scoreSheet[i+2];
+					i = i + 1;
+				}
 
-			else if (scoreSheet[i] + scoreSheet[i+1] == 10) {
-				total = total + 10 + scoreSheet[i+2];
-				i = i + 2;
-			}
+				else if (scoreSheet[i] + scoreSheet[i+1] == 10) {
+					total = total + 10 + scoreSheet[i+2];
+					i = i + 2;
+				}
 
-			else {
-				total= total + scoreSheet[i] + scoreSheet[i+1];
-				i = i + 2;				
+				else {
+					total= total + scoreSheet[i] + scoreSheet[i+1];
+					i = i + 2;				
+				}
 			}
 		return total;
 	}
-
 }
