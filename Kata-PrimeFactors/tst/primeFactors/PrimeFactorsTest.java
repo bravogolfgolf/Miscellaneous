@@ -129,5 +129,28 @@ public class PrimeFactorsTest {
 	public void factorsOf25() {
 		assertEquals(createList(5,5), PrimeFactors.calculate(25));
 	}
+	@Test
+	public void factorsOf26() {
+		assertEquals(createList(2,13), PrimeFactors.calculate(26));
+	}
+
+	@Test
+	public void factorsOf27() {
+		assertEquals(createList(3,3,3), PrimeFactors.calculate(27));
+	}
+
+	@Test
+	public void factorsOf125() {
+		assertEquals(createList(5,5,5), PrimeFactors.calculate(125));
+	}
+
+	@Test
+	public void factorsOf343() {
+		assertEquals(createList(7,7,7), PrimeFactors.calculate(343));
+	}
 	
+	@Test
+	public void factorsOf2147483647() {
+		assertEquals(createList(2147483647), PrimeFactors.calculate(2147483647));
+	}
 }
