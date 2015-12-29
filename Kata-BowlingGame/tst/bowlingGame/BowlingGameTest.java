@@ -59,4 +59,18 @@ public class BowlingGameTest {
 		rollMany(6,4);
 		assertEquals(82,bg.score());
 	}
+	
+	@Test
+	public void tensAndSpareRolled() {
+		bg.roll(6);
+		bg.roll(3);
+		bg.roll(7);
+		bg.roll(2);
+		bg.roll(6);
+		bg.roll(4);
+		bg.roll(3);
+		bg.roll(6);
+		rollMany(12,4);
+		assertEquals(88,bg.score());
+	}
 }
