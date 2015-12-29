@@ -126,4 +126,19 @@ public class BowlingGameTest {
 		rollMany(21,5);
 		assertEquals(150,bg.score());
 	}
+	
+	@Test
+	public void multiStrikeAndSpareGame() {
+		bg.roll(10);
+		bg.roll(6);
+		bg.roll(4);
+		bg.roll(5);
+		bg.roll(5);
+		bg.roll(10);		
+		rollMany(10,4);
+		bg.roll(10);
+		bg.roll(6);
+		bg.roll(4);
+		assertEquals(133,bg.score());
+	}
 }
