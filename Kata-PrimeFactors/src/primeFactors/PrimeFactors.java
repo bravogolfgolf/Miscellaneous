@@ -2,27 +2,13 @@ package primeFactors;
 
 import java.util.*;
 
-
 public class PrimeFactors {
 
 	public static List<Integer> calculate(int number) {
 		List<Integer> list = new ArrayList<Integer>();
-		if(number > 1) {
-			while(number % 2 == 0) {
-				list.add(2);
-				number = number / 2;				
-			}
-			if(number % 3 == 0) {
-				list.add(3);
-				number = number / 3;				
-			}
-			if(number % 5 == 0) {
-				list.add(5);
-				number = number / 5;				
-			}
-			if(number > 1)
-				list.add(number);
-		}
+		for(int divisor = 2; number > 1; divisor++)
+			for(;number % divisor == 0; number = number / divisor)
+				list.add(divisor);
 		return list;
 	}
 }
