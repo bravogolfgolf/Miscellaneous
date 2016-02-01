@@ -1,36 +1,42 @@
 package calculetteIR;
 
+import java.util.LinkedHashMap;
+import java.util.Map;
+
 public class CalculetteIR {
 
-	private static final double LEVEL_1_RATE = 0.0;
-	private static final int LEVEL_1_MINIMUM_AMOUNT = 0;
+	private static final Double LEVEL_1_RATE = 0.0;
+	private static final Double LEVEL_1_MINIMUM_AMOUNT = 0.0;
+	private static final Double LEVEL_2_RATE = .14;
+	private static final Double LEVEL_2_MINIMUM_AMOUNT = 9690.0;
+	private static final Double LEVEL_3_RATE = .30;
+	private static final Double LEVEL_3_MINIMUM_AMOUNT = 26764.0;
 
-	private static final double LEVEL_2_RATE = .14;
-	private static final int LEVEL_2_MINIMUM_AMOUNT = 9690;
-
-	private static final double LEVEL_3_RATE = .30;
-	private static final int LEVEL_3_MINIMUM_AMOUNT = 26764;
-
+	Map<Double, Double> taxTable = new LinkedHashMap<Double, Double>();
 
 	public double calculate(int income) {
 		double tax = 0.0;
 		
-		if (income > LEVEL_3_MINIMUM_AMOUNT){
-			tax +=  (income - LEVEL_3_MINIMUM_AMOUNT) * LEVEL_3_RATE;
-			income -= income - LEVEL_3_MINIMUM_AMOUNT;
-		}
+		createTaxTable();
 		
-		if (income > LEVEL_2_MINIMUM_AMOUNT){
-			tax +=  (income - LEVEL_2_MINIMUM_AMOUNT) * LEVEL_2_RATE;
-			income -= income - LEVEL_2_MINIMUM_AMOUNT;
+		for(Map.Entry<Double, Double> entry : taxTable.entrySet()) {
+			Double levelRate = 0.0;
+			Double levelMinimumAmount = 0.0;
+
+			levelRate = entry.getKey();
+			levelMinimumAmount = entry.getValue();
+
+			if (income > levelMinimumAmount){
+				tax +=  (income - levelMinimumAmount) * levelRate;
+				income -= income - levelMinimumAmount;
+			}
 		}
-		
-		if (income > LEVEL_1_MINIMUM_AMOUNT){
-			tax +=  (income - LEVEL_1_MINIMUM_AMOUNT) * LEVEL_1_RATE;
-			income -= income - LEVEL_1_MINIMUM_AMOUNT;
-		}
-		
 		return tax;
 	}
 
+	private void createTaxTable() {
+		taxTable.put(LEVEL_3_RATE, LEVEL_3_MINIMUM_AMOUNT);
+		taxTable.put(LEVEL_2_RATE, LEVEL_2_MINIMUM_AMOUNT);
+		taxTable.put(LEVEL_1_RATE, LEVEL_1_MINIMUM_AMOUNT);
+	}
 }
