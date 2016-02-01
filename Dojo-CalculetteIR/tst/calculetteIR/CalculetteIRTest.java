@@ -9,15 +9,15 @@ public class CalculetteIRTest {
 	@Test
 	public void testLevelLessThan9690() {
 		CalculetteIR calculater = new CalculetteIR();
-		int result = calculater.calculate(1000);
-		assertEquals(0, result);
+		double result = calculater.calculate(1000);
+		assertEquals(0.0, result,0);
 
 	}
 	@Test
 	public void testLevelLessThan26764() {
 		CalculetteIR calculater = new CalculetteIR();
-		int result = calculater.calculate(25000);
-		assertEquals(2143, result);
+		double result = calculater.calculate(25000);
+		assertEquals(2143.40, result,0);
 
 	}
 
