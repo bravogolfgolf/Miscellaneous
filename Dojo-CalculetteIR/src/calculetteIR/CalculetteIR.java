@@ -6,29 +6,29 @@ import java.util.Map;
 public class CalculetteIR {
 
 	private static final Double LEVEL_1_RATE = 0.0;
-	private static final Double LEVEL_1_MINIMUM_AMOUNT = 0.0;
+	private static final Integer LEVEL_1_MINIMUM_AMOUNT = 0;
 	private static final Double LEVEL_2_RATE = .14;
-	private static final Double LEVEL_2_MINIMUM_AMOUNT = 9690.0;
+	private static final Integer LEVEL_2_MINIMUM_AMOUNT = 9690;
 	private static final Double LEVEL_3_RATE = .30;
-	private static final Double LEVEL_3_MINIMUM_AMOUNT = 26764.0;
+	private static final Integer LEVEL_3_MINIMUM_AMOUNT = 26764;
 	private static final Double LEVEL_4_RATE = .41;
-	private static final Double LEVEL_4_MINIMUM_AMOUNT = 71754.0;
+	private static final Integer LEVEL_4_MINIMUM_AMOUNT = 71754;
 	private static final Double LEVEL_5_RATE = .45;
-	private static final Double LEVEL_5_MINIMUM_AMOUNT = 151956.0;
+	private static final Integer LEVEL_5_MINIMUM_AMOUNT = 151956;
 
-	Map<Double, Double> taxTable = new LinkedHashMap<Double, Double>();
+	Map<Integer, Double> taxTable = new LinkedHashMap<Integer, Double>();
 
 	public double calculate(int income) {
 		double tax = 0.0;
 		
-		createTaxTable();
+		createTaxTableSortedLargestToSmallest();
 		
-		for(Map.Entry<Double, Double> entry : taxTable.entrySet()) {
+		for(Map.Entry<Integer, Double> entry : taxTable.entrySet()) {
+			Integer levelMinimumAmount = 0;
 			Double levelRate = 0.0;
-			Double levelMinimumAmount = 0.0;
 
-			levelRate = entry.getKey();
-			levelMinimumAmount = entry.getValue();
+			levelMinimumAmount = entry.getKey();
+			levelRate = entry.getValue();
 
 			if (income > levelMinimumAmount){
 				tax +=  (income - levelMinimumAmount) * levelRate;
@@ -38,11 +38,11 @@ public class CalculetteIR {
 		return tax;
 	}
 
-	private void createTaxTable() {
-		taxTable.put(LEVEL_5_RATE, LEVEL_5_MINIMUM_AMOUNT);
-		taxTable.put(LEVEL_4_RATE, LEVEL_4_MINIMUM_AMOUNT);
-		taxTable.put(LEVEL_3_RATE, LEVEL_3_MINIMUM_AMOUNT);
-		taxTable.put(LEVEL_2_RATE, LEVEL_2_MINIMUM_AMOUNT);
-		taxTable.put(LEVEL_1_RATE, LEVEL_1_MINIMUM_AMOUNT);
+	private void createTaxTableSortedLargestToSmallest() {
+		taxTable.put(LEVEL_5_MINIMUM_AMOUNT, LEVEL_5_RATE);
+		taxTable.put(LEVEL_4_MINIMUM_AMOUNT, LEVEL_4_RATE);
+		taxTable.put(LEVEL_3_MINIMUM_AMOUNT, LEVEL_3_RATE);
+		taxTable.put(LEVEL_2_MINIMUM_AMOUNT, LEVEL_2_RATE);
+		taxTable.put(LEVEL_1_MINIMUM_AMOUNT, LEVEL_1_RATE);
 	}
 }
