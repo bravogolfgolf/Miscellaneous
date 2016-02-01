@@ -33,4 +33,11 @@ public class CalculetteIRTest {
 		double result = calculater.calculate(150000);
 		assertEquals(47968.22, result,0);
 	}
+	
+	@Test
+	public void testLevelMoreThan151956() {
+		CalculetteIR calculater = new CalculetteIR();
+		double result = calculater.calculate(425000);
+		assertEquals(171639.98, result,0);
+	}
 }
