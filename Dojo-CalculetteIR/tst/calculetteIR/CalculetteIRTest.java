@@ -38,6 +38,6 @@ public class CalculetteIRTest {
 	public void testLevelMoreThan151956() {
 		CalculetteIR calculater = new CalculetteIR();
 		double result = calculater.calculate(425000);
-		assertEquals(171639.98, result,0);
+		assertEquals(171639.98, result,.0000000001);
 	}
 }

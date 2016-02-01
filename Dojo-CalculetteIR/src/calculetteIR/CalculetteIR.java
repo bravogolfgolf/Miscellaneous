@@ -13,6 +13,8 @@ public class CalculetteIR {
 	private static final Double LEVEL_3_MINIMUM_AMOUNT = 26764.0;
 	private static final Double LEVEL_4_RATE = .41;
 	private static final Double LEVEL_4_MINIMUM_AMOUNT = 71754.0;
+	private static final Double LEVEL_5_RATE = .45;
+	private static final Double LEVEL_5_MINIMUM_AMOUNT = 151956.0;
 
 	Map<Double, Double> taxTable = new LinkedHashMap<Double, Double>();
 
@@ -37,6 +39,7 @@ public class CalculetteIR {
 	}
 
 	private void createTaxTable() {
+		taxTable.put(LEVEL_5_RATE, LEVEL_5_MINIMUM_AMOUNT);
 		taxTable.put(LEVEL_4_RATE, LEVEL_4_MINIMUM_AMOUNT);
 		taxTable.put(LEVEL_3_RATE, LEVEL_3_MINIMUM_AMOUNT);
 		taxTable.put(LEVEL_2_RATE, LEVEL_2_MINIMUM_AMOUNT);
