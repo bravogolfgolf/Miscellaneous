@@ -6,6 +6,11 @@ import java.util.Enumeration;
 
 public class Customer 
 {
+	private String name;
+	private Vector<Rental> rentals = new Vector<Rental> ();
+	private double totalAmount;
+	private int frequentRenterPoints;
+	
 	public Customer (String name) {
 		this.name = name;
 	}
@@ -19,8 +24,8 @@ public class Customer
 	}
 
 	public String statement () {
-		double totalAmount = 0;
-		int	frequentRenterPoints = 0;
+		totalAmount = 0;
+		frequentRenterPoints = 0;
 		Enumeration<Rental>rentals = this.rentals.elements ();
 		String result = "Rental Record for " + getName () + "\n";
 
@@ -65,13 +70,11 @@ public class Customer
 	}
 
 
-	private String name;
-	private Vector<Rental> rentals = new Vector<Rental> ();
 	public double getTotal() {
-		return -1;
+		return totalAmount;
 	}
 
 	public int getFrequentRenterPoints() {
-		return -1;
+		return frequentRenterPoints;
 	}
 }
