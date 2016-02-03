@@ -4,15 +4,15 @@ package videostore;
 import java.util.Vector;
 import java.util.Enumeration;
 
-public class Customer 
+public class Statement 
 {
-	private String name;
+	private String customerName;
 	private Vector<Rental> rentals = new Vector<Rental> ();
 	private double totalAmount;
 	private int frequentRenterPoints;
 	
-	public Customer (String name) {
-		this.name = name;
+	public Statement (String name) {
+		this.customerName = name;
 	}
 
 	public void addRental (Rental rental) {
@@ -20,10 +20,10 @@ public class Customer
 	}
 
 	public String getName () {
-		return name;
+		return customerName;
 	}
 
-	public String statement () {
+	public String generate () {
 		totalAmount = 0;
 		frequentRenterPoints = 0;
 		Enumeration<Rental>rentals = this.rentals.elements ();
