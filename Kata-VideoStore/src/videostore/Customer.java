@@ -67,4 +67,11 @@ public class Customer
 
 	private String name;
 	private Vector<Rental> rentals = new Vector<Rental> ();
+	public double getTotal() {
+		return -1;
+	}
+
+	public int getFrequentRenterPoints() {
+		return -1;
+	}
 }
