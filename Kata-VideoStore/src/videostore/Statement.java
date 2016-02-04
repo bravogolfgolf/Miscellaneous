@@ -1,37 +1,39 @@
 package videostore;
 
 
-import java.util.Vector;
-import java.util.Enumeration;
+import java.util.ArrayList;
+import java.util.List;
 
 public class Statement 
 {
 	private String customerName;
-	private Vector<Rental> rentals = new Vector<Rental> ();
+	private List<Rental> rentals = new ArrayList<Rental>();
 	private double totalAmount;
 	private int frequentRenterPoints;
 	
 	public Statement (String name) {
+
 		this.customerName = name;
 	}
 
 	public void addRental (Rental rental) {
-		rentals.addElement (rental);
+
+		rentals.add (rental);
 	}
 
 	public String getName () {
+
 		return customerName;
 	}
 
 	public String generate () {
 		totalAmount = 0;
 		frequentRenterPoints = 0;
-		Enumeration<Rental>rentals = this.rentals.elements ();
+
 		String result = "Rental Record for " + getName () + "\n";
 
-		while (rentals.hasMoreElements ()) {
+		for (Rental each:rentals	) {
 			double thisAmount = 0;
-			Rental each = (Rental)rentals.nextElement ();
 
 			// determines the amount for each line
 			switch (each.getMovie ().getPriceCode ()) {
