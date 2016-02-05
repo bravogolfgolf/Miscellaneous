@@ -47,4 +47,11 @@ public class Movie
         }
         return rentalAmount;
     }
+
+	int determineFrequentRenterPoints(int daysRented) {
+        boolean bonusIsEarned = getPriceCode() == NEW_RELEASE && daysRented > 1;
+        if (bonusIsEarned)
+            return 2;
+        return 1;
+    }
 }
