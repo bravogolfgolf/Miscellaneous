@@ -53,6 +53,14 @@ public class VideoStoreTest {
     }
 
     @Test
+    public void testSingleChildrensRentedForMoreThan3DaysStatementTotals() {
+        statement.addRental(new Rental(children, 4));
+        statement.generate();
+        assertEquals(3, statement.getTotal(), DELTA);
+        assertEquals(1, statement.getFrequentRenterPoints());
+    }
+
+    @Test
     public void testMultipleRegularStatementTotals() {
         statement.addRental(new Rental(regular1, 1));
         statement.addRental(new Rental(regular2, 2));
