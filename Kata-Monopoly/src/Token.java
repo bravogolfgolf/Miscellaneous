@@ -1,13 +1,13 @@
-public class Player {
+public class Token {
 
     private String token = "";
 
 
-    public Player(String token) {
+    public Token(String token) {
         this.token = token;
     }
 
-    public String getPlayerName() {
+    public String getTokenDescription() {
         return token;
     }
 }

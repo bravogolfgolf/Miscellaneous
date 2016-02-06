@@ -8,17 +8,17 @@ public class Game {
             20, 21, 22, 23, 24, 25, 26, 27, 28, 29,
             30, 31, 31, 33, 34, 35, 36, 37, 38, 39));
 
-    private Player token;
+    private Token token;
 
     public int getBoardSize() {
         return properties.size();
     }
 
-    public void addPlayer(Player player) {
-        this.token = player;
+    public void addToken(Token token) {
+        this.token = token;
     }
 
-    public Player getPlayer() {
+    public Token getToken() {
         return token;
     }
 }
