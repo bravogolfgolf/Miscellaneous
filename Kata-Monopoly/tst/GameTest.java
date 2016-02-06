@@ -7,10 +7,13 @@ import static org.junit.Assert.*;
 public class GameTest {
 
     private Game game;
+    private Token token;
 
     @Before
     public void setup() {
         game = new Game();
+        token = new Token("Cat");
+        game.addToken(token);
     }
 
     @Test
@@ -20,22 +23,17 @@ public class GameTest {
 
     @Test
     public void testCreateToken() {
-        Token token = new Token("Cat");
         assertEquals(0, token.getLocation());
         assertEquals("Cat", token.getTokenDescription());
     }
 
     @Test
     public void testAddTokenToGame() {
-        Token token = new Token("Cat");
-        game.addToken(token);
         assertTrue(token.equals(game.getToken()));
     }
 
     @Test
     public void testTokenMovesNoWrap() {
-        Token token = new Token("Cat");
-        game.addToken(token);
         int startingProperty = token.getLocation();
         int number = game.roll();
         int endingProperty = number + startingProperty;
