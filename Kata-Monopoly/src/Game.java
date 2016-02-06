@@ -21,4 +21,20 @@ public class Game {
     public Token getToken() {
         return token;
     }
+
+    public int roll() {
+        int roll = rollTwoDie();
+        moveToken(roll);
+        return roll;
+    }
+
+    private int rollTwoDie() {
+        int die1 = (int)(Math.random()*6) + 1;
+        int die2 = (int)(Math.random()*6) + 1;
+        return die1 + die2;
+    }
+
+    private void moveToken(int number) {
+        token.setLocation(token.getLocation() + number);
+    }
 }
