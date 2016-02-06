@@ -8,13 +8,15 @@ public class GameTest {
 
     public static final int LAST_LOCATION_ON_BOARD = 39;
     private Game game;
-    private Token token;
+    private Token tokenCat;
+    private Token tokenThimble;
 
     @Before
     public void setup() {
         game = new Game();
-        token = new Token("Cat");
-        game.addToken(token);
+        tokenCat = new Token("Cat");
+        tokenThimble = new Token("Thimble");
+        game.addToken(tokenCat);
     }
 
     @Test
@@ -24,30 +26,36 @@ public class GameTest {
 
     @Test
     public void testCreateToken() {
-        assertEquals(0, token.getLocation());
-        assertEquals("Cat", token.getTokenDescription());
+        assertEquals(0, tokenCat.getLocation());
+        assertEquals("Cat", tokenCat.getTokenDescription());
     }
 
     @Test
     public void testAddTokenToGame() {
-        assertTrue(token.equals(game.getToken()));
+        assertTrue(tokenCat.equals(game.getToken()));
+    }
+
+    @Test
+    public void testAddSecondTokenToGame() {
+        game.addToken(tokenThimble);
+        assertEquals(2,game.getNumberOfTokens());
     }
 
     @Test
     public void testTokenMovesNoWrap() {
-        int startingProperty = token.getLocation();
+        int startingProperty = tokenCat.getLocation();
         int number = game.roll();
         int endingProperty = number + startingProperty;
-        assertEquals(endingProperty, token.getLocation());
+        assertEquals(endingProperty, tokenCat.getLocation());
     }
 
     @Test
     public void testTokenMovesAndWraps() {
         int startingProperty = LAST_LOCATION_ON_BOARD;
-        token.setLocation(startingProperty);
+        tokenCat.setLocation(startingProperty);
         int number = game.roll();
-        assertTrue(String.format("Location: %d; Number: %d; Result: %d", startingProperty, number, token.getLocation()),
-                token.getLocation() < LAST_LOCATION_ON_BOARD);
+        assertTrue(String.format("Location: %d; Number: %d; Result: %d", startingProperty, number, tokenCat.getLocation()),
+                tokenCat.getLocation() < LAST_LOCATION_ON_BOARD);
     }
 
 }

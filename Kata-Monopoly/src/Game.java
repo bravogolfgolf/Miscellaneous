@@ -10,6 +10,7 @@ public class Game {
             30, 31, 31, 33, 34, 35, 36, 37, 38, 39));
 
     private Token token;
+    private int numberOfTokens;
 
     public int getBoardSize() {
         return locations.size();
@@ -61,5 +62,9 @@ public class Game {
         int startingLocation = token.getLocation();
         int newLocation = startingLocation + numberRolled;
         token.setLocation(newLocation);
+    }
+
+    public int getNumberOfTokens() {
+        return numberOfTokens;
     }
 }
