@@ -13,4 +13,12 @@ public class Game {
     public int getBoardSize() {
         return properties.size();
     }
+
+    public void addPlayer(Player player) {
+        this.token = player;
+    }
+
+    public Player getPlayer() {
+        return token;
+    }
 }

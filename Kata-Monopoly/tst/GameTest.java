@@ -1,5 +1,4 @@
 import org.junit.Before;
-import org.junit.Ignore;
 import org.junit.Test;
 import static org.junit.Assert.*;
 
@@ -24,10 +23,10 @@ public class GameTest {
         assertEquals("Cat", player.getPlayerName());
     }
 
-//    @Test
-//    public void testMovePlayer(){
-//        game.addPlayer("Cat");
-//        player.roll();
-//        assertEquals(7,player.getCurrentPosition());
-//    }
+    @Test
+    public void testAddPlayerToGame(){
+        Player player = new Player("Cat");
+        game.addPlayer(player);
+        assertTrue(player.equals(game.getPlayer()));
+    }
 }
