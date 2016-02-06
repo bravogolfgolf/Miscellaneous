@@ -6,6 +6,7 @@ import static org.junit.Assert.*;
 
 public class GameTest {
 
+    public static final int LAST_LOCATION_ON_BOARD = 39;
     private Game game;
     private Token token;
 
@@ -37,7 +38,17 @@ public class GameTest {
         int startingProperty = token.getLocation();
         int number = game.roll();
         int endingProperty = number + startingProperty;
-        assertEquals(endingProperty,token.getLocation());
+        assertEquals(endingProperty, token.getLocation());
+    }
+
+    @Test
+    public void testTokenMovesAndWraps() {
+        token.setLocation(LAST_LOCATION_ON_BOARD);
+        int startingProperty = token.getLocation();
+        int number = game.roll();
+        int endingProperty = number + startingProperty;
+        assertEquals(endingProperty, token.getLocation());
+        assertTrue(token.getLocation() < LAST_LOCATION_ON_BOARD);
     }
 
 }
