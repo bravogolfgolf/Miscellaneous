@@ -21,9 +21,9 @@ public class Token {
     }
 
     public int roll() {
-        int roll = rollTwoDie();
-        moveToken(roll);
-        return roll;
+        int numberRolled = rollTwoDie();
+        determineHowToMoveTokenForwardBy(numberRolled);
+        return numberRolled;
     }
 
     private int rollTwoDie() {
@@ -36,7 +36,7 @@ public class Token {
         return (int) (Math.random() * 6) + 1;
     }
 
-    private void moveToken(int numberRolled) {
+    private void determineHowToMoveTokenForwardBy(int numberRolled) {
         if (tokenIsCausedToCircledBoardBy(numberRolled))
             moveTokenForwardByWrappingWith(numberRolled);
         else moveTokenForwardBy(numberRolled);
