@@ -43,20 +43,14 @@ public class Token {
     }
 
     private boolean tokenIsCausedToCircledBoardBy(int numberRolled) {
-        int startingLocation = getLocation();
-        return startingLocation + numberRolled > Game.LAST_LOCATION_ON_BOARD;
+        return location + numberRolled > Game.LAST_LOCATION_ON_BOARD;
     }
 
     private void moveTokenForwardByWrappingWith(int numberRolled) {
-        int startingLocation = getLocation();
-        int sizeOfBoard = Game.SIZE_ON_BOARD;
-        int newLocation = startingLocation + numberRolled - sizeOfBoard;
-        setLocation(newLocation);
+        location += numberRolled - Game.SIZE_ON_BOARD;
     }
 
     private void moveTokenForwardBy(int numberRolled) {
-        int startingLocation = getLocation();
-        int newLocation = startingLocation + numberRolled;
-        setLocation(newLocation);
+        location += numberRolled;
     }
 }
