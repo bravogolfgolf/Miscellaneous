@@ -18,13 +18,13 @@ public class GameTest {
     }
 
     @Test
-    public void testCreatePlayer(){
+    public void testCreateToken(){
         Token token = new Token("Cat");
         assertEquals("Cat", token.getTokenDescription());
     }
 
     @Test
-    public void testAddPlayerToGame(){
+    public void testAddTokenToGame(){
         Token token = new Token("Cat");
         game.addToken(token);
         assertTrue(token.equals(game.getToken()));
