@@ -2,6 +2,7 @@ import java.util.*;
 
 public class Game {
 
+    public static final int LAST_LOCATION_ON_BOARD = 39;
     private List<Integer> locations = new ArrayList<Integer>(Arrays.asList(
             0, 1, 2, 3, 4, 5, 6, 7, 8, 9,
             10, 11, 12, 13, 14, 15, 16, 17, 18, 19,
@@ -29,12 +30,36 @@ public class Game {
     }
 
     private int rollTwoDie() {
-        int die1 = (int)(Math.random()*6) + 1;
-        int die2 = (int)(Math.random()*6) + 1;
+        int die1 = rollDie();
+        int die2 = rollDie();
         return die1 + die2;
     }
 
-    private void moveToken(int number) {
-        token.setLocation(token.getLocation() + number);
+    private int rollDie() {
+        return (int) (Math.random() * 6) + 1;
+    }
+
+    private void moveToken(int numberRolled) {
+        if (tokenIsCausedToCircledBoardBy(numberRolled))
+            moveTokenForwardByWrappingWith(numberRolled);
+        else moveTokenForwardBy(numberRolled);
+    }
+
+    private boolean tokenIsCausedToCircledBoardBy(int numberRolled) {
+        int startingLocation = token.getLocation();
+        return startingLocation + numberRolled > LAST_LOCATION_ON_BOARD;
+    }
+
+    private void moveTokenForwardByWrappingWith(int numberRolled) {
+        int startingLocation = token.getLocation();
+        int sizeOfBoard = locations.size();
+        int newLocation = startingLocation + numberRolled - sizeOfBoard;
+        token.setLocation(newLocation);
+    }
+
+    private void moveTokenForwardBy(int numberRolled) {
+        int startingLocation = token.getLocation();
+        int newLocation = startingLocation + numberRolled;
+        token.setLocation(newLocation);
     }
 }

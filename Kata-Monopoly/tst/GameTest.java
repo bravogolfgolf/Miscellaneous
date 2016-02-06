@@ -43,12 +43,11 @@ public class GameTest {
 
     @Test
     public void testTokenMovesAndWraps() {
-        token.setLocation(LAST_LOCATION_ON_BOARD);
-        int startingProperty = token.getLocation();
+        int startingProperty = LAST_LOCATION_ON_BOARD;
+        token.setLocation(startingProperty);
         int number = game.roll();
-        int endingProperty = number + startingProperty;
-        assertEquals(endingProperty, token.getLocation());
-        assertTrue(token.getLocation() < LAST_LOCATION_ON_BOARD);
+        assertTrue(String.format("Location: %d; Number: %d; Result: %d", startingProperty, number, token.getLocation()),
+                token.getLocation() < LAST_LOCATION_ON_BOARD);
     }
 
 }
