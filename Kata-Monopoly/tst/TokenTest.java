@@ -29,10 +29,10 @@ public class TokenTest {
 
     @Test
     public void testTokenMovesAndWraps() {
-        int startingProperty = Game.LAST_LOCATION_ON_BOARD;
+        int startingProperty = Board.LAST_LOCATION_ON_BOARD;
         tokenCat.setLocation(startingProperty);
         int number = tokenCat.roll();
         assertTrue(String.format("Location: %d; Number: %d; Result: %d", startingProperty, number, tokenCat.getLocation()),
-                tokenCat.getLocation() < Game.LAST_LOCATION_ON_BOARD);
+                tokenCat.getLocation() < Board.LAST_LOCATION_ON_BOARD);
     }
 }
