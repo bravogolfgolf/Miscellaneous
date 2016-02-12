@@ -1,3 +1,5 @@
+package pkg.monopoly;
+
 public class Token {
 
     private String token = "";

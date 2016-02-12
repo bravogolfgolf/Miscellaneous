@@ -1,3 +1,5 @@
+package pkg.monopoly;
+
 import java.util.*;
 
 public class Board {
