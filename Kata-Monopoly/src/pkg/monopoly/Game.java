@@ -6,6 +6,7 @@ import java.io.IOException;
 
 public class Game {
 
+    public static final String HOW_MANY_PLAYERS = "How many player (2-8)?";
     private final BufferedReader reader;
     private final BufferedWriter writer;
 
@@ -15,7 +16,7 @@ public class Game {
     }
 
     public void run() throws IOException {
-        write("How many player (2-8)?");
+        write(HOW_MANY_PLAYERS);
 
     }
 

@@ -31,7 +31,7 @@ public class GameTest {
     }
 
     private void setup(StringBuffer expectedOutput, StringBuffer input) {
-        expectedOutput.append("How many player (2-8)?");
+        expectedOutput.append(Game.HOW_MANY_PLAYERS);
     }
 
 }
