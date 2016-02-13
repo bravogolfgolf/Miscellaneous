@@ -1,7 +1,5 @@
 package pkg.monopoly;
 
-import com.sun.tools.javac.parser.Tokens;
-
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.IOException;
@@ -27,13 +25,13 @@ public class Game {
     }
 
     public void run() throws IOException {
-        setInitialNumberOfPlayers();
+        gameSetup();
 
     }
 
-    private void setInitialNumberOfPlayers() throws IOException {
+    private void gameSetup() throws IOException {
         int numberOfPlayers = determineNumberOfPlayers();
-        randomlyAssignTokensToPlayers(numberOfPlayers);
+        playersChooseTokens(numberOfPlayers);
     }
 
     private int determineNumberOfPlayers() throws IOException {
@@ -54,41 +52,40 @@ public class Game {
         return numberOfPlayers;
     }
 
-    private void write(String s) throws IOException {
-        writer.write(s, 0, s.length());
-        writer.flush();
-    }
-
-    private void randomlyAssignTokensToPlayers(int numberOfPlayers) throws IOException {
-
+    private void playersChooseTokens(int numberOfPlayers) throws IOException {
 
         for (int playerNumber = 1; playerNumber <= numberOfPlayers; playerNumber++) {
-            String line;
-            String tokenLetter;
-            int tokenIndex = -1;
-            boolean unacceptableTokenLetterIsEntered = true;
-            do {
-                write(String.format(SELECT_TOKEN, playerNumber));
-                writeRemainingTokens();
-                line = reader.readLine();
-                tokenLetter = line.toUpperCase();
-
-                for (int counter = 0; counter < tokens.size(); counter++) {
-                    if (tokens.get(counter).getTokenLetter().equals(tokenLetter)) {
-                        tokenIndex = counter;
-                        unacceptableTokenLetterIsEntered = false;
-                    }
-                }
-
-                if (unacceptableTokenLetterIsEntered)
-                    write(INVALID_TOKEN_LETTER);
-
-            } while (unacceptableTokenLetterIsEntered);
-
-            String description = tokens.get(tokenIndex).getDescription();
-            players.add(new Player(description));
-            tokens.remove(tokenIndex);
+            int tokenIndex;
+            tokenIndex = getIndexOfTokenSelectedBy(playerNumber);
+            assignTokenToPlayer(tokenIndex);
+            removeTokenSoFollowingPlayerManyNotChooseIt(tokenIndex);
         }
+    }
+
+    private int getIndexOfTokenSelectedBy(int playerNumber) throws IOException {
+        String line;
+        String tokenLetter;
+        int tokenIndex = -1;
+        boolean unacceptableTokenLetterIsEntered = true;
+
+        do {
+            write(String.format(SELECT_TOKEN, playerNumber));
+            writeRemainingTokens();
+            line = reader.readLine();
+            tokenLetter = line.toUpperCase();
+
+            for (int counter = 0; counter < tokens.size(); counter++) {
+                if (tokens.get(counter).getTokenLetter().equals(tokenLetter)) {
+                    tokenIndex = counter;
+                    unacceptableTokenLetterIsEntered = false;
+                }
+            }
+
+            if (unacceptableTokenLetterIsEntered)
+                write(INVALID_TOKEN_LETTER);
+
+        } while (unacceptableTokenLetterIsEntered);
+        return tokenIndex;
     }
 
     private void writeRemainingTokens() throws IOException {
@@ -101,7 +98,21 @@ public class Game {
         write(remainingTokens);
     }
 
+    private void assignTokenToPlayer(int tokenIndex) {
+        String description = tokens.get(tokenIndex).getDescription();
+        players.add(new Player(description));
+    }
+
+    private void removeTokenSoFollowingPlayerManyNotChooseIt(int tokenIndex) {
+        tokens.remove(tokenIndex);
+    }
+
     public int getNumberOfPlayers() {
         return players.size();
+    }
+
+    private void write(String s) throws IOException {
+        writer.write(s, 0, s.length());
+        writer.flush();
     }
 }
