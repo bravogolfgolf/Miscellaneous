@@ -2,13 +2,13 @@ package pkg.monopoly;
 
 public enum Token {
 
+    Boot("Boot","(B)oot"),
+    Car("Race car","(R)ace car"),
     Cat("Cat","(C)at"),
     Dog("Dog","(D)og"),
-    Car("Race car","(R)ace car"),
-    Thimble("Thimble","(T)himble"),
-    Boot("Boot","(B)oot"),
-    Ship("Battleship","(B)attleship"),
     Hat("Top hat","Top (h)at"),
+    Ship("Battleship","(B)attleship"),
+    Thimble("Thimble","(T)himble"),
     Wheelbarrow("Wheelbarrow","(W)heelbarrow");
 
     private final String description;

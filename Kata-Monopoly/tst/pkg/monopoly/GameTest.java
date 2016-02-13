@@ -13,6 +13,7 @@ public class GameTest {
     public static final String TRY_TO_ADD_TWO_PLAYERS = "2";
     public static final int EXPECTED_NUMBER_OF_PLAYERS = 2;
     public static final int FIRST_PLAYER = 1;
+    public static final int SECOND_PLAYER = 2;
 
     @Test
     public void testCreatePlayersUI() throws IOException {
@@ -47,6 +48,7 @@ public class GameTest {
         expectedOutput.append(Game.HOW_MANY_PLAYERS);
         input.append(line(TRY_TO_ADD_TWO_PLAYERS));
         expectedOutput.append(String.format(Game.SELECT_TOKEN, FIRST_PLAYER));
+        expectedOutput.append(String.format(Game.SELECT_TOKEN, SECOND_PLAYER));
     }
 
     private String line(String input) {

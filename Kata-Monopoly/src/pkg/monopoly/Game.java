@@ -56,9 +56,10 @@ public class Game {
         writer.flush();
     }
 
-    private void randomlyAssignTokensToPlayers(int numberOfPlayers) {
-        for (int counter = 0; counter < numberOfPlayers; counter++) {
+    private void randomlyAssignTokensToPlayers(int numberOfPlayers) throws IOException {
 
+        for (int counter = 1; counter <= numberOfPlayers; counter++) {
+            write(String.format(SELECT_TOKEN, counter));
             int randomNumber = (int) (Math.random() * tokens.size());
             Player player = new Player(tokens.get(randomNumber).getDescription());
             tokens.remove(randomNumber);
