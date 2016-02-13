@@ -1,5 +1,7 @@
 package pkg.monopoly;
 
+import com.sun.tools.javac.parser.Tokens;
+
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.IOException;
@@ -15,7 +17,7 @@ public class Game {
     private final BufferedReader reader;
     private final BufferedWriter writer;
     private List<Token> tokens = new ArrayList<Token>(
-            Arrays.asList(Token.Boot,Token.Car,Token.Cat,Token.Dog,Token.Hat,Token.Ship,Token.Thimble,Token.Wheelbarrow));
+            Arrays.asList(Token.Boot, Token.Car, Token.Cat, Token.Dog, Token.Hat, Token.Ship, Token.Thimble, Token.Wheelbarrow));
     private Set<Player> players = new HashSet<Player>();
 
     public Game(BufferedReader reader, BufferedWriter writer) {
@@ -57,14 +59,31 @@ public class Game {
     }
 
     private void randomlyAssignTokensToPlayers(int numberOfPlayers) throws IOException {
+        String tokenLetter;
+        for (int playerNumber = 1; playerNumber <= numberOfPlayers; playerNumber++) {
+            write(String.format(SELECT_TOKEN, playerNumber));
+            writeRemainingTokens();
 
-        for (int counter = 1; counter <= numberOfPlayers; counter++) {
-            write(String.format(SELECT_TOKEN, counter));
-            int randomNumber = (int) (Math.random() * tokens.size());
-            Player player = new Player(tokens.get(randomNumber).getDescription());
-            tokens.remove(randomNumber);
-            players.add(player);
+            tokenLetter = reader.readLine();
+            for (int counter = 0; counter < tokens.size(); counter++) {
+                if (tokens.get(counter).getTokenLetter().equals(tokenLetter.toUpperCase())) {
+                    String description = tokens.get(counter).getDescription();
+                    players.add(new Player(description));
+                    tokens.remove(counter);
+                }
+            }
+
         }
+    }
+
+    private void writeRemainingTokens() throws IOException {
+        String commaSpace = ", ";
+        String remainingTokens = tokens.get(0).getMenuString();
+        for (int index = 1; index < tokens.size(); index++) {
+            remainingTokens += commaSpace;
+            remainingTokens += tokens.get(index).getMenuString();
+        }
+        write(remainingTokens);
     }
 
     public int getNumberOfPlayers() {

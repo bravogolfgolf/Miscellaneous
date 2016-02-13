@@ -30,11 +30,11 @@ public class GameTest {
         OutputStreamWriter outputStreamWriter = new OutputStreamWriter(outputStream);
         BufferedWriter writer = new BufferedWriter(outputStreamWriter);
 
-        Game game = new Game(reader,writer);
+        Game game = new Game(reader, writer);
         game.run();
 
-        assertEquals(expectedOutput.toString(),outputStream.toString());
-        assertEquals(EXPECTED_NUMBER_OF_PLAYERS,game.getNumberOfPlayers());
+        assertEquals(expectedOutput.toString(), outputStream.toString());
+        assertEquals(EXPECTED_NUMBER_OF_PLAYERS, game.getNumberOfPlayers());
 
     }
 
@@ -48,11 +48,16 @@ public class GameTest {
         expectedOutput.append(Game.HOW_MANY_PLAYERS);
         input.append(line(TRY_TO_ADD_TWO_PLAYERS));
         expectedOutput.append(String.format(Game.SELECT_TOKEN, FIRST_PLAYER));
+        expectedOutput.append("(B)oot, (R)ace car, (C)at, (D)og, Top (h)at, Battle(s)hip, (T)himble, (W)heelbarrow");
+        input.append(line("B"));
         expectedOutput.append(String.format(Game.SELECT_TOKEN, SECOND_PLAYER));
+        expectedOutput.append("(R)ace car, (C)at, (D)og, Top (h)at, Battle(s)hip, (T)himble, (W)heelbarrow");
+        input.append(line("s"));
+
     }
 
     private String line(String input) {
-        return String.format("%s%n",input);
+        return String.format("%s%n", input);
     }
 
 }
