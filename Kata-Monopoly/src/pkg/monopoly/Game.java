@@ -3,6 +3,7 @@ package pkg.monopoly;
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.IOException;
+import java.util.*;
 
 public class Game {
 
@@ -12,7 +13,9 @@ public class Game {
     public static final int MAXIMUM_NUMBER_OF_PLAYERS = 8;
     private final BufferedReader reader;
     private final BufferedWriter writer;
+    private List<String> tokens = new ArrayList<String>(Arrays.asList("Cat", "Dog","Car","Thimble","Boot","Ship","Hat","Wheelbarrow"));
     private int numberOfPlayers = 0;
+    private Set<Player> players = new HashSet<Player>();
 
     public Game(BufferedReader reader, BufferedWriter writer) {
         this.reader = reader;
@@ -25,27 +28,32 @@ public class Game {
     }
 
     public int getNumberOfPlayers() {
-        return numberOfPlayers;
+        return players.size();
     }
 
     private void setInitialNumberOfPlayers() throws IOException {
         String line;
-        int players;
+        int numberOfPlayers;
         boolean unacceptableNumberOfPlayersEntered = true;
 
         do {
             write(HOW_MANY_PLAYERS);
             line = reader.readLine();
-            players = Integer.parseInt(line);
-            if (players >= MINIMUM_NUMBER_OF_PLAYERS && players <= MAXIMUM_NUMBER_OF_PLAYERS) {
-                numberOfPlayers = players;
+            numberOfPlayers = Integer.parseInt(line);
+            if (numberOfPlayers >= MINIMUM_NUMBER_OF_PLAYERS && numberOfPlayers <= MAXIMUM_NUMBER_OF_PLAYERS) {
+                this.numberOfPlayers = numberOfPlayers;
                 unacceptableNumberOfPlayersEntered = false;
             } else {
                 write(INVALID_NUMBER_OF_PLAYERS);
             }
         } while (unacceptableNumberOfPlayersEntered);
 
-
+        for (int counter = 0; counter < numberOfPlayers; counter++) {
+            int randomNumber = (int) (Math.random() * tokens.size());
+            Player player = new Player(tokens.get(randomNumber));
+            tokens.remove(randomNumber);
+            players.add(player);
+        }
 
     }
 
