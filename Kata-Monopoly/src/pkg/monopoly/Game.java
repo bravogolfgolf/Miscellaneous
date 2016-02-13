@@ -19,13 +19,18 @@ public class Game {
     public void run() throws IOException {
         String line;
         int players;
-        write(HOW_MANY_PLAYERS);
-        line = reader.readLine();
-        players = Integer.parseInt(line);
-        if (players >= 2 && players <= 8) {
-        } else {
-            write(INVALID_NUMBER_OF_PLAYERS);
-        }
+        boolean acceptableNumberOfPlayersEntered = false;
+
+        do{
+           write(HOW_MANY_PLAYERS);
+           line = reader.readLine();
+           players = Integer.parseInt(line);
+           if (players >= 2 && players <= 8) {
+               acceptableNumberOfPlayersEntered = true;
+           } else {
+               write(INVALID_NUMBER_OF_PLAYERS);
+           }
+       }while(!acceptableNumberOfPlayersEntered);
     }
 
     private void write(String s) throws IOException {

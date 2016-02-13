@@ -8,6 +8,10 @@ import static org.junit.Assert.assertEquals;
 
 public class GameTest {
 
+    public static final String TRY_TO_ADD_ONE_PLAYER = "1";
+    public static final String TRY_TO_ADD_NINE_PLAYERS = "9";
+    public static final String TRY_TO_ADD_TWO_PLAYERS = "2";
+
     @Test
     public void testCreatePlayersUI() throws IOException {
         StringBuffer expectedOutput = new StringBuffer();
@@ -32,8 +36,13 @@ public class GameTest {
 
     private void setup(StringBuffer expectedOutput, StringBuffer input) {
         expectedOutput.append(Game.HOW_MANY_PLAYERS);
-        input.append(line("1"));
+        input.append(line(TRY_TO_ADD_ONE_PLAYER));
         expectedOutput.append(Game.INVALID_NUMBER_OF_PLAYERS);
+        expectedOutput.append(Game.HOW_MANY_PLAYERS);
+        input.append(line(TRY_TO_ADD_NINE_PLAYERS));
+        expectedOutput.append(Game.INVALID_NUMBER_OF_PLAYERS);
+        expectedOutput.append(Game.HOW_MANY_PLAYERS);
+        input.append(line(TRY_TO_ADD_TWO_PLAYERS));
     }
 
     private String line(String input) {
