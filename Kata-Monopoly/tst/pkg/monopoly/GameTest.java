@@ -9,7 +9,7 @@ import static org.junit.Assert.assertEquals;
 public class GameTest {
 
     @Test
-    public void testRequestAProperNumberOfPlayersForGame() throws IOException {
+    public void testCreatePlayersUI() throws IOException {
         StringBuffer expectedOutput = new StringBuffer();
         StringBuffer input = new StringBuffer();
         setup(expectedOutput, input);
@@ -32,6 +32,12 @@ public class GameTest {
 
     private void setup(StringBuffer expectedOutput, StringBuffer input) {
         expectedOutput.append(Game.HOW_MANY_PLAYERS);
+        input.append(line("1"));
+        expectedOutput.append(Game.INVALID_NUMBER_OF_PLAYERS);
+    }
+
+    private String line(String input) {
+        return String.format("%s%n",input);
     }
 
 }
