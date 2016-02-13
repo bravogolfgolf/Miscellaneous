@@ -14,8 +14,8 @@ public class TokenTest {
         assertEquals("Dog", Token.Dog.getDescription());
         assertEquals("(D)og", Token.Dog.getMenuString());
 
-        assertEquals("Race car", Token.Racecar.getDescription());
-        assertEquals("(R)ace car", Token.Racecar.getMenuString());
+        assertEquals("Race car", Token.Car.getDescription());
+        assertEquals("(R)ace car", Token.Car.getMenuString());
 
         assertEquals("(T)himble", Token.Thimble.getMenuString());
         assertEquals("(T)himble", Token.Thimble.getMenuString());

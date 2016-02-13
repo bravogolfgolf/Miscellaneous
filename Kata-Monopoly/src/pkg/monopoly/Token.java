@@ -4,7 +4,7 @@ public enum Token {
 
     Cat("Cat","(C)at"),
     Dog("Dog","(D)og"),
-    Racecar("Race car","(R)ace car"),
+    Car("Race car","(R)ace car"),
     Thimble("Thimble","(T)himble"),
     Boot("Boot","(B)oot"),
     Ship("Battleship","(B)attleship"),

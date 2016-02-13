@@ -13,7 +13,8 @@ public class Game {
     public static final int MAXIMUM_NUMBER_OF_PLAYERS = 8;
     private final BufferedReader reader;
     private final BufferedWriter writer;
-    private List<String> tokens = new ArrayList<String>(Arrays.asList("Cat", "Dog","Race car","Thimble","Boot","Ship","Top hat","Wheelbarrow"));
+    private List<Token> tokens = new ArrayList<Token>(
+            Arrays.asList(Token.Boot,Token.Car,Token.Cat,Token.Dog,Token.Hat,Token.Ship,Token.Thimble,Token.Wheelbarrow));
     private Set<Player> players = new HashSet<Player>();
 
     public Game(BufferedReader reader, BufferedWriter writer) {
@@ -57,7 +58,7 @@ public class Game {
     private void randomlyAssignTokensToPlayers(int numberOfPlayers) {
         for (int counter = 0; counter < numberOfPlayers; counter++) {
             int randomNumber = (int) (Math.random() * tokens.size());
-            Player player = new Player(tokens.get(randomNumber));
+            Player player = new Player(tokens.get(randomNumber).getDescription());
             tokens.remove(randomNumber);
             players.add(player);
         }
