@@ -14,7 +14,6 @@ public class Game {
     private final BufferedReader reader;
     private final BufferedWriter writer;
     private List<String> tokens = new ArrayList<String>(Arrays.asList("Cat", "Dog","Car","Thimble","Boot","Ship","Hat","Wheelbarrow"));
-    private int numberOfPlayers = 0;
     private Set<Player> players = new HashSet<Player>();
 
     public Game(BufferedReader reader, BufferedWriter writer) {
@@ -27,11 +26,12 @@ public class Game {
 
     }
 
-    public int getNumberOfPlayers() {
-        return players.size();
+    private void setInitialNumberOfPlayers() throws IOException {
+        int numberOfPlayers = determineNumberOfPlayers();
+        randomlyAssignTokensToPlayers(numberOfPlayers);
     }
 
-    private void setInitialNumberOfPlayers() throws IOException {
+    private int determineNumberOfPlayers() throws IOException {
         String line;
         int numberOfPlayers;
         boolean unacceptableNumberOfPlayersEntered = true;
@@ -41,24 +41,29 @@ public class Game {
             line = reader.readLine();
             numberOfPlayers = Integer.parseInt(line);
             if (numberOfPlayers >= MINIMUM_NUMBER_OF_PLAYERS && numberOfPlayers <= MAXIMUM_NUMBER_OF_PLAYERS) {
-                this.numberOfPlayers = numberOfPlayers;
                 unacceptableNumberOfPlayersEntered = false;
             } else {
                 write(INVALID_NUMBER_OF_PLAYERS);
             }
         } while (unacceptableNumberOfPlayersEntered);
+        return numberOfPlayers;
+    }
 
+    private void write(String s) throws IOException {
+        writer.write(s, 0, s.length());
+        writer.flush();
+    }
+
+    private void randomlyAssignTokensToPlayers(int numberOfPlayers) {
         for (int counter = 0; counter < numberOfPlayers; counter++) {
             int randomNumber = (int) (Math.random() * tokens.size());
             Player player = new Player(tokens.get(randomNumber));
             tokens.remove(randomNumber);
             players.add(player);
         }
-
     }
 
-    private void write(String s) throws IOException {
-        writer.write(s, 0, s.length());
-        writer.flush();
+    public int getNumberOfPlayers() {
+        return players.size();
     }
 }
