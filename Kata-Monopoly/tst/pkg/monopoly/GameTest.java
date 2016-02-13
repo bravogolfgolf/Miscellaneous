@@ -11,6 +11,7 @@ public class GameTest {
     public static final String TRY_TO_ADD_ONE_PLAYER = "1";
     public static final String TRY_TO_ADD_NINE_PLAYERS = "9";
     public static final String TRY_TO_ADD_TWO_PLAYERS = "2";
+    public static final int EXPECTED_NUMBER_OF_PLAYERS = 2;
 
     @Test
     public void testCreatePlayersUI() throws IOException {
@@ -31,6 +32,7 @@ public class GameTest {
         game.run();
 
         assertEquals(expectedOutput.toString(),outputStream.toString());
+        assertEquals(EXPECTED_NUMBER_OF_PLAYERS,game.getNumberOfPlayers());
 
     }
 

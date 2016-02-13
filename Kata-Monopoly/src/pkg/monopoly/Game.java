@@ -17,24 +17,32 @@ public class Game {
     }
 
     public void run() throws IOException {
+        determineNumberOfPlayers();
+    }
+
+    private void determineNumberOfPlayers() throws IOException {
         String line;
         int players;
-        boolean acceptableNumberOfPlayersEntered = false;
+        boolean unacceptableNumberOfPlayersEntered = true;
 
         do{
            write(HOW_MANY_PLAYERS);
            line = reader.readLine();
            players = Integer.parseInt(line);
            if (players >= 2 && players <= 8) {
-               acceptableNumberOfPlayersEntered = true;
+               unacceptableNumberOfPlayersEntered = false;
            } else {
                write(INVALID_NUMBER_OF_PLAYERS);
            }
-       }while(!acceptableNumberOfPlayersEntered);
+       }while(unacceptableNumberOfPlayersEntered);
     }
 
     private void write(String s) throws IOException {
         writer.write(s, 0, s.length());
         writer.flush();
+    }
+
+    public int getNumberOfPlayers() {
+        return 0;
     }
 }
