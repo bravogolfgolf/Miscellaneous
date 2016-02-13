@@ -10,6 +10,7 @@ public class Game {
     public static final String INVALID_NUMBER_OF_PLAYERS = "Please select 2 to 8 players.";
     private final BufferedReader reader;
     private final BufferedWriter writer;
+    private int numberOfPlayers = 0;
 
     public Game(BufferedReader reader, BufferedWriter writer) {
         this.reader = reader;
@@ -17,10 +18,10 @@ public class Game {
     }
 
     public void run() throws IOException {
-        determineNumberOfPlayers();
+        setInitialNumberOfPlayers();
     }
 
-    private void determineNumberOfPlayers() throws IOException {
+    private void setInitialNumberOfPlayers() throws IOException {
         String line;
         int players;
         boolean unacceptableNumberOfPlayersEntered = true;
@@ -30,6 +31,7 @@ public class Game {
            line = reader.readLine();
            players = Integer.parseInt(line);
            if (players >= 2 && players <= 8) {
+               numberOfPlayers = players;
                unacceptableNumberOfPlayersEntered = false;
            } else {
                write(INVALID_NUMBER_OF_PLAYERS);
@@ -43,6 +45,6 @@ public class Game {
     }
 
     public int getNumberOfPlayers() {
-        return 0;
+        return numberOfPlayers;
     }
 }
