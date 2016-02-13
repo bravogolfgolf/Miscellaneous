@@ -12,6 +12,7 @@ public class Game {
     public static final String HOW_MANY_PLAYERS = "How many player (2-8)?";
     public static final String INVALID_NUMBER_OF_PLAYERS = "Please select 2 to 8 players.";
     public static final String SELECT_TOKEN = "Select token for player %d.";
+    public static final String INVALID_TOKEN_LETTER = "Please select a valid letter corresponding to one of the remaining tokens.";
     public static final int MINIMUM_NUMBER_OF_PLAYERS = 2;
     public static final int MAXIMUM_NUMBER_OF_PLAYERS = 8;
     private final BufferedReader reader;
@@ -59,20 +60,34 @@ public class Game {
     }
 
     private void randomlyAssignTokensToPlayers(int numberOfPlayers) throws IOException {
-        String tokenLetter;
+
+
         for (int playerNumber = 1; playerNumber <= numberOfPlayers; playerNumber++) {
-            write(String.format(SELECT_TOKEN, playerNumber));
-            writeRemainingTokens();
+            String line;
+            String tokenLetter;
+            int tokenIndex = -1;
+            boolean unacceptableTokenLetterIsEntered = true;
+            do {
+                write(String.format(SELECT_TOKEN, playerNumber));
+                writeRemainingTokens();
+                line = reader.readLine();
+                tokenLetter = line.toUpperCase();
 
-            tokenLetter = reader.readLine();
-            for (int counter = 0; counter < tokens.size(); counter++) {
-                if (tokens.get(counter).getTokenLetter().equals(tokenLetter.toUpperCase())) {
-                    String description = tokens.get(counter).getDescription();
-                    players.add(new Player(description));
-                    tokens.remove(counter);
+                for (int counter = 0; counter < tokens.size(); counter++) {
+                    if (tokens.get(counter).getTokenLetter().equals(tokenLetter)) {
+                        tokenIndex = counter;
+                        unacceptableTokenLetterIsEntered = false;
+                    }
                 }
-            }
 
+                if (unacceptableTokenLetterIsEntered)
+                    write(INVALID_TOKEN_LETTER);
+
+            } while (unacceptableTokenLetterIsEntered);
+
+            String description = tokens.get(tokenIndex).getDescription();
+            players.add(new Player(description));
+            tokens.remove(tokenIndex);
         }
     }
 

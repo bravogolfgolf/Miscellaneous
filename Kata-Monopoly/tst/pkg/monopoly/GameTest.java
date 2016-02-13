@@ -52,6 +52,10 @@ public class GameTest {
         input.append(line("B"));
         expectedOutput.append(String.format(Game.SELECT_TOKEN, SECOND_PLAYER));
         expectedOutput.append("(R)ace car, (C)at, (D)og, Top (h)at, Battle(s)hip, (T)himble, (W)heelbarrow");
+        input.append(line("x"));
+        expectedOutput.append(Game.INVALID_TOKEN_LETTER);
+        expectedOutput.append(String.format(Game.SELECT_TOKEN, SECOND_PLAYER));
+        expectedOutput.append("(R)ace car, (C)at, (D)og, Top (h)at, Battle(s)hip, (T)himble, (W)heelbarrow");
         input.append(line("s"));
 
     }
