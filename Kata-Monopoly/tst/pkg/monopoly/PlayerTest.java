@@ -38,4 +38,5 @@ public class PlayerTest {
         assertTrue(String.format("Location: %d; Number: %d; Result: %d", startingProperty, number, player1.getTokenLocation()),
                 player1.getTokenLocation() < Board.LAST_LOCATION_ON_BOARD);
     }
+
 }

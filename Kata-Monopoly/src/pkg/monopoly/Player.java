@@ -1,8 +1,8 @@
 package pkg.monopoly;
 
 public class Player {
-
     private String token = "";
+
     private int location;
 
     public Player(String token) {
@@ -54,5 +54,16 @@ public class Player {
 
     private void moveTokenForwardBy(int numberRolled) {
         location += numberRolled;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+
+        Player player = (Player) o;
+
+        return location == player.location && token.equals(player.token);
+
     }
 }

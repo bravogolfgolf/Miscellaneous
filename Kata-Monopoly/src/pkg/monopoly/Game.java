@@ -17,7 +17,7 @@ public class Game {
     private final BufferedWriter writer;
     private List<Token> tokens = new ArrayList<Token>(
             Arrays.asList(Token.Boot, Token.Car, Token.Cat, Token.Dog, Token.Hat, Token.Ship, Token.Thimble, Token.Wheelbarrow));
-    private Set<Player> players = new HashSet<Player>();
+    private List<Player> players = new ArrayList<Player>();
 
     public Game(BufferedReader reader, BufferedWriter writer) {
         this.reader = reader;
@@ -32,6 +32,7 @@ public class Game {
     private void gameSetup() throws IOException {
         int numberOfPlayers = determineNumberOfPlayers();
         playersChooseTokens(numberOfPlayers);
+        randomizeStartingOrder();
     }
 
     private int determineNumberOfPlayers() throws IOException {
@@ -107,8 +108,16 @@ public class Game {
         tokens.remove(tokenIndex);
     }
 
+    private void randomizeStartingOrder() {
+        Collections.shuffle(players);
+    }
+
     public int getNumberOfPlayers() {
         return players.size();
+    }
+
+    public Player getPlayer(int index) {
+        return players.get(index);
     }
 
     private void write(String s) throws IOException {
