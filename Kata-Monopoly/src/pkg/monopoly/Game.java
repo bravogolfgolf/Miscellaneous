@@ -13,7 +13,7 @@ public class Game {
     public static final int MAXIMUM_NUMBER_OF_PLAYERS = 8;
     private final BufferedReader reader;
     private final BufferedWriter writer;
-    private List<String> tokens = new ArrayList<String>(Arrays.asList("Cat", "Dog","Car","Thimble","Boot","Ship","Hat","Wheelbarrow"));
+    private List<String> tokens = new ArrayList<String>(Arrays.asList("Cat", "Dog","Race car","Thimble","Boot","Ship","Top hat","Wheelbarrow"));
     private Set<Player> players = new HashSet<Player>();
 
     public Game(BufferedReader reader, BufferedWriter writer) {

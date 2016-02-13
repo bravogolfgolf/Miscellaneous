@@ -8,29 +8,29 @@ public class TokenTest {
 
     @Test
     public void testTokensCreated() {
-        assertEquals("Cat", Token.Cat.toString());
+        assertEquals("Cat", Token.Cat.getDescription());
         assertEquals("(C)at", Token.Cat.getMenuString());
 
-        assertEquals("Dog", Token.Dog.toString());
+        assertEquals("Dog", Token.Dog.getDescription());
         assertEquals("(D)og", Token.Dog.getMenuString());
 
-        assertEquals("Racecar", Token.Racecar.toString());
-        assertEquals("(R)acecar", Token.Racecar.getMenuString());
+        assertEquals("Race car", Token.Racecar.getDescription());
+        assertEquals("(R)ace car", Token.Racecar.getMenuString());
 
-        assertEquals("Cat", Token.Cat.toString());
-        assertEquals("(C)at", Token.Cat.getMenuString());
+        assertEquals("(T)himble", Token.Thimble.getMenuString());
+        assertEquals("(T)himble", Token.Thimble.getMenuString());
 
-        assertEquals("Cat", Token.Cat.toString());
-        assertEquals("(C)at", Token.Cat.getMenuString());
+        assertEquals("Boot", Token.Boot.getDescription());
+        assertEquals("(B)oot", Token.Boot.getMenuString());
 
-        assertEquals("Cat", Token.Cat.toString());
-        assertEquals("(C)at", Token.Cat.getMenuString());
+        assertEquals("Battleship", Token.Ship.getDescription());
+        assertEquals("(B)attleship", Token.Ship.getMenuString());
 
-        assertEquals("Cat", Token.Cat.toString());
-        assertEquals("(C)at", Token.Cat.getMenuString());
+        assertEquals("Top hat", Token.Hat.getDescription());
+        assertEquals("Top (h)at", Token.Hat.getMenuString());
 
-        assertEquals("Cat", Token.Cat.toString());
-        assertEquals("(C)at", Token.Cat.getMenuString());
+        assertEquals("Wheelbarrow", Token.Wheelbarrow.getDescription());
+        assertEquals("(W)heelbarrow", Token.Wheelbarrow.getMenuString());
     }
 
 }
