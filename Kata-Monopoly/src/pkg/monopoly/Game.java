@@ -9,6 +9,7 @@ public class Game {
 
     public static final String HOW_MANY_PLAYERS = "How many player (2-8)?";
     public static final String INVALID_NUMBER_OF_PLAYERS = "Please select 2 to 8 players.";
+    public static final String SELECT_TOKEN = "Select token for player %d.";
     public static final int MINIMUM_NUMBER_OF_PLAYERS = 2;
     public static final int MAXIMUM_NUMBER_OF_PLAYERS = 8;
     private final BufferedReader reader;
@@ -57,6 +58,7 @@ public class Game {
 
     private void randomlyAssignTokensToPlayers(int numberOfPlayers) {
         for (int counter = 0; counter < numberOfPlayers; counter++) {
+
             int randomNumber = (int) (Math.random() * tokens.size());
             Player player = new Player(tokens.get(randomNumber).getDescription());
             tokens.remove(randomNumber);
