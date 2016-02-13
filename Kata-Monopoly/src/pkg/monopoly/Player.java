@@ -1,11 +1,11 @@
 package pkg.monopoly;
 
-public class Token {
+public class Player {
 
     private String token = "";
     private int location;
 
-    public Token(String token) {
+    public Player(String token) {
         this.token = token;
         this.location = 0;
     }
@@ -14,11 +14,11 @@ public class Token {
         return token;
     }
 
-    public int getLocation() {
+    public int getTokenLocation() {
         return location;
     }
 
-    public void setLocation(int location) {
+    public void setTokenLocation(int location) {
         this.location = location;
     }
 
