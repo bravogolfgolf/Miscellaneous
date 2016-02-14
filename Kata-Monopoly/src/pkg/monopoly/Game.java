@@ -15,7 +15,7 @@ public class Game {
     public static final int MAXIMUM_NUMBER_OF_PLAYERS = 8;
     private final BufferedReader reader;
     private final BufferedWriter writer;
-    private List<MenuItems> tokens = new ArrayList<MenuItems>(
+    private List<MenuItems> tokenMenuItems = new ArrayList<MenuItems>(
             Arrays.asList(MenuItems.Boot, MenuItems.Car, MenuItems.Cat, MenuItems.Dog, MenuItems.Hat, MenuItems.Ship, MenuItems.Thimble, MenuItems.Wheelbarrow));
     private List<Player> players = new ArrayList<Player>();
 
@@ -75,8 +75,8 @@ public class Game {
             line = reader.readLine();
             tokenLetter = line.toUpperCase();
 
-            for (int counter = 0; counter < tokens.size(); counter++) {
-                if (tokens.get(counter).getTokenLetter().equals(tokenLetter)) {
+            for (int counter = 0; counter < tokenMenuItems.size(); counter++) {
+                if (tokenMenuItems.get(counter).getTokenLetter().equals(tokenLetter)) {
                     tokenIndex = counter;
                     unacceptableTokenLetterIsEntered = false;
                 }
@@ -91,21 +91,21 @@ public class Game {
 
     private void writeRemainingTokens() throws IOException {
         String commaSpace = ", ";
-        String remainingTokens = tokens.get(0).getMenuString();
-        for (int index = 1; index < tokens.size(); index++) {
+        String remainingTokens = tokenMenuItems.get(0).getMenuString();
+        for (int index = 1; index < tokenMenuItems.size(); index++) {
             remainingTokens += commaSpace;
-            remainingTokens += tokens.get(index).getMenuString();
+            remainingTokens += tokenMenuItems.get(index).getMenuString();
         }
         write(remainingTokens);
     }
 
     private void assignTokenToPlayer(int tokenIndex) {
-        String description = tokens.get(tokenIndex).getDescription();
-        players.add(new Player(description));
+        Token token = new Token(tokenMenuItems.get(tokenIndex).getDescription());
+        players.add(new Player(token));
     }
 
     private void removeTokenSoFollowingPlayerManyNotChooseIt(int tokenIndex) {
-        tokens.remove(tokenIndex);
+        tokenMenuItems.remove(tokenIndex);
     }
 
     private void randomizeStartingOrder() {

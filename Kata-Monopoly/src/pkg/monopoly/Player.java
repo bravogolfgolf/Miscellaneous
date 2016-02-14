@@ -1,25 +1,22 @@
 package pkg.monopoly;
 
 public class Player {
-    private String token = "";
+    private Token token;
 
-    private int location;
-
-    public Player(String token) {
+    public Player(Token token) {
         this.token = token;
-        this.location = 0;
     }
 
     public String getTokenDescription() {
-        return token;
+        return token.getDescription();
     }
 
     public int getTokenLocation() {
-        return location;
+        return token.getLocation();
     }
 
     public void setTokenLocation(int location) {
-        this.location = location;
+        this.token.setLocation(location);
     }
 
     public int roll() {
@@ -45,15 +42,15 @@ public class Player {
     }
 
     private boolean tokenIsCausedToCircledBoardBy(int numberRolled) {
-        return location + numberRolled > Board.LAST_LOCATION_ON_BOARD;
+        return this.token.getLocation() + numberRolled > Board.LAST_LOCATION_ON_BOARD;
     }
 
     private void moveTokenForwardByWrappingWith(int numberRolled) {
-        location += numberRolled - Board.SIZE_ON_BOARD;
+        this.token.setLocation(this.token.getLocation() + numberRolled - Board.SIZE_ON_BOARD);
     }
 
     private void moveTokenForwardBy(int numberRolled) {
-        location += numberRolled;
+        this.token.setLocation(this.token.getLocation() + numberRolled);
     }
 
     @Override
@@ -63,7 +60,12 @@ public class Player {
 
         Player player = (Player) o;
 
-        return location == player.location && token.equals(player.token);
+        return token != null ? token.equals(player.token) : player.token == null;
 
+    }
+
+    @Override
+    public int hashCode() {
+        return token != null ? token.hashCode() : 0;
     }
 }

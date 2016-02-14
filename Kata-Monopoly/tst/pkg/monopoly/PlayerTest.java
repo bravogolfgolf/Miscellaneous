@@ -12,7 +12,8 @@ public class PlayerTest {
 
     @Before
     public void setup() {
-        player1 = new Player("Cat");
+        Token token = new Token(MenuItems.Cat.getDescription());
+        player1 = new Player(token);
     }
 
     @Test

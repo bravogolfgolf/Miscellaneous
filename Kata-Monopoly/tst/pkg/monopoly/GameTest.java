@@ -105,8 +105,8 @@ public class GameTest {
     }
 
     private boolean playersMatch(Game game) {
-        Player player1 = new Player("Boot");
-        Player player2 = new Player("Top hat");
+        Player player1 = new Player(new Token("Boot"));
+        Player player2 = new Player(new Token("Top hat"));
         final int FIRST_PLAYER = 0;
         final int SECOND_PLAYER = 1;
         return (player1.equals(game.getPlayer(FIRST_PLAYER)) && player2.equals(game.getPlayer(SECOND_PLAYER)));
