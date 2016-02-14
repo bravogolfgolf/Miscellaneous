@@ -1,6 +1,6 @@
 package pkg.monopoly;
 
-public enum Token {
+public enum MenuItems {
 
     Boot("Boot","(B)oot","B"),
     Car("Race car","(R)ace car","R"),
@@ -15,7 +15,7 @@ public enum Token {
     private final String menuString;
     private final String tokenLetter;
 
-    Token(final String description, final String menuString, final String tokenLetter) {
+    MenuItems(final String description, final String menuString, final String tokenLetter) {
         this.description = description;
         this.menuString = menuString;
         this.tokenLetter = tokenLetter;

@@ -15,8 +15,8 @@ public class Game {
     public static final int MAXIMUM_NUMBER_OF_PLAYERS = 8;
     private final BufferedReader reader;
     private final BufferedWriter writer;
-    private List<Token> tokens = new ArrayList<Token>(
-            Arrays.asList(Token.Boot, Token.Car, Token.Cat, Token.Dog, Token.Hat, Token.Ship, Token.Thimble, Token.Wheelbarrow));
+    private List<MenuItems> tokens = new ArrayList<MenuItems>(
+            Arrays.asList(MenuItems.Boot, MenuItems.Car, MenuItems.Cat, MenuItems.Dog, MenuItems.Hat, MenuItems.Ship, MenuItems.Thimble, MenuItems.Wheelbarrow));
     private List<Player> players = new ArrayList<Player>();
 
     public Game(BufferedReader reader, BufferedWriter writer) {
