@@ -18,15 +18,36 @@ public class Game {
     private List<MenuItems> tokenMenuItems = new ArrayList<MenuItems>(
             Arrays.asList(MenuItems.Boot, MenuItems.Car, MenuItems.Cat, MenuItems.Dog, MenuItems.Hat, MenuItems.Ship, MenuItems.Thimble, MenuItems.Wheelbarrow));
     private List<Player> players = new ArrayList<Player>();
+    private int numberOfRounds = 0;
 
     public Game(BufferedReader reader, BufferedWriter writer) {
         this.reader = reader;
         this.writer = writer;
     }
 
+    public Player getPlayer(int index) {
+        return players.get(index);
+    }
+
+    public int getNumberOfPlayers() {
+        return players.size();
+    }
+
+    public int getNumberOfRounds() {
+        return numberOfRounds;
+    }
+
     public void run() throws IOException {
         gameSetup();
 
+        do {
+            playRound();
+        } while (numberOfRounds < 20);
+    }
+
+    private void write(String s) throws IOException {
+        writer.write(s, 0, s.length());
+        writer.flush();
     }
 
     private void gameSetup() throws IOException {
@@ -112,16 +133,10 @@ public class Game {
         Collections.shuffle(players);
     }
 
-    public int getNumberOfPlayers() {
-        return players.size();
-    }
-
-    public Player getPlayer(int index) {
-        return players.get(index);
-    }
-
-    private void write(String s) throws IOException {
-        writer.write(s, 0, s.length());
-        writer.flush();
+    private void playRound() throws IOException {
+        for (Player player : players) {
+            player.incrementTurn();
+        }
+        numberOfRounds++;
     }
 }

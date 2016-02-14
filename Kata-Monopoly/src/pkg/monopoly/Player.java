@@ -2,9 +2,11 @@ package pkg.monopoly;
 
 public class Player {
     private Token token;
+    private int numberOfTurns;
 
     public Player(Token token) {
         this.token = token;
+        this.numberOfTurns = 0;
     }
 
     public String getTokenDescription() {
@@ -67,5 +69,13 @@ public class Player {
     @Override
     public int hashCode() {
         return token != null ? token.hashCode() : 0;
+    }
+
+    public void incrementTurn() {
+        numberOfTurns++;
+    }
+
+    public int getNumberOfTurns() {
+        return numberOfTurns;
     }
 }
