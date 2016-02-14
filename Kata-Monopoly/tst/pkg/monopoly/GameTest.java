@@ -10,25 +10,38 @@ import static org.junit.Assert.assertTrue;
 public class GameTest {
 
     public static final int EXPECTED_NUMBER_OF_PLAYERS = 2;
+    private final StringBuffer expectedOutput = new StringBuffer();
+    private final StringBuffer input = new StringBuffer();
+    private final OutputStream outputStream = new ByteArrayOutputStream();
 
-
-    @Test
-    public void testCreatePlayersUI() throws IOException {
-        StringBuffer expectedOutput = new StringBuffer();
-        StringBuffer input = new StringBuffer();
-        setupUserTestScript(expectedOutput, input);
-
+    private BufferedReader getBufferedReader() {
         byte[] buffer = input.toString().getBytes();
         InputStream inputStream = new ByteArrayInputStream(buffer);
         InputStreamReader inputStreamReader = new InputStreamReader(inputStream);
-        BufferedReader reader = new BufferedReader(inputStreamReader);
+        return new BufferedReader(inputStreamReader);
+    }
 
-        OutputStream outputStream = new ByteArrayOutputStream();
+    private BufferedWriter getBufferedWriter() {
         OutputStreamWriter outputStreamWriter = new OutputStreamWriter(outputStream);
-        BufferedWriter writer = new BufferedWriter(outputStreamWriter);
+        return new BufferedWriter(outputStreamWriter);
+    }
 
+    private Game getGame(BufferedReader reader, BufferedWriter writer) throws IOException {
         Game game = new Game(reader, writer);
         game.run();
+        return game;
+    }
+
+    private String line(String input) {
+        return String.format("%s%n", input);
+    }
+
+    @Test
+    public void testCreatePlayersUI() throws IOException {
+        setupUserTestScript(expectedOutput, input);
+        BufferedReader reader = getBufferedReader();
+        BufferedWriter writer = getBufferedWriter();
+        Game game = getGame(reader, writer);
 
         assertEquals(expectedOutput.toString(), outputStream.toString());
         assertEquals(EXPECTED_NUMBER_OF_PLAYERS, game.getNumberOfPlayers());
@@ -63,30 +76,15 @@ public class GameTest {
 
     }
 
-    private String line(String input) {
-        return String.format("%s%n", input);
-    }
-
     @Test
     public void testPlayersAreNotAlwaysInSameOrder() throws IOException {
         int playersMatch = 0;
 
         for (int counter = 0; counter < 100; counter++) {
-            StringBuffer expectedOutput = new StringBuffer();
-            StringBuffer input = new StringBuffer();
             setupUserAreNotInSameOrderScript(expectedOutput, input);
-
-            byte[] buffer = input.toString().getBytes();
-            InputStream inputStream = new ByteArrayInputStream(buffer);
-            InputStreamReader inputStreamReader = new InputStreamReader(inputStream);
-            BufferedReader reader = new BufferedReader(inputStreamReader);
-
-            OutputStream outputStream = new ByteArrayOutputStream();
-            OutputStreamWriter outputStreamWriter = new OutputStreamWriter(outputStream);
-            BufferedWriter writer = new BufferedWriter(outputStreamWriter);
-
-            Game game = new Game(reader, writer);
-            game.run();
+            BufferedReader reader =  getBufferedReader();
+            BufferedWriter writer = getBufferedWriter();
+            Game game = getGame(reader, writer);
 
             if (playersMatch(game)) {
                 playersMatch++;
