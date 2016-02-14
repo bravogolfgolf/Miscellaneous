@@ -9,11 +9,14 @@ import static org.junit.Assert.assertTrue;
 public class PlayerTest {
 
     private Player player1;
+    private Player player2;
 
     @Before
     public void setup() {
         Token token = new Token(MenuItems.Cat.getDescription());
         player1 = new Player(token);
+        player2 = new Player(token);
+
     }
 
     @Test
@@ -21,6 +24,12 @@ public class PlayerTest {
         final int EXPECTED_INITIAL_LOCATION = 0;
         assertEquals(EXPECTED_INITIAL_LOCATION, player1.getTokenLocation());
         assertEquals("Cat", player1.getTokenDescription());
+    }
+
+    @Test
+    public void testPlayerEqualityAndHashcode() {
+        assertTrue(player1.equals(player2));
+        assertTrue(player1.hashCode() == player2.hashCode());
     }
 
     @Test

@@ -55,6 +55,14 @@ public class Player {
         this.token.setLocation(this.token.getLocation() + numberRolled);
     }
 
+    public void incrementTurn() {
+        numberOfTurns++;
+    }
+
+    public int getNumberOfTurns() {
+        return numberOfTurns;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -69,13 +77,5 @@ public class Player {
     @Override
     public int hashCode() {
         return token != null ? token.hashCode() : 0;
-    }
-
-    public void incrementTurn() {
-        numberOfTurns++;
-    }
-
-    public int getNumberOfTurns() {
-        return numberOfTurns;
     }
 }
