@@ -35,7 +35,7 @@ public class PlayerTest {
     @Test
     public void testTokenMovesNoWrap() {
         int startingProperty = player1.getTokenLocation();
-        int number = player1.roll();
+        int number = player1.takeATurn();
         int endingProperty = number + startingProperty;
         assertEquals(endingProperty, player1.getTokenLocation());
     }
@@ -44,7 +44,7 @@ public class PlayerTest {
     public void testTokenMovesAndWraps() {
         int startingProperty = Board.LAST_LOCATION_ON_BOARD;
         player1.setTokenLocation(startingProperty);
-        int number = player1.roll();
+        int number = player1.takeATurn();
         assertTrue(String.format("Location: %d; Number: %d; Result: %d", startingProperty, number, player1.getTokenLocation()),
                 player1.getTokenLocation() < Board.LAST_LOCATION_ON_BOARD);
     }

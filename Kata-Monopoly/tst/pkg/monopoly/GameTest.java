@@ -3,6 +3,9 @@ package pkg.monopoly;
 import org.junit.Before;
 import org.junit.Test;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
 
@@ -73,6 +76,60 @@ public class GameTest {
     }
 
     @Test
-    public void testGameOfTwentyRounds() {
+    public void testGameOfTwentyRounds() throws Game.InvalidPlayerCount {
+
+        class MockTurnCounterPlayer extends Player {
+
+            public int turnsTaken = 0;
+
+            public MockTurnCounterPlayer(Token token) {
+                super(token);
+            }
+
+            @Override
+            public int takeATurn() {
+                turnsTaken++;
+                return -1;
+            }
+
+        }
+
+        for (int i = 0; i < 2; i++) {
+            Token token = new Token("");
+            MockTurnCounterPlayer player = new MockTurnCounterPlayer(token);
+            game.addPlayer(player);
+        }
+        game.play();
+        MockTurnCounterPlayer player1 = (MockTurnCounterPlayer) game.getPlayer(0);
+        MockTurnCounterPlayer player2 = (MockTurnCounterPlayer) game.getPlayer(1);
+        assertEquals(20, player1.turnsTaken);
+        assertEquals(20, player2.turnsTaken);
+    }
+
+    @Test
+    public void testPlayersAlternateOrder() throws Game.InvalidPlayerCount {
+
+        class MockAlternateOrderPlayer extends Player {
+
+//        public static final List<Player> order = new ArrayList<Player>();
+
+            public MockAlternateOrderPlayer(Token token) {
+                super(token);
+            }
+
+            @Override
+            public int takeATurn() {
+//            order.add(this);
+                return -1;
+            }
+
+        }
+        for (int i = 0; i < 2; i++) {
+            Token token = new Token("");
+            MockAlternateOrderPlayer player = new MockAlternateOrderPlayer(token);
+            game.addPlayer(player);
+        }
+        game.play();
+        assertTrue(false);
     }
 }

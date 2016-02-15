@@ -2,11 +2,9 @@ package pkg.monopoly;
 
 public class Player {
     private Token token;
-    private int numberOfTurns;
 
     public Player(Token token) {
         this.token = token;
-        this.numberOfTurns = 0;
     }
 
     public String getTokenDescription() {
@@ -21,7 +19,7 @@ public class Player {
         this.token.setLocation(location);
     }
 
-    public int roll() {
+    public int takeATurn() {
         int numberRolled = Game.die.rollTwoDie();
         determineHowToMoveTokenForwardBy(numberRolled);
         return numberRolled;
@@ -43,14 +41,6 @@ public class Player {
 
     private void moveTokenForwardBy(int numberRolled) {
         this.token.setLocation(this.token.getLocation() + numberRolled);
-    }
-
-    public void incrementTurn() {
-        numberOfTurns++;
-    }
-
-    public int getNumberOfTurns() {
-        return numberOfTurns;
     }
 
     @Override
