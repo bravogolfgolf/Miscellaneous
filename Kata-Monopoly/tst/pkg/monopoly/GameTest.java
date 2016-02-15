@@ -3,9 +3,6 @@ package pkg.monopoly;
 import org.junit.Before;
 import org.junit.Test;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
 
@@ -78,11 +75,11 @@ public class GameTest {
     @Test
     public void testGameOfTwentyRounds() throws Game.InvalidPlayerCount {
 
-        class MockTurnCounterPlayer extends Player {
+        class PlayerMockTurnCounter extends Player {
 
             public int turnsTaken = 0;
 
-            public MockTurnCounterPlayer(Token token) {
+            public PlayerMockTurnCounter(Token token) {
                 super(token);
             }
 
@@ -96,40 +93,30 @@ public class GameTest {
 
         for (int i = 0; i < 2; i++) {
             Token token = new Token("");
-            MockTurnCounterPlayer player = new MockTurnCounterPlayer(token);
+            PlayerMockTurnCounter player = new PlayerMockTurnCounter(token);
             game.addPlayer(player);
         }
         game.play();
-        MockTurnCounterPlayer player1 = (MockTurnCounterPlayer) game.getPlayer(0);
-        MockTurnCounterPlayer player2 = (MockTurnCounterPlayer) game.getPlayer(1);
+        PlayerMockTurnCounter player1 = (PlayerMockTurnCounter) game.getPlayer(0);
+        PlayerMockTurnCounter player2 = (PlayerMockTurnCounter) game.getPlayer(1);
         assertEquals(20, player1.turnsTaken);
         assertEquals(20, player2.turnsTaken);
     }
 
     @Test
     public void testPlayersAlternateOrder() throws Game.InvalidPlayerCount {
-
-        class MockAlternateOrderPlayer extends Player {
-
-//        public static final List<Player> order = new ArrayList<Player>();
-
-            public MockAlternateOrderPlayer(Token token) {
-                super(token);
-            }
-
-            @Override
-            public int takeATurn() {
-//            order.add(this);
-                return -1;
-            }
-
-        }
-        for (int i = 0; i < 2; i++) {
-            Token token = new Token("");
-            MockAlternateOrderPlayer player = new MockAlternateOrderPlayer(token);
-            game.addPlayer(player);
-        }
+        Token boot = new Token("Boot");
+        Token cat = new Token("Cat");
+        PlayerMockAlternateOrder player1 = new PlayerMockAlternateOrder(boot);
+        PlayerMockAlternateOrder player2 = new PlayerMockAlternateOrder(cat);
+        game.addPlayer(player1);
+        game.addPlayer(player2);
         game.play();
-        assertTrue(false);
+        for (int i = 0; i < 20; i++) {
+            if (i % 2 == 0)
+                assertTrue(game.getPlayer(0).equals(PlayerMockAlternateOrder.order.get(i)));
+            else
+                assertTrue(game.getPlayer(1).equals(PlayerMockAlternateOrder.order.get(i)));
+        }
     }
 }
