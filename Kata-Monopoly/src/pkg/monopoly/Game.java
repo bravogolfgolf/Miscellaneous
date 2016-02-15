@@ -30,6 +30,10 @@ public class Game {
         return players.get(index);
     }
 
+    public void addPlayer(Player player) {
+        players.add(player);
+    }
+
     public int getNumberOfPlayers() {
         return players.size();
     }
@@ -80,7 +84,7 @@ public class Game {
         for (int playerNumber = 1; playerNumber <= numberOfPlayers; playerNumber++) {
             int tokenIndex;
             tokenIndex = getIndexOfTokenSelectedBy(playerNumber);
-            assignTokenToPlayer(tokenIndex);
+            createPlayerWithToken(tokenIndex);
             removeTokenSoFollowingPlayerManyNotChooseIt(tokenIndex);
         }
     }
@@ -121,9 +125,11 @@ public class Game {
         write(remainingTokens);
     }
 
-    private void assignTokenToPlayer(int tokenIndex) {
-        Token token = new Token(tokenMenuItems.get(tokenIndex).getDescription());
-        players.add(new Player(token));
+    private void createPlayerWithToken(int tokenIndex) {
+        String label = tokenMenuItems.get(tokenIndex).getDescription();
+        Token token = new Token(label);
+        Player player = new Player(token);
+        addPlayer(player);
     }
 
     private void removeTokenSoFollowingPlayerManyNotChooseIt(int tokenIndex) {

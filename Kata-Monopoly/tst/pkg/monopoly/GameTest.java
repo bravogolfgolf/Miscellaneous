@@ -50,10 +50,8 @@ public class GameTest {
     public void testCreatePlayersUI() throws IOException {
         final int EXPECTED_NUMBER_OF_PLAYERS = 2;
 
-
         setupUserTestScript(expectedOutput, input);
         Game game = createGame();
-
         assertEquals(expectedOutput.toString(), outputStream.toString());
         assertEquals(EXPECTED_NUMBER_OF_PLAYERS, game.getNumberOfPlayers());
     }
