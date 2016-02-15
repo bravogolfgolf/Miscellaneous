@@ -10,13 +10,14 @@ public class PlayerTest {
 
     private Player player1;
     private Player player2;
+    private Dice dice;
 
     @Before
     public void setup() {
         Token token = new Token(MenuItems.Cat.getDescription());
         player1 = new Player(token);
         player2 = new Player(token);
-
+        dice = new Dice();
     }
 
     @Test
@@ -34,18 +35,21 @@ public class PlayerTest {
 
     @Test
     public void testTokenMovesNoWrap() {
-        int startingProperty = player1.getTokenLocation();
-        int number = player1.takeATurn();
-        int endingProperty = number + startingProperty;
-        assertEquals(endingProperty, player1.getTokenLocation());
+        int startingLocation = player1.getTokenLocation();
+        dice.rollTwoDie();
+        player1.takeATurn(dice);
+        int endingLocation = dice.getTwoDieRollValue() + startingLocation;
+        assertEquals(endingLocation, player1.getTokenLocation());
     }
 
     @Test
     public void testTokenMovesAndWraps() {
-        int startingProperty = Board.LAST_LOCATION_ON_BOARD;
-        player1.setTokenLocation(startingProperty);
-        int number = player1.takeATurn();
-        assertTrue(String.format("Location: %d; Number: %d; Result: %d", startingProperty, number, player1.getTokenLocation()),
+        int startingLocation = Board.LAST_LOCATION_ON_BOARD;
+        dice.rollTwoDie();
+        player1.setTokenLocation(startingLocation);
+        player1.takeATurn(dice);
+        assertEquals(dice.getTwoDieRollValue() - 1, player1.getTokenLocation());
+        assertTrue(String.format("Location: %d; Number: %d; Result: %d", startingLocation, dice.getTwoDieRollValue(), player1.getTokenLocation()),
                 player1.getTokenLocation() < Board.LAST_LOCATION_ON_BOARD);
     }
 

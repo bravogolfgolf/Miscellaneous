@@ -84,9 +84,8 @@ public class GameTest {
             }
 
             @Override
-            public int takeATurn() {
+            public void takeATurn(Dice die) {
                 turnsTaken++;
-                return -1;
             }
 
         }

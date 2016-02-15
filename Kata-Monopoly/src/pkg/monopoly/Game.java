@@ -9,11 +9,12 @@ public class Game {
         public InvalidPlayerCount(String message) {
             super(message);
         }
+
     }
 
-    public static final Die die = new Die();
     public static final int MINIMUM_NUMBER_OF_PLAYERS = 2;
     public static final int MAXIMUM_NUMBER_OF_PLAYERS = 8;
+    private Dice dice = new Dice();
     private List<Player> players = new ArrayList<Player>();
 
     public void addPlayer(Player player) {
@@ -39,7 +40,7 @@ public class Game {
 
         for (int i = 0; i < 20; i++) {
             for (Player player : players) {
-                player.takeATurn();
+                player.takeATurn(dice);
             }
 
         }

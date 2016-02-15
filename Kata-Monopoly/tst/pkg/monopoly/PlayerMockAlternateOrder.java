@@ -12,8 +12,7 @@ public class PlayerMockAlternateOrder extends Player {
     }
 
     @Override
-    public int takeATurn() {
+    public void takeATurn(Dice dice) {
             order.add(this);
-        return -1;
     }
 }

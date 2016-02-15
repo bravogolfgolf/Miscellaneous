@@ -5,24 +5,19 @@ import org.junit.Test;
 
 import static org.junit.Assert.assertTrue;
 
-public class DieTest {
+public class DiceTest {
 
-    private Die die1;
+    private Dice dice;
 
     @Before
     public void setUp() throws Exception {
-        die1 = new Die();
-    }
-
-    @Test
-    public void testOneDieRolled() {
-        int rollValue = die1.rollDie();
-        assertTrue(rollValue >= 1 && rollValue <= 6);
+        dice = new Dice();
+        dice.rollTwoDie();
     }
 
     @Test
     public void testTwoDieRolled() {
-        int rollValue = die1.rollTwoDie();
+        int rollValue = dice.getTwoDieRollValue();
         assertTrue(rollValue >= 2 && rollValue <= 12);
     }
 

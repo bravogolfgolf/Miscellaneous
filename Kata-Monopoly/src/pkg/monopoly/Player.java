@@ -19,10 +19,9 @@ public class Player {
         this.token.setLocation(location);
     }
 
-    public int takeATurn() {
-        int numberRolled = Game.die.rollTwoDie();
+    public void takeATurn(Dice dice) {
+        int numberRolled = dice.getTwoDieRollValue();
         determineHowToMoveTokenForwardBy(numberRolled);
-        return numberRolled;
     }
 
     private void determineHowToMoveTokenForwardBy(int numberRolled) {
