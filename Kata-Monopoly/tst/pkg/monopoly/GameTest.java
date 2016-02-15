@@ -3,8 +3,6 @@ package pkg.monopoly;
 import org.junit.Before;
 import org.junit.Test;
 
-import java.io.*;
-
 import static org.junit.Assert.assertEquals;
 
 public class GameTest {
@@ -12,38 +10,44 @@ public class GameTest {
     private Game game;
 
     @Before
-    public void setUp() throws Exception {
-        Token boot = new Token("Boot");
-        Token cat = new Token("Cat");
-        Player player1 = new Player(boot);
-        Player player2 = new Player(cat);
+    public void setUp()  {
         game = new Game();
-        game.addPlayer(player1);
-        game.addPlayer(player2);
+    }
 
+    private void addThisManyPlayers(int number) {
+        for (int i = 0; i < number; i++) {
+            Token token = new Token("");
+            Player player = new Player(token);
+            game.addPlayer(player);
+        }
+    }
+
+    @Test(expected = Game.InvalidPlayerCount.class)
+    public void testGameThrowsExceptionWhenFewerThanTwoPlayers() throws Game.InvalidPlayerCount {
+        addThisManyPlayers(1);
+        game.play();
     }
 
     @Test
-    public void testGameWithTwoPlayers() throws IOException {
+    public void testGameWithTwoPlayers() throws Game.InvalidPlayerCount {
         final int EXPECTED_NUMBER_OF_PLAYERS = 2;
+        addThisManyPlayers(2);
+        game.play();
         assertEquals(EXPECTED_NUMBER_OF_PLAYERS, game.getNumberOfPlayers());
     }
 
+    @Test(expected = Game.InvalidPlayerCount.class)
+    public void testGameThrowsExceptionWhenMoreThanEightPlayers() throws Game.InvalidPlayerCount {
+        addThisManyPlayers(9);
+        game.play();
+    }
+
     @Test
-    public void testGameThrowsExceptionWhenFewerThanTwoPlayers() throws IOException {
+    public void testPlayersAreNotAlwaysInSameOrder() {
 
     }
 
     @Test
-    public void testGameThrowsExceptionWhenMoreThanEightPlayers() throws IOException {
-    }
-
-    @Test
-    public void testPlayersAreNotAlwaysInSameOrder() throws IOException {
-
-    }
-
-    @Test
-    public void testGameOfTwentyRounds() throws IOException {
+    public void testGameOfTwentyRounds()  {
     }
 }
