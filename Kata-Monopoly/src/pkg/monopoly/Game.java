@@ -7,6 +7,14 @@ public class Game {
     public static final int MINIMUM_NUMBER_OF_PLAYERS = 2;
     public static final int MAXIMUM_NUMBER_OF_PLAYERS = 8;
 
+    public Player getPlayer(int index) {
+        return players.get(index);
+    }
+
+    public void randomizePlayerOrder() {
+        Collections.shuffle(players);
+    }
+
     public class InvalidPlayerCount extends Exception {
 
         public InvalidPlayerCount(String message) {
