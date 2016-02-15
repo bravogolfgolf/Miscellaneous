@@ -22,19 +22,9 @@ public class Player {
     }
 
     public int roll() {
-        int numberRolled = rollTwoDie();
+        int numberRolled = Game.die.rollTwoDie();
         determineHowToMoveTokenForwardBy(numberRolled);
         return numberRolled;
-    }
-
-    private int rollTwoDie() {
-        int die1 = rollDie();
-        int die2 = rollDie();
-        return die1 + die2;
-    }
-
-    private int rollDie() {
-        return (int) (Math.random() * 6) + 1;
     }
 
     private void determineHowToMoveTokenForwardBy(int numberRolled) {

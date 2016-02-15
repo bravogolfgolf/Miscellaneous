@@ -7,6 +7,7 @@ import java.util.*;
 
 public class Game {
 
+    public static final Die die = new Die();
     public static final String HOW_MANY_PLAYERS = "How many player (2-8)?";
     public static final String INVALID_NUMBER_OF_PLAYERS = "Please select 2 to 8 players.";
     public static final String SELECT_TOKEN = "Select token for player %d.";
