@@ -4,17 +4,6 @@ import java.util.*;
 
 public class Game {
 
-    public static final int MINIMUM_NUMBER_OF_PLAYERS = 2;
-    public static final int MAXIMUM_NUMBER_OF_PLAYERS = 8;
-
-    public Player getPlayer(int index) {
-        return players.get(index);
-    }
-
-    public void randomizePlayerOrder() {
-        Collections.shuffle(players);
-    }
-
     public class InvalidPlayerCount extends Exception {
 
         public InvalidPlayerCount(String message) {
@@ -23,20 +12,29 @@ public class Game {
     }
 
     public static final Die die = new Die();
-
+    public static final int MINIMUM_NUMBER_OF_PLAYERS = 2;
+    public static final int MAXIMUM_NUMBER_OF_PLAYERS = 8;
     private List<Player> players = new ArrayList<Player>();
-
-    public void play() throws InvalidPlayerCount {
-        if (getNumberOfPlayers() < MINIMUM_NUMBER_OF_PLAYERS ||
-                getNumberOfPlayers() > MAXIMUM_NUMBER_OF_PLAYERS)
-            throw new InvalidPlayerCount(String.format("Number of Players: %d", getNumberOfPlayers()));
-    }
 
     public void addPlayer(Player player) {
         players.add(player);
     }
 
+    public Player getPlayer(int index) {
+        return players.get(index);
+    }
+
     public int getNumberOfPlayers() {
         return players.size();
+    }
+
+    public void randomizePlayerOrder() {
+        Collections.shuffle(players);
+    }
+
+    public void play() throws InvalidPlayerCount {
+        if (getNumberOfPlayers() < MINIMUM_NUMBER_OF_PLAYERS ||
+                getNumberOfPlayers() > MAXIMUM_NUMBER_OF_PLAYERS)
+            throw new InvalidPlayerCount(String.format("Number of Players: %d", getNumberOfPlayers()));
     }
 }
