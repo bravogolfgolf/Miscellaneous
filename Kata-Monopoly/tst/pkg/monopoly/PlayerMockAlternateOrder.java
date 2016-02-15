@@ -3,7 +3,7 @@ package pkg.monopoly;
 import java.util.ArrayList;
 import java.util.List;
 
-class PlayerMockAlternateOrder extends Player {
+public class PlayerMockAlternateOrder extends Player {
 
         public static final List<Player> order = new ArrayList<Player>();
 
