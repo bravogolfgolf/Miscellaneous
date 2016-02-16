@@ -38,7 +38,6 @@ public class PlayerTest {
     @Test
     public void testTokenMovesNoWrap() {
         int startingLocation = player1.getTokenLocation();
-        dice.rollTwoDie();
         player1.takeATurn(dice);
         int endingLocation = dice.getTwoDieRollValue() + startingLocation;
         assertEquals(endingLocation, player1.getTokenLocation());
@@ -46,13 +45,30 @@ public class PlayerTest {
 
     @Test
     public void testTokenMovesAndWraps() {
-        int startingLocation = Board.LAST_LOCATION_ON_BOARD;
-        dice.rollTwoDie();
-        player1.setTokenLocation(startingLocation);
-        player1.takeATurn(dice);
+        playerPassesGo();
         assertEquals(dice.getTwoDieRollValue() - 1, player1.getTokenLocation());
-        assertTrue(String.format("Location: %d; Number: %d; Result: %d", startingLocation, dice.getTwoDieRollValue(), player1.getTokenLocation()),
+        assertTrue(String.format("Location: %d; Number: %d; Result: %d", Board.LAST_LOCATION_ON_BOARD, dice.getTwoDieRollValue(), player1.getTokenLocation()),
                 player1.getTokenLocation() < Board.LAST_LOCATION_ON_BOARD);
     }
+
+    private void playerPassesGo() {
+        player1.setTokenLocation(Board.LAST_LOCATION_ON_BOARD);
+        player1.takeATurn(dice);
+
+    }
+
+    @Test
+    public void testIncreaseCashBalance(){
+        int expectedBalance = player1.getCashBalance() + 100;
+        player1.increaseCashBalanceBy(100);
+        assertEquals(expectedBalance,player1.getCashBalance());
+    }
+
+    @Test
+    public void testPlayerWhoPassesGoHasSalaryFlagSetToTrue(){
+        playerPassesGo();
+        assertTrue(player1.getSalaryFlag());
+    }
+
 
 }

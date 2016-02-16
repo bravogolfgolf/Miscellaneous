@@ -3,6 +3,9 @@ package pkg.monopoly;
 import org.junit.Before;
 import org.junit.Test;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
 
@@ -117,5 +120,48 @@ public class GameTest {
             else
                 assertTrue(game.getPlayer(1).equals(PlayerMockAlternateOrder.order.get(i)));
         }
+    }
+
+    @Test
+    public void testPlayerWhoPassesGoGetsPaid200() {
+
+        class GameMockPlayerPassesGo extends Game {
+
+            public GameMockPlayerPassesGo() {
+                super();
+            }
+
+            List<Player> players = new ArrayList<Player>();
+            Dice dice = new Dice();
+            Board board = new Board();
+
+            public void addPlayer(Player player) {
+                players.add(player);
+            }
+
+            @Override
+            public void play() {
+                for (Player player : players) {
+                    player.takeATurn(dice);
+                    if (playerPassedGo(player)) {
+                        Space space = board.getSpace(GO);
+                        space.action(player);
+                    }
+
+                }
+            }
+
+            private boolean playerPassedGo(Player player) {
+                return player.getSalaryFlag();
+            }
+
+        }
+
+        GameMockPlayerPassesGo gameMock = new GameMockPlayerPassesGo();
+        Player player = new Player(new Token("Boot"));
+        player.setTokenLocation(Board.LAST_LOCATION_ON_BOARD);
+        gameMock.addPlayer(player);
+        gameMock.play();
+        assertEquals(1700, player.getCashBalance());
     }
 }

@@ -34,4 +34,8 @@ public class Space {
         result = 31 * result + id;
         return result;
     }
+
+    public void action(Player player) {
+        player.increaseCashBalanceBy(200);
+    }
 }
