@@ -122,12 +122,62 @@ public class GameTest {
         }
     }
 
+    class GameMockPlayerTakesOneTurn extends Game {
+
+        public GameMockPlayerTakesOneTurn() {
+            super();
+        }
+
+        List<Player> players = new ArrayList<Player>();
+        Dice dice = new Dice();
+        Board board = new Board();
+
+        public void addPlayer(Player player) {
+            players.add(player);
+        }
+
+        @Override
+        public void play() {
+            for (Player player : players) {
+                player.takeATurn(dice);
+                if (playerPassedGo(player)) {
+                    Space space = board.getSpace(GO);
+                    space.action(player);
+                    player.setSalaryFlag(false);
+                }
+            }
+        }
+        private boolean playerPassedGo(Player player) {
+            return player.getSalaryFlag();
+        }
+    }
+
+    @Test
+    public void testPlayerWhoStartsOnGoDoesNotGetPaid200() {
+        GameMockPlayerTakesOneTurn gameMock = new GameMockPlayerTakesOneTurn();
+        Player player = new Player(new Token("Boot"));
+        player.setTokenLocation(0);
+        gameMock.addPlayer(player);
+        gameMock.play();
+        assertEquals(1500, player.getCashBalance());
+    }
+
     @Test
     public void testPlayerWhoPassesGoGetsPaid200() {
+        GameMockPlayerTakesOneTurn gameMock = new GameMockPlayerTakesOneTurn();
+        Player player = new Player(new Token("Boot"));
+        player.setTokenLocation(Board.LAST_LOCATION_ON_BOARD);
+        gameMock.addPlayer(player);
+        gameMock.play();
+        assertEquals(1700, player.getCashBalance());
+    }
 
-        class GameMockPlayerPassesGo extends Game {
+    @Test
+    public void testPlayerWhoPassesGoTwiceGetsPaid200EachTime() {
 
-            public GameMockPlayerPassesGo() {
+        class GameMockPlayerPassesGoTwice extends Game {
+
+            public GameMockPlayerPassesGoTwice() {
                 super();
             }
 
@@ -141,13 +191,16 @@ public class GameTest {
 
             @Override
             public void play() {
-                for (Player player : players) {
-                    player.takeATurn(dice);
-                    if (playerPassedGo(player)) {
-                        Space space = board.getSpace(GO);
-                        space.action(player);
+                for (int i = 0; i < 2; i++) {
+                    for (Player player : players) {
+                        player.takeATurn(dice);
+                        if (playerPassedGo(player)) {
+                            Space space = board.getSpace(GO);
+                            space.action(player);
+                            player.setSalaryFlag(false);
+                        }
                     }
-
+                    players.get(0).setTokenLocation(Board.LAST_LOCATION_ON_BOARD);
                 }
             }
 
@@ -156,12 +209,11 @@ public class GameTest {
             }
 
         }
-
-        GameMockPlayerPassesGo gameMock = new GameMockPlayerPassesGo();
+        GameMockPlayerPassesGoTwice gameMock = new GameMockPlayerPassesGoTwice();
         Player player = new Player(new Token("Boot"));
         player.setTokenLocation(Board.LAST_LOCATION_ON_BOARD);
         gameMock.addPlayer(player);
         gameMock.play();
-        assertEquals(1700, player.getCashBalance());
+        assertEquals(1900, player.getCashBalance());
     }
 }

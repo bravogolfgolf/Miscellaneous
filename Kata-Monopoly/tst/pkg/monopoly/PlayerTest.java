@@ -65,6 +65,13 @@ public class PlayerTest {
     }
 
     @Test
+    public void testSetSalaryFlag() {
+        assertTrue(!player1.getSalaryFlag());
+        player1.setSalaryFlag(true);
+        assertTrue(player1.getSalaryFlag());
+    }
+
+    @Test
     public void testPlayerWhoPassesGoHasSalaryFlagSetToTrue(){
         playerPassesGo();
         assertTrue(player1.getSalaryFlag());

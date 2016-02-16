@@ -79,4 +79,8 @@ public class Player {
     public boolean getSalaryFlag() {
         return salaryFlag;
     }
+
+    public void setSalaryFlag(boolean salaryFlag) {
+        this.salaryFlag = salaryFlag;
+    }
 }

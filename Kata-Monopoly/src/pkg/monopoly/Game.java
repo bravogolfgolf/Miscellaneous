@@ -46,6 +46,7 @@ public class Game {
                 if (playerPassedGo(player)) {
                     Space space = board.getSpace(GO);
                     space.action(player);
+                    player.setSalaryFlag(false);
                 }
             }
         }
