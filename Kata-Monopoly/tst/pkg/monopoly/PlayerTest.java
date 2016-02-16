@@ -23,7 +23,9 @@ public class PlayerTest {
     @Test
     public void testCreatePlayer() {
         final int EXPECTED_INITIAL_LOCATION = 0;
+        final int EXPECTED_INITIAL_CASH_BALANCE = 1500;
         assertEquals(EXPECTED_INITIAL_LOCATION, player1.getTokenLocation());
+        assertEquals(EXPECTED_INITIAL_CASH_BALANCE, player1.getCashBalance());
         assertEquals("Cat", player1.getTokenDescription());
     }
 

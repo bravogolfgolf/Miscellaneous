@@ -1,10 +1,12 @@
 package pkg.monopoly;
 
 public class Player {
+    private int cashBalance;
     private Token token;
 
     public Player(Token token) {
         this.token = token;
+        this.cashBalance = 1500;
     }
 
     public String getTokenDescription() {
@@ -17,6 +19,10 @@ public class Player {
 
     public void setTokenLocation(int location) {
         this.token.setLocation(location);
+    }
+
+    public int getCashBalance() {
+        return cashBalance;
     }
 
     public void takeATurn(Dice dice) {
