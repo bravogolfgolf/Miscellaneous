@@ -16,52 +16,51 @@ public class BoardTest {
     @Test
     public void testSpaceIdAndOrder() {
         for (int i = 0; i < Board.SIZE_ON_BOARD; i++) {
-            assertEquals(i, board.getSpaceId(i));
+            assertEquals(i, board.getSpace(i).getID());
         }
     }
 
     @Test
     public void testSpaceDescription() {
-        assertEquals("Go", board.getSpaceDescripton(0));
-        assertEquals("Mediterranean Avenue", board.getSpaceDescripton(1));
-        assertEquals("Community Chest", board.getSpaceDescripton(2));
-        assertEquals("Baltic Avenue", board.getSpaceDescripton(3));
-        assertEquals("Income Tax", board.getSpaceDescripton(4));
-        assertEquals("Reading Railroad", board.getSpaceDescripton(5));
-        assertEquals("Oriental Avenue", board.getSpaceDescripton(6));
-        assertEquals("Chance", board.getSpaceDescripton(7));
-        assertEquals("Vermont Avenue", board.getSpaceDescripton(8));
-        assertEquals("Connecticut Avenue", board.getSpaceDescripton(9));
-        assertEquals("Jail", board.getSpaceDescripton(10));
-        assertEquals("St. Charles Place", board.getSpaceDescripton(11));
-        assertEquals("Electric Company", board.getSpaceDescripton(12));
-        assertEquals("States Avenue", board.getSpaceDescripton(13));
-        assertEquals("Virginia Avenue", board.getSpaceDescripton(14));
-        assertEquals("Pennsylvania Railroad", board.getSpaceDescripton(15));
-        assertEquals("St. James Place", board.getSpaceDescripton(16));
-        assertEquals("Community Chest", board.getSpaceDescripton(17));
-        assertEquals("Tennessee Avenue", board.getSpaceDescripton(18));
-        assertEquals("New York Avenue", board.getSpaceDescripton(19));
-        assertEquals("Free Parking", board.getSpaceDescripton(20));
-        assertEquals("Kentucky Avenue", board.getSpaceDescripton(21));
-        assertEquals("Chance", board.getSpaceDescripton(22));
-        assertEquals("Indiana Avenue", board.getSpaceDescripton(23));
-        assertEquals("Illinois Avenue", board.getSpaceDescripton(24));
-        assertEquals("B & O Railroad", board.getSpaceDescripton(25));
-        assertEquals("Atlantic Avenue", board.getSpaceDescripton(26));
-        assertEquals("Ventnor Avenue", board.getSpaceDescripton(27));
-        assertEquals("Water Works", board.getSpaceDescripton(28));
-        assertEquals("Marvin Gardens", board.getSpaceDescripton(29));
-        assertEquals("Go to Jail", board.getSpaceDescripton(30));
-        assertEquals("Pacific Avenue", board.getSpaceDescripton(31));
-        assertEquals("North Carolina Avenue", board.getSpaceDescripton(32));
-        assertEquals("Community Chest", board.getSpaceDescripton(33));
-        assertEquals("Pennsylvania Avenue", board.getSpaceDescripton(34));
-        assertEquals("Short Line", board.getSpaceDescripton(35));
-        assertEquals("Chance", board.getSpaceDescripton(36));
-        assertEquals("Park Place", board.getSpaceDescripton(37));
-        assertEquals("Luxury Tax", board.getSpaceDescripton(38));
-        assertEquals("Boardwalk", board.getSpaceDescripton(39));
-
+        assertEquals("Go", board.getSpace(0).getDescription());
+        assertEquals("Mediterranean Avenue", board.getSpace(1).getDescription());
+        assertEquals("Community Chest", board.getSpace(2).getDescription());
+        assertEquals("Baltic Avenue", board.getSpace(3).getDescription());
+        assertEquals("Income Tax", board.getSpace(4).getDescription());
+        assertEquals("Reading Railroad", board.getSpace(5).getDescription());
+        assertEquals("Oriental Avenue", board.getSpace(6).getDescription());
+        assertEquals("Chance", board.getSpace(7).getDescription());
+        assertEquals("Vermont Avenue", board.getSpace(8).getDescription());
+        assertEquals("Connecticut Avenue", board.getSpace(9).getDescription());
+        assertEquals("Jail", board.getSpace(10).getDescription());
+        assertEquals("St. Charles Place", board.getSpace(11).getDescription());
+        assertEquals("Electric Company", board.getSpace(12).getDescription());
+        assertEquals("States Avenue", board.getSpace(13).getDescription());
+        assertEquals("Virginia Avenue", board.getSpace(14).getDescription());
+        assertEquals("Pennsylvania Railroad", board.getSpace(15).getDescription());
+        assertEquals("St. James Place", board.getSpace(16).getDescription());
+        assertEquals("Community Chest", board.getSpace(17).getDescription());
+        assertEquals("Tennessee Avenue", board.getSpace(18).getDescription());
+        assertEquals("New York Avenue", board.getSpace(19).getDescription());
+        assertEquals("Free Parking", board.getSpace(20).getDescription());
+        assertEquals("Kentucky Avenue", board.getSpace(21).getDescription());
+        assertEquals("Chance", board.getSpace(22).getDescription());
+        assertEquals("Indiana Avenue", board.getSpace(23).getDescription());
+        assertEquals("Illinois Avenue", board.getSpace(24).getDescription());
+        assertEquals("B & O Railroad", board.getSpace(25).getDescription());
+        assertEquals("Atlantic Avenue", board.getSpace(26).getDescription());
+        assertEquals("Ventnor Avenue", board.getSpace(27).getDescription());
+        assertEquals("Water Works", board.getSpace(28).getDescription());
+        assertEquals("Marvin Gardens", board.getSpace(29).getDescription());
+        assertEquals("Go to Jail", board.getSpace(30).getDescription());
+        assertEquals("Pacific Avenue", board.getSpace(31).getDescription());
+        assertEquals("North Carolina Avenue", board.getSpace(32).getDescription());
+        assertEquals("Community Chest", board.getSpace(33).getDescription());
+        assertEquals("Pennsylvania Avenue", board.getSpace(34).getDescription());
+        assertEquals("Short Line", board.getSpace(35).getDescription());
+        assertEquals("Chance", board.getSpace(36).getDescription());
+        assertEquals("Park Place", board.getSpace(37).getDescription());
+        assertEquals("Luxury Tax", board.getSpace(38).getDescription());
+        assertEquals("Boardwalk", board.getSpace(39).getDescription());
     }
 }

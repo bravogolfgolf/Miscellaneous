@@ -56,11 +56,7 @@ public class Board {
         return spaces.size();
     }
 
-    public int getSpaceId(int index) {
-        return spaces.get(index).getID();
-    }
-
-    public String getSpaceDescripton(int index) {
-        return spaces.get(index).getDescription();
+    public Space getSpace(int index) {
+        return spaces.get(index);
     }
 }
