@@ -14,7 +14,7 @@ public class PlayerTest {
 
     @Before
     public void setup() {
-        Token token = new Token(MenuItems.Cat.getDescription());
+        Token token = new Token("Cat");
         player1 = new Player(token);
         player2 = new Player(token);
         dice = new Dice();

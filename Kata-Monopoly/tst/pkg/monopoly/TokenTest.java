@@ -13,8 +13,8 @@ public class TokenTest {
 
     @Before
     public void setup(){
-        token1 = new Token(MenuItems.Boot.getDescription());
-        token2 = new Token(MenuItems.Boot.getDescription());
+        token1 = new Token("Boot");
+        token2 = new Token("Boot");
     }
 
     @Test
