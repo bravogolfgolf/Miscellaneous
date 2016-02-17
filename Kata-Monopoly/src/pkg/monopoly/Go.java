@@ -1,8 +1,9 @@
 package pkg.monopoly;
 
 public class Go extends Space {
-    public Go(int id, String description) {
-        super(id, description);
+
+    public Go(String description) {
+        super(description);
     }
 
     @Override

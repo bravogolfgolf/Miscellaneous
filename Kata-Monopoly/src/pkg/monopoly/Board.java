@@ -5,51 +5,50 @@ import java.util.*;
 public class Board {
 
     public static final int SIZE_ON_BOARD = 40;
-    public static final int LAST_LOCATION_ON_BOARD = 39;
 
     private List<Space> spaces = new ArrayList<Space>();
 
     public Board() {
-        spaces.add(new Space(0, "Go"));
-        spaces.add(new Space(1, "Mediterranean Avenue"));
-        spaces.add(new Space(2, "Community Chest"));
-        spaces.add(new Space(3, "Baltic Avenue"));
-        spaces.add(new Space(4, "Income Tax"));
-        spaces.add(new Space(5, "Reading Railroad"));
-        spaces.add(new Space(6, "Oriental Avenue"));
-        spaces.add(new Space(7, "Chance"));
-        spaces.add(new Space(8, "Vermont Avenue"));
-        spaces.add(new Space(9, "Connecticut Avenue"));
-        spaces.add(new Space(10, "Jail"));
-        spaces.add(new Space(11, "St. Charles Place"));
-        spaces.add(new Space(12, "Electric Company"));
-        spaces.add(new Space(13, "States Avenue"));
-        spaces.add(new Space(14, "Virginia Avenue"));
-        spaces.add(new Space(15, "Pennsylvania Railroad"));
-        spaces.add(new Space(16, "St. James Place"));
-        spaces.add(new Space(17, "Community Chest"));
-        spaces.add(new Space(18, "Tennessee Avenue"));
-        spaces.add(new Space(19, "New York Avenue"));
-        spaces.add(new Space(20, "Free Parking"));
-        spaces.add(new Space(21, "Kentucky Avenue"));
-        spaces.add(new Space(22, "Chance"));
-        spaces.add(new Space(23, "Indiana Avenue"));
-        spaces.add(new Space(24, "Illinois Avenue"));
-        spaces.add(new Space(25, "B & O Railroad"));
-        spaces.add(new Space(26, "Atlantic Avenue"));
-        spaces.add(new Space(27, "Ventnor Avenue"));
-        spaces.add(new Space(28, "Water Works"));
-        spaces.add(new Space(29, "Marvin Gardens"));
-        spaces.add(new Space(30, "Go to Jail"));
-        spaces.add(new Space(31, "Pacific Avenue"));
-        spaces.add(new Space(32, "North Carolina Avenue"));
-        spaces.add(new Space(33, "Community Chest"));
-        spaces.add(new Space(34, "Pennsylvania Avenue"));
-        spaces.add(new Space(35, "Short Line"));
-        spaces.add(new Space(36, "Chance"));
-        spaces.add(new Space(37, "Park Place"));
-        spaces.add(new Space(38, "Luxury Tax"));
-        spaces.add(new Space(39, "Boardwalk"));
+        spaces.add(new Go("Go"));
+        spaces.add(new Space("Space1"));
+        spaces.add(new Space("Space2"));
+        spaces.add(new Space("Space3"));
+        spaces.add(new Space("Space4"));
+        spaces.add(new Space("Space5"));
+        spaces.add(new Space("Space6"));
+        spaces.add(new Space("Space7"));
+        spaces.add(new Space("Space8"));
+        spaces.add(new Space("Space9"));
+        spaces.add(new Space("Space10"));
+        spaces.add(new Space("Space11"));
+        spaces.add(new Space("Space12"));
+        spaces.add(new Space("Space13"));
+        spaces.add(new Space("Space14"));
+        spaces.add(new Space("Space15"));
+        spaces.add(new Space("Space16"));
+        spaces.add(new Space("Space17"));
+        spaces.add(new Space("Space18"));
+        spaces.add(new Space("Space19"));
+        spaces.add(new Space("Space20"));
+        spaces.add(new Space("Space21"));
+        spaces.add(new Space("Space22"));
+        spaces.add(new Space("Space23"));
+        spaces.add(new Space("Space24"));
+        spaces.add(new Space("Space25"));
+        spaces.add(new Space("Space26"));
+        spaces.add(new Space("Space27"));
+        spaces.add(new Space("Space28"));
+        spaces.add(new Space("Space29"));
+        spaces.add(new Space("Space30"));
+        spaces.add(new Space("Space31"));
+        spaces.add(new Space("Space32"));
+        spaces.add(new Space("Space33"));
+        spaces.add(new Space("Space34"));
+        spaces.add(new Space("Space35"));
+        spaces.add(new Space("Space36"));
+        spaces.add(new Space("Space37"));
+        spaces.add(new Space("Space38"));
+        spaces.add(new Space("Space39"));
     }
 
     public int getBoardSize() {
@@ -60,15 +59,17 @@ public class Board {
         return spaces.get(index);
     }
 
-    public List<Space> getNavigationList(Token token) {
-        int location = token.getLocation();
+    public List<Space> getNavigationList(Player player) {
+        Space location = player.getLocation();
+        int locationIndex = spaces.indexOf(location);
+
         List<Space> navigationList = new ArrayList<Space>();
 
-        for (int i = location; i < spaces.size(); i++)
+        for (int i = locationIndex; i < spaces.size(); i++)
             navigationList.add(spaces.get(i));
 
-        if (location > 0)
-            for (int i = 0; i < location; i++)
+        if (locationIndex > 0)
+            for (int i = 0; i < locationIndex; i++)
                 navigationList.add(spaces.get(i));
 
         return navigationList;

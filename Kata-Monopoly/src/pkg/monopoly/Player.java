@@ -1,27 +1,22 @@
 package pkg.monopoly;
 
-
 import java.util.List;
 
 public class Player {
     private int cashBalance = 0;
-    private Token token = null;
+    private Space location;
 
-    public Player(Token token) {
-        this.token = token;
+    public Player() {
+        this.location = new Go("Go");
         this.cashBalance = 1500;
     }
 
-    public String getTokenDescription() {
-        return token.getDescription();
+    public Space getLocation() {
+        return location;
     }
 
-    public int getTokenLocation() {
-        return token.getLocation();
-    }
-
-    public void setTokenLocation(int location) {
-        this.token.setLocation(location);
+    public void setLocation(Space location) {
+        this.location = location;
     }
 
     public int getCashBalance() {
@@ -33,26 +28,10 @@ public class Player {
         List<Space> navigationList;
         dice.rollTwoDie();
         int numberRolled = dice.getTwoDieRollValue();
-        navigationList = board.getNavigationList(this.token);
+        navigationList = board.getNavigationList(this);
         for (int i = 0; i <= numberRolled; i++) {
-            setTokenLocation(navigationList.get(i).getID());
+            setLocation(navigationList.get(i));
         }
-    }
-
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-
-        Player player = (Player) o;
-
-        return token != null ? token.equals(player.token) : player.token == null;
-
-    }
-
-    @Override
-    public int hashCode() {
-        return token != null ? token.hashCode() : 0;
     }
 
     public void increaseCashBalanceBy(int cash) {

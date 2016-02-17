@@ -7,18 +7,16 @@ import static org.junit.Assert.assertTrue;
 
 public class SpaceTest {
 
-
     @Test
-    public void testSpaceCreated() {
-        Space space = new Space(0,"Go");
-        assertEquals(0, space.getID());
-        assertEquals("Go", space.getDescription());
+    public void testCreateSpace() {
+        Space space = new Space("Space");
+        assertEquals("Space", space.getDescription());
     }
 
     @Test
     public void testLandOn() {
-        Player player = new Player(new Token("Boot"));
-        Space space = new Space(1,"Not Go");
+        Player player = new Player();
+        Space space = new Space("Space");
         int expectedEndingBalance = player.getCashBalance();
         space.landOn(player);
         assertEquals(expectedEndingBalance, player.getCashBalance());
@@ -26,17 +24,17 @@ public class SpaceTest {
 
     @Test
     public void testPassBy() {
-        Player player = new Player(new Token("Boot"));
-        Space space = new Space(0,"Go");
+        Player player = new Player();
+        Space space = new Space("Space");
         int expectedEndingBalance = player.getCashBalance();
         space.passBy(player);
         assertEquals(expectedEndingBalance, player.getCashBalance());
     }
 
     @Test
-    public void testEqualityAndHashcode(){
-        Space space1 = new Space(0,"Go");
-        Space space2 = new Space(0,"Go");
+    public void testEqualsAndHashcode() {
+        Space space1 = new Space("Space");
+        Space space2 = new Space("Space");
         assertTrue(space1.equals(space2));
         assertTrue(space1.hashCode() == space2.hashCode());
     }

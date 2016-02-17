@@ -21,8 +21,7 @@ public class GameTest {
 
     private void addThisManyPlayers(int number) {
         for (int i = 0; i < number; i++) {
-            Token token = new Token("");
-            Player player = new Player(token);
+            Player player = new Player();
             game.addPlayer(player);
         }
     }
@@ -54,10 +53,8 @@ public class GameTest {
 
         for (int i = 0; i < 100; i++) {
             Game game = new Game();
-            Token cat = new Token("Cat");
-            Token boot = new Token("Boot");
-            Player catPlayer = new Player(cat);
-            Player bootPlayer = new Player(boot);
+            Player catPlayer = new Player();
+            Player bootPlayer = new Player();
             game.addPlayer(catPlayer);
             game.addPlayer(bootPlayer);
             game.randomizePlayerOrder();
@@ -82,8 +79,8 @@ public class GameTest {
 
             public int turnsTaken = 0;
 
-            public PlayerMockTurnCounter(Token token) {
-                super(token);
+            public PlayerMockTurnCounter() {
+                super();
             }
 
             @Override
@@ -94,8 +91,7 @@ public class GameTest {
         }
 
         for (int i = 0; i < 2; i++) {
-            Token token = new Token("");
-            PlayerMockTurnCounter player = new PlayerMockTurnCounter(token);
+            PlayerMockTurnCounter player = new PlayerMockTurnCounter();
             game.addPlayer(player);
         }
         game.play();
@@ -107,10 +103,8 @@ public class GameTest {
 
     @Test
     public void testPlayersAlternateOrder() throws Game.InvalidPlayerCount {
-        Token boot = new Token("Boot");
-        Token cat = new Token("Cat");
-        PlayerMockAlternateOrder player1 = new PlayerMockAlternateOrder(boot);
-        PlayerMockAlternateOrder player2 = new PlayerMockAlternateOrder(cat);
+        PlayerMockAlternateOrder player1 = new PlayerMockAlternateOrder();
+        PlayerMockAlternateOrder player2 = new PlayerMockAlternateOrder();
         game.addPlayer(player1);
         game.addPlayer(player2);
         game.play();

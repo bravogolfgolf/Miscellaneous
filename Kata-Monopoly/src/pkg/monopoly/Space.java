@@ -1,25 +1,22 @@
 package pkg.monopoly;
 
 public class Space {
-    private final String description;
-    private final int id;
 
-    public Space(int id, String description) {
-        this.id = id;
+    private String description;
+
+    public Space(String description) {
         this.description = description;
-    }
-
-    public int getID() {
-        return id;
     }
 
     public String getDescription() {
         return description;
     }
 
-    public void landOn(Player player) {}
+    public void landOn(Player player) {
+    }
 
-    public void passBy(Player player) {}
+    public void passBy(Player player) {
+    }
 
     @Override
     public boolean equals(Object o) {
@@ -28,14 +25,12 @@ public class Space {
 
         Space space = (Space) o;
 
-        return id == space.id && (description != null ? description.equals(space.description) : space.description == null);
+        return description.equals(space.description);
 
     }
 
     @Override
     public int hashCode() {
-        int result = description != null ? description.hashCode() : 0;
-        result = 31 * result + id;
-        return result;
+        return description.hashCode();
     }
 }

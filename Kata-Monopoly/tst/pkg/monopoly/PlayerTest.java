@@ -14,42 +14,37 @@ public class PlayerTest {
 
     @Before
     public void setup() {
-        Token token = new Token("Cat");
-        player1 = new Player(token);
-        player2 = new Player(token);
+        player1 = new Player();
+        player2 = new Player();
         dice = new Dice();
     }
 
     @Test
     public void testCreatePlayer() {
-        final int EXPECTED_INITIAL_LOCATION = 0;
+        final Space EXPECTED_INITIAL_LOCATION = new Go("Go");
         final int EXPECTED_INITIAL_CASH_BALANCE = 1500;
-        assertEquals(EXPECTED_INITIAL_LOCATION, player1.getTokenLocation());
+        assertEquals(EXPECTED_INITIAL_LOCATION, player1.getLocation());
         assertEquals(EXPECTED_INITIAL_CASH_BALANCE, player1.getCashBalance());
-        assertEquals("Cat", player1.getTokenDescription());
-    }
-
-    @Test
-    public void testPlayerEqualityAndHashcode() {
-        assertTrue(player1.equals(player2));
-        assertTrue(player1.hashCode() == player2.hashCode());
     }
 
     @Test
     public void testTokenMovesNoWrap() {
-        int startingLocation = player1.getTokenLocation();
+        DiceMock dice = new DiceMock();
+        Board board = new Board();
+        player1.setLocation(new Go("Go"));
         player1.takeATurn(dice);
-        int endingLocation = dice.getTwoDieRollValue() + startingLocation;
-        assertEquals(endingLocation, player1.getTokenLocation());
+        Space endingLocation = board.getSpace(2);
+        assertEquals(endingLocation, player1.getLocation());
     }
 
     @Test
     public void testTokenMovesAndWraps() {
-        player1.setTokenLocation(Board.LAST_LOCATION_ON_BOARD);
+        DiceMock dice = new DiceMock();
+        Board board = new Board();
+        player1.setLocation(board.getSpace(39));
         player1.takeATurn(dice);
-        assertEquals(dice.getTwoDieRollValue() - 1, player1.getTokenLocation());
-        assertTrue(String.format("Location: %d; Number: %d; Result: %d", Board.LAST_LOCATION_ON_BOARD, dice.getTwoDieRollValue(), player1.getTokenLocation()),
-                player1.getTokenLocation() < Board.LAST_LOCATION_ON_BOARD);
+        Space endingLocation = board.getSpace(1);
+        assertEquals(endingLocation, player1.getLocation());
     }
 
     @Test
