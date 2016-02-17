@@ -74,22 +74,6 @@ public class GameTest {
 
     @Test
     public void testGameOfTwentyRounds() throws Game.InvalidPlayerCount {
-
-        class PlayerMockTurnCounter extends Player {
-
-            public int turnsTaken = 0;
-
-            public PlayerMockTurnCounter() {
-                super();
-            }
-
-            @Override
-            public void takeATurn(Dice die) {
-                turnsTaken++;
-            }
-
-        }
-
         for (int i = 0; i < 2; i++) {
             PlayerMockTurnCounter player = new PlayerMockTurnCounter();
             game.addPlayer(player);
