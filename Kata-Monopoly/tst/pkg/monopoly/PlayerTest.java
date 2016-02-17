@@ -29,20 +29,20 @@ public class PlayerTest {
 
     @Test
     public void testTokenMovesNoWrap() {
-        DiceMock dice = new DiceMock();
+        DiceMock diceMock = new DiceMock();
         Board board = new Board();
         player1.setSpace(new Go("Go"));
-        player1.takeATurn(dice);
+        player1.takeATurn(diceMock);
         Space endingLocation = board.getSpace(2);
         assertEquals(endingLocation, player1.getSpace());
     }
 
     @Test
     public void testTokenMovesAndWraps() {
-        DiceMock dice = new DiceMock();
+        DiceMock diceMock = new DiceMock();
         Board board = new Board();
         player1.setSpace(board.getSpace(39));
-        player1.takeATurn(dice);
+        player1.takeATurn(diceMock);
         Space endingLocation = board.getSpace(1);
         assertEquals(endingLocation, player1.getSpace());
     }
