@@ -35,9 +35,7 @@ public class Player {
         int numberRolled = dice.getTwoDieRollValue();
         navigationList = board.getNavigationList(this.token);
         for (int i = 0; i <= numberRolled; i++) {
-            Space space = navigationList.get(i);
-            int spaceID = space.getID();
-            this.token.setLocation(spaceID);
+            setTokenLocation(navigationList.get(i).getID());
         }
     }
 

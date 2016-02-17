@@ -10,6 +10,7 @@ import static org.junit.Assert.assertTrue;
 public class BoardTest {
 
     public static final int BOARDWALK = 39;
+    public static final int GO = 0;
     private Board board = new Board();
 
     @Test
@@ -82,7 +83,7 @@ public class BoardTest {
     public void testCreateLocationNavigationListStartingAtGo(){
         List<Space> navigationList;
         Token token = new Token("Ship");
-        token.setLocation(0);
+        token.setLocation(GO);
         navigationList = board.getNavigationList(token);
         assertEquals(40,navigationList.size());
         assertTrue(board.getSpace(0).equals(navigationList.get(0)));
