@@ -11,17 +11,17 @@ public class PlayerTest {
 
     private Player player;
     private DiceMock diceMock;
-    private Space start;
-    private Space space1;
-    private Space space2;
+    private SpaceMock start;
+    private SpaceMock space1;
+    private SpaceMock space2;
 
     @Before
     public void setup() {
         player = new Player();
         diceMock = new DiceMock();
-        start = new Space("Start");
-        space1 = new Space("Space1");
-        space2 = new Space("Space2");
+        start = new SpaceMock("Start");
+        space1 = new SpaceMock("Space1");
+        space2 = new SpaceMock("Space2");
         start.setNextSpace(space1);
         space1.setNextSpace(space2);
         space2.setNextSpace(start);
@@ -61,7 +61,25 @@ public class PlayerTest {
     }
 
     @Test
-    public void testIncreaseCashBalance(){
+    public void testLandOnMethodCalledProperly() {
+        player.setSpace(start);
+        player.takeATurn(diceMock);
+        assertEquals(0, start.landOnCounter);
+        assertEquals(0, space1.landOnCounter);
+        assertEquals(1, space2.landOnCounter);
+    }
+
+    @Test
+    public void testPassByMethodCalledProperly() {
+        player.setSpace(start);
+        player.takeATurn(diceMock);
+        assertEquals(0, start.passByCounter);
+        assertEquals(1, space1.passByCounter);
+        assertEquals(0, space2.passByCounter);
+    }
+
+    @Test
+    public void testIncreaseCashBalance() {
         int expectedBalance = player.getCashBalance() + 100;
         player.increaseCashBalanceBy(100);
         assertEquals(expectedBalance, player.getCashBalance());

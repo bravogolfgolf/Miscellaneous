@@ -13,26 +13,33 @@ public class Space {
         return description;
     }
 
-    public void landOn(Player player) {
-    }
-
-    public void passBy(Player player) {
+    public void setNextSpace(Space space) {
+        nextSpace = space;
     }
 
     public void move(Player player, int numberRolled) {
-        for (int i = 0; i < numberRolled; i++) {
-            Space space = player.getSpace();
-            Space next = space.getNextSpace();
-            player.setSpace(next);
+        for (int i = 1; i < numberRolled; i++) {
+            moveForwardOneSpace(player);
+            player.getSpace().passBy(player);
         }
+        moveForwardOneSpace(player);
+        player.getSpace().landOn(player);
+    }
+
+    private void moveForwardOneSpace(Player player) {
+        Space space = player.getSpace();
+        Space next = space.getNextSpace();
+        player.setSpace(next);
     }
 
     public Space getNextSpace() {
         return nextSpace;
     }
 
-    public void setNextSpace(Space space) {
-        nextSpace = space;
+    public void passBy(Player player) {
+    }
+
+    public void landOn(Player player) {
     }
 
     @Override
