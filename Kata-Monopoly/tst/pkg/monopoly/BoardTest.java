@@ -69,12 +69,22 @@ public class BoardTest {
     }
 
     @Test
-    public void testCreateLocationNavigationList(){
+    public void testCreateLocationNavigationListStartingAtNotGo(){
         List<Space> navigationList;
         Token token = new Token("Cat");
         token.setLocation(BOARDWALK);
         navigationList = board.getNavigationList(token);
         assertEquals(40,navigationList.size());
         assertTrue(board.getSpace(0).equals(navigationList.get(1)));
+    }
+
+    @Test
+    public void testCreateLocationNavigationListStartingAtGo(){
+        List<Space> navigationList;
+        Token token = new Token("Ship");
+        token.setLocation(0);
+        navigationList = board.getNavigationList(token);
+        assertEquals(40,navigationList.size());
+        assertTrue(board.getSpace(0).equals(navigationList.get(0)));
     }
 }

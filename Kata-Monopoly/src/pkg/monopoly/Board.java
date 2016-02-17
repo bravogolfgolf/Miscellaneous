@@ -65,7 +65,7 @@ public class Board {
         List<Space> navigationList = new ArrayList<Space>();
 
         for (int i = location; i < spaces.size(); i++)
-            navigationList.add(spaces.get(location));
+            navigationList.add(spaces.get(i));
 
         if (location > 0)
             for (int i = 0; i < location; i++)

@@ -1,5 +1,8 @@
 package pkg.monopoly;
 
+
+import java.util.List;
+
 public class Player {
     private int cashBalance = 0;
     private Token token = null;
@@ -26,8 +29,16 @@ public class Player {
     }
 
     public void takeATurn(Dice dice) {
+        Board board = new Board();
+        List<Space> navigationList;
         dice.rollTwoDie();
         int numberRolled = dice.getTwoDieRollValue();
+        navigationList = board.getNavigationList(this.token);
+        for (int i = 0; i <= numberRolled; i++) {
+            Space space = navigationList.get(i);
+            int spaceID = space.getID();
+            this.token.setLocation(spaceID);
+        }
     }
 
     @Override

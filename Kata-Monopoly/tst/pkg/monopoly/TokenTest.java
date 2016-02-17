@@ -25,6 +25,12 @@ public class TokenTest {
     }
 
     @Test
+    public void testSetLocation(){
+        token1.setLocation(39);
+        assertEquals(39,token1.getLocation());
+    }
+
+    @Test
     public void testTokenEqualityAndHashcode() {
         assertTrue(token1.equals(token2));
         assertTrue(token1.hashCode() == token2.hashCode());

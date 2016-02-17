@@ -1,6 +1,8 @@
 package pkg.monopoly;
 
+import org.junit.After;
 import org.junit.Before;
+import org.junit.Ignore;
 import org.junit.Test;
 
 import static org.junit.Assert.assertEquals;
@@ -45,15 +47,11 @@ public class PlayerTest {
 
     @Test
     public void testTokenMovesAndWraps() {
-        playerPassesGo();
+        player1.setTokenLocation(Board.LAST_LOCATION_ON_BOARD);
+        player1.takeATurn(dice);
         assertEquals(dice.getTwoDieRollValue() - 1, player1.getTokenLocation());
         assertTrue(String.format("Location: %d; Number: %d; Result: %d", Board.LAST_LOCATION_ON_BOARD, dice.getTwoDieRollValue(), player1.getTokenLocation()),
                 player1.getTokenLocation() < Board.LAST_LOCATION_ON_BOARD);
-    }
-
-    private void playerPassesGo() {
-        player1.setTokenLocation(Board.LAST_LOCATION_ON_BOARD);
-        player1.takeATurn(dice);
     }
 
     @Test
