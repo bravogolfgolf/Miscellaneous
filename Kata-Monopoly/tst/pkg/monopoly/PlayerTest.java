@@ -4,19 +4,14 @@ import org.junit.Before;
 import org.junit.Test;
 
 import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertTrue;
 
 public class PlayerTest {
 
     private Player player1;
-    private Player player2;
-    private Dice dice;
 
     @Before
     public void setup() {
         player1 = new Player();
-        player2 = new Player();
-        dice = new Dice();
     }
 
     @Test
