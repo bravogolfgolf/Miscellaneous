@@ -1,11 +1,40 @@
 package pkg.monopoly;
 
+import org.junit.After;
+import org.junit.Before;
 import org.junit.Test;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
 
 public class SpaceTest {
+
+    private Player player;
+    private DiceMock diceMock;
+    private SpaceMock start;
+    private SpaceMock space1;
+    private SpaceMock space2;
+
+    @Before
+    public void setup() {
+        player = new Player();
+        diceMock = new DiceMock();
+        start = new SpaceMock("Start");
+        space1 = new SpaceMock("Space1");
+        space2 = new SpaceMock("Space2");
+        start.setNextSpace(space1);
+        space1.setNextSpace(space2);
+        space2.setNextSpace(start);
+    }
+
+    @After
+    public void tearDown() {
+        player = null;
+        diceMock = null;
+        start = null;
+        space1 = null;
+        space2 = null;
+    }
 
     @Test
     public void testCreateSpace() {
@@ -14,7 +43,7 @@ public class SpaceTest {
     }
 
     @Test
-    public void testSetNextSpace(){
+    public void testSetNextSpace() {
         Space start = new Space("Start");
         Space space1 = new Space("Space1");
         start.setNextSpace(space1);
@@ -22,7 +51,7 @@ public class SpaceTest {
     }
 
     @Test
-    public void testLandOn() {
+    public void testLandOnDoesNotIncreaseBalance() {
         Player player = new Player();
         Space space = new Space("Space");
         int expectedEndingBalance = player.getCashBalance();
@@ -31,13 +60,32 @@ public class SpaceTest {
     }
 
     @Test
-    public void testPassBy() {
+    public void testPassByDoesNotIncreaseBalance() {
         Player player = new Player();
         Space space = new Space("Space");
         int expectedEndingBalance = player.getCashBalance();
         space.passBy(player);
         assertEquals(expectedEndingBalance, player.getCashBalance());
     }
+
+    @Test
+    public void testLandOnMethodCalledProperly() {
+        player.setSpace(start);
+        player.takeATurn(diceMock);
+        assertEquals(0, start.landOnCounter);
+        assertEquals(0, space1.landOnCounter);
+        assertEquals(1, space2.landOnCounter);
+    }
+
+    @Test
+    public void testPassByMethodCalledProperly() {
+        player.setSpace(start);
+        player.takeATurn(diceMock);
+        assertEquals(0, start.passByCounter);
+        assertEquals(1, space1.passByCounter);
+        assertEquals(0, space2.passByCounter);
+    }
+
 
     @Test
     public void testEqualsAndHashcode() {

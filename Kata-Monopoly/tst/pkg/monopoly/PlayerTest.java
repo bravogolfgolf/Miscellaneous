@@ -61,24 +61,6 @@ public class PlayerTest {
     }
 
     @Test
-    public void testLandOnMethodCalledProperly() {
-        player.setSpace(start);
-        player.takeATurn(diceMock);
-        assertEquals(0, start.landOnCounter);
-        assertEquals(0, space1.landOnCounter);
-        assertEquals(1, space2.landOnCounter);
-    }
-
-    @Test
-    public void testPassByMethodCalledProperly() {
-        player.setSpace(start);
-        player.takeATurn(diceMock);
-        assertEquals(0, start.passByCounter);
-        assertEquals(1, space1.passByCounter);
-        assertEquals(0, space2.passByCounter);
-    }
-
-    @Test
     public void testIncreaseCashBalance() {
         int expectedBalance = player.getCashBalance() + 100;
         player.increaseCashBalanceBy(100);

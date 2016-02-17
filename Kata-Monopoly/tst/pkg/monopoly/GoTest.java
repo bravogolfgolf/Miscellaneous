@@ -9,7 +9,7 @@ public class GoTest {
     public static final int LAND_ON_GO_COLLECT_200 = 200;
 
     @Test
-    public void testLandOn() {
+    public void testLandOnIncreaseBalance() {
         Player player = new Player();
         Space go = new Go("Go");
         int expectedEndingBalance = player.getCashBalance() + LAND_ON_GO_COLLECT_200;
@@ -18,7 +18,7 @@ public class GoTest {
     }
 
     @Test
-    public void testPassBy() {
+    public void testPassByIncreaseBalance() {
         Player player = new Player();
         Space go = new Go("Go");
         int expectedEndingBalance = player.getCashBalance() + LAND_ON_GO_COLLECT_200;
