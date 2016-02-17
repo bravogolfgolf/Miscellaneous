@@ -1,5 +1,7 @@
 package pkg.monopoly;
 
+import java.util.List;
+
 public class Space {
 
     private String description;
@@ -16,6 +18,15 @@ public class Space {
     }
 
     public void passBy(Player player) {
+    }
+
+    public void move(Player player, int numberRolled) {
+        Board board = new Board();
+        List<Space> navigationList;
+        navigationList = board.getNavigationList(player);
+        for (int i = 0; i <= numberRolled; i++) {
+            player.setSpace(navigationList.get(i));
+        }
     }
 
     @Override

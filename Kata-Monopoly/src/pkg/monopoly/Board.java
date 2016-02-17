@@ -60,7 +60,7 @@ public class Board {
     }
 
     public List<Space> getNavigationList(Player player) {
-        Space location = player.getLocation();
+        Space location = player.getSpace();
         int locationIndex = spaces.indexOf(location);
 
         List<Space> navigationList = new ArrayList<Space>();

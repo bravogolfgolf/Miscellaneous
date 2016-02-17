@@ -1,22 +1,20 @@
 package pkg.monopoly;
 
-import java.util.List;
-
 public class Player {
     private int cashBalance = 0;
-    private Space location;
+    private Space space;
 
     public Player() {
-        this.location = new Go("Go");
+        this.space = new Go("Go");
         this.cashBalance = 1500;
     }
 
-    public Space getLocation() {
-        return location;
+    public Space getSpace() {
+        return space;
     }
 
-    public void setLocation(Space location) {
-        this.location = location;
+    public void setSpace(Space space) {
+        this.space = space;
     }
 
     public int getCashBalance() {
@@ -24,14 +22,9 @@ public class Player {
     }
 
     public void takeATurn(Dice dice) {
-        Board board = new Board();
-        List<Space> navigationList;
         dice.rollTwoDie();
         int numberRolled = dice.getTwoDieRollValue();
-        navigationList = board.getNavigationList(this);
-        for (int i = 0; i <= numberRolled; i++) {
-            setLocation(navigationList.get(i));
-        }
+        space.move(this, numberRolled);
     }
 
     public void increaseCashBalanceBy(int cash) {

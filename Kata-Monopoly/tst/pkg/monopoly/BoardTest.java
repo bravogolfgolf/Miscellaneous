@@ -33,7 +33,7 @@ public class BoardTest {
     public void testCreateLocationNavigationListStartingAtNotGo(){
         List<Space> navigationList;
         Player player = new Player();
-        player.setLocation(board.getSpace(BOARDWALK));
+        player.setSpace(board.getSpace(BOARDWALK));
         navigationList = board.getNavigationList(player);
         assertEquals(40,navigationList.size());
         assertTrue(board.getSpace(0).equals(navigationList.get(1)));
@@ -43,7 +43,7 @@ public class BoardTest {
     public void testCreateLocationNavigationListStartingAtGo(){
         List<Space> navigationList;
         Player player = new Player();
-        player.setLocation(board.getSpace(GO));
+        player.setSpace(board.getSpace(GO));
         navigationList = board.getNavigationList(player);
         assertEquals(40,navigationList.size());
         assertTrue(board.getSpace(0).equals(navigationList.get(0)));

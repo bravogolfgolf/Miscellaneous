@@ -23,7 +23,7 @@ public class PlayerTest {
     public void testCreatePlayer() {
         final Space EXPECTED_INITIAL_LOCATION = new Go("Go");
         final int EXPECTED_INITIAL_CASH_BALANCE = 1500;
-        assertEquals(EXPECTED_INITIAL_LOCATION, player1.getLocation());
+        assertEquals(EXPECTED_INITIAL_LOCATION, player1.getSpace());
         assertEquals(EXPECTED_INITIAL_CASH_BALANCE, player1.getCashBalance());
     }
 
@@ -31,20 +31,20 @@ public class PlayerTest {
     public void testTokenMovesNoWrap() {
         DiceMock dice = new DiceMock();
         Board board = new Board();
-        player1.setLocation(new Go("Go"));
+        player1.setSpace(new Go("Go"));
         player1.takeATurn(dice);
         Space endingLocation = board.getSpace(2);
-        assertEquals(endingLocation, player1.getLocation());
+        assertEquals(endingLocation, player1.getSpace());
     }
 
     @Test
     public void testTokenMovesAndWraps() {
         DiceMock dice = new DiceMock();
         Board board = new Board();
-        player1.setLocation(board.getSpace(39));
+        player1.setSpace(board.getSpace(39));
         player1.takeATurn(dice);
         Space endingLocation = board.getSpace(1);
-        assertEquals(endingLocation, player1.getLocation());
+        assertEquals(endingLocation, player1.getSpace());
     }
 
     @Test
