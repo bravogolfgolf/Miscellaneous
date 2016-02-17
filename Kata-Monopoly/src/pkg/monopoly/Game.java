@@ -12,7 +12,6 @@ public class Game {
 
     }
 
-    public static final int GO = 0;
     public static final int MINIMUM_NUMBER_OF_PLAYERS = 2;
     public static final int MAXIMUM_NUMBER_OF_PLAYERS = 8;
     private Dice dice = new Dice();
@@ -43,16 +42,7 @@ public class Game {
         for (int i = 0; i < 20; i++) {
             for (Player player : players) {
                 player.takeATurn(dice);
-                if (playerPassedGo(player)) {
-                    Space space = board.getSpace(GO);
-                    space.landOn(player);
-                    player.setSalaryFlag(false);
-                }
             }
         }
-    }
-
-    private boolean playerPassedGo(Player player) {
-        return player.getSalaryFlag();
     }
 }
