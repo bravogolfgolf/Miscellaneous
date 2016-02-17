@@ -23,7 +23,7 @@ public class PlayerTest {
     }
 
     @Test
-    public void testTokenMovesNoWrap() {
+    public void testMovesAndDoesNoWrap() {
         DiceMock diceMock = new DiceMock();
         Board board = new Board();
         player1.setSpace(new Go("Go"));
@@ -33,7 +33,7 @@ public class PlayerTest {
     }
 
     @Test
-    public void testTokenMovesAndWraps() {
+    public void testMovesAndWraps() {
         DiceMock diceMock = new DiceMock();
         Board board = new Board();
         player1.setSpace(board.getSpace(39));
@@ -48,5 +48,4 @@ public class PlayerTest {
         player1.increaseCashBalanceBy(100);
         assertEquals(expectedBalance,player1.getCashBalance());
     }
-
 }
