@@ -14,20 +14,33 @@ public class GameTest {
 
     static final int EXPECTED_NUMBER_OF_PLAYERS = 2;
     private Game game;
+    private Space start;
+    private Space space1;
+    private Space space2;
 
     @Before
     public void setUp() {
         game = new Game();
+        start = new Space("Start");
+        space1 = new Space("Space1");
+        space2 = new Space("Space2");
+        start.setNextSpace(space1);
+        space1.setNextSpace(space2);
+        space2.setNextSpace(start);
     }
 
     @After
     public void tearDown() {
         game = null;
+        start = null;
+        space1 = null;
+        space2 = null;
     }
 
     private void addThisManyPlayers(int number) {
         for (int i = 0; i < number; i++) {
             Player player = new Player();
+            player.setSpace(start);
             game.addPlayer(player);
         }
     }

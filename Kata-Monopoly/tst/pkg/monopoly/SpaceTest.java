@@ -14,6 +14,14 @@ public class SpaceTest {
     }
 
     @Test
+    public void testSetNextSpace(){
+        Space start = new Space("Start");
+        Space space1 = new Space("Space1");
+        start.setNextSpace(space1);
+        assertTrue(start.getNextSpace().equals(space1));
+    }
+
+    @Test
     public void testLandOn() {
         Player player = new Player();
         Space space = new Space("Space");

@@ -5,25 +5,35 @@ import org.junit.Before;
 import org.junit.Test;
 
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertTrue;
 
 public class PlayerTest {
 
     private Player player;
     private DiceMock diceMock;
-    private Board board;
+    private Space start;
+    private Space space1;
+    private Space space2;
 
     @Before
     public void setup() {
         player = new Player();
         diceMock = new DiceMock();
-        board = new Board();
+        start = new Space("Start");
+        space1 = new Space("Space1");
+        space2 = new Space("Space2");
+        start.setNextSpace(space1);
+        space1.setNextSpace(space2);
+        space2.setNextSpace(start);
     }
 
     @After
     public void tearDown() {
         player = null;
         diceMock = null;
-        board = null;
+        start = null;
+        space1 = null;
+        space2 = null;
     }
 
     @Test
@@ -36,18 +46,18 @@ public class PlayerTest {
 
     @Test
     public void testMovesAndDoesNoWrap() {
-        player.setSpace(board.getSpace(0));
+        player.setSpace(start);
         player.takeATurn(diceMock);
-        Space endingLocation = board.getSpace(2);
-        assertEquals(endingLocation, player.getSpace());
+        Space endingLocation = space2;
+        assertTrue(endingLocation.equals(player.getSpace()));
     }
 
     @Test
     public void testMovesAndWraps() {
-        player.setSpace(board.getSpace(39));
+        player.setSpace(space1);
         player.takeATurn(diceMock);
-        Space endingLocation = board.getSpace(1);
-        assertEquals(endingLocation, player.getSpace());
+        Space endingLocation = start;
+        assertTrue(endingLocation.equals(player.getSpace()));
     }
 
     @Test

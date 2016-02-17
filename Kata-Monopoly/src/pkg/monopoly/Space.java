@@ -1,10 +1,9 @@
 package pkg.monopoly;
 
-import java.util.List;
-
 public class Space {
 
     private String description;
+    private Space nextSpace;
 
     public Space(String description) {
         this.description = description;
@@ -21,12 +20,19 @@ public class Space {
     }
 
     public void move(Player player, int numberRolled) {
-        Board board = new Board();
-        List<Space> navigationList;
-        navigationList = board.getNavigationList(player);
-        for (int i = 0; i <= numberRolled; i++) {
-            player.setSpace(navigationList.get(i));
+        for (int i = 0; i < numberRolled; i++) {
+            Space space = player.getSpace();
+            Space next = space.getNextSpace();
+            player.setSpace(next);
         }
+    }
+
+    public Space getNextSpace() {
+        return nextSpace;
+    }
+
+    public void setNextSpace(Space space) {
+        nextSpace = space;
     }
 
     @Override
