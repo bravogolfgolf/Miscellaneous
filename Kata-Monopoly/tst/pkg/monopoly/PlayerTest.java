@@ -58,4 +58,5 @@ public class PlayerTest {
         player1.increaseCashBalanceBy(100);
         assertEquals(expectedBalance,player1.getCashBalance());
     }
+
 }

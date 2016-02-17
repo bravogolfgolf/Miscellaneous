@@ -7,7 +7,6 @@ import static org.junit.Assert.assertTrue;
 
 public class SpaceTest {
 
-    public static final int LAND_ON_GO_COLLECT_200 = 200;
 
     @Test
     public void testSpaceCreated() {
@@ -17,22 +16,23 @@ public class SpaceTest {
     }
 
     @Test
-    public void testLandOnGo_Action() {
+    public void testLandOn() {
         Player player = new Player(new Token("Boot"));
-        Space go = new Space(0,"Go");
-        int expectedEndingBalance = player.getCashBalance() + LAND_ON_GO_COLLECT_200;
-        go.landOn(player);
+        Space space = new Space(1,"Not Go");
+        int expectedEndingBalance = player.getCashBalance();
+        space.landOn(player);
         assertEquals(expectedEndingBalance, player.getCashBalance());
     }
 
     @Test
-    public void testPassByGo_Action() {
+    public void testPassBy() {
         Player player = new Player(new Token("Boot"));
-        Space go = new Space(0,"Go");
-        int expectedEndingBalance = player.getCashBalance() + LAND_ON_GO_COLLECT_200;
-        go.passBy(player);
+        Space space = new Space(0,"Go");
+        int expectedEndingBalance = player.getCashBalance();
+        space.passBy(player);
         assertEquals(expectedEndingBalance, player.getCashBalance());
     }
+
     @Test
     public void testEqualityAndHashcode(){
         Space space1 = new Space(0,"Go");

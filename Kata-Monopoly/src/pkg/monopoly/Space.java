@@ -17,6 +17,10 @@ public class Space {
         return description;
     }
 
+    public void landOn(Player player) {}
+
+    public void passBy(Player player) {}
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -33,13 +37,5 @@ public class Space {
         int result = description != null ? description.hashCode() : 0;
         result = 31 * result + id;
         return result;
-    }
-
-    public void landOn(Player player) {
-        player.increaseCashBalanceBy(200);
-    }
-
-    public void passBy(Player player) {
-        landOn(player);
     }
 }
