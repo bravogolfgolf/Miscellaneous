@@ -1,5 +1,6 @@
 package pkg.monopoly;
 
+import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 
@@ -16,6 +17,13 @@ public class PlayerTest {
         player = new Player();
         diceMock = new DiceMock();
         board = new Board();
+    }
+
+    @After
+    public void tearDown() {
+        player = null;
+        diceMock = null;
+        board = null;
     }
 
     @Test

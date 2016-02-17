@@ -1,5 +1,6 @@
 package pkg.monopoly;
 
+import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 
@@ -17,6 +18,11 @@ public class GameTest {
     @Before
     public void setUp() {
         game = new Game();
+    }
+
+    @After
+    public void tearDown() {
+        game = null;
     }
 
     private void addThisManyPlayers(int number) {

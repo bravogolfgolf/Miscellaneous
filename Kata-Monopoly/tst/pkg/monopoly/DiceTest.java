@@ -1,5 +1,6 @@
 package pkg.monopoly;
 
+import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 
@@ -13,6 +14,11 @@ public class DiceTest {
     public void setUp() throws Exception {
         dice = new Dice();
         dice.rollTwoDie();
+    }
+
+    @After
+    public void tearDown() throws Exception {
+        dice = null;
     }
 
     @Test
