@@ -1,10 +1,8 @@
 package pkg.monopoly;
 
 public class Player {
-    public static final int GO = 0;
     private int cashBalance = 0;
     private Token token = null;
-    private boolean salaryFlag = false;
 
     public Player(Token token) {
         this.token = token;
@@ -30,30 +28,6 @@ public class Player {
     public void takeATurn(Dice dice) {
         dice.rollTwoDie();
         int numberRolled = dice.getTwoDieRollValue();
-        determineHowToMoveTokenForwardBy(numberRolled);
-    }
-
-    private void determineHowToMoveTokenForwardBy(int numberRolled) {
-        if (tokenIsCausedToCircledBoardBy(numberRolled))
-            moveTokenForwardByWrappingWith(numberRolled);
-        else moveTokenForwardBy(numberRolled);
-    }
-
-    private boolean tokenIsCausedToCircledBoardBy(int numberRolled) {
-        return this.token.getLocation() + numberRolled > Board.LAST_LOCATION_ON_BOARD;
-    }
-
-    private void moveTokenForwardByWrappingWith(int numberRolled) {
-        this.token.setLocation(this.token.getLocation() + numberRolled - Board.SIZE_ON_BOARD);
-        setSalaryFlag();
-    }
-
-    private void setSalaryFlag() {
-        salaryFlag = this.token.getLocation() != GO;
-    }
-
-    private void moveTokenForwardBy(int numberRolled) {
-        this.token.setLocation(this.token.getLocation() + numberRolled);
     }
 
     @Override
@@ -76,11 +50,4 @@ public class Player {
         cashBalance += cash;
     }
 
-    public boolean getSalaryFlag() {
-        return salaryFlag;
-    }
-
-    public void setSalaryFlag(boolean salaryFlag) {
-        this.salaryFlag = salaryFlag;
-    }
 }

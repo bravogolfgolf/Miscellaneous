@@ -54,7 +54,6 @@ public class PlayerTest {
     private void playerPassesGo() {
         player1.setTokenLocation(Board.LAST_LOCATION_ON_BOARD);
         player1.takeATurn(dice);
-
     }
 
     @Test
@@ -63,19 +62,4 @@ public class PlayerTest {
         player1.increaseCashBalanceBy(100);
         assertEquals(expectedBalance,player1.getCashBalance());
     }
-
-    @Test
-    public void testSetSalaryFlag() {
-        assertTrue(!player1.getSalaryFlag());
-        player1.setSalaryFlag(true);
-        assertTrue(player1.getSalaryFlag());
-    }
-
-    @Test
-    public void testPlayerWhoPassesGoHasSalaryFlagSetToTrue(){
-        playerPassesGo();
-        assertTrue(player1.getSalaryFlag());
-    }
-
-
 }
