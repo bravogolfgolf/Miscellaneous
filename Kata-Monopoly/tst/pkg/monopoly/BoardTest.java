@@ -2,10 +2,15 @@ package pkg.monopoly;
 
 import org.junit.Test;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertTrue;
 
 public class BoardTest {
 
+    public static final int BOARDWALK = 39;
     private Board board = new Board();
 
     @Test
@@ -62,5 +67,15 @@ public class BoardTest {
         assertEquals("Park Place", board.getSpace(37).getDescription());
         assertEquals("Luxury Tax", board.getSpace(38).getDescription());
         assertEquals("Boardwalk", board.getSpace(39).getDescription());
+    }
+
+    @Test
+    public void testCreateLocationNavigationList(){
+        List<Space> navigationList;
+        Token token = new Token("Cat");
+        token.setLocation(BOARDWALK);
+        navigationList = board.getNavigationList(token);
+        assertEquals(40,navigationList.size());
+        assertTrue(board.getSpace(0).equals(navigationList.get(1)));
     }
 }

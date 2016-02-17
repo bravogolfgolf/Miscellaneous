@@ -45,7 +45,7 @@ public class Game {
                 player.takeATurn(dice);
                 if (playerPassedGo(player)) {
                     Space space = board.getSpace(GO);
-                    space.action(player);
+                    space.landOn(player);
                     player.setSalaryFlag(false);
                 }
             }

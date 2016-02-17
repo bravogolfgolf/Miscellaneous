@@ -21,10 +21,18 @@ public class SpaceTest {
         Player player = new Player(new Token("Boot"));
         Space go = new Space(0,"Go");
         int expectedEndingBalance = player.getCashBalance() + LAND_ON_GO_COLLECT_200;
-        go.action(player);
+        go.landOn(player);
         assertEquals(expectedEndingBalance, player.getCashBalance());
     }
 
+    @Test
+    public void testPassByGo_Action() {
+        Player player = new Player(new Token("Boot"));
+        Space go = new Space(0,"Go");
+        int expectedEndingBalance = player.getCashBalance() + LAND_ON_GO_COLLECT_200;
+        go.passBy(player);
+        assertEquals(expectedEndingBalance, player.getCashBalance());
+    }
     @Test
     public void testEqualityAndHashcode(){
         Space space1 = new Space(0,"Go");

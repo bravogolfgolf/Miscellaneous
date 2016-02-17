@@ -35,7 +35,11 @@ public class Space {
         return result;
     }
 
-    public void action(Player player) {
+    public void landOn(Player player) {
         player.increaseCashBalanceBy(200);
+    }
+
+    public void passBy(Player player) {
+        landOn(player);
     }
 }
