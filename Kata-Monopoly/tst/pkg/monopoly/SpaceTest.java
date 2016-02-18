@@ -90,7 +90,9 @@ public class SpaceTest {
     @Test
     public void testEqualsAndHashcode() {
         Space space1 = new Space("Space");
+        space1.setNextSpace(new Space("Next"));
         Space space2 = new Space("Space");
+        space2.setNextSpace(new Space("Next"));
         assertTrue(space1.equals(space2));
         assertTrue(space1.hashCode() == space2.hashCode());
     }

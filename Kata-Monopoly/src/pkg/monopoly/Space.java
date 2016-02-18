@@ -1,11 +1,17 @@
 package pkg.monopoly;
 
+import java.io.*;
+
 public class Space {
 
     private String description;
     private Space nextSpace;
 
     public Space(String description) {
+        this.description = description;
+    }
+
+    public void setDescription(String description) {
         this.description = description;
     }
 
@@ -40,6 +46,30 @@ public class Space {
     }
 
     public void landOn(Player player) {
+    }
+
+    public void store(String filename) throws IOException {
+        DataOutputStream output = null;
+        try {
+            output = new DataOutputStream(new FileOutputStream(filename));
+            output.writeUTF(this.getDescription());
+        } finally {
+            if (output != null) {
+                output.close();
+            }
+        }
+    }
+
+    public void load(String filename) throws IOException {
+        DataInputStream input = null;
+        try {
+            input = new DataInputStream(new FileInputStream(filename));
+            this.setDescription(input.readUTF());
+        } finally {
+            if (input != null) {
+                input.close();
+            }
+        }
     }
 
     @Override
