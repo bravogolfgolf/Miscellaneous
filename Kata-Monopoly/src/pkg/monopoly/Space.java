@@ -49,12 +49,14 @@ public class Space {
 
         Space space = (Space) o;
 
-        return description.equals(space.description);
-
+        return description.equals(space.description) && (nextSpace != null ?
+                nextSpace.equals(space.nextSpace) : space.nextSpace == null);
     }
 
     @Override
     public int hashCode() {
-        return description.hashCode();
+        int result = description.hashCode();
+        result = 31 * result + (nextSpace != null ? nextSpace.hashCode() : 0);
+        return result;
     }
 }
