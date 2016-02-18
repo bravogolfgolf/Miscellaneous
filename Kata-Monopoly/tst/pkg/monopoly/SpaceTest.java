@@ -51,7 +51,7 @@ public class SpaceTest {
     }
 
     @Test
-    public void testLandOnDoesNotIncreaseBalance() {
+    public void testLandOnSpaceWithNoChangeInCash() {
         Player player = new Player();
         Space space = new Space("Space");
         int expectedEndingBalance = player.getCashBalance();
@@ -60,7 +60,7 @@ public class SpaceTest {
     }
 
     @Test
-    public void testPassByDoesNotIncreaseBalance() {
+    public void testPassBySpaceWithNoChangeInCash() {
         Player player = new Player();
         Space space = new Space("Space");
         int expectedEndingBalance = player.getCashBalance();
