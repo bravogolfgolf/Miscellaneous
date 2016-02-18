@@ -4,6 +4,8 @@ import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 
+import java.io.IOException;
+
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
 
@@ -86,6 +88,15 @@ public class SpaceTest {
         assertEquals(0, space2.passByCounter);
     }
 
+    @Test
+    public void testWriteAndReadOfSpaceDefinitionFile() throws IOException {
+        final String filename = "Spaces_US.txt";
+        Space space = new Space("SpaceWriteReadTest");
+        Space newSpace = new Space("");
+        space.store(filename);
+        newSpace.load(filename);
+        assertTrue(newSpace.equals(space));
+    }
 
     @Test
     public void testEqualsAndHashcode() {
