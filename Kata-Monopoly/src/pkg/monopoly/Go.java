@@ -3,7 +3,7 @@ package pkg.monopoly;
 public class Go extends Space {
 
     public Go(String description) {
-        super(description);
+        setDescription(description);
     }
 
     @Override

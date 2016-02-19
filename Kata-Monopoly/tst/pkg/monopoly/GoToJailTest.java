@@ -19,8 +19,8 @@ public class GoToJailTest {
 
     @Before
     public void setUp() throws Exception {
-        goToJail = new GoToJail("Go to Jail");
-        jail = new Space("Jail");
+        goToJail = Space.create("GoToJail","Go to Jail");
+        jail = Space.create("Other","Jail");
         player = new Player();
         startingBalance = player.getCashBalance();
     }

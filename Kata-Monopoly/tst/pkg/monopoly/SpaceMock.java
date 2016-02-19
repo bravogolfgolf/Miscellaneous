@@ -6,7 +6,7 @@ public class SpaceMock extends Space {
     public int passByCounter;
 
     public SpaceMock(String description) {
-        super(description);
+        setDescription(description);
     }
 
     @Override

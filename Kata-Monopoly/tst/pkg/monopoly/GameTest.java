@@ -21,9 +21,9 @@ public class GameTest {
     @Before
     public void setUp() {
         game = new Game();
-        start = new Space("Start");
-        space1 = new Space("Space1");
-        space2 = new Space("Space2");
+        start = Space.create("Other","Start");
+        space1 = Space.create("Other","Space1");
+        space2 = Space.create("Other","Space2");
         start.setNextSpace(space1);
         space1.setNextSpace(space2);
         space2.setNextSpace(start);

@@ -2,10 +2,10 @@ package pkg.monopoly;
 
 public class GoToJail extends Space {
 
-    private Space jail = new Space("Jail");
+    private Space jail = Space.create("Other", "Jail");
 
     public GoToJail(String description) {
-        super(description);
+        setDescription(description);
     }
 
     @Override

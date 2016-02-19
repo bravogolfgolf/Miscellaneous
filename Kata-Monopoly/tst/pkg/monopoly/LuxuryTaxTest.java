@@ -10,9 +10,9 @@ public class LuxuryTaxTest {
     @Test
     public void testLandOnLuxuryTaxAndCashDecreasesBy75(){
     final int AFTER_TAX_BALANCE = 1425;
-        Space incomeTax = new LuxuryTax("Luxury Tax");
+        Space luxuryTax = Space.create("LuxuryTax","Luxury Tax");
         Player player = new Player();
-        incomeTax.landOn(player);
+        luxuryTax.landOn(player);
         assertEquals(AFTER_TAX_BALANCE, player.getCashBalance());
     }
 }

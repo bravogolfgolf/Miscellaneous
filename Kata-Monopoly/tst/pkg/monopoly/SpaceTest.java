@@ -12,6 +12,7 @@ import static org.junit.Assert.assertTrue;
 public class SpaceTest {
 
     private Player player;
+    private Space space;
     private DiceMock diceMock;
     private SpaceMock start;
     private SpaceMock space1;
@@ -20,6 +21,7 @@ public class SpaceTest {
     @Before
     public void setup() {
         player = new Player();
+        space = Space.create("Other","SpaceDescription");
         diceMock = new DiceMock();
         start = new SpaceMock("Start");
         space1 = new SpaceMock("Space1");
@@ -32,6 +34,7 @@ public class SpaceTest {
     @After
     public void tearDown() {
         player = null;
+        space = null;
         diceMock = null;
         start = null;
         space1 = null;
@@ -40,22 +43,16 @@ public class SpaceTest {
 
     @Test
     public void testCreateSpace() {
-        Space space = new Space("Space");
-        assertEquals("Space", space.getDescription());
+        assertEquals("SpaceDescription", space.getDescription());
     }
 
     @Test
     public void testSetNextSpace() {
-        Space start = new Space("Start");
-        Space space1 = new Space("Space1");
-        start.setNextSpace(space1);
         assertTrue(start.getNextSpace().equals(space1));
     }
 
     @Test
     public void testLandOnSpaceWithNoChangeInCash() {
-        Player player = new Player();
-        Space space = new Space("Space");
         int expectedEndingBalance = player.getCashBalance();
         space.landOn(player);
         assertEquals(expectedEndingBalance, player.getCashBalance());
@@ -63,8 +60,6 @@ public class SpaceTest {
 
     @Test
     public void testPassBySpaceWithNoChangeInCash() {
-        Player player = new Player();
-        Space space = new Space("Space");
         int expectedEndingBalance = player.getCashBalance();
         space.passBy(player);
         assertEquals(expectedEndingBalance, player.getCashBalance());
@@ -91,17 +86,17 @@ public class SpaceTest {
     @Test
     public void testReadOfSpaceDefinitionFile() throws IOException {
         final String filename = "Spaces_US.txt";
-        Space space = Space.create("Space","SpaceReadTest");
+        Space space = Space.create("Other","SpaceReadTest");
         Space newSpace = Space.load(filename);
         assertTrue(newSpace.equals(space));
     }
 
     @Test
     public void testEqualsAndHashcode() {
-        Space space1 = new Space("Space");
-        space1.setNextSpace(new Space("Next"));
-        Space space2 = new Space("Space");
-        space2.setNextSpace(new Space("Next"));
+        Space space1 = Space.create("Other","SpaceDescription");
+        space1.setNextSpace(Space.create("Other","Next"));
+        Space space2 = Space.create("Other","SpaceDescription");
+        space2.setNextSpace(Space.create("Other","Next"));
         assertTrue(space1.equals(space2));
         assertTrue(space1.hashCode() == space2.hashCode());
     }

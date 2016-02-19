@@ -6,35 +6,34 @@ import org.junit.Test;
 
 import static org.junit.Assert.assertEquals;
 
-public class GoTest {
+public class OtherSpaceTest {
 
-    public static final int LAND_ON_GO_COLLECT_200 = 200;
     private Player player;
-    private Space go;
+    private Space property;
 
     @Before
     public void setUp() {
         player = new Player();
-        go = Space.create("Go","Go");
+        property = Space.create("Other","Other");
     }
 
     @After
     public void teardown() {
         player = null;
-        go = null;
+        property = null;
     }
 
     @Test
-    public void testLandOnIncreaseBalance() {
-        int expectedEndingBalance = player.getCashBalance() + LAND_ON_GO_COLLECT_200;
-        go.landOn(player);
+    public void testLandOn() {
+        int expectedEndingBalance = player.getCashBalance();
+        property.landOn(player);
         assertEquals(expectedEndingBalance, player.getCashBalance());
     }
 
     @Test
-    public void testPassByIncreaseBalance() {
-        int expectedEndingBalance = player.getCashBalance() + LAND_ON_GO_COLLECT_200;
-        go.passBy(player);
+    public void testPassBy() {
+        int expectedEndingBalance = player.getCashBalance();
+        property.passBy(player);
         assertEquals(expectedEndingBalance, player.getCashBalance());
     }
 }

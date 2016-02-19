@@ -3,7 +3,7 @@ package pkg.monopoly;
 public class IncomeTax extends Space {
 
     public IncomeTax(String description) {
-        super(description);
+        setDescription(description);
     }
 
     @Override

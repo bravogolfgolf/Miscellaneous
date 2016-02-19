@@ -2,8 +2,8 @@ package pkg.monopoly;
 
 public class LuxuryTax extends Space {
 
-    public LuxuryTax(String descrption) {
-        super(descrption);
+    public LuxuryTax(String description) {
+        setDescription(description);
     }
 
     @Override

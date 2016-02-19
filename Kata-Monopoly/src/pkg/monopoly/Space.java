@@ -2,19 +2,22 @@ package pkg.monopoly;
 
 import java.io.*;
 
-public class Space {
+abstract class Space {
 
     private String description;
     private Space nextSpace;
 
-    public Space(String description) {
-        this.description = description;
+    public static Space create(String classType, String description) {
+        if (classType.equals("Other")) return new Other(description);
+        if (classType.equals("Go")) return new Go(description);
+        if (classType.equals("GoToJail")) return new GoToJail(description);
+        if (classType.equals("IncomeTax")) return new IncomeTax(description);
+        if (classType.equals("LuxuryTax")) return new LuxuryTax(description);
+        throw new IllegalArgumentException("Incorrect value");
     }
 
-    public static Space create(String classType, String description) {
-        if (classType.equals("Space"))
-            return new Space(description);
-        return null;
+    public void setDescription(String description) {
+        this.description = description;
     }
 
     public String getDescription() {
