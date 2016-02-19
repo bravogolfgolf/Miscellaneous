@@ -53,20 +53,23 @@ public class Property extends Space {
 
     @Override
     public void landOn(Player player) {
-        if (propertyIsNotMortgaged())
-            if (propertyIsUnowned()) {
+        if (playerIsNotOwner(player))
+            if (propertyIsUnowned())
                 buyProperty(player);
-            } else {
+            else if (propertyIsNotMortgaged())
                 payRent(player);
-            }
     }
 
-    private boolean propertyIsNotMortgaged() {
-        return !isMortgaged;
+    private boolean playerIsNotOwner(Player player) {
+        return !player.equals(this.getOwner());
     }
 
     private boolean propertyIsUnowned() {
         return owner == null;
+    }
+
+    private boolean propertyIsNotMortgaged() {
+        return !isMortgaged;
     }
 
     private void buyProperty(Player player) {
