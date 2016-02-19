@@ -21,7 +21,7 @@ public class SpaceTest {
     @Before
     public void setup() {
         player = new Player();
-        space = Space.create("Other","SpaceDescription");
+        space = Space.create("Other", "SpaceDescription");
         diceMock = new DiceMock();
         start = new SpaceMock("Start");
         space1 = new SpaceMock("Space1");
@@ -45,6 +45,12 @@ public class SpaceTest {
     public void testCreateSpace() {
         assertEquals("SpaceDescription", space.getDescription());
     }
+
+    @Test(expected = IllegalArgumentException.class)
+    public void testCreateSpaceThrowsException() throws IllegalArgumentException {
+        Space.create("Invalid", "Invalid");
+    }
+
 
     @Test
     public void testSetNextSpace() {
@@ -86,17 +92,17 @@ public class SpaceTest {
     @Test
     public void testReadOfSpaceDefinitionFile() throws IOException {
         final String filename = "Spaces_US.txt";
-        Space space = Space.create("Other","SpaceReadTest");
+        Space space = Space.create("Other", "SpaceReadTest");
         Space newSpace = Space.load(filename);
         assertTrue(newSpace.equals(space));
     }
 
     @Test
     public void testEqualsAndHashcode() {
-        Space space1 = Space.create("Other","SpaceDescription");
-        space1.setNextSpace(Space.create("Other","Next"));
-        Space space2 = Space.create("Other","SpaceDescription");
-        space2.setNextSpace(Space.create("Other","Next"));
+        Space space1 = Space.create("Other", "SpaceDescription");
+        space1.setNextSpace(Space.create("Other", "Next"));
+        Space space2 = Space.create("Other", "SpaceDescription");
+        space2.setNextSpace(Space.create("Other", "Next"));
         assertTrue(space1.equals(space2));
         assertTrue(space1.hashCode() == space2.hashCode());
     }
