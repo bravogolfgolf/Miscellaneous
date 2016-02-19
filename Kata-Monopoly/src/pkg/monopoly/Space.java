@@ -12,9 +12,9 @@ public class Space {
     }
 
     public static Space create(String classType, String description) {
-//        if (classType == "Space")
-        return new Space(description);
-//        return null;
+        if (classType.equals("Space"))
+            return new Space(description);
+        return null;
     }
 
     public String getDescription() {
@@ -58,7 +58,6 @@ public class Space {
             line = reader.readLine();
             String[] tokens = line.split(",");
             return Space.create(tokens[0], tokens[1]);
-
         } finally {
             if (reader != null) {
                 reader.close();
