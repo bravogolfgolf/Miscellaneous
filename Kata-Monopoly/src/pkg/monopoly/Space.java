@@ -11,8 +11,8 @@ public class Space {
         this.description = description;
     }
 
-    public void setDescription(String description) {
-        this.description = description;
+    public static Space create(String description) {
+        return new Space(description);
     }
 
     public String getDescription() {
@@ -48,23 +48,15 @@ public class Space {
     public void landOn(Player player) {
     }
 
-    public void store(String filename) throws IOException {
-        DataOutputStream output = null;
-        try {
-            output = new DataOutputStream(new FileOutputStream(filename));
-            output.writeUTF(this.getDescription());
-        } finally {
-            if (output != null) {
-                output.close();
-            }
-        }
-    }
-
-    public void load(String filename) throws IOException {
+    public static Space load(String filename) throws IOException {
         DataInputStream input = null;
+        String line;
         try {
             input = new DataInputStream(new FileInputStream(filename));
-            this.setDescription(input.readUTF());
+            line = input.readUTF();
+            String[] tokens = line.split(",");
+            return Space.create(tokens[1]);
+
         } finally {
             if (input != null) {
                 input.close();

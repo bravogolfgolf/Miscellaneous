@@ -91,10 +91,8 @@ public class SpaceTest {
     @Test
     public void testWriteAndReadOfSpaceDefinitionFile() throws IOException {
         final String filename = "Spaces_US.txt";
-        Space space = new Space("SpaceWriteReadTest");
-        Space newSpace = new Space("");
-        space.store(filename);
-        newSpace.load(filename);
+        Space space = Space.create("SpaceWriteReadTest");
+        Space newSpace = Space.load(filename);
         assertTrue(newSpace.equals(space));
     }
 
