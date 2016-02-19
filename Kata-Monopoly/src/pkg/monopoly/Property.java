@@ -43,24 +43,40 @@ public class Property extends Space {
         isMortgaged = status;
     }
 
-    @Override
-    public void landOn(Player player) {
-        if (!isMortgaged)
-            if (owner == null) {
-                this.owner = player;
-                player.changeCashBalanceBy(-price);
-            } else {
-                player.changeCashBalanceBy(-rent);
-                this.owner.changeCashBalanceBy(rent);
-            }
+    public int mortgageAmount() {
+        return price / 2;
     }
 
     public int unMortgageAmount() {
         return (int) (mortgageAmount() * 1.10);
     }
 
-    public int mortgageAmount() {
-        return price / 2;
+    @Override
+    public void landOn(Player player) {
+        if (propertyIsNotMortgaged())
+            if (propertyIsUnowned()) {
+                buyProperty(player);
+            } else {
+                payRent(player);
+            }
+    }
+
+    private boolean propertyIsNotMortgaged() {
+        return !isMortgaged;
+    }
+
+    private boolean propertyIsUnowned() {
+        return owner == null;
+    }
+
+    private void buyProperty(Player player) {
+        this.owner = player;
+        player.changeCashBalanceBy(-price);
+    }
+
+    private void payRent(Player player) {
+        player.changeCashBalanceBy(-rent);
+        this.owner.changeCashBalanceBy(rent);
     }
 }
 
