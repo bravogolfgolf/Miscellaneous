@@ -11,8 +11,10 @@ public class Space {
         this.description = description;
     }
 
-    public static Space create(String description) {
+    public static Space create(String classType, String description) {
+//        if (classType == "Space")
         return new Space(description);
+//        return null;
     }
 
     public String getDescription() {
@@ -49,17 +51,17 @@ public class Space {
     }
 
     public static Space load(String filename) throws IOException {
-        DataInputStream input = null;
+        BufferedReader reader = null;
         String line;
         try {
-            input = new DataInputStream(new FileInputStream(filename));
-            line = input.readUTF();
+            reader = new BufferedReader(new FileReader(filename));
+            line = reader.readLine();
             String[] tokens = line.split(",");
-            return Space.create(tokens[1]);
+            return Space.create(tokens[0], tokens[1]);
 
         } finally {
-            if (input != null) {
-                input.close();
+            if (reader != null) {
+                reader.close();
             }
         }
     }
