@@ -11,7 +11,7 @@ public class PropertyTest {
     public static final int PRICE_OF_PROPERTY = 200;
     public static final int RENT = 25;
     public static final int MORTGAGE_AMOUNT = 100;
-    public static final int UNMORTGAGE_AMOUNT = 110;
+    public static final int UNMORTGAGE_AMOUNT = -110;
     private Player player;
     private Property property;
     private Player owner;

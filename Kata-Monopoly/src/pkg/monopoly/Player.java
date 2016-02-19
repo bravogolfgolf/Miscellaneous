@@ -31,4 +31,13 @@ public class Player {
         cashBalance += cash;
     }
 
+    public void mortgageProperty(Property property) {
+        changeCashBalanceBy(property.mortgageAmount());
+        property.setIsMortgaged(true);
+    }
+
+    public void unmortgageProperty(Property property) {
+        changeCashBalanceBy(property.unMortgageAmount());
+        property.setIsMortgaged(false);
+    }
 }

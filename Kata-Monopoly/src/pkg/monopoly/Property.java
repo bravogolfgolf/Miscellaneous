@@ -48,7 +48,7 @@ public class Property extends Space {
     }
 
     public int unMortgageAmount() {
-        return (int) (mortgageAmount() * 1.10);
+        return (int) -(mortgageAmount() * 1.10);
     }
 
     @Override

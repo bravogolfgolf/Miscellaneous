@@ -9,11 +9,14 @@ import static org.junit.Assert.assertTrue;
 
 public class PlayerTest {
 
+    public static final int MORTGAGE_AMOUNT = 100;
+    public static final int UNMORTGAGE_AMOUNT = 110;
     private Player player;
     private DiceMock diceMock;
     private SpaceMock start;
     private SpaceMock space1;
     private SpaceMock space2;
+    private Property property;
 
     @Before
     public void setup() {
@@ -25,6 +28,11 @@ public class PlayerTest {
         start.setNextSpace(space1);
         space1.setNextSpace(space2);
         space2.setNextSpace(start);
+        property = new Property("Short Line");
+        property.setOwner(player);
+        property.setPrice(200);
+        property.setRent(25);
+        property.setIsMortgaged(false);
     }
 
     @After
@@ -34,6 +42,7 @@ public class PlayerTest {
         start = null;
         space1 = null;
         space2 = null;
+        property = null;
     }
 
     @Test
@@ -65,5 +74,24 @@ public class PlayerTest {
         int expectedBalance = player.getCashBalance() + 100;
         player.changeCashBalanceBy(100);
         assertEquals(expectedBalance, player.getCashBalance());
+    }
+
+    @Test
+    public void testPlayerMortgagesProperty() {
+        int expectedBalance = player.getCashBalance() + MORTGAGE_AMOUNT;
+        player.mortgageProperty(property);
+        assertEquals(expectedBalance, player.getCashBalance());
+        assertEquals(true, property.isMortgaged());
+
+    }
+
+    @Test
+    public void testPlayerUnMortgagesProperty() {
+        property.setIsMortgaged(true);
+        int expectedBalance = player.getCashBalance() - UNMORTGAGE_AMOUNT;
+        player.unmortgageProperty(property);
+        assertEquals(expectedBalance, player.getCashBalance());
+        assertEquals(false, property.isMortgaged());
+
     }
 }
