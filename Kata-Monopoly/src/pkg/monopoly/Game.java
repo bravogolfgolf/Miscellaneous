@@ -40,7 +40,9 @@ public class Game {
 
         for (int i = 0; i < 20; i++) {
             for (Player player : players) {
+                player.manageProperties();
                 player.takeATurn(dice);
+                player.manageProperties();
             }
         }
     }

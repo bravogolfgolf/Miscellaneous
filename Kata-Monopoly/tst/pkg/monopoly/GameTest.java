@@ -21,9 +21,9 @@ public class GameTest {
     @Before
     public void setUp() {
         game = new Game();
-        start = Space.create("Other","Start");
-        space1 = Space.create("Other","Space1");
-        space2 = Space.create("Other","Space2");
+        start = Space.create("Other", "Start");
+        space1 = Space.create("Other", "Space1");
+        space2 = Space.create("Other", "Space2");
         start.setNextSpace(space1);
         space1.setNextSpace(space2);
         space2.setNextSpace(start);
@@ -102,6 +102,8 @@ public class GameTest {
         PlayerMockTurnCounter player2 = (PlayerMockTurnCounter) game.getPlayer(1);
         assertEquals(20, player1.turnsTaken);
         assertEquals(20, player2.turnsTaken);
+        assertEquals(40, player1.manageProperties);
+        assertEquals(40, player2.manageProperties);
     }
 
     @Test

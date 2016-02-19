@@ -31,6 +31,9 @@ public class Player {
         cashBalance += cash;
     }
 
+    public void manageProperties() {
+    }
+
     public void mortgageProperty(Property property) {
         changeCashBalanceBy(property.mortgageAmount());
         property.setIsMortgaged(true);
