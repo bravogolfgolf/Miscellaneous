@@ -63,7 +63,7 @@ public class PlayerTest {
     @Test
     public void testIncreaseCashBalance() {
         int expectedBalance = player.getCashBalance() + 100;
-        player.increaseCashBalanceBy(100);
+        player.changeCashBalanceBy(100);
         assertEquals(expectedBalance, player.getCashBalance());
     }
 }

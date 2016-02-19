@@ -27,7 +27,7 @@ public class Player {
         space.move(this, numberRolled);
     }
 
-    public void increaseCashBalanceBy(int cash) {
+    public void changeCashBalanceBy(int cash) {
         cashBalance += cash;
     }
 

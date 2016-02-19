@@ -8,8 +8,9 @@ abstract class Space {
     private Space nextSpace;
 
     public static Space create(String classType, String description) {
-        if (classType.equals("Other")) return new Other(description);
         if (classType.equals("Go")) return new Go(description);
+        if (classType.equals("Property")) return new Property(description);
+        if (classType.equals("Other")) return new Other(description);
         if (classType.equals("GoToJail")) return new GoToJail(description);
         if (classType.equals("IncomeTax")) return new IncomeTax(description);
         if (classType.equals("LuxuryTax")) return new LuxuryTax(description);

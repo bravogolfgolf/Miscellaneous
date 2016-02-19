@@ -8,7 +8,7 @@ public class Go extends Space {
 
     @Override
     public void landOn(Player player) {
-        player.increaseCashBalanceBy(200);
+        player.changeCashBalanceBy(200);
     }
 
     @Override

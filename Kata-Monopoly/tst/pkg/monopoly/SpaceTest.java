@@ -51,7 +51,6 @@ public class SpaceTest {
         Space.create("Invalid", "Invalid");
     }
 
-
     @Test
     public void testSetNextSpace() {
         assertTrue(start.getNextSpace().equals(space1));

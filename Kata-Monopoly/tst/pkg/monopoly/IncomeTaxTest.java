@@ -27,7 +27,7 @@ public class IncomeTaxTest {
     @Test
     public void testLandOnIncomeTaxWithGreaterThan2000InNetWorth() {
         final int AFTER_TAX_BALANCE = 1900;
-        player.increaseCashBalanceBy(600);
+        player.changeCashBalanceBy(600);
         incomeTax.landOn(player);
         assertEquals(AFTER_TAX_BALANCE, player.getCashBalance());
 
