@@ -19,11 +19,10 @@ public class DiceTest {
     @Test
     public void testDiceMockRollsDouble3sThenPlain4() {
         Dice diceMock = new DiceMockRollsDouble3sThenPlain4();
-        assertTrue(diceMock.rollTwoDie());
-        assertEquals(1, diceMock.getNumberOfDoublesInARow());
+        diceMock.rollTwoDie();
+        assertTrue(diceMock.rolledDouble());
         assertEquals(6, diceMock.getTwoDieRollValue());
-        assertFalse(diceMock.rollTwoDie());
-        assertEquals(1, diceMock.getNumberOfDoublesInARow());
+        diceMock.rollTwoDie();
         assertEquals(4, diceMock.getTwoDieRollValue());
     }
 }

@@ -119,6 +119,6 @@ public class PlayerTest {
         SpaceMockMoveCounter spaceMockMoveCounter = new SpaceMockMoveCounter();
         player.setSpace(spaceMockMoveCounter);
         player.takeATurn(diceMock);
-        assertEquals(2,spaceMockMoveCounter.moveCounter);
+        assertEquals(3,spaceMockMoveCounter.moveCounter);
     }
 }

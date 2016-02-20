@@ -22,12 +22,10 @@ public class Player {
     }
 
     public void takeATurn(Dice dice) {
-        Boolean rolledDoubles = dice.rollTwoDie();
+        dice.rollTwoDie();
+        Boolean rolledDouble = dice.rolledDouble();
         int numberRolled = dice.getTwoDieRollValue();
         space.move(this, numberRolled);
-        if(rolledDoubles && dice.getNumberOfDoublesInARow() < 3){
-            this.takeATurn(dice);
-        }
     }
 
     public void changeCashBalanceBy(int cash) {

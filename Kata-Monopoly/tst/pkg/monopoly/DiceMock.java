@@ -5,9 +5,13 @@ public class DiceMock extends Dice {
     private int twoDieRollValue;
 
     @Override
-    public Boolean rollTwoDie() {
-        twoDieRollValue = 2;
+    public boolean rolledDouble() {
         return false;
+    }
+
+    @Override
+    public void rollTwoDie() {
+        twoDieRollValue = 2;
     }
 
     @Override
