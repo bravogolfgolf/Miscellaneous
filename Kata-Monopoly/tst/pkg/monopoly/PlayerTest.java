@@ -100,6 +100,7 @@ public class PlayerTest {
         DiceMockRollsDouble3sThenPlain4 diceMock = new DiceMockRollsDouble3sThenPlain4();
         SpaceMockMoveCounter spaceMockMoveCounter = new SpaceMockMoveCounter();
         player.setSpace(spaceMockMoveCounter);
+        player.resetDoublesRolledInATurnCounter();
         player.takeATurn(diceMock);
         assertEquals(2,spaceMockMoveCounter.moveCounter);
     }
@@ -119,6 +120,6 @@ public class PlayerTest {
         SpaceMockMoveCounter spaceMockMoveCounter = new SpaceMockMoveCounter();
         player.setSpace(spaceMockMoveCounter);
         player.takeATurn(diceMock);
-        assertEquals(3,spaceMockMoveCounter.moveCounter);
+        assertEquals(2,spaceMockMoveCounter.moveCounter);
     }
 }

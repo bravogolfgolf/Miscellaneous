@@ -3,6 +3,7 @@ package pkg.monopoly;
 public class Player {
     private int cashBalance = 0;
     private Space space;
+    private int doublesRolledInATurnCounter;
 
     public Player() {
         this.space = new Go("Go");
@@ -23,9 +24,23 @@ public class Player {
 
     public void takeATurn(Dice dice) {
         dice.rollTwoDie();
-        Boolean rolledDouble = dice.rolledDouble();
-        int numberRolled = dice.getTwoDieRollValue();
-        space.move(this, numberRolled);
+        if (dice.rolledDouble()) {
+            incrementDoublesRolledInATurnCounter();
+            if (getNumberOfDoublesRolledInARoww() == 3) {
+                setSpace(Space.create("Other", "Jail"));
+                resetDoublesRolledInATurnCounter();
+            } else {
+                space.move(this, dice.getTwoDieRollValue());
+                takeATurn(dice);
+            }
+        } else {
+            space.move(this, dice.getTwoDieRollValue());
+            resetDoublesRolledInATurnCounter();
+        }
+    }
+
+    private void incrementDoublesRolledInATurnCounter() {
+        doublesRolledInATurnCounter++;
     }
 
     public void changeCashBalanceBy(int cash) {
@@ -43,5 +58,13 @@ public class Player {
     public void unmortgageProperty(Property property) {
         changeCashBalanceBy(property.unMortgageAmount());
         property.setIsMortgaged(false);
+    }
+
+    public void resetDoublesRolledInATurnCounter() {
+        doublesRolledInATurnCounter = 0;
+    }
+
+    public int getNumberOfDoublesRolledInARoww() {
+        return doublesRolledInATurnCounter;
     }
 }
