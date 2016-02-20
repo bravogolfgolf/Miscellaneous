@@ -21,7 +21,7 @@ public class GameTest {
 
     @Before
     public void setUp() throws IOException {
-        game = new Game("Spaces_TEST.txt");
+        game = new GameMockPlay20Rounds("Spaces_TEST.txt");
         start = Space.create("Other", "Start");
         space1 = Space.create("Other", "Space1");
         space2 = Space.create("Other", "Space2");
@@ -49,20 +49,25 @@ public class GameTest {
     @Test(expected = Game.InvalidPlayerCount.class)
     public void testGameThrowsExceptionWhenFewerThanTwoPlayers() throws Game.InvalidPlayerCount {
         addThisManyPlayers(1);
-        game.play();
+        game.start();
     }
 
     @Test
-    public void testGameWithTwoPlayers() throws Game.InvalidPlayerCount {
-        addThisManyPlayers(2);
-        game.play();
+    public void testGameWithTwoPlayers() throws Game.InvalidPlayerCount, IOException {
+        Game game = new Game("Spaces_US.txt");
+        for (int i = 0; i < 2; i++) {
+            Player player = new Player();
+            player.setSpace(start);
+            game.addPlayer(player);
+        }
+        game.start();
         assertEquals(EXPECTED_NUMBER_OF_PLAYERS, game.getNumberOfPlayers());
     }
 
     @Test(expected = Game.InvalidPlayerCount.class)
     public void testGameThrowsExceptionWhenMoreThanEightPlayers() throws Game.InvalidPlayerCount {
         addThisManyPlayers(9);
-        game.play();
+        game.start();
     }
 
     @Test
@@ -93,12 +98,12 @@ public class GameTest {
     }
 
     @Test
-    public void testGameOfTwentyRounds() throws Game.InvalidPlayerCount {
+    public void testGameOfTwentyRounds() throws Game.InvalidPlayerCount, IOException {
         for (int i = 0; i < 2; i++) {
             PlayerMockTurnCounter player = new PlayerMockTurnCounter();
             game.addPlayer(player);
         }
-        game.play();
+        game.start();
         PlayerMockTurnCounter player1 = (PlayerMockTurnCounter) game.getPlayer(0);
         PlayerMockTurnCounter player2 = (PlayerMockTurnCounter) game.getPlayer(1);
         assertEquals(20, player1.turnsTaken);
@@ -108,17 +113,18 @@ public class GameTest {
     }
 
     @Test
-    public void testPlayersAlternateOrder() throws Game.InvalidPlayerCount {
+    public void testPlayersAlternateOrder() throws Game.InvalidPlayerCount, IOException {
+        Game gameMock = new GameMockPlay20Rounds("Spaces_TEST.txt");
         PlayerMockAlternateOrder player1 = new PlayerMockAlternateOrder();
         PlayerMockAlternateOrder player2 = new PlayerMockAlternateOrder();
-        game.addPlayer(player1);
-        game.addPlayer(player2);
-        game.play();
+        gameMock.addPlayer(player1);
+        gameMock.addPlayer(player2);
+        gameMock.start();
         for (int i = 0; i < 20; i++) {
             if (i % 2 == 0)
-                assertTrue(game.getPlayer(0).equals(PlayerMockAlternateOrder.order.get(i)));
+                assertTrue(gameMock.getPlayer(0).equals(PlayerMockAlternateOrder.order.get(i)));
             else
-                assertTrue(game.getPlayer(1).equals(PlayerMockAlternateOrder.order.get(i)));
+                assertTrue(gameMock.getPlayer(1).equals(PlayerMockAlternateOrder.order.get(i)));
         }
     }
 

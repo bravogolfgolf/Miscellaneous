@@ -45,17 +45,18 @@ public class Game {
         Collections.shuffle(players);
     }
 
-    public void play() throws InvalidPlayerCount {
+    public void start() throws InvalidPlayerCount {
         if (getNumberOfPlayers() < MINIMUM_NUMBER_OF_PLAYERS ||
                 getNumberOfPlayers() > MAXIMUM_NUMBER_OF_PLAYERS)
             throw new InvalidPlayerCount(String.format("Number of Players: %d", getNumberOfPlayers()));
+        play();
+    }
 
-        for (int i = 0; i < 20; i++) {
-            for (Player player : players) {
-                player.manageProperties();
-                player.takeATurn(dice);
-                player.manageProperties();
-            }
+    private void play() {
+        for (Player player : players) {
+            player.manageProperties();
+            player.takeATurn(dice);
+            player.manageProperties();
         }
     }
 }
