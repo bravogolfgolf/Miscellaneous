@@ -111,7 +111,7 @@ public class PlayerTest {
         playerInitialization();
 
         Property property1 = (Property) board.get(6);
-        Other property2 = (Other) board.get(10);
+        Jail property2 = (Jail) board.get(10);
         assertFalse(player.getSpace().getDescription().equals(property2.getDescription()));
         assertTrue(property1.getOwner() == null);
 
@@ -158,7 +158,7 @@ public class PlayerTest {
         Property virginiaAve = (Property) board.get(14);
         assertTrue(virginiaAve.getOwner() == null);
 
-        Other jail = (Other) board.get(10);
+        Jail jail = (Jail) board.get(10);
         assertTrue(jail.getDescription().equals("Just Visiting/Jail"));
 
         player.takeATurn(diceMock);

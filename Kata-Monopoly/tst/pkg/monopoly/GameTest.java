@@ -159,6 +159,7 @@ public class GameTest {
         int goCount = 0;
         int propertyCount = 0;
         int otherCount = 0;
+        int jailCount = 0;
         int goToJailCount = 0;
         int incomeTaxCount = 0;
         int luxuryTaxCount = 0;
@@ -170,13 +171,15 @@ public class GameTest {
             if (classType.equals("Go")) goCount++;
             if (classType.equals("Property")) propertyCount++;
             if (classType.equals("Other")) otherCount++;
+            if (classType.equals("Jail")) jailCount++;
             if (classType.equals("GoToJail")) goToJailCount++;
             if (classType.equals("IncomeTax")) incomeTaxCount++;
             if (classType.equals("LuxuryTax")) luxuryTaxCount++;
         }
         assertEquals(1, goCount);
         assertEquals(28, propertyCount);
-        assertEquals(8, otherCount);
+        assertEquals(7, otherCount);
+        assertEquals(1, jailCount);
         assertEquals(1, goToJailCount);
         assertEquals(1, incomeTaxCount);
         assertEquals(1, luxuryTaxCount);

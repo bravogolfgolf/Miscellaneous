@@ -8,7 +8,7 @@ Property,Oriental Avenue
 Other,Chance South
 Property,Vermont Avenue
 Property,Connecticut Avenue
-Other,Just Visiting/Jail
+Jail,Just Visiting/Jail
 Property,St. Charles Place
 Property,Electric Company
 Property,States Avenue

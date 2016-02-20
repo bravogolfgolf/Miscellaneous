@@ -73,7 +73,7 @@ public class Player {
         Space currentSpace = this.getSpace();
         Space nextSpace = currentSpace.getNextSpace();
 
-        while (!nextSpace.getDescription().equals("Just Visiting/Jail")){
+        while (!nextSpace.getClass().getSimpleName().equals("Jail")){
             currentSpace = nextSpace;
             nextSpace = currentSpace.getNextSpace();
         }
