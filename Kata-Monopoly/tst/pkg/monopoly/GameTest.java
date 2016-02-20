@@ -148,4 +148,32 @@ public class GameTest {
         return expected;
     }
 
+    @Test
+    public void testCreateActualBoard() throws IOException {
+        int goCount = 0;
+        int propertyCount = 0;
+        int otherCount = 0;
+        int goToJailCount = 0;
+        int incomeTaxCount = 0;
+        int luxuryTaxCount = 0;
+        Game game = new Game("Spaces_US.txt");
+        List<Space> board = game.getBoard();
+        assertTrue(board.size() == 40);
+        for (Space space : board) {
+            String classType = space.getClass().getSimpleName();
+            if (classType.equals("Go")) goCount++;
+            if (classType.equals("Property")) propertyCount++;
+            if (classType.equals("Other")) otherCount++;
+            if (classType.equals("GoToJail")) goToJailCount++;
+            if (classType.equals("IncomeTax")) incomeTaxCount++;
+            if (classType.equals("LuxuryTax")) luxuryTaxCount++;
+        }
+        assertEquals(1, goCount);
+        assertEquals(28, propertyCount);
+        assertEquals(8, otherCount);
+        assertEquals(1, goToJailCount);
+        assertEquals(1, incomeTaxCount);
+        assertEquals(1, luxuryTaxCount);
+    }
+
 }
