@@ -5,6 +5,8 @@ import org.junit.Before;
 import org.junit.Test;
 
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
@@ -90,10 +92,13 @@ public class SpaceTest {
 
     @Test
     public void testReadOfSpaceDefinitionFile() throws IOException {
-        final String filename = "Spaces_US.txt";
-        Space space = Space.create("Other", "SpaceReadTest");
-        Space newSpace = Space.load(filename);
-        assertTrue(newSpace.equals(space));
+        final String filename = "Spaces_TEST.txt";
+        List<Space> expected = new ArrayList<Space>();
+        List<Space> actual;
+        expected.add(Space.create("Other", "SpaceReadTest"));
+        expected.add(Space.create("Other", "SpaceReadTest1"));
+        actual = Space.load(filename);
+        assertTrue(expected.equals(actual));
     }
 
     @Test

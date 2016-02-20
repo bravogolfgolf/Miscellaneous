@@ -4,6 +4,7 @@ import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 
+import java.io.EOFException;
 import java.util.ArrayList;
 import java.util.List;
 

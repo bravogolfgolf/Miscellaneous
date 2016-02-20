@@ -1,6 +1,8 @@
 package pkg.monopoly;
 
 import java.io.*;
+import java.util.ArrayList;
+import java.util.List;
 
 abstract class Space {
 
@@ -54,14 +56,18 @@ abstract class Space {
     public void landOn(Player player) {
     }
 
-    public static Space load(String filename) throws IOException {
+    public static List<Space> load(String filename) throws IOException {
+        List<Space> spaces = new ArrayList<Space>();
         BufferedReader reader = null;
-        String line;
+        String line = "";
         try {
-            reader = new BufferedReader(new FileReader(filename));
-            line = reader.readLine();
-            String[] tokens = line.split(",");
-            return Space.create(tokens[0], tokens[1]);
+            while (line != null) {
+                reader = new BufferedReader(new FileReader(filename));
+                line = reader.readLine();
+                String[] tokens = line.split(",");
+                spaces.add(Space.create(tokens[0], tokens[1]));
+            }
+            return spaces;
         } finally {
             if (reader != null) {
                 reader.close();
