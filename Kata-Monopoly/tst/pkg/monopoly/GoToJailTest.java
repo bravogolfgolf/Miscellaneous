@@ -10,8 +10,8 @@ import static org.junit.Assert.assertTrue;
 
 public class GoToJailTest {
 
-    private Space goToJail;
-    private Space jail;
+    private GoToJail goToJail;
+    private Other jail;
     private Player player;
     private Space space;
     private int startingBalance;
@@ -19,8 +19,9 @@ public class GoToJailTest {
 
     @Before
     public void setUp() throws Exception {
-        goToJail = Space.create("GoToJail","Go to Jail");
-        jail = Space.create("Other","Jail");
+        goToJail = new GoToJail("Go to Jail");
+        jail = new Other("Jail");
+        goToJail.setDestination(jail);
         player = new Player();
         startingBalance = player.getCashBalance();
     }

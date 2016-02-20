@@ -2,14 +2,18 @@ package pkg.monopoly;
 
 public class GoToJail extends Space {
 
-    private Space jail = Space.create("Other", "Jail");
+    private Space destination = null;
 
     public GoToJail(String description) {
-        setDescription(description);
+        super.setDescription(description);
+    }
+
+    public void setDestination(Space space){
+        this.destination = space;
     }
 
     @Override
     public void landOn(Player player) {
-        player.setSpace(jail);
+        player.setSpace(destination);
     }
 }
