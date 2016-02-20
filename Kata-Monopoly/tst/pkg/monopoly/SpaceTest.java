@@ -98,7 +98,11 @@ public class SpaceTest {
         expected.add(Space.create("Other", "SpaceReadTest"));
         expected.add(Space.create("Other", "SpaceReadTest1"));
         actual = Space.load(filename);
+        assertEquals(expected.size(), actual.size());
         assertTrue(expected.equals(actual));
+        for (int index = 0; index < expected.size(); index++) {
+            assertTrue(expected.get(index).equals(actual.get(index)));
+        }
     }
 
     @Test

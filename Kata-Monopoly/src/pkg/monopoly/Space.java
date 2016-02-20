@@ -1,6 +1,8 @@
 package pkg.monopoly;
 
 import java.io.*;
+import java.nio.file.Files;
+import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -57,22 +59,13 @@ abstract class Space {
     }
 
     public static List<Space> load(String filename) throws IOException {
+        List<String> content = Files.readAllLines(Paths.get(filename));
         List<Space> spaces = new ArrayList<Space>();
-        BufferedReader reader = null;
-        String line = "";
-        try {
-            while (line != null) {
-                reader = new BufferedReader(new FileReader(filename));
-                line = reader.readLine();
-                String[] tokens = line.split(",");
-                spaces.add(Space.create(tokens[0], tokens[1]));
-            }
-            return spaces;
-        } finally {
-            if (reader != null) {
-                reader.close();
-            }
+        for (String line : content) {
+            String[] tokens = line.split(",");
+            spaces.add(Space.create(tokens[0], tokens[1]));
         }
+        return spaces;
     }
 
     @Override
