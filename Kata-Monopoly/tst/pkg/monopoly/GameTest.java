@@ -4,7 +4,6 @@ import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 
-import java.io.EOFException;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
@@ -21,8 +20,8 @@ public class GameTest {
     private Space space2;
 
     @Before
-    public void setUp() {
-        game = new Game();
+    public void setUp() throws IOException {
+        game = new Game("Spaces_TEST.txt");
         start = Space.create("Other", "Start");
         space1 = Space.create("Other", "Space1");
         space2 = Space.create("Other", "Space2");
@@ -67,13 +66,13 @@ public class GameTest {
     }
 
     @Test
-    public void testPlayersAreNotAlwaysInSameOrder() {
+    public void testPlayersAreNotAlwaysInSameOrder() throws IOException {
 
         boolean catBoot = false;
         boolean bootCat = false;
 
         for (int i = 0; i < 100; i++) {
-            Game game = new Game();
+            Game game = new Game("Spaces_TEST.txt");
             Player catPlayer = new Player();
             Player bootPlayer = new Player();
             game.addPlayer(catPlayer);
@@ -126,7 +125,7 @@ public class GameTest {
     @Test
     public void testCreateBoard() throws IOException {
         List<Space> expected = createExpected();
-        List<Space> actual = createActual();
+        List<Space> actual = game.getBoard();
         assertEquals(expected.size(), actual.size());
         for (int i = 0; i < expected.size(); i++) {
             assertEquals(expected.get(i).getClass(), actual.get(i).getClass());
@@ -149,12 +148,4 @@ public class GameTest {
         return expected;
     }
 
-    private List<Space> createActual() throws IOException {
-        List<Space> spaces = Space.load("Spaces_TEST.txt");
-        for (int i = 0; i < spaces.size() - 1; i++) {
-            spaces.get(i).setNextSpace(spaces.get(i + 1));
-        }
-        spaces.get(spaces.size() - 1).setNextSpace(spaces.get(0));
-        return spaces;
-    }
 }

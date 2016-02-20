@@ -1,21 +1,33 @@
 package pkg.monopoly;
 
+import java.io.IOException;
 import java.util.*;
 
 public class Game {
 
-    public class InvalidPlayerCount extends Exception {
+    public Game(String spaceDefinitionFile) throws IOException {
+        board = Space.load(spaceDefinitionFile);
+        for (int i = 0; i < board.size() - 1; i++) {
+            board.get(i).setNextSpace(board.get(i + 1));
+        }
+        board.get(board.size() - 1).setNextSpace(board.get(0));
+    }
 
+    public class InvalidPlayerCount extends Exception {
         public InvalidPlayerCount(String message) {
             super(message);
         }
-
     }
 
     public static final int MINIMUM_NUMBER_OF_PLAYERS = 2;
     public static final int MAXIMUM_NUMBER_OF_PLAYERS = 8;
     private Dice dice = new Dice();
+    private List<Space> board;
     private List<Player> players = new ArrayList<Player>();
+
+    public List<Space> getBoard() {
+        return board;
+    }
 
     public void addPlayer(Player player) {
         players.add(player);

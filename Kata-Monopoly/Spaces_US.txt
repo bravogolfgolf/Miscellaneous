@@ -1,2 +1,40 @@
-Other,SpaceReadTest
-Other,SpaceReadTest1
+Go,Go
+Property,Mediterranean Avenue
+Other,Community Chest South
+Property,Baltic Avenue
+IncomeTax,Income Tax
+Property,Reading Railroad
+Property,Oriental Avenue
+Other,Chance South
+Property,Vermont Avenue
+Property,Connecticut Avenue
+Other,JustVisiting/Jail
+Property,St. Charles Place
+Property,Electric Company
+Property,States Avenue
+Property,Virginia Avenue
+Property,Pennsylvania Railroad
+Property,St. James Place
+Other,Community Chest West
+Property,Tennessee Avenue
+Property,New York Avenue
+Other,Free Parking
+Property,Kentucky Avenue
+Other,Chance North
+Property,Indiana Avenue
+Property,Illinois Avenue
+Property,B & O Railroad
+Property,Atlantic Avenue
+Property,Ventnor Avenue
+Property,Water Works
+Property,Marvin Gardens
+GoToJail,Go to Jail
+Property,Pacific Avenue
+Property,North Carolina Avenue
+Other,Community Chest East
+Property,Pennsylvania Avenue
+Property,Short Line
+Other,Chance East
+Property,Park Place
+LuxuryTax,Luxury Tax
+Property,Boardwalk
