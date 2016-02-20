@@ -4,13 +4,19 @@ import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 
+import java.io.IOException;
+import java.util.List;
+
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
 
 public class PlayerTest {
 
     public static final int MORTGAGE_AMOUNT = 100;
     public static final int UNMORTGAGE_AMOUNT = 110;
+    private Game game;
+    private List<Space> board;
     private Player player;
     private DiceMock diceMock;
     private SpaceMockLandOnPassByCounter start;
@@ -19,7 +25,9 @@ public class PlayerTest {
     private Property property;
 
     @Before
-    public void setup() {
+    public void setup() throws IOException {
+        game = new Game("Spaces_US.txt");
+        board = game.getBoard();
         player = new Player();
         diceMock = new DiceMock();
         start = new SpaceMockLandOnPassByCounter("Start");
@@ -37,6 +45,8 @@ public class PlayerTest {
 
     @After
     public void tearDown() {
+        game = null;
+        board = null;
         player = null;
         diceMock = null;
         start = null;
@@ -96,30 +106,66 @@ public class PlayerTest {
     }
 
     @Test
-    public void testPlayerRollsDoublesThenNot(){
-        DiceMockRollsDouble3sThenPlain4 diceMock = new DiceMockRollsDouble3sThenPlain4();
-        SpaceMockMoveCounter spaceMockMoveCounter = new SpaceMockMoveCounter();
-        player.setSpace(spaceMockMoveCounter);
-        player.resetDoublesRolledInATurnCounter();
+    public void testPlayerRollsDoublesThenNot() {
+        Dice diceMock = new DiceMockRollsDouble3sThenPlain4();
+        playerInitialization();
+
+        Property property1 = (Property) board.get(6);
+        Other property2 = (Other) board.get(10);
+        assertFalse(player.getSpace().getDescription().equals(property2.getDescription()));
+        assertTrue(property1.getOwner() == null);
+
         player.takeATurn(diceMock);
-        assertEquals(2,spaceMockMoveCounter.moveCounter);
+
+        assertTrue(property1.getOwner().equals(player));
+        assertTrue(player.getSpace().getDescription().equals(property2.getDescription()));
     }
 
     @Test
-    public void testPlayerRollsDoublesTwiceThenNot(){
+    public void testPlayerRollsDoublesTwiceThenNot() {
         Dice diceMock = new DiceMockRollsDoubleTwiceThenNot();
-        SpaceMockMoveCounter spaceMockMoveCounter = new SpaceMockMoveCounter();
-        player.setSpace(spaceMockMoveCounter);
+        playerInitialization();
+
+        Property vermontAve = (Property) board.get(8);
+        assertTrue(vermontAve.getOwner() == null);
+        Property tennesseeAve = (Property) board.get(18);
+        assertTrue(tennesseeAve.getOwner() == null);
+        Property atlanticAve = (Property) board.get(26);
+        assertTrue(atlanticAve.getOwner() == null);
+
         player.takeATurn(diceMock);
-        assertEquals(3,spaceMockMoveCounter.moveCounter);
+
+        assertTrue(vermontAve.getOwner().equals(player));
+        assertTrue(tennesseeAve.getOwner().equals(player));
+        assertTrue(atlanticAve.getOwner().equals(player));
+    }
+
+    private int playerInitialization() {
+        player.setSpace(board.get(0));
+        player.resetDoublesRolledInATurnCounter();
+        return player.getCashBalance();
     }
 
     @Test
-    public void testPlayerRollsDoublesThreeTimesGoesToJail(){
+    public void testPlayerRollsDoublesThreeTimesGoesToJail() {
         Dice diceMock = new DiceMockRollsDoubleThreeTimesInARow();
-        SpaceMockMoveCounter spaceMockMoveCounter = new SpaceMockMoveCounter();
-        player.setSpace(spaceMockMoveCounter);
+        int beginningBalance = playerInitialization();
+
+        IncomeTax incomeTax = (IncomeTax) board.get(4);
+        assertTrue(incomeTax.getDescription().equals("Income Tax"));
+        int endingBalance = beginningBalance - (beginningBalance / 10);
+
+        Property virginiaAve = (Property) board.get(14);
+        assertTrue(virginiaAve.getOwner() == null);
+
+        Other jail = (Other) board.get(10);
+        assertTrue(jail.getDescription().equals("Just Visiting/Jail"));
+
         player.takeATurn(diceMock);
-        assertEquals(2,spaceMockMoveCounter.moveCounter);
+
+        assertTrue(virginiaAve.getOwner().equals(player));
+        assertEquals(endingBalance,player.getCashBalance());
+        assertTrue(player.getSpace().equals(jail));
+
     }
 }

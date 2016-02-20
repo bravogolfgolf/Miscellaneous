@@ -64,8 +64,20 @@ public class Player {
     }
 
     private void gotToJail() {
-        setSpace(Space.create("Other", "Jail"));
+        Space jail = searchForJail();
+        setSpace(jail);
         resetDoublesRolledInATurnCounter();
+    }
+
+    private Space searchForJail() {
+        Space currentSpace = this.getSpace();
+        Space nextSpace = currentSpace.getNextSpace();
+
+        while (!nextSpace.getDescription().equals("Just Visiting/Jail")){
+            currentSpace = nextSpace;
+            nextSpace = currentSpace.getNextSpace();
+        }
+        return nextSpace;
     }
 
     public void resetDoublesRolledInATurnCounter() {
