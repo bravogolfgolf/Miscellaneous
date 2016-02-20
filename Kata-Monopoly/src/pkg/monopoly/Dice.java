@@ -7,7 +7,7 @@ public class Dice {
     public void rollTwoDie() {
         int die1 = rollDie();
         int die2 = rollDie();
-        twoDieRollValue =  die1 + die2;
+        twoDieRollValue = die1 + die2;
     }
 
     public int getTwoDieRollValue() {

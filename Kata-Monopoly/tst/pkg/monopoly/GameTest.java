@@ -5,6 +5,7 @@ import org.junit.Before;
 import org.junit.Test;
 
 import java.io.EOFException;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -120,5 +121,40 @@ public class GameTest {
             else
                 assertTrue(game.getPlayer(1).equals(PlayerMockAlternateOrder.order.get(i)));
         }
+    }
+
+    @Test
+    public void testCreateBoard() throws IOException {
+        List<Space> expected = createExpected();
+        List<Space> actual = createActual();
+        assertEquals(expected.size(), actual.size());
+        for (int i = 0; i < expected.size(); i++) {
+            assertEquals(expected.get(i).getClass(), actual.get(i).getClass());
+            assertEquals(expected.get(i).getDescription(), actual.get(i).getDescription());
+            assertEquals(expected.get(i).getNextSpace().getClass(),
+                    actual.get(i).getNextSpace().getClass());
+            assertEquals(expected.get(i).getNextSpace().getDescription(),
+                    actual.get(i).getNextSpace().getDescription());
+        }
+    }
+
+    private List<Space> createExpected() {
+        List<Space> expected = new ArrayList<Space>();
+        Space first = Space.create("Other", "SpaceReadTest");
+        Space second = Space.create("Other", "SpaceReadTest1");
+        first.setNextSpace(second);
+        second.setNextSpace(first);
+        expected.add(first);
+        expected.add(second);
+        return expected;
+    }
+
+    private List<Space> createActual() throws IOException {
+        List<Space> spaces = Space.load("Spaces_TEST.txt");
+        for (int i = 0; i < spaces.size() - 1; i++) {
+            spaces.get(i).setNextSpace(spaces.get(i + 1));
+        }
+        spaces.get(spaces.size() - 1).setNextSpace(spaces.get(0));
+        return spaces;
     }
 }
