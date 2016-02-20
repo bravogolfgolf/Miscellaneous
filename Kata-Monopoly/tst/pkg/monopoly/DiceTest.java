@@ -8,23 +8,20 @@ import static org.junit.Assert.assertTrue;
 
 public class DiceTest {
 
-    private Dice dice;
-
-    @Before
-    public void setUp() throws Exception {
-        dice = new Dice();
-        dice.rollTwoDie();
-    }
-
-    @After
-    public void tearDown() throws Exception {
-        dice = null;
+    @Test
+    public void testTwoDieRolled() {
+        Dice dice = new Dice();
+        Boolean doubles = dice.rollTwoDie();
+        int rollValue = dice.getTwoDieRollValue();
+        assertTrue(rollValue >= 2 && rollValue <= 12);
+        assertTrue(doubles || !doubles);
     }
 
     @Test
-    public void testTwoDieRolled() {
-        int rollValue = dice.getTwoDieRollValue();
-        assertTrue(rollValue >= 2 && rollValue <= 12);
-    }
+    public void testDoublesRolled() {
+        DiceMock diceMock = new DiceMock();
+        Boolean doubles = diceMock.rollTwoDie();
+        assertTrue(doubles);
 
+    }
 }

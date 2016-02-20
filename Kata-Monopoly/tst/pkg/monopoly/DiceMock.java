@@ -4,10 +4,11 @@ public class DiceMock extends Dice {
 
     private int twoDieRollValue;
 
-    public void rollTwoDie() {
+    public Boolean rollTwoDie() {
         int die1 = rollDie();
         int die2 = rollDie();
         twoDieRollValue =  die1 + die2;
+        return die1 == die2;
     }
 
     public int getTwoDieRollValue() {
