@@ -16,18 +16,18 @@ public class SpaceTest {
     private Player player;
     private Space space;
     private DiceMock diceMock;
-    private SpaceMock start;
-    private SpaceMock space1;
-    private SpaceMock space2;
+    private SpaceMockLandOnPassByCounter start;
+    private SpaceMockLandOnPassByCounter space1;
+    private SpaceMockLandOnPassByCounter space2;
 
     @Before
     public void setup() {
         player = new Player();
         space = Space.create("Other", "SpaceDescription");
         diceMock = new DiceMock();
-        start = new SpaceMock("Start");
-        space1 = new SpaceMock("Space1");
-        space2 = new SpaceMock("Space2");
+        start = new SpaceMockLandOnPassByCounter("Start");
+        space1 = new SpaceMockLandOnPassByCounter("Space1");
+        space2 = new SpaceMockLandOnPassByCounter("Space2");
         start.setNextSpace(space1);
         space1.setNextSpace(space2);
         space2.setNextSpace(start);

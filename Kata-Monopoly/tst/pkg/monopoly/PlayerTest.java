@@ -13,18 +13,18 @@ public class PlayerTest {
     public static final int UNMORTGAGE_AMOUNT = 110;
     private Player player;
     private DiceMock diceMock;
-    private SpaceMock start;
-    private SpaceMock space1;
-    private SpaceMock space2;
+    private SpaceMockLandOnPassByCounter start;
+    private SpaceMockLandOnPassByCounter space1;
+    private SpaceMockLandOnPassByCounter space2;
     private Property property;
 
     @Before
     public void setup() {
         player = new Player();
         diceMock = new DiceMock();
-        start = new SpaceMock("Start");
-        space1 = new SpaceMock("Space1");
-        space2 = new SpaceMock("Space2");
+        start = new SpaceMockLandOnPassByCounter("Start");
+        space1 = new SpaceMockLandOnPassByCounter("Space1");
+        space2 = new SpaceMockLandOnPassByCounter("Space2");
         start.setNextSpace(space1);
         space1.setNextSpace(space2);
         space2.setNextSpace(start);
@@ -93,5 +93,32 @@ public class PlayerTest {
         assertEquals(expectedBalance, player.getCashBalance());
         assertEquals(false, property.isMortgaged());
 
+    }
+
+    @Test
+    public void testPlayerRollsDoublesThenNot(){
+        DiceMockRollsDouble3sThenPlain4 diceMock = new DiceMockRollsDouble3sThenPlain4();
+        SpaceMockMoveCounter spaceMockMoveCounter = new SpaceMockMoveCounter();
+        player.setSpace(spaceMockMoveCounter);
+        player.takeATurn(diceMock);
+        assertEquals(2,spaceMockMoveCounter.moveCounter);
+    }
+
+    @Test
+    public void testPlayerRollsDoublesTwiceThenNot(){
+        Dice diceMock = new DiceMockRollsDoubleTwiceThenNot();
+        SpaceMockMoveCounter spaceMockMoveCounter = new SpaceMockMoveCounter();
+        player.setSpace(spaceMockMoveCounter);
+        player.takeATurn(diceMock);
+        assertEquals(3,spaceMockMoveCounter.moveCounter);
+    }
+
+    @Test
+    public void testPlayerRollsDoublesThreeTimesGoesToJail(){
+        Dice diceMock = new DiceMockRollsDoubleThreeTimesInARow();
+        SpaceMockMoveCounter spaceMockMoveCounter = new SpaceMockMoveCounter();
+        player.setSpace(spaceMockMoveCounter);
+        player.takeATurn(diceMock);
+        assertEquals(2,spaceMockMoveCounter.moveCounter);
     }
 }

@@ -4,18 +4,14 @@ public class DiceMock extends Dice {
 
     private int twoDieRollValue;
 
+    @Override
     public Boolean rollTwoDie() {
-        int die1 = rollDie();
-        int die2 = rollDie();
-        twoDieRollValue =  die1 + die2;
-        return die1 == die2;
+        twoDieRollValue = 2;
+        return false;
     }
 
+    @Override
     public int getTwoDieRollValue() {
         return twoDieRollValue;
-    }
-
-    private int rollDie() {
-        return 1;
     }
 }

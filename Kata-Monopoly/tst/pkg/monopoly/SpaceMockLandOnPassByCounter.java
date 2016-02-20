@@ -1,11 +1,11 @@
 package pkg.monopoly;
 
-public class SpaceMock extends Space {
+public class SpaceMockLandOnPassByCounter extends Space {
 
     public int landOnCounter;
     public int passByCounter;
 
-    public SpaceMock(String description) {
+    public SpaceMockLandOnPassByCounter(String description) {
         setDescription(description);
     }
 
