@@ -10,41 +10,20 @@ public class Player {
         this.cashBalance = 1500;
     }
 
-    public Space getSpace() {
-        return space;
-    }
-
     public void setSpace(Space space) {
         this.space = space;
     }
 
-    public int getCashBalance() {
-        return cashBalance;
-    }
-
-    public void takeATurn(Dice dice) {
-        dice.rollTwoDie();
-        if (dice.rolledDouble()) {
-            incrementDoublesRolledInATurnCounter();
-            if (getNumberOfDoublesRolledInARoww() == 3) {
-                setSpace(Space.create("Other", "Jail"));
-                resetDoublesRolledInATurnCounter();
-            } else {
-                space.move(this, dice.getTwoDieRollValue());
-                takeATurn(dice);
-            }
-        } else {
-            space.move(this, dice.getTwoDieRollValue());
-            resetDoublesRolledInATurnCounter();
-        }
-    }
-
-    private void incrementDoublesRolledInATurnCounter() {
-        doublesRolledInATurnCounter++;
+    public Space getSpace() {
+        return space;
     }
 
     public void changeCashBalanceBy(int cash) {
         cashBalance += cash;
+    }
+
+    public int getCashBalance() {
+        return cashBalance;
     }
 
     public void manageProperties() {
@@ -60,11 +39,46 @@ public class Player {
         property.setIsMortgaged(false);
     }
 
-    public void resetDoublesRolledInATurnCounter() {
-        doublesRolledInATurnCounter = 0;
+    public void takeATurn(Dice dice) {
+        dice.rollTwoDie();
+        if (dice.rolledDouble())
+            doubleRolled(dice);
+        else
+            doubleNotRolled(dice);
+    }
+
+    private void doubleRolled(Dice dice) {
+        incrementDoublesRolledInATurnCounter();
+        if (getNumberOfDoublesRolledInARoww() == 3)
+            gotToJail();
+        else
+            takeAnotherTurn(dice);
+    }
+
+    private void incrementDoublesRolledInATurnCounter() {
+        doublesRolledInATurnCounter++;
     }
 
     public int getNumberOfDoublesRolledInARoww() {
         return doublesRolledInATurnCounter;
+    }
+
+    private void gotToJail() {
+        setSpace(Space.create("Other", "Jail"));
+        resetDoublesRolledInATurnCounter();
+    }
+
+    public void resetDoublesRolledInATurnCounter() {
+        doublesRolledInATurnCounter = 0;
+    }
+
+    private void takeAnotherTurn(Dice dice) {
+        space.move(this, dice.getTwoDieRollValue());
+        takeATurn(dice);
+    }
+
+    private void doubleNotRolled(Dice dice) {
+        space.move(this, dice.getTwoDieRollValue());
+        resetDoublesRolledInATurnCounter();
     }
 }
