@@ -8,6 +8,6 @@ public class GoToJail extends Space {
 
     @Override
     public void landOn(Player player) {
-        player.setSpace(searchForSpace(player, "Jail"));
+        player.setSpace(searchForSpace(player, Jail.class.getSimpleName()));
     }
 }
