@@ -50,7 +50,7 @@ public class Player {
     private void doubleRolled(Dice dice) {
         incrementDoublesRolledInATurnCounter();
         if (getNumberOfDoublesRolledInARoww() == 3)
-            gotToJail();
+            goToJail();
         else
             takeAnotherTurn(dice);
     }
@@ -63,21 +63,10 @@ public class Player {
         return doublesRolledInATurnCounter;
     }
 
-    private void gotToJail() {
-        Space jail = searchForJail();
-        setSpace(jail);
+    private void goToJail() {
+        Space goToJail = space.searchForSpace(this,"GoToJail");
+        goToJail.landOn(this);
         resetDoublesRolledInATurnCounter();
-    }
-
-    private Space searchForJail() {
-        Space currentSpace = this.getSpace();
-        Space nextSpace = currentSpace.getNextSpace();
-
-        while (!nextSpace.getClass().getSimpleName().equals("Jail")){
-            currentSpace = nextSpace;
-            nextSpace = currentSpace.getNextSpace();
-        }
-        return nextSpace;
     }
 
     public void resetDoublesRolledInATurnCounter() {

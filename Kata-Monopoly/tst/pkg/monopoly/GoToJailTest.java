@@ -10,44 +10,49 @@ import static org.junit.Assert.assertTrue;
 
 public class GoToJailTest {
 
+    private Go go;
+    private Jail jail;
     private GoToJail goToJail;
-    private Other jail;
     private Player player;
-    private Space space;
-    private int startingBalance;
+    private int beginningBalance;
     private int endingBalance;
 
     @Before
     public void setUp() throws Exception {
+        go = new Go("Go");
+        jail = new Jail("Jail");
         goToJail = new GoToJail("Go to Jail");
-        jail = new Other("Jail");
-        goToJail.setDestination(jail);
+
+        go.setNextSpace(jail);
+        jail.setNextSpace(goToJail);
+        goToJail.setNextSpace(go);
+
         player = new Player();
-        startingBalance = player.getCashBalance();
+        player.setSpace(go);
+
+        beginningBalance = player.getCashBalance();
+        endingBalance = beginningBalance;
     }
 
     @After
     public void tearDown() throws Exception {
-        goToJail = null;
+        go = null;
         jail = null;
+        goToJail = null;
         player = null;
     }
 
     @Test
     public void testLandOnGoToJailAndPlayerDoesGoToJailWithNoChangeInCash() {
         goToJail.landOn(player);
-        space = player.getSpace();
-        endingBalance = player.getCashBalance();
-        assertTrue(space.equals(jail));
-        assertEquals(startingBalance,endingBalance);
+        assertTrue(player.getSpace().equals(jail));
+        assertEquals(beginningBalance,endingBalance);
     }
 
     @Test
     public void testPassByGoToJailAndPlayerDoesNotGoToJailWithNoChangeInCash() {
         goToJail.passBy(player);
-        space = player.getSpace();
-        endingBalance = player.getCashBalance();
-        assertFalse(space.equals(jail));
-        assertEquals(startingBalance,endingBalance);
+        assertFalse(player.getSpace().equals(jail));
+        assertEquals(beginningBalance,endingBalance);
     }
 }

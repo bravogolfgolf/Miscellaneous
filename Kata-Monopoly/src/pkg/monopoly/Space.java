@@ -53,6 +53,17 @@ abstract class Space {
         return nextSpace;
     }
 
+    Space searchForSpace(Player player, String className) {
+        Space currentSpace = player.getSpace();
+        Space nextSpace = currentSpace.getNextSpace();
+
+        while (!nextSpace.getClass().getSimpleName().equals(className)){
+            currentSpace = nextSpace;
+            nextSpace = currentSpace.getNextSpace();
+        }
+        return nextSpace;
+    }
+
     public void passBy(Player player) {
     }
 
