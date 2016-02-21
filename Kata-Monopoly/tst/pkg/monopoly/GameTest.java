@@ -98,18 +98,38 @@ public class GameTest {
     }
 
     @Test
-    public void testGameOfTwentyRounds() throws Game.InvalidPlayerCount, IOException {
+    public void testGameOfTwentyRoundsCountTurnsTaken() throws Game.InvalidPlayerCount, IOException {
         for (int i = 0; i < 2; i++) {
             PlayerMockTurnCounter player = new PlayerMockTurnCounter();
             game.addPlayer(player);
+
         }
         game.start();
         PlayerMockTurnCounter player1 = (PlayerMockTurnCounter) game.getPlayer(0);
         PlayerMockTurnCounter player2 = (PlayerMockTurnCounter) game.getPlayer(1);
         assertEquals(20, player1.turnsTaken);
         assertEquals(20, player2.turnsTaken);
+    }
+
+    @Test
+    public void testGameOfTwentyRoundsCountManageProperties() throws Game.InvalidPlayerCount, IOException {
+        DiceMock dice = new DiceMock();
+        for (int i = 0; i < 2; i++) {
+            PlayerMockManagePropertiesCounter player = new PlayerMockManagePropertiesCounter();
+            game.addPlayer(player);
+            player.setSpace(start);
+        }
+        game.setDice(dice);
+        game.start();
+        PlayerMockManagePropertiesCounter player1 = (PlayerMockManagePropertiesCounter) game.getPlayer(0);
+        PlayerMockManagePropertiesCounter player2 = (PlayerMockManagePropertiesCounter) game.getPlayer(1);
         assertEquals(40, player1.manageProperties);
         assertEquals(40, player2.manageProperties);
+    }
+
+    @Test
+    public void testGameOfTwentyRoundsCountManagePropertiesWithDoublesRolled() {
+        assertTrue(false);
     }
 
     @Test

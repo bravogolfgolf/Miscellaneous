@@ -40,19 +40,23 @@ public class Player {
     }
 
     public void takeATurn(Dice dice) {
+        manageProperties();
         dice.rollTwoDie();
         if (dice.rolledDouble())
             doubleRolled(dice);
         else
             doubleNotRolled(dice);
+        manageProperties();
     }
 
     private void doubleRolled(Dice dice) {
         incrementDoublesRolledInATurnCounter();
         if (getNumberOfDoublesRolledInARoww() == 3)
             goToJail();
-        else
-            takeAnotherTurn(dice);
+        else {
+            space.move(this, dice.getTwoDieRollValue());
+            takeATurn(dice);
+        }
     }
 
     private void incrementDoublesRolledInATurnCounter() {
@@ -71,11 +75,6 @@ public class Player {
 
     public void resetDoublesRolledInATurnCounter() {
         doublesRolledInATurnCounter = 0;
-    }
-
-    private void takeAnotherTurn(Dice dice) {
-        space.move(this, dice.getTwoDieRollValue());
-        takeATurn(dice);
     }
 
     private void doubleNotRolled(Dice dice) {
