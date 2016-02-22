@@ -21,9 +21,9 @@ public class Game {
 
     public static final int MINIMUM_NUMBER_OF_PLAYERS = 2;
     public static final int MAXIMUM_NUMBER_OF_PLAYERS = 8;
-    private Dice dice = new Dice();
+    Dice dice = new Dice();
     private List<Space> board;
-    private List<Player> players = new ArrayList<Player>();
+    List<Player> players = new ArrayList<Player>();
 
     public List<Space> getBoard() {
         return board;
@@ -56,7 +56,7 @@ public class Game {
         play();
     }
 
-    private void play() {
+    public void play() {
         for (Player player : players) {
             player.takeATurn(dice);
             player.manageProperties();

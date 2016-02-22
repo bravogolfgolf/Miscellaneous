@@ -8,8 +8,11 @@ public class GameMockPlay20Rounds extends Game {
     }
 
     @Override
-    public void start() throws InvalidPlayerCount {
+    public void play() {
         for (int i = 0; i < 20; i++)
-            super.start();
+            for (Player player : players) {
+                player.takeATurn(dice);
+                player.manageProperties();
+            }
     }
 }
