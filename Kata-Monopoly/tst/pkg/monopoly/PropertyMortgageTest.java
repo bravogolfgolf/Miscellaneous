@@ -9,11 +9,12 @@ import java.io.IOException;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
 
-public class PlayerPropertyUnMortgageTest {
-    public static final int UNMORTGAGE_AMOUNT = 110;
+public class PropertyMortgageTest {
+
+    public static final int MORTGAGE_AMOUNT = 100;
     private Player player;
-    private Player owner;
     private Property property;
+    private Player owner;
 
     @Before
     public void setup() throws IOException {
@@ -31,48 +32,47 @@ public class PlayerPropertyUnMortgageTest {
     }
 
     @Test
-    public void testPlayerUnMortgagesProperty() {
-        int expectedBalance = player.getCashBalance() - UNMORTGAGE_AMOUNT;
-        property.setOwner(player);
-        property.setIsMortgaged(true);
-        player.unmortgageProperty(property);
-        assertEquals(expectedBalance, player.getCashBalance());
-        assertEquals(false, property.isMortgaged());
-        assertTrue(property.getOwner().equals(player));
-
-    }
-
-    @Test
-    public void testPlayerTriesToUnMortgagePropertyAlreadyUnMortgaged(){
-        int expectedBalance = player.getCashBalance();
-        property.setOwner(player);
+    public void testPlayerMortgagesProperty() {
+        int expectedBalance = player.getCashBalance() + MORTGAGE_AMOUNT;
         property.setIsMortgaged(false);
-        player.unmortgageProperty(property);
+        property.setOwner(player);
+        property.mortgagedBy(player);
         assertEquals(expectedBalance, player.getCashBalance());
-        assertEquals(false, property.isMortgaged());
+        assertEquals(true, property.isMortgaged());
         assertTrue(property.getOwner().equals(player));
     }
 
     @Test
-    public void testPlayerTriesToUnMortgageUnOwnedProperty(){
+    public void testPlayerTriesToMortgagePropertyAlreadyMortgaged() {
         int expectedBalance = player.getCashBalance();
-        property.setOwner(null);
         property.setIsMortgaged(true);
-        player.unmortgageProperty(property);
+        property.setOwner(player);
+        property.mortgagedBy(player);
         assertEquals(expectedBalance, player.getCashBalance());
         assertEquals(true, property.isMortgaged());
-        assertTrue(property.getOwner() == null);
-
+        assertTrue(property.getOwner().equals(player));
     }
 
     @Test
-    public void testPlayerTriesToUnMortgagePropertyOwnedByAnother() {
+    public void testPlayerTriesToMortgageUnOwnedProperty() {
         int expectedBalance = player.getCashBalance();
-        property.setIsMortgaged(true);
-        property.setOwner(owner);
-        player.unmortgageProperty(property);
+        property.setIsMortgaged(false);
+        property.setOwner(null);
+        property.mortgagedBy(player);
         assertEquals(expectedBalance, player.getCashBalance());
-        assertEquals(true, property.isMortgaged());
+        assertEquals(false, property.isMortgaged());
+        assertTrue(property.getOwner() == null);
+    }
+
+    @Test
+    public void testPlayerTriesToMortgagePropertyOwnedByAnother() {
+        int expectedBalance = player.getCashBalance();
+        property.setIsMortgaged(false);
+        property.setOwner(owner);
+        property.mortgagedBy(player);
+        assertEquals(expectedBalance, player.getCashBalance());
+        assertEquals(false, property.isMortgaged());
         assertTrue(property.getOwner().equals(owner));
     }
+
 }

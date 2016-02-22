@@ -29,20 +29,6 @@ public class Player {
     public void manageProperties() {
     }
 
-    public void mortgageProperty(Property property) {
-        if (property.mortgageConditionsAreMeet(this)) {
-            changeCashBalanceBy(property.mortgageAmount());
-            property.setIsMortgaged(true);
-        }
-    }
-
-    public void unmortgageProperty(Property property) {
-        if (property.unMortgageConditionsAreMeet(this)) {
-            changeCashBalanceBy(property.unMortgageAmount());
-            property.setIsMortgaged(false);
-        }
-    }
-
     public void takeATurn(Dice dice) {
         manageProperties();
         dice.rollTwoDie();

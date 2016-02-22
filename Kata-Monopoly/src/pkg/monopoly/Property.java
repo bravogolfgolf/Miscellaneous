@@ -64,6 +64,10 @@ public class Property extends Space {
         return !player.equals(this.getOwner());
     }
 
+    private boolean propertyIsOwned() {
+        return owner != null;
+    }
+
     private boolean propertyIsUnowned() {
         return owner == null;
     }
@@ -82,12 +86,30 @@ public class Property extends Space {
         this.owner.changeCashBalanceBy(rent);
     }
 
-    boolean unMortgageConditionsAreMeet(Player player) {
-        return isMortgaged() && getOwner() != null && getOwner().equals(player);
+    public void mortgagedBy(Player player) {
+        if (mortgageConditionsAreMeet(player)) {
+            player.changeCashBalanceBy(mortgageAmount());
+            setIsMortgaged(true);
+        }
     }
 
-    boolean mortgageConditionsAreMeet(Player player) {
-        return !isMortgaged() && getOwner() != null && getOwner().equals(player);
+    private boolean mortgageConditionsAreMeet(Player player) {
+        return propertyIsNotMortgaged() && propertyIsOwnedByPlayer(player);
+    }
+
+    private boolean propertyIsOwnedByPlayer(Player player) {
+        return propertyIsOwned() && getOwner().equals(player);
+    }
+
+    public void unMortgageBy(Player player) {
+        if (unMortgageConditionsAreMeet(player)) {
+            player.changeCashBalanceBy(unMortgageAmount());
+            setIsMortgaged(false);
+        }
+    }
+
+    private boolean unMortgageConditionsAreMeet(Player player) {
+        return isMortgaged() && propertyIsOwnedByPlayer(player);
     }
 }
 
