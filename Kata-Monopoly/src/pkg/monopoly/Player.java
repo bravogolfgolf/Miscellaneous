@@ -30,13 +30,25 @@ public class Player {
     }
 
     public void mortgageProperty(Property property) {
-        changeCashBalanceBy(property.mortgageAmount());
-        property.setIsMortgaged(true);
+        if (mortgageConditionsAreMeet(property, this)) {
+            changeCashBalanceBy(property.mortgageAmount());
+            property.setIsMortgaged(true);
+        }
+    }
+
+    private boolean mortgageConditionsAreMeet(Property property, Player player) {
+        return !property.isMortgaged() && property.getOwner() != null && property.getOwner().equals(player);
     }
 
     public void unmortgageProperty(Property property) {
-        changeCashBalanceBy(property.unMortgageAmount());
-        property.setIsMortgaged(false);
+        if (unMortgageConditionsAreMeet(property, this)) {
+            changeCashBalanceBy(property.unMortgageAmount());
+            property.setIsMortgaged(false);
+        }
+    }
+
+    private boolean unMortgageConditionsAreMeet(Property property, Player player) {
+        return property.isMortgaged() && property.getOwner() != null && property.getOwner().equals(player);
     }
 
     public void takeATurn(Dice dice) {

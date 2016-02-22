@@ -21,15 +21,14 @@ public class Game {
 
     public static final int MINIMUM_NUMBER_OF_PLAYERS = 2;
     public static final int MAXIMUM_NUMBER_OF_PLAYERS = 8;
-
     private Dice dice = new Dice();
-
     private List<Space> board;
-
     private List<Player> players = new ArrayList<Player>();
+
     public List<Space> getBoard() {
         return board;
     }
+
     public void addPlayer(Player player) {
         players.add(player);
     }
@@ -48,10 +47,6 @@ public class Game {
 
     public void setDice(Dice dice) {
         this.dice = dice;
-    }
-
-    public Dice getDice() {
-        return dice;
     }
 
     public void start() throws InvalidPlayerCount {

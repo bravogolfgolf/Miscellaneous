@@ -60,7 +60,7 @@ public class GameTest {
         Game game = new Game("Spaces_US.txt");
         for (int i = 0; i < 2; i++) {
             Player player = new Player();
-            player.setSpace(start);
+            player.setSpace(game.getBoard().get(0));
             game.addPlayer(player);
         }
         game.start();
