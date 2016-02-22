@@ -20,7 +20,6 @@ public class PlayerTest {
     private SpaceMockLandOnPassByCounter start;
     private SpaceMockLandOnPassByCounter space1;
     private SpaceMockLandOnPassByCounter space2;
-    private Property property;
 
     @Before
     public void setup() throws IOException {
@@ -28,17 +27,16 @@ public class PlayerTest {
         board = game.getBoard();
         player = new Player();
         diceMock = new DiceMock();
+        mockSpaceSetUp();
+    }
+
+    private void mockSpaceSetUp() {
         start = new SpaceMockLandOnPassByCounter("Start");
         space1 = new SpaceMockLandOnPassByCounter("Space1");
         space2 = new SpaceMockLandOnPassByCounter("Space2");
         start.setNextSpace(space1);
         space1.setNextSpace(space2);
         space2.setNextSpace(start);
-        property = new Property("Short Line");
-        property.setOwner(player);
-        property.setPrice(200);
-        property.setRent(25);
-        property.setIsMortgaged(false);
     }
 
     @After
@@ -50,7 +48,6 @@ public class PlayerTest {
         start = null;
         space1 = null;
         space2 = null;
-        property = null;
     }
 
     @Test
@@ -88,16 +85,16 @@ public class PlayerTest {
     public void testPlayerRollsDoublesThenNot() {
         Dice diceMock = new DiceMockRollsDouble3sThenPlain4();
         playerInitialization();
-
         Property property1 = (Property) board.get(6);
         Jail property2 = (Jail) board.get(10);
+
         assertFalse(player.getSpace().getDescription().equals(property2.getDescription()));
         assertTrue(property1.getOwner() == null);
 
         player.takeATurn(diceMock);
 
-        assertTrue(property1.getOwner().equals(player));
         assertTrue(player.getSpace().getDescription().equals(property2.getDescription()));
+        assertTrue(property1.getOwner().equals(player));
     }
 
     @Test
