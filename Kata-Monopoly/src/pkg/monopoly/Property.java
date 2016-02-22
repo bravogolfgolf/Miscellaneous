@@ -81,5 +81,13 @@ public class Property extends Space {
         player.changeCashBalanceBy(-rent);
         this.owner.changeCashBalanceBy(rent);
     }
+
+    boolean unMortgageConditionsAreMeet(Player player) {
+        return isMortgaged() && getOwner() != null && getOwner().equals(player);
+    }
+
+    boolean mortgageConditionsAreMeet(Player player) {
+        return !isMortgaged() && getOwner() != null && getOwner().equals(player);
+    }
 }
 
