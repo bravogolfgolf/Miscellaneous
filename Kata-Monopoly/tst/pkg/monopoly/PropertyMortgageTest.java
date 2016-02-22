@@ -32,6 +32,11 @@ public class PropertyMortgageTest {
     }
 
     @Test
+    public void testMortgageAmount() {
+        assertEquals(MORTGAGE_AMOUNT, property.mortgageAmount());
+    }
+
+    @Test
     public void testPlayerMortgagesProperty() {
         int expectedBalance = player.getCashBalance() + MORTGAGE_AMOUNT;
         property.setIsMortgaged(false);
