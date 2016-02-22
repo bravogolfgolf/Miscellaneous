@@ -64,6 +64,7 @@ public class Game {
     private void play() {
         for (Player player : players) {
             player.takeATurn(dice);
+            player.manageProperties();
         }
     }
 }

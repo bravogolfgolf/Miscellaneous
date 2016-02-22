@@ -46,14 +46,13 @@ public class Player {
             doubleRolled(dice);
         else
             doubleNotRolled(dice);
-        manageProperties();
     }
 
     private void doubleRolled(Dice dice) {
         incrementDoublesRolledInATurnCounter();
-        if (getNumberOfDoublesRolledInARoww() == 3)
+        if (getNumberOfDoublesRolledInARoww() == 3) {
             goToJail();
-        else {
+        } else {
             space.move(this, dice.getTwoDieRollValue());
             takeATurn(dice);
         }

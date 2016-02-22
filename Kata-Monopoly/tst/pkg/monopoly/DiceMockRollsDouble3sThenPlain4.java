@@ -2,7 +2,7 @@ package pkg.monopoly;
 
 public class DiceMockRollsDouble3sThenPlain4 extends Dice {
 
-    private double numberOfrollDie = -1;
+    private int numberOfrollDie = -1;
 
     @Override
     int rollDie() throws IllegalArgumentException {
@@ -11,6 +11,6 @@ public class DiceMockRollsDouble3sThenPlain4 extends Dice {
         if (numberOfrollDie == 1) return 3;
         if (numberOfrollDie == 2) return 3;
         if (numberOfrollDie == 3) return 1;
-        throw new IllegalArgumentException();
+        return numberOfrollDie;
     }
 }
