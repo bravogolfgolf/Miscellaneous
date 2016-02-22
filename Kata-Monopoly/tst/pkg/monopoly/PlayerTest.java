@@ -13,8 +13,6 @@ import static org.junit.Assert.assertTrue;
 
 public class PlayerTest {
 
-    public static final int MORTGAGE_AMOUNT = 100;
-    public static final int UNMORTGAGE_AMOUNT = 110;
     private Game game;
     private List<Space> board;
     private Player player;
@@ -84,98 +82,6 @@ public class PlayerTest {
         int expectedBalance = player.getCashBalance() + 100;
         player.changeCashBalanceBy(100);
         assertEquals(expectedBalance, player.getCashBalance());
-    }
-
-    @Test
-    public void testPlayerMortgagesProperty() {
-        int expectedBalance = player.getCashBalance() + MORTGAGE_AMOUNT;
-        property.setIsMortgaged(false);
-        property.setOwner(player);
-        player.mortgageProperty(property);
-        assertEquals(expectedBalance, player.getCashBalance());
-        assertEquals(true, property.isMortgaged());
-        assertTrue(property.getOwner().equals(player));
-    }
-
-    @Test
-    public void testPlayerTriesToMortgagePropertyAlreadyMortgaged() {
-        int expectedBalance = player.getCashBalance();
-        property.setIsMortgaged(true);
-        property.setOwner(player);
-        player.mortgageProperty(property);
-        assertEquals(expectedBalance, player.getCashBalance());
-        assertEquals(true, property.isMortgaged());
-        assertTrue(property.getOwner().equals(player));
-    }
-
-    @Test
-    public void testPlayerTriesToMortgageUnOwnedProperty() {
-        int expectedBalance = player.getCashBalance();
-        property.setIsMortgaged(false);
-        property.setOwner(null);
-        player.mortgageProperty(property);
-        assertEquals(expectedBalance, player.getCashBalance());
-        assertEquals(false, property.isMortgaged());
-        assertTrue(property.getOwner() == null);
-    }
-
-    @Test
-    public void testPlayerTriesToMortgagePropertyOwnedByAnother() {
-        Player owner = new Player();
-        int expectedBalance = player.getCashBalance();
-        property.setIsMortgaged(false);
-        property.setOwner(owner);
-        player.mortgageProperty(property);
-        assertEquals(expectedBalance, player.getCashBalance());
-        assertEquals(false, property.isMortgaged());
-        assertTrue(property.getOwner().equals(owner));
-    }
-
-    @Test
-    public void testPlayerUnMortgagesProperty() {
-        int expectedBalance = player.getCashBalance() - UNMORTGAGE_AMOUNT;
-        property.setOwner(player);
-        property.setIsMortgaged(true);
-        player.unmortgageProperty(property);
-        assertEquals(expectedBalance, player.getCashBalance());
-        assertEquals(false, property.isMortgaged());
-        assertTrue(property.getOwner().equals(player));
-
-    }
-
-    @Test
-    public void testPlayerTriesToUnMortgagePropertyAlreadyUnMortgaged(){
-        int expectedBalance = player.getCashBalance();
-        property.setOwner(player);
-        property.setIsMortgaged(false);
-        player.unmortgageProperty(property);
-        assertEquals(expectedBalance, player.getCashBalance());
-        assertEquals(false, property.isMortgaged());
-        assertTrue(property.getOwner().equals(player));
-    }
-
-    @Test
-    public void testPlayerTriesToUnMortgageUnOwnedProperty(){
-        int expectedBalance = player.getCashBalance();
-        property.setOwner(null);
-        property.setIsMortgaged(true);
-        player.unmortgageProperty(property);
-        assertEquals(expectedBalance, player.getCashBalance());
-        assertEquals(true, property.isMortgaged());
-        assertTrue(property.getOwner() == null);
-
-    }
-
-    @Test
-    public void testPlayerTriesToUnMortgagePropertyOwnedByAnother() {
-        Player owner = new Player();
-        int expectedBalance = player.getCashBalance();
-        property.setIsMortgaged(true);
-        property.setOwner(owner);
-        player.unmortgageProperty(property);
-        assertEquals(expectedBalance, player.getCashBalance());
-        assertEquals(true, property.isMortgaged());
-        assertTrue(property.getOwner().equals(owner));
     }
 
     @Test
