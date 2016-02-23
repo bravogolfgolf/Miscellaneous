@@ -85,10 +85,6 @@ public class Property extends Space {
         return !player.equals(this.getOwner());
     }
 
-    private boolean propertyIsOwned() {
-        return !owner.isBank();
-    }
-
     private boolean propertyIsUnowned() {
         return owner.isBank();
     }
@@ -119,7 +115,7 @@ public class Property extends Space {
     }
 
     private boolean propertyIsOwnedByPlayer(Player player) {
-        return propertyIsOwned() && getOwner().equals(player);
+        return getOwner().equals(player);
     }
 
     public void unMortgageBy(Player player) {

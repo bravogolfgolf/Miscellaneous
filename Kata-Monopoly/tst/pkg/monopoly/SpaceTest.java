@@ -50,7 +50,7 @@ public class SpaceTest {
 
     @Test(expected = IllegalArgumentException.class)
     public void testCreateSpaceThrowsException() throws IllegalArgumentException {
-        Space.create("Invalid", "Invalid", null);
+        Space.create("Invalid", "Invalid");
     }
 
     @Test

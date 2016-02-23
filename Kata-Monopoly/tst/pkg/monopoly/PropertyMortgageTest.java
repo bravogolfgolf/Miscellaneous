@@ -62,7 +62,6 @@ public class PropertyMortgageTest {
     public void testPlayerTriesToMortgageUnOwnedProperty() {
         int expectedBalance = player.getCashBalance();
         property.setIsMortgaged(false);
-//        property.setOwner(null);
         property.mortgagedBy(player);
         assertEquals(expectedBalance, player.getCashBalance());
         assertEquals(false, property.isMortgaged());
