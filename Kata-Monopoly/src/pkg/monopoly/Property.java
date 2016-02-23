@@ -130,16 +130,14 @@ public class Property extends Space {
     }
 
     public boolean allPropertiesHaveSameOwner(List<Space> properties) {
-        Property property = (Property) properties.get(0);
-        Player owner = property.getOwner();
-        boolean result = false;
-        for (int index = 1; index < properties.size(); index++) {
-            Property nextProperty = (Property) properties.get(index);
-            Player nextOwner = nextProperty.getOwner();
-            result = owner.equals(nextOwner);
-            owner = nextOwner;
+        Property firstProperty = (Property) properties.get(0);
+        Player first = firstProperty.getOwner();
+        for (int i = 1; i < properties.size(); i++) {
+            Property next = (Property) properties.get(i);
+            if (!next.getOwner().equals(first))
+                return false;
         }
-        return result;
+        return true;
     }
 }
 

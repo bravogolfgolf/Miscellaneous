@@ -14,6 +14,10 @@ public class PropertyGroupTest {
 
     private Property mediterraneanAve;
     private Property balticAve;
+    private Property reading;
+    private Property pennsylvania;
+    private Property bAndO;
+    private Property shortLine;
     private final Player player1 = new Player("Cat");
     private final Player player2 = new Player("Dog");
 
@@ -23,6 +27,10 @@ public class PropertyGroupTest {
         List<Space> board = game.getBoard();
         mediterraneanAve = (Property) board.get(1);
         balticAve = (Property) board.get(3);
+        reading = (Property) board.get(5);
+        pennsylvania = (Property) board.get(15);
+        bAndO = (Property) board.get(25);
+        shortLine = (Property) board.get(35);
 
     }
 
@@ -30,11 +38,17 @@ public class PropertyGroupTest {
     public void testPropertyGroup() throws IOException {
         assertEquals("Brown", mediterraneanAve.getGroup());
         assertEquals("Brown", balticAve.getGroup());
+        assertEquals("Railroad",reading.getGroup());
+        assertEquals("Railroad",pennsylvania.getGroup());
+        assertEquals("Railroad",bAndO.getGroup());
+        assertEquals("Railroad",shortLine.getGroup());
     }
 
     @Test
     public void testGetAllPropertiesOfSameGroup() throws IOException {
         assertEquals(2, mediterraneanAve.getAllPropertiesInGroup().size());
+        assertEquals(4,reading.getAllPropertiesInGroup().size());
+
     }
 
     @Test
@@ -43,6 +57,13 @@ public class PropertyGroupTest {
         balticAve.setOwner(player1);
         List<Space> properties = mediterraneanAve.getAllPropertiesInGroup();
         assertTrue(mediterraneanAve.allPropertiesHaveSameOwner(properties));
+
+        reading.setOwner(player1);
+        pennsylvania.setOwner(player1);
+        bAndO.setOwner(player1);
+        shortLine.setOwner(player1);
+        properties = reading.getAllPropertiesInGroup();
+        assertTrue(reading.allPropertiesHaveSameOwner(properties));
     }
 
     @Test
@@ -51,6 +72,13 @@ public class PropertyGroupTest {
         balticAve.setOwner(player2);
         List<Space> properties = mediterraneanAve.getAllPropertiesInGroup();
         assertFalse(mediterraneanAve.allPropertiesHaveSameOwner(properties));
+
+        reading.setOwner(player1);
+        pennsylvania.setOwner(player1);
+        bAndO.setOwner(player1);
+        shortLine.setOwner(player2);
+        properties = reading.getAllPropertiesInGroup();
+        assertFalse(reading.allPropertiesHaveSameOwner(properties));
     }
 
     @Test
@@ -66,4 +94,8 @@ public class PropertyGroupTest {
         assertTrue(mediterraneanAve.allPropertiesHaveSameOwner(properties));
     }
 
+    @Test
+    public void testPropertiesOwnedBySameOwnerCostDoublesRent(){
+        assertTrue(false);
+    }
 }
