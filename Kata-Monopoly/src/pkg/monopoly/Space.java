@@ -8,7 +8,7 @@ import java.util.List;
 
 abstract class Space {
 
-    private String description;
+    private String description = "";
     private Space nextSpace;
     private String group = "";
 
@@ -83,25 +83,6 @@ abstract class Space {
     public void landOn(Player player) {
     }
 
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-
-        Space space = (Space) o;
-
-        return description.equals(space.description) && (nextSpace != null ? nextSpace.equals(space.nextSpace) : space.nextSpace == null && (group != null ? group.equals(space.group) : space.group == null));
-
-    }
-
-    @Override
-    public int hashCode() {
-        int result = description.hashCode();
-        result = 31 * result + (nextSpace != null ? nextSpace.hashCode() : 0);
-        result = 31 * result + (group != null ? group.hashCode() : 0);
-        return result;
-    }
-
     public static List<Space> load(String filename) throws IOException {
         List<String> content = Files.readAllLines(Paths.get(filename));
         List<Space> spaces = new ArrayList<Space>();
@@ -114,4 +95,22 @@ abstract class Space {
         return spaces;
     }
 
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+
+        Space space = (Space) o;
+
+        return description.equals(space.description) && (nextSpace != null ? nextSpace.equals(space.nextSpace) : space.nextSpace == null && group.equals(space.group));
+
+    }
+
+    @Override
+    public int hashCode() {
+        int result = description.hashCode();
+        result = 31 * result + (nextSpace != null ? nextSpace.hashCode() : 0);
+        result = 31 * result + group.hashCode();
+        return result;
+    }
 }
