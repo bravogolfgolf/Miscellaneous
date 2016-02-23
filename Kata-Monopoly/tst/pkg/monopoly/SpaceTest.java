@@ -95,8 +95,8 @@ public class SpaceTest {
         final String filename = "Spaces_TEST.txt";
         List<Space> expected = new ArrayList<Space>();
         List<Space> actual;
-        expected.add(Space.create("Other", "SpaceReadTest"));
-        expected.add(Space.create("Other", "SpaceReadTest1"));
+        expected.add(Space.create("Other", "Description"));
+        expected.add(Space.create("Property", "Description"));
         actual = Space.load(filename);
         assertEquals(expected.size(), actual.size());
         assertTrue(expected.equals(actual));

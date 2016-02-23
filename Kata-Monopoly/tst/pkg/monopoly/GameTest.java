@@ -210,8 +210,8 @@ public class GameTest {
 
     private List<Space> createExpected() {
         List<Space> expected = new ArrayList<Space>();
-        Space first = Space.create("Other", "SpaceReadTest");
-        Space second = Space.create("Other", "SpaceReadTest1");
+        Space first = Space.create("Other", "Description");
+        Space second = Space.create("Property", "Description");
         first.setNextSpace(second);
         second.setNextSpace(first);
         expected.add(first);

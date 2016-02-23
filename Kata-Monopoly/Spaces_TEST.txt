@@ -1,2 +1,2 @@
-Other,SpaceReadTest
-Other,SpaceReadTest1
+Other,Description
+Property,Description
