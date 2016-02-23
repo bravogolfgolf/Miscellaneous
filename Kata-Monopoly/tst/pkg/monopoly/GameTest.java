@@ -180,7 +180,6 @@ public class GameTest {
 
     @Test
     public void testPlayersAlternateOrder() throws Game.InvalidPlayerCount, IOException {
-        Game gameMock = new GameMockPlay20Rounds("Spaces_TEST.txt");
         PlayerMockAlternateOrder player1 = new PlayerMockAlternateOrder();
         PlayerMockAlternateOrder player2 = new PlayerMockAlternateOrder();
         gameMock.addPlayer(player1);
@@ -229,7 +228,6 @@ public class GameTest {
         int goToJailCount = 0;
         int incomeTaxCount = 0;
         int luxuryTaxCount = 0;
-        Game game = new Game("Spaces_US.txt");
         List<Space> board = game.getBoard();
         assertTrue(board.size() == 40);
         for (Space space : board) {
