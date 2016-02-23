@@ -228,25 +228,59 @@ public class GameTest {
         int goToJailCount = 0;
         int incomeTaxCount = 0;
         int luxuryTaxCount = 0;
+        int brownGroupCount = 0;
+        int lightBlueGroupCount = 0;
+        int purpleGroupCount = 0;
+        int orangeGroupCount = 0;
+        int redGroupCount = 0;
+        int yellowGroupCount = 0;
+        int greenGroupCount = 0;
+        int blueGroupCount = 0;
+        int railroadGroupCount = 0;
+        int utilityGroupCount = 0;
         List<Space> board = game.getBoard();
         assertTrue(board.size() == 40);
         for (Space space : board) {
             String classType = space.getClass().getSimpleName();
             if (classType.equals("Go")) goCount++;
-            if (classType.equals("Property")) propertyCount++;
             if (classType.equals("Other")) otherCount++;
             if (classType.equals("Jail")) jailCount++;
             if (classType.equals("GoToJail")) goToJailCount++;
             if (classType.equals("IncomeTax")) incomeTaxCount++;
             if (classType.equals("LuxuryTax")) luxuryTaxCount++;
+            if (classType.equals("Property")) {
+                propertyCount++;
+                String group = space.getGroup();
+                if (group.equals("Brown")) brownGroupCount++;
+                if (group.equals("Light Blue")) lightBlueGroupCount++;
+                if (group.equals("Purple")) purpleGroupCount++;
+                if (group.equals("Orange")) orangeGroupCount++;
+                if (group.equals("Red")) redGroupCount++;
+                if (group.equals("Yellow")) yellowGroupCount++;
+                if (group.equals("Green")) greenGroupCount++;
+                if (group.equals("Blue")) blueGroupCount++;
+                if (group.equals("Railroad")) railroadGroupCount++;
+                if (group.equals("Utility")) utilityGroupCount++;
+            }
         }
         assertEquals(1, goCount);
-        assertEquals(28, propertyCount);
         assertEquals(7, otherCount);
         assertEquals(1, jailCount);
         assertEquals(1, goToJailCount);
         assertEquals(1, incomeTaxCount);
         assertEquals(1, luxuryTaxCount);
+        assertEquals(28, propertyCount);
+        assertEquals(2, brownGroupCount);
+
+        assertEquals(3, lightBlueGroupCount);
+        assertEquals(3, purpleGroupCount);
+        assertEquals(3, orangeGroupCount);
+        assertEquals(3, redGroupCount);
+        assertEquals(3, yellowGroupCount);
+        assertEquals(3, greenGroupCount);
+        assertEquals(2, blueGroupCount);
+        assertEquals(4, railroadGroupCount);
+        assertEquals(2, utilityGroupCount);
     }
 
 }
