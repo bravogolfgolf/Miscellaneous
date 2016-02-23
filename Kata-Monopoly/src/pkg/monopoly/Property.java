@@ -7,7 +7,7 @@ public class Property extends Space {
 
     private int price;
     private int rent;
-    private Player owner;
+    private Player owner = Player.newBank();
     private boolean isMortgaged;
 
     public Property(String description, String group) {
@@ -39,7 +39,8 @@ public class Property extends Space {
         return owner;
     }
 
-    public List<Space> getAllPropertiesInGroup() {
+    public List<Space>
+    getAllPropertiesInGroup() {
         List<Space> properties = new ArrayList<Space>();
         properties.add(this);
         String group = this.getGroup();
@@ -85,11 +86,11 @@ public class Property extends Space {
     }
 
     private boolean propertyIsOwned() {
-        return owner != null;
+        return !owner.isBank();
     }
 
     private boolean propertyIsUnowned() {
-        return owner == null;
+        return owner.isBank();
     }
 
     private boolean propertyIsNotMortgaged() {
@@ -130,6 +131,19 @@ public class Property extends Space {
 
     private boolean unMortgageConditionsAreMeet(Player player) {
         return isMortgaged() && propertyIsOwnedByPlayer(player);
+    }
+
+    public boolean allPropertiesHaveSameOwner(List<Space> properties) {
+        Property property = (Property) properties.get(0);
+        Player owner = property.getOwner();
+        boolean result = false;
+        for (int index = 1; index < properties.size(); index++) {
+            Property nextProperty = (Property) properties.get(index);
+            Player nextOwner = nextProperty.getOwner();
+            result = owner.equals(nextOwner);
+            owner = nextOwner;
+        }
+        return result;
     }
 }
 

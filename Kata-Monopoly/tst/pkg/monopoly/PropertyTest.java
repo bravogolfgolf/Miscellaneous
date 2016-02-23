@@ -5,6 +5,7 @@ import org.junit.Before;
 import org.junit.Test;
 
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertTrue;
 
 public class PropertyTest {
 
@@ -18,8 +19,8 @@ public class PropertyTest {
 
     @Before
     public void setUp() throws Exception {
-        player = new Player();
-        owner = new Player();
+        player = new Player("Cat");
+        owner = new Player("Dog");
         property = new Property("Property", "Group");
         property.setPrice(PRICE_OF_PROPERTY);
         property.setRent(RENT);
@@ -65,7 +66,7 @@ public class PropertyTest {
 
     @Test
     public void testLandOnUnownedProperty() {
-        assertEquals(null, property.getOwner());
+        assertTrue(property.getOwner().isBank());
         int endingBalance = playerBeginningBalance - PRICE_OF_PROPERTY;
         property.landOn(player);
         assertEquals(player, property.getOwner());

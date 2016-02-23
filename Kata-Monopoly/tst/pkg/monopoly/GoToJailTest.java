@@ -27,7 +27,7 @@ public class GoToJailTest {
         jail.setNextSpace(goToJail);
         goToJail.setNextSpace(go);
 
-        player = new Player();
+        player = new Player("Cat");
         player.setSpace(go);
 
         beginningBalance = player.getCashBalance();

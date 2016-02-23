@@ -43,7 +43,7 @@ public class GameTest {
 
     private void addThisManyPlayers(int number) {
         for (int i = 0; i < number; i++) {
-            Player player = new Player();
+            Player player = new Player("Cat");
             player.setSpace(start);
             gameMock.addPlayer(player);
         }
@@ -59,7 +59,7 @@ public class GameTest {
     public void testGameWithTwoPlayers() throws Game.InvalidPlayerCount, IOException {
         Game game = new Game("Spaces_US.txt");
         for (int i = 0; i < 2; i++) {
-            Player player = new Player();
+            Player player = new Player("Cat");
             player.setSpace(game.getBoard().get(0));
             game.addPlayer(player);
         }
@@ -81,17 +81,17 @@ public class GameTest {
 
         for (int i = 0; i < 100; i++) {
             Game game = new Game("Spaces_TEST.txt");
-            Player catPlayer = new Player();
-            Player bootPlayer = new Player();
+            Player catPlayer = new Player("Cat");
+            Player dogPlayer = new Player("Dog");
             game.addPlayer(catPlayer);
-            game.addPlayer(bootPlayer);
+            game.addPlayer(dogPlayer);
             game.randomizePlayerOrder();
             assertEquals(EXPECTED_NUMBER_OF_PLAYERS, game.getNumberOfPlayers());
 
-            if (game.getPlayer(0).equals(catPlayer) && game.getPlayer(1).equals(bootPlayer))
+            if (game.getPlayer(0).equals(catPlayer) && game.getPlayer(1).equals(dogPlayer))
                 catBoot = true;
 
-            if (game.getPlayer(0).equals(bootPlayer) && game.getPlayer(1).equals(catPlayer))
+            if (game.getPlayer(0).equals(dogPlayer) && game.getPlayer(1).equals(catPlayer))
                 bootCat = true;
 
             if (catBoot && bootCat)

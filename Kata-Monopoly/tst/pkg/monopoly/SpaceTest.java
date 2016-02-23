@@ -22,7 +22,7 @@ public class SpaceTest {
 
     @Before
     public void setup() {
-        player = new Player();
+        player = new Player("Cat");
         space = Space.create("Other", "SpaceDescription");
         diceMock = new DiceMock();
         start = new SpaceMockLandOnPassByCounter("Start");

@@ -13,7 +13,7 @@ public class JailTest {
 
     @Before
     public void setUp() {
-        player = new Player();
+        player = new Player("Cat");
         jail = Space.create("Jail","Other");
     }
 

@@ -15,7 +15,7 @@ public class PlayerTest {
 
     private Game game;
     private List<Space> board;
-    private Player player;
+    private Player player1;
     private DiceMock diceMock;
     private SpaceMockLandOnPassByCounter start;
     private SpaceMockLandOnPassByCounter space1;
@@ -25,7 +25,7 @@ public class PlayerTest {
     public void setup() throws IOException {
         game = new Game("Spaces_US.txt");
         board = game.getBoard();
-        player = new Player();
+        player1 = new Player("Cat");
         diceMock = new DiceMock();
         mockSpaceSetUp();
     }
@@ -43,7 +43,7 @@ public class PlayerTest {
     public void tearDown() {
         game = null;
         board = null;
-        player = null;
+        player1 = null;
         diceMock = null;
         start = null;
         space1 = null;
@@ -54,31 +54,31 @@ public class PlayerTest {
     public void testCreatePlayer() {
         final Space EXPECTED_INITIAL_LOCATION = new Go("Go");
         final int EXPECTED_INITIAL_CASH_BALANCE = 1500;
-        assertEquals(EXPECTED_INITIAL_LOCATION, player.getSpace());
-        assertEquals(EXPECTED_INITIAL_CASH_BALANCE, player.getCashBalance());
+        assertEquals(EXPECTED_INITIAL_LOCATION, player1.getSpace());
+        assertEquals(EXPECTED_INITIAL_CASH_BALANCE, player1.getCashBalance());
     }
 
     @Test
     public void testMovesAndDoesNoWrap() {
-        player.setSpace(start);
-        player.takeATurn(diceMock);
+        player1.setSpace(start);
+        player1.takeATurn(diceMock);
         Space endingLocation = space2;
-        assertTrue(endingLocation.equals(player.getSpace()));
+        assertTrue(endingLocation.equals(player1.getSpace()));
     }
 
     @Test
     public void testMovesAndWraps() {
-        player.setSpace(space1);
-        player.takeATurn(diceMock);
+        player1.setSpace(space1);
+        player1.takeATurn(diceMock);
         Space endingLocation = start;
-        assertTrue(endingLocation.equals(player.getSpace()));
+        assertTrue(endingLocation.equals(player1.getSpace()));
     }
 
     @Test
     public void testIncreaseCashBalance() {
-        int expectedBalance = player.getCashBalance() + 100;
-        player.changeCashBalanceBy(100);
-        assertEquals(expectedBalance, player.getCashBalance());
+        int expectedBalance = player1.getCashBalance() + 100;
+        player1.changeCashBalanceBy(100);
+        assertEquals(expectedBalance, player1.getCashBalance());
     }
 
     @Test
@@ -88,13 +88,13 @@ public class PlayerTest {
         Property property1 = (Property) board.get(6);
         Jail property2 = (Jail) board.get(10);
 
-        assertFalse(player.getSpace().getDescription().equals(property2.getDescription()));
-        assertTrue(property1.getOwner() == null);
+        assertFalse(player1.getSpace().getDescription().equals(property2.getDescription()));
+        assertTrue(property1.getOwner().isBank());
 
-        player.takeATurn(diceMock);
+        player1.takeATurn(diceMock);
 
-        assertTrue(player.getSpace().getDescription().equals(property2.getDescription()));
-        assertTrue(property1.getOwner().equals(player));
+        assertTrue(player1.getSpace().getDescription().equals(property2.getDescription()));
+        assertTrue(property1.getOwner().equals(player1));
     }
 
     @Test
@@ -103,23 +103,23 @@ public class PlayerTest {
         playerInitialization();
 
         Property vermontAve = (Property) board.get(8);
-        assertTrue(vermontAve.getOwner() == null);
+        assertTrue(vermontAve.getOwner().isBank());
         Property tennesseeAve = (Property) board.get(18);
-        assertTrue(tennesseeAve.getOwner() == null);
+        assertTrue(tennesseeAve.getOwner().isBank());
         Property atlanticAve = (Property) board.get(26);
-        assertTrue(atlanticAve.getOwner() == null);
+        assertTrue(atlanticAve.getOwner().isBank());
 
-        player.takeATurn(diceMock);
+        player1.takeATurn(diceMock);
 
-        assertTrue(vermontAve.getOwner().equals(player));
-        assertTrue(tennesseeAve.getOwner().equals(player));
-        assertTrue(atlanticAve.getOwner().equals(player));
+        assertTrue(vermontAve.getOwner().equals(player1));
+        assertTrue(tennesseeAve.getOwner().equals(player1));
+        assertTrue(atlanticAve.getOwner().equals(player1));
     }
 
     private int playerInitialization() {
-        player.setSpace(board.get(0));
-        player.resetDoublesRolledInATurnCounter();
-        return player.getCashBalance();
+        player1.setSpace(board.get(0));
+        player1.resetDoublesRolledInATurnCounter();
+        return player1.getCashBalance();
     }
 
     @Test
@@ -132,16 +132,24 @@ public class PlayerTest {
         int endingBalance = beginningBalance - (beginningBalance / 10);
 
         Property virginiaAve = (Property) board.get(14);
-        assertTrue(virginiaAve.getOwner() == null);
+        assertTrue(virginiaAve.getOwner().isBank());
 
         Jail jail = (Jail) board.get(10);
         assertTrue(jail.getDescription().equals("Just Visiting/Jail"));
 
-        player.takeATurn(diceMock);
+        player1.takeATurn(diceMock);
 
-        assertTrue(virginiaAve.getOwner().equals(player));
-        assertEquals(endingBalance, player.getCashBalance());
-        assertTrue(player.getSpace().equals(jail));
+        assertTrue(virginiaAve.getOwner().equals(player1));
+        assertEquals(endingBalance, player1.getCashBalance());
+        assertTrue(player1.getSpace().equals(jail));
+
+    }
+
+    @Test
+    public void testPlayerHashcode() {
+        Player player2 = new Player("Cat");
+        assertEquals(player1.hashCode(), player2.hashCode());
+
 
     }
 }

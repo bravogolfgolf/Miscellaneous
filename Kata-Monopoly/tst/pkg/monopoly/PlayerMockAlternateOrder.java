@@ -8,7 +8,7 @@ public class PlayerMockAlternateOrder extends Player {
         public static final List<Player> order = new ArrayList<Player>();
 
     public PlayerMockAlternateOrder() {
-        super();
+        super("PlayerMockAlternateOrder");
     }
 
     @Override

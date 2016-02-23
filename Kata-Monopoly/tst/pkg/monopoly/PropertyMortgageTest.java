@@ -18,8 +18,8 @@ public class PropertyMortgageTest {
 
     @Before
     public void setup() throws IOException {
-        player = new Player();
-        owner = new Player();
+        player = new Player("Cat");
+        owner = new Player("Dog");
         property = new Property("Short Line", "Railroad");
         property.setPrice(200);
     }
@@ -62,11 +62,11 @@ public class PropertyMortgageTest {
     public void testPlayerTriesToMortgageUnOwnedProperty() {
         int expectedBalance = player.getCashBalance();
         property.setIsMortgaged(false);
-        property.setOwner(null);
+//        property.setOwner(null);
         property.mortgagedBy(player);
         assertEquals(expectedBalance, player.getCashBalance());
         assertEquals(false, property.isMortgaged());
-        assertTrue(property.getOwner() == null);
+        assertTrue(property.getOwner().isBank());
     }
 
     @Test

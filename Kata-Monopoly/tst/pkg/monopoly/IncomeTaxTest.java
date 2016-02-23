@@ -13,7 +13,7 @@ public class IncomeTaxTest {
     @Before
     public void setUp() throws Exception {
         incomeTax = Space.create("IncomeTax","Income Tax");
-        player = new Player();
+        player = new Player("Cat");
     }
 
     @Test
