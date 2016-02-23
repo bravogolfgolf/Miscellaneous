@@ -1,5 +1,8 @@
 package pkg.monopoly;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class Property extends Space {
 
     private int price;
@@ -33,6 +36,22 @@ public class Property extends Space {
 
     public Player getOwner() {
         return owner;
+    }
+
+    public List<Space> getAllPropertiesInGroup() {
+        List<Space> properties = new ArrayList<Space>();
+        properties.add(this);
+        String group = this.getGroup();
+        Space startingSpace = this;
+        Space currentSpace = this;
+        Space nextSpace = currentSpace.getNextSpace();
+        while (!nextSpace.equals(startingSpace)) {
+            if (nextSpace.getGroup().equals(group))
+                properties.add(nextSpace);
+            currentSpace = nextSpace;
+            nextSpace = currentSpace.getNextSpace();
+        }
+        return properties;
     }
 
     public boolean isMortgaged() {

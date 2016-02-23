@@ -10,6 +10,7 @@ abstract class Space {
 
     private String description;
     private Space nextSpace;
+    private String group ="";
 
     public static Space create(String classType, String description) {
         if (classType.equals("Go")) return new Go(description);
@@ -65,6 +66,14 @@ abstract class Space {
     }
 
     public void passBy(Player player) {
+    }
+
+    public void setGroup(String group) {
+        this.group = group;
+    }
+
+    public String getGroup() {
+        return group;
     }
 
     public void landOn(Player player) {
