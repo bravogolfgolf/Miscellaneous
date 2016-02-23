@@ -10,8 +10,9 @@ public class Property extends Space {
     private Player owner;
     private boolean isMortgaged;
 
-    public Property(String description) {
-        super.setDescription(description);
+    public Property(String description, String group) {
+        setDescription(description);
+        setGroup(group);
     }
 
     public void setPrice(int price) {

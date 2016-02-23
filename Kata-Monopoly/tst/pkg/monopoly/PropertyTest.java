@@ -20,7 +20,7 @@ public class PropertyTest {
     public void setUp() throws Exception {
         player = new Player();
         owner = new Player();
-        property = new Property("Reading Property");
+        property = new Property("Property", "Group");
         property.setPrice(PRICE_OF_PROPERTY);
         property.setRent(RENT);
         playerBeginningBalance = player.getCashBalance();
@@ -36,7 +36,7 @@ public class PropertyTest {
 
     @Test
     public void testPropertyCreation() {
-        Space property = Space.create("Property", "Short Line");
+        Space property = Space.create("Property", "Short Line", "Railroad");
         assertEquals("Short Line", property.getDescription());
     }
 

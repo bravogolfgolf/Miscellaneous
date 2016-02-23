@@ -15,8 +15,6 @@ public class PropertyRentTest {
         Game game = new Game("Spaces_US.txt");
         List<Space> board = game.getBoard();
         Property mediterraneanAve = (Property) board.get(1);
-        assertEquals("", mediterraneanAve.getGroup());
-        mediterraneanAve.setGroup("Brown");
         assertEquals("Brown", mediterraneanAve.getGroup());
     }
 

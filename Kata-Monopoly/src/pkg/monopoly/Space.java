@@ -10,11 +10,15 @@ abstract class Space {
 
     private String description;
     private Space nextSpace;
-    private String group ="";
+    private String group = "";
+
+    public static Space create(String classType, String description, String group) {
+        if (classType.equals("Property")) return new Property(description, group);
+        throw new IllegalArgumentException("Incorrect value");
+    }
 
     public static Space create(String classType, String description) {
         if (classType.equals("Go")) return new Go(description);
-        if (classType.equals("Property")) return new Property(description);
         if (classType.equals("Other")) return new Other(description);
         if (classType.equals("Jail")) return new Jail(description);
         if (classType.equals("GoToJail")) return new GoToJail(description);
@@ -58,7 +62,7 @@ abstract class Space {
         Space currentSpace = player.getSpace();
         Space nextSpace = currentSpace.getNextSpace();
 
-        while (!nextSpace.getClass().getSimpleName().equals(className)){
+        while (!nextSpace.getClass().getSimpleName().equals(className)) {
             currentSpace = nextSpace;
             nextSpace = currentSpace.getNextSpace();
         }
@@ -79,16 +83,6 @@ abstract class Space {
     public void landOn(Player player) {
     }
 
-    public static List<Space> load(String filename) throws IOException {
-        List<String> content = Files.readAllLines(Paths.get(filename));
-        List<Space> spaces = new ArrayList<Space>();
-        for (String line : content) {
-            String[] tokens = line.split(",");
-            spaces.add(Space.create(tokens[0], tokens[1]));
-        }
-        return spaces;
-    }
-
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -96,14 +90,28 @@ abstract class Space {
 
         Space space = (Space) o;
 
-        return description.equals(space.description) && (nextSpace != null ?
-                nextSpace.equals(space.nextSpace) : space.nextSpace == null);
+        return description.equals(space.description) && (nextSpace != null ? nextSpace.equals(space.nextSpace) : space.nextSpace == null && (group != null ? group.equals(space.group) : space.group == null));
+
     }
 
     @Override
     public int hashCode() {
         int result = description.hashCode();
         result = 31 * result + (nextSpace != null ? nextSpace.hashCode() : 0);
+        result = 31 * result + (group != null ? group.hashCode() : 0);
         return result;
     }
+
+    public static List<Space> load(String filename) throws IOException {
+        List<String> content = Files.readAllLines(Paths.get(filename));
+        List<Space> spaces = new ArrayList<Space>();
+        for (String line : content) {
+            String[] tokens = line.split(",");
+            if (tokens[0].equals("Property"))
+                spaces.add(Space.create(tokens[0], tokens[1], tokens[2]));
+            else spaces.add(Space.create(tokens[0], tokens[1]));
+        }
+        return spaces;
+    }
+
 }
