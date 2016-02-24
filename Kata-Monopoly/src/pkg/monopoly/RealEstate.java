@@ -9,11 +9,10 @@ public class RealEstate extends Property {
     }
 
     public boolean allPropertiesHaveSameOwner(List<Space> properties) {
-        Property firstProperty = (Property) properties.get(0);
-        Player first = firstProperty.getOwner();
+        Player thisOwner = this.getOwner();
         for (int i = 1; i < properties.size(); i++) {
             Property next = (Property) properties.get(i);
-            if (!next.getOwner().equals(first))
+            if (!next.getOwner().equals(thisOwner))
                 return false;
         }
         return true;
