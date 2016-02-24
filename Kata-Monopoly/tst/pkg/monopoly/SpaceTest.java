@@ -49,8 +49,13 @@ public class SpaceTest {
     }
 
     @Test(expected = IllegalArgumentException.class)
-    public void testCreateSpaceThrowsException() throws IllegalArgumentException {
+    public void testCreateSpaceNonPropertyThrowsException() throws IllegalArgumentException {
         Space.create("Invalid", "Invalid");
+    }
+
+    @Test(expected = IllegalArgumentException.class)
+    public void testCreateSpacePropertyThrowsException() throws IllegalArgumentException {
+        Space.create("Invalid", "Invalid", "Invalid");
     }
 
     @Test
