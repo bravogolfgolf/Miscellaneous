@@ -5,15 +5,15 @@ import java.util.List;
 
 public class Property extends Space {
 
-    private int price;
-    private int rent;
-    private Player owner = Player.newBank();
-    private boolean isMortgaged;
-
     public Property(String description, String group) {
         setDescription(description);
         setGroup(group);
     }
+
+    private int price;
+    private Player owner = Player.newBank();
+    private boolean isMortgaged;
+    private int rent;
 
     public void setPrice(int price) {
         this.price = price;
@@ -21,14 +21,6 @@ public class Property extends Space {
 
     public int getPrice() {
         return price;
-    }
-
-    public void setRent(int rent) {
-        this.rent = rent;
-    }
-
-    public int getRent() {
-        return rent;
     }
 
     public void setOwner(Player owner) {
@@ -39,8 +31,7 @@ public class Property extends Space {
         return owner;
     }
 
-    public List<Space>
-    getAllPropertiesInGroup() {
+    public List<Space> getAllPropertiesInGroup() {
         List<Space> properties = new ArrayList<Space>();
         properties.add(this);
         String group = this.getGroup();
@@ -98,6 +89,14 @@ public class Property extends Space {
         player.changeCashBalanceBy(-price);
     }
 
+    public void setRent(int rent) {
+        this.rent = rent;
+    }
+
+    public int getRent() {
+        return rent;
+    }
+
     private void payRent(Player player) {
         player.changeCashBalanceBy(-rent);
         this.owner.changeCashBalanceBy(rent);
@@ -128,16 +127,4 @@ public class Property extends Space {
     private boolean unMortgageConditionsAreMeet(Player player) {
         return isMortgaged() && propertyIsOwnedByPlayer(player);
     }
-
-    public boolean allPropertiesHaveSameOwner(List<Space> properties) {
-        Property firstProperty = (Property) properties.get(0);
-        Player first = firstProperty.getOwner();
-        for (int i = 1; i < properties.size(); i++) {
-            Property next = (Property) properties.get(i);
-            if (!next.getOwner().equals(first))
-                return false;
-        }
-        return true;
-    }
 }
-

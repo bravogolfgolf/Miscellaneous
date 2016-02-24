@@ -12,7 +12,7 @@ public class PropertyTest {
     public static final int PRICE_OF_PROPERTY = 200;
     public static final int RENT = 25;
     private Player player;
-    private Property property;
+    private RealEstate realEstate;
     private Player owner;
     private int playerBeginningBalance;
     private int ownerBeginningBalance;
@@ -21,9 +21,9 @@ public class PropertyTest {
     public void setUp() throws Exception {
         player = new Player("Cat");
         owner = new Player("Dog");
-        property = new Property("Property", "Group");
-        property.setPrice(PRICE_OF_PROPERTY);
-        property.setRent(RENT);
+        realEstate = new RealEstate("RealEstate", "Group");
+        realEstate.setPrice(PRICE_OF_PROPERTY);
+        realEstate.setRent(RENT);
         playerBeginningBalance = player.getCashBalance();
         ownerBeginningBalance = owner.getCashBalance();
     }
@@ -32,44 +32,44 @@ public class PropertyTest {
     public void teardown() {
         player = null;
         owner = null;
-        property = null;
+        realEstate = null;
     }
 
     @Test
     public void testPropertyCreation() {
-        Space property = Space.create("Property", "Short Line", "Railroad");
+        Space property = Space.create("RealEstate", "Short Line", "Railroad");
         assertEquals("Short Line", property.getDescription());
     }
 
     @Test
     public void testOwnership() {
-        property.setOwner(player);
-        assertEquals(player, property.getOwner());
+        realEstate.setOwner(player);
+        assertEquals(player, realEstate.getOwner());
     }
 
     @Test
     public void testPrice() {
-        assertEquals(PRICE_OF_PROPERTY, property.getPrice());
+        assertEquals(PRICE_OF_PROPERTY, realEstate.getPrice());
     }
 
     @Test
     public void testRent() {
-        assertEquals(RENT, property.getRent());
+        assertEquals(RENT, realEstate.getRent());
     }
 
     @Test
     public void testMortgaged() {
-        assertEquals(false, property.isMortgaged());
-        property.setIsMortgaged(true);
-        assertEquals(true, property.isMortgaged());
+        assertEquals(false, realEstate.isMortgaged());
+        realEstate.setIsMortgaged(true);
+        assertEquals(true, realEstate.isMortgaged());
     }
 
     @Test
     public void testLandOnUnownedProperty() {
-        assertTrue(property.getOwner().isBank());
+        assertTrue(realEstate.getOwner().isBank());
         int endingBalance = playerBeginningBalance - PRICE_OF_PROPERTY;
-        property.landOn(player);
-        assertEquals(player, property.getOwner());
+        realEstate.landOn(player);
+        assertEquals(player, realEstate.getOwner());
         assertEquals(endingBalance, player.getCashBalance());
     }
 
@@ -78,39 +78,39 @@ public class PropertyTest {
         ownedUnMortgagedProperty(owner);
         int playerEndingBalance = playerBeginningBalance - RENT;
         int ownerEndingBalance = ownerBeginningBalance + RENT;
-        property.landOn(player);
-        assertEquals(owner, property.getOwner());
+        realEstate.landOn(player);
+        assertEquals(owner, realEstate.getOwner());
         assertEquals(playerEndingBalance, player.getCashBalance());
         assertEquals(ownerEndingBalance, owner.getCashBalance());
     }
 
     private void ownedUnMortgagedProperty(Player player) {
-        property.setOwner(player);
-        assertEquals(player, property.getOwner());
-        assertEquals(false, property.isMortgaged());
+        realEstate.setOwner(player);
+        assertEquals(player, realEstate.getOwner());
+        assertEquals(false, realEstate.isMortgaged());
     }
 
     @Test
     public void testLandOnOwnedAndMortgagedProperty() {
         ownedMortgagedProperty();
-        property.landOn(player);
-        assertEquals(owner, property.getOwner());
+        realEstate.landOn(player);
+        assertEquals(owner, realEstate.getOwner());
         assertEquals(playerBeginningBalance, player.getCashBalance());
         assertEquals(ownerBeginningBalance, owner.getCashBalance());
     }
 
     private void ownedMortgagedProperty() {
-        property.setOwner(owner);
-        property.setIsMortgaged(true);
-        assertEquals(owner, property.getOwner());
-        assertEquals(true, property.isMortgaged());
+        realEstate.setOwner(owner);
+        realEstate.setIsMortgaged(true);
+        assertEquals(owner, realEstate.getOwner());
+        assertEquals(true, realEstate.isMortgaged());
     }
 
     @Test
     public void testPlayerDoesNotPayHimselfRent() {
         PlayerMockCashBalanceCounter playerMock = new PlayerMockCashBalanceCounter();
         ownedUnMortgagedProperty(playerMock);
-        property.landOn(playerMock);
+        realEstate.landOn(playerMock);
         assertEquals(0,playerMock.changeCashBalanceBy);
     }
 

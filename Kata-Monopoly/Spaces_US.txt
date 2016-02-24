@@ -1,40 +1,40 @@
 Go,Go
-Property,Mediterranean Avenue,Brown
+RealEstate,Mediterranean Avenue,Brown
 Other,Community Chest South
-Property,Baltic Avenue,Brown
+RealEstate,Baltic Avenue,Brown
 IncomeTax,Income Tax
 Property,Reading Railroad,Railroad
-Property,Oriental Avenue,Light Blue
+RealEstate,Oriental Avenue,Light Blue
 Other,Chance South
-Property,Vermont Avenue,Light Blue
-Property,Connecticut Avenue,Light Blue
+RealEstate,Vermont Avenue,Light Blue
+RealEstate,Connecticut Avenue,Light Blue
 Jail,Just Visiting/Jail
-Property,St. Charles Place,Purple
+RealEstate,St. Charles Place,Purple
 Property,Electric Company,Utility
-Property,States Avenue,Purple
-Property,Virginia Avenue,Purple
+RealEstate,States Avenue,Purple
+RealEstate,Virginia Avenue,Purple
 Property,Pennsylvania Railroad,Railroad
-Property,St. James Place,Orange
+RealEstate,St. James Place,Orange
 Other,Community Chest West
-Property,Tennessee Avenue,Orange
-Property,New York Avenue,Orange
+RealEstate,Tennessee Avenue,Orange
+RealEstate,New York Avenue,Orange
 Other,Free Parking
-Property,Kentucky Avenue,Red
+RealEstate,Kentucky Avenue,Red
 Other,Chance North
-Property,Indiana Avenue,Red
-Property,Illinois Avenue,Red
+RealEstate,Indiana Avenue,Red
+RealEstate,Illinois Avenue,Red
 Property,B & O Railroad,Railroad
-Property,Atlantic Avenue,Yellow
-Property,Ventnor Avenue,Yellow
+RealEstate,Atlantic Avenue,Yellow
+RealEstate,Ventnor Avenue,Yellow
 Property,Water Works,Utility
-Property,Marvin Gardens,Yellow
+RealEstate,Marvin Gardens,Yellow
 GoToJail,Go to Jail
-Property,Pacific Avenue,Green
-Property,North Carolina Avenue,Green
+RealEstate,Pacific Avenue,Green
+RealEstate,North Carolina Avenue,Green
 Other,Community Chest East
-Property,Pennsylvania Avenue,Green
+RealEstate,Pennsylvania Avenue,Green
 Property,Short Line,Railroad
 Other,Chance East
-Property,Park Place,Blue
+RealEstate,Park Place,Blue
 LuxuryTax,Luxury Tax
-Property,Boardwalk,Blue
+RealEstate,Boardwalk,Blue

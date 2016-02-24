@@ -211,7 +211,7 @@ public class GameTest {
     private List<Space> createExpected() {
         List<Space> expected = new ArrayList<Space>();
         Space first = Space.create("Other", "Description");
-        Space second = Space.create("Property", "Description", "Group");
+        Space second = Space.create("RealEstate", "Description", "Group");
         first.setNextSpace(second);
         second.setNextSpace(first);
         expected.add(first);
@@ -228,6 +228,7 @@ public class GameTest {
         int goToJailCount = 0;
         int incomeTaxCount = 0;
         int luxuryTaxCount = 0;
+        int realEstateCount = 0;
         int brownGroupCount = 0;
         int lightBlueGroupCount = 0;
         int purpleGroupCount = 0;
@@ -248,8 +249,9 @@ public class GameTest {
             if (classType.equals("GoToJail")) goToJailCount++;
             if (classType.equals("IncomeTax")) incomeTaxCount++;
             if (classType.equals("LuxuryTax")) luxuryTaxCount++;
-            if (classType.equals("Property")) {
-                propertyCount++;
+
+            if (classType.equals("RealEstate")) {
+                realEstateCount++;
                 String group = space.getGroup();
                 if (group.equals("Brown")) brownGroupCount++;
                 if (group.equals("Light Blue")) lightBlueGroupCount++;
@@ -259,8 +261,14 @@ public class GameTest {
                 if (group.equals("Yellow")) yellowGroupCount++;
                 if (group.equals("Green")) greenGroupCount++;
                 if (group.equals("Blue")) blueGroupCount++;
+            }
+
+            if (classType.equals("Property")) {
+                propertyCount++;
+                String group = space.getGroup();
                 if (group.equals("Railroad")) railroadGroupCount++;
                 if (group.equals("Utility")) utilityGroupCount++;
+
             }
         }
         assertEquals(1, goCount);
@@ -269,9 +277,9 @@ public class GameTest {
         assertEquals(1, goToJailCount);
         assertEquals(1, incomeTaxCount);
         assertEquals(1, luxuryTaxCount);
-        assertEquals(28, propertyCount);
-        assertEquals(2, brownGroupCount);
 
+        assertEquals(22, realEstateCount);
+        assertEquals(2, brownGroupCount);
         assertEquals(3, lightBlueGroupCount);
         assertEquals(3, purpleGroupCount);
         assertEquals(3, orangeGroupCount);
@@ -279,6 +287,8 @@ public class GameTest {
         assertEquals(3, yellowGroupCount);
         assertEquals(3, greenGroupCount);
         assertEquals(2, blueGroupCount);
+
+        assertEquals(6, propertyCount);
         assertEquals(4, railroadGroupCount);
         assertEquals(2, utilityGroupCount);
     }

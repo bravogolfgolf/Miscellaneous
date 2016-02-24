@@ -13,6 +13,7 @@ abstract class Space {
     private String group = "";
 
     public static Space create(String classType, String description, String group) {
+        if (classType.equals("RealEstate")) return new RealEstate(description, group);
         if (classType.equals("Property")) return new Property(description, group);
         throw new IllegalArgumentException("Incorrect value");
     }
@@ -88,7 +89,8 @@ abstract class Space {
         List<Space> spaces = new ArrayList<Space>();
         for (String line : content) {
             String[] tokens = line.split(",");
-            if (tokens[0].equals("Property"))
+
+            if (tokens[0].equals("RealEstate") || tokens[0].equals("Property")) //TODO remove Property
                 spaces.add(Space.create(tokens[0], tokens[1], tokens[2]));
             else spaces.add(Space.create(tokens[0], tokens[1]));
         }
