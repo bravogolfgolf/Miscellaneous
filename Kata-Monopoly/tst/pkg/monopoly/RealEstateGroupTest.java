@@ -14,10 +14,6 @@ public class RealEstateGroupTest {
 
     private RealEstate mediterraneanAve;
     private RealEstate balticAve;
-    private Railroad reading;
-    private Railroad pennsylvania;
-    private Railroad bAndO;
-    private Railroad shortLine;
     private final Player player1 = new Player("Cat");
     private final Player player2 = new Player("Dog");
 
@@ -27,28 +23,17 @@ public class RealEstateGroupTest {
         List<Space> board = game.getBoard();
         mediterraneanAve = (RealEstate) board.get(1);
         balticAve = (RealEstate) board.get(3);
-        reading = (Railroad) board.get(5);
-        pennsylvania = (Railroad) board.get(15);
-        bAndO = (Railroad) board.get(25);
-        shortLine = (Railroad) board.get(35);
-
     }
 
     @Test
     public void testPropertyGroup() throws IOException {
         assertEquals("Brown", mediterraneanAve.getGroup());
         assertEquals("Brown", balticAve.getGroup());
-        assertEquals("Railroad", reading.getGroup());
-        assertEquals("Railroad", pennsylvania.getGroup());
-        assertEquals("Railroad", bAndO.getGroup());
-        assertEquals("Railroad", shortLine.getGroup());
     }
 
     @Test
     public void testGetAllPropertiesOfSameGroup() throws IOException {
         assertEquals(2, mediterraneanAve.getAllPropertiesInGroup().size());
-        assertEquals(4, reading.getAllPropertiesInGroup().size());
-
     }
 
     @Test
