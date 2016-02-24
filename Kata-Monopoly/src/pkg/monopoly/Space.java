@@ -12,9 +12,13 @@ abstract class Space {
     private String group = "";
     private Space nextSpace;
 
+    public static Space create(String classType, String description, String group, int price, int rent) {
+        if (classType.equals("RealEstate")) return new RealEstate(description, group, price, rent);
+        if (classType.equals("Railroad")) return new Railroad(description, group, price, rent);
+        throw new IllegalArgumentException("Incorrect value");
+    }
+
     public static Space create(String classType, String description, String group, int price) {
-        if (classType.equals("RealEstate")) return new RealEstate(description, group, price);
-        if (classType.equals("Railroad")) return new Railroad(description, group, price);
         if (classType.equals("Utility")) return new Utility(description, group, price);
         throw new IllegalArgumentException("Incorrect value");
     }
@@ -90,8 +94,9 @@ abstract class Space {
         List<Space> spaces = new ArrayList<Space>();
         for (String line : content) {
             String[] tokens = line.split(",");
-
-            if (tokens[0].equals("RealEstate") || tokens[0].equals("Railroad") || tokens[0].equals("Utility"))
+            if (tokens[0].equals("RealEstate") || tokens[0].equals("Railroad"))
+                spaces.add(Space.create(tokens[0], tokens[1], tokens[2], Integer.parseInt(tokens[3]), Integer.parseInt(tokens[4])));
+            else if (tokens[0].equals("Utility"))
                 spaces.add(Space.create(tokens[0], tokens[1], tokens[2], Integer.parseInt(tokens[3])));
             else spaces.add(Space.create(tokens[0], tokens[1]));
         }

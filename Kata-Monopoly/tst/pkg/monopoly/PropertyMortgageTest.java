@@ -20,7 +20,7 @@ public class PropertyMortgageTest {
     public void setup() throws IOException {
         player = new Player("Cat");
         owner = new Player("Dog");
-        property = new RealEstate("Short Line", "Railroad", -1);
+        property = new RealEstate("Short Line", "Railroad", -1, -1);
         property.setPrice(200);
     }
 

@@ -21,7 +21,7 @@ public class PropertyTest {
     public void setUp() throws Exception {
         player = new Player("Cat");
         owner = new Player("Dog");
-        realEstate = new RealEstate("RealEstate", "Group", -1);
+        realEstate = new RealEstate("RealEstate", "Group", -1, -1);
         realEstate.setPrice(PRICE_OF_PROPERTY);
         realEstate.setRent(RENT);
         playerBeginningBalance = player.getCashBalance();
@@ -33,16 +33,6 @@ public class PropertyTest {
         player = null;
         owner = null;
         realEstate = null;
-    }
-
-    @Test
-    public void testPrice() {
-        assertEquals(PRICE_OF_PROPERTY, realEstate.getPrice());
-    }
-
-    @Test
-    public void testRent() {
-        assertEquals(RENT, realEstate.getRent());
     }
 
     @Test

@@ -101,7 +101,7 @@ public class SpaceTest {
         List<Space> expected = new ArrayList<Space>();
         List<Space> actual;
         expected.add(Space.create("Other", "Description"));
-        expected.add(Space.create("RealEstate", "Description", "Group", 78));
+        expected.add(Space.create("RealEstate", "Description", "Group", 78, 3));
         actual = Space.load(filename);
         assertEquals(expected.size(), actual.size());
         assertTrue(expected.equals(actual));
@@ -112,9 +112,9 @@ public class SpaceTest {
 
     @Test
     public void testEqualsAndHashcode() {
-        Space space1 = Space.create("RealEstate", "Description", "Group", -1);
+        Space space1 = Space.create("RealEstate", "Description", "Group", -1, -1);
         space1.setNextSpace(Space.create("Other", "Description"));
-        Space space2 = Space.create("RealEstate", "Description", "Group", -1);
+        Space space2 = Space.create("RealEstate", "Description", "Group", -1, -1);
         space2.setNextSpace(Space.create("Other", "Description"));
         assertTrue(space1.equals(space2));
         assertTrue(space1.hashCode() == space2.hashCode());

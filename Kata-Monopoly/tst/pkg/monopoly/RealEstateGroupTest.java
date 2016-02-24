@@ -12,6 +12,10 @@ import static org.junit.Assert.assertTrue;
 
 public class RealEstateGroupTest {
 
+    private static final int PRICE_OF_MEDITERRANEAN = 60;
+    private static final int PRICE_OF_BALTIC = 60;
+    private static final int RENT_OF_MEDITERRANEAN = 2;
+    private static final int RENT_OF_BALTIC = 4;
     private RealEstate mediterraneanAve;
     private RealEstate balticAve;
     private final Player player1 = new Player("Cat");
@@ -27,7 +31,7 @@ public class RealEstateGroupTest {
 
     @Test
     public void testCreation() {
-        Space property = Space.create("RealEstate", "Park Place", "Blue", -1);
+        Space property = Space.create("RealEstate", "Park Place", "Blue", -1, -1);
         assertEquals("Park Place", property.getDescription());
         assertEquals("Blue", property.getGroup());
     }
@@ -38,6 +42,18 @@ public class RealEstateGroupTest {
         mediterraneanAve.setOwner(player1);
         assertEquals(player1, mediterraneanAve.getOwner());
         assertTrue(balticAve.getOwner().isBank());
+    }
+
+    @Test
+    public void testPrice() {
+        assertEquals(PRICE_OF_MEDITERRANEAN, mediterraneanAve.getPrice());
+        assertEquals(PRICE_OF_BALTIC, balticAve.getPrice());
+    }
+
+    @Test
+    public void testRent() {
+        assertEquals(RENT_OF_MEDITERRANEAN, mediterraneanAve.getRent());
+        assertEquals(RENT_OF_BALTIC, balticAve.getRent());
     }
 
     @Test

@@ -19,7 +19,7 @@ public class PropertyUnMortgageTest {
     public void setup() throws IOException {
         player = new Player("Cat");
         owner = new Player("Dog");
-        property = new RealEstate("Short Line", "Railroad", -1);
+        property = new RealEstate("Short Line", "Railroad", -1, -1);
         property.setPrice(200);
     }
 
@@ -48,7 +48,7 @@ public class PropertyUnMortgageTest {
     }
 
     @Test
-    public void testPlayerTriesToUnMortgagePropertyAlreadyUnMortgaged(){
+    public void testPlayerTriesToUnMortgagePropertyAlreadyUnMortgaged() {
         int expectedBalance = player.getCashBalance();
         property.setOwner(player);
         property.setIsMortgaged(false);
@@ -59,7 +59,7 @@ public class PropertyUnMortgageTest {
     }
 
     @Test
-    public void testPlayerTriesToUnMortgageUnOwnedProperty(){
+    public void testPlayerTriesToUnMortgageUnOwnedProperty() {
         int expectedBalance = player.getCashBalance();
         property.setIsMortgaged(true);
         property.unMortgageBy(player);

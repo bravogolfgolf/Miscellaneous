@@ -5,10 +5,11 @@ import java.util.List;
 
 abstract class Property extends Space {
 
-    public Property(String description, String group, int price) {
+    public Property(String description, String group, int price, int rent) {
         setDescription(description);
         setGroup(group);
         setPrice(price);
+        setRent(rent);
     }
 
     private int price;

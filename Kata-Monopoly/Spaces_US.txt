@@ -1,40 +1,40 @@
 Go,Go
-RealEstate,Mediterranean Avenue,Brown,60
+RealEstate,Mediterranean Avenue,Brown,60,2
 Other,Community Chest South
-RealEstate,Baltic Avenue,Brown,60
+RealEstate,Baltic Avenue,Brown,60,4
 IncomeTax,Income Tax
-Railroad,Reading Railroad,Railroad,200
-RealEstate,Oriental Avenue,Light Blue,100
+Railroad,Reading Railroad,Railroad,200,25
+RealEstate,Oriental Avenue,Light Blue,100,6
 Other,Chance South
-RealEstate,Vermont Avenue,Light Blue,100
-RealEstate,Connecticut Avenue,Light Blue,120
+RealEstate,Vermont Avenue,Light Blue,100,6
+RealEstate,Connecticut Avenue,Light Blue,120,8
 Jail,Just Visiting/Jail
-RealEstate,St. Charles Place,Purple,140
+RealEstate,St. Charles Place,Purple,140,10
 Utility,Electric Company,Utility,150
-RealEstate,States Avenue,Purple,140
-RealEstate,Virginia Avenue,Purple,160
-Railroad,Pennsylvania Railroad,Railroad,200
-RealEstate,St. James Place,Orange,180
+RealEstate,States Avenue,Purple,140,10
+RealEstate,Virginia Avenue,Purple,160,12
+Railroad,Pennsylvania Railroad,Railroad,200,25
+RealEstate,St. James Place,Orange,180,14
 Other,Community Chest West
-RealEstate,Tennessee Avenue,Orange,180
-RealEstate,New York Avenue,Orange,200
+RealEstate,Tennessee Avenue,Orange,180,14
+RealEstate,New York Avenue,Orange,200,16
 Other,Free Parking
-RealEstate,Kentucky Avenue,Red,220
+RealEstate,Kentucky Avenue,Red,220,18
 Other,Chance North
-RealEstate,Indiana Avenue,Red,220
-RealEstate,Illinois Avenue,Red,240
-Railroad,B & O Railroad,Railroad,200
-RealEstate,Atlantic Avenue,Yellow,260
-RealEstate,Ventnor Avenue,Yellow,260
+RealEstate,Indiana Avenue,Red,220,18
+RealEstate,Illinois Avenue,Red,240,20
+Railroad,B & O Railroad,Railroad,200,25
+RealEstate,Atlantic Avenue,Yellow,260,22
+RealEstate,Ventnor Avenue,Yellow,260,22
 Utility,Water Works,Utility,150
-RealEstate,Marvin Gardens,Yellow,280
+RealEstate,Marvin Gardens,Yellow,280,24
 GoToJail,Go to Jail
-RealEstate,Pacific Avenue,Green,300
-RealEstate,North Carolina Avenue,Green,300
+RealEstate,Pacific Avenue,Green,300,26
+RealEstate,North Carolina Avenue,Green,300,26
 Other,Community Chest East
-RealEstate,Pennsylvania Avenue,Green,320
-Railroad,Short Line,Railroad,200
+RealEstate,Pennsylvania Avenue,Green,320,28
+Railroad,Short Line,Railroad,200,25
 Other,Chance East
-RealEstate,Park Place,Blue,350
+RealEstate,Park Place,Blue,350,35
 LuxuryTax,Luxury Tax
-RealEstate,Boardwalk,Blue,400
+RealEstate,Boardwalk,Blue,400,40

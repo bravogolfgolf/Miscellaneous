@@ -12,6 +12,8 @@ import static org.junit.Assert.assertTrue;
 
 public class UtilityGroupTest {
 
+    private static final int PRICE_OF_ELECTRIC = 150;
+    private static final int PRICE_OF_WATER = 150;
     private Utility electric;
     private Utility water;
     private final Player player1 = new Player("Cat");
@@ -38,6 +40,12 @@ public class UtilityGroupTest {
         electric.setOwner(player1);
         assertEquals(player1, electric.getOwner());
         assertTrue(water.getOwner().isBank());
+    }
+
+    @Test
+    public void testPrice() {
+        assertEquals(PRICE_OF_ELECTRIC, electric.getPrice());
+        assertEquals(PRICE_OF_WATER, water.getPrice());
     }
 
     @Test

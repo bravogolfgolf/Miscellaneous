@@ -11,7 +11,8 @@ import static org.junit.Assert.assertTrue;
 
 public class RailroadGroupTest {
 
-    private static final int PRICE_OF_PROPERTY = 200;
+    private static final int PRICE_OF_RAILROAD = 200;
+    private static final int RENT_OF_RAILROAD = 25;
     private Railroad reading;
     private Railroad pennsylvania;
     private Railroad bAndO;
@@ -31,7 +32,7 @@ public class RailroadGroupTest {
 
     @Test
     public void testCreation() {
-        Space property = Space.create("Railroad", "Short Line", "Railroad", -1);
+        Space property = Space.create("Railroad", "Short Line", "Railroad", -1, -1);
         assertEquals("Short Line", property.getDescription());
         assertEquals("Railroad", property.getGroup());
     }
@@ -48,11 +49,18 @@ public class RailroadGroupTest {
 
     @Test
     public void testPrice() {
-        assertEquals(PRICE_OF_PROPERTY, reading.getPrice());
-        assertEquals(PRICE_OF_PROPERTY, pennsylvania.getPrice());
-        assertEquals(PRICE_OF_PROPERTY, bAndO.getPrice());
-        assertEquals(PRICE_OF_PROPERTY, shortLine.getPrice());
+        assertEquals(PRICE_OF_RAILROAD, reading.getPrice());
+        assertEquals(PRICE_OF_RAILROAD, pennsylvania.getPrice());
+        assertEquals(PRICE_OF_RAILROAD, bAndO.getPrice());
+        assertEquals(PRICE_OF_RAILROAD, shortLine.getPrice());
+    }
 
+    @Test
+    public void testRent() {
+        assertEquals(RENT_OF_RAILROAD, reading.getRent());
+        assertEquals(RENT_OF_RAILROAD, pennsylvania.getRent());
+        assertEquals(RENT_OF_RAILROAD, bAndO.getRent());
+        assertEquals(RENT_OF_RAILROAD, shortLine.getRent());
     }
 
     @Test
