@@ -64,9 +64,4 @@ public class RealEstateGroupTest {
         List<Space> properties = mediterraneanAve.getAllPropertiesInGroup();
         assertTrue(mediterraneanAve.allPropertiesHaveSameOwner(properties));
     }
-
-    @Test
-    public void testPropertiesOwnedBySameOwnerCostDoublesRent() {
-//TODO
-    }
 }
