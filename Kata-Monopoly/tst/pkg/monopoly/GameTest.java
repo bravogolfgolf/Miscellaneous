@@ -237,8 +237,8 @@ public class GameTest {
         int yellowGroupCount = 0;
         int greenGroupCount = 0;
         int blueGroupCount = 0;
-        int railroadGroupCount = 0;
-        int utilityGroupCount = 0;
+        int railroadCount = 0;
+        int utilityCount = 0;
         List<Space> board = game.getBoard();
         assertTrue(board.size() == 40);
         for (Space space : board) {
@@ -249,7 +249,8 @@ public class GameTest {
             if (classType.equals("GoToJail")) goToJailCount++;
             if (classType.equals("IncomeTax")) incomeTaxCount++;
             if (classType.equals("LuxuryTax")) luxuryTaxCount++;
-
+            if (classType.equals("Railroad")) railroadCount++;
+            if (classType.equals("Utility")) utilityCount++;
             if (classType.equals("RealEstate")) {
                 realEstateCount++;
                 String group = space.getGroup();
@@ -262,14 +263,6 @@ public class GameTest {
                 if (group.equals("Green")) greenGroupCount++;
                 if (group.equals("Blue")) blueGroupCount++;
             }
-
-            if (classType.equals("Property")) {
-                propertyCount++;
-                String group = space.getGroup();
-                if (group.equals("Railroad")) railroadGroupCount++;
-                if (group.equals("Utility")) utilityGroupCount++;
-
-            }
         }
         assertEquals(1, goCount);
         assertEquals(7, otherCount);
@@ -277,6 +270,8 @@ public class GameTest {
         assertEquals(1, goToJailCount);
         assertEquals(1, incomeTaxCount);
         assertEquals(1, luxuryTaxCount);
+        assertEquals(4, railroadCount);
+        assertEquals(2, utilityCount);
 
         assertEquals(22, realEstateCount);
         assertEquals(2, brownGroupCount);
@@ -288,9 +283,6 @@ public class GameTest {
         assertEquals(3, greenGroupCount);
         assertEquals(2, blueGroupCount);
 
-        assertEquals(6, propertyCount);
-        assertEquals(4, railroadGroupCount);
-        assertEquals(2, utilityGroupCount);
     }
 
 }

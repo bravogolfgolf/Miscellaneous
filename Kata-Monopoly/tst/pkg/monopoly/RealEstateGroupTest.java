@@ -10,14 +10,14 @@ import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
 
-public class PropertyGroupTest {
+public class RealEstateGroupTest {
 
     private RealEstate mediterraneanAve;
     private RealEstate balticAve;
-    private Property reading;
-    private Property pennsylvania;
-    private Property bAndO;
-    private Property shortLine;
+    private Railroad reading;
+    private Railroad pennsylvania;
+    private Railroad bAndO;
+    private Railroad shortLine;
     private final Player player1 = new Player("Cat");
     private final Player player2 = new Player("Dog");
 
@@ -27,10 +27,10 @@ public class PropertyGroupTest {
         List<Space> board = game.getBoard();
         mediterraneanAve = (RealEstate) board.get(1);
         balticAve = (RealEstate) board.get(3);
-        reading = (Property) board.get(5);
-        pennsylvania = (Property) board.get(15);
-        bAndO = (Property) board.get(25);
-        shortLine = (Property) board.get(35);
+        reading = (Railroad) board.get(5);
+        pennsylvania = (Railroad) board.get(15);
+        bAndO = (Railroad) board.get(25);
+        shortLine = (Railroad) board.get(35);
 
     }
 
@@ -57,13 +57,6 @@ public class PropertyGroupTest {
         balticAve.setOwner(player1);
         List<Space> properties = mediterraneanAve.getAllPropertiesInGroup();
         assertTrue(mediterraneanAve.allPropertiesHaveSameOwner(properties));
-
-        reading.setOwner(player1);
-        pennsylvania.setOwner(player1);
-        bAndO.setOwner(player1);
-        shortLine.setOwner(player1);
-//TODO        properties = reading.getAllPropertiesInGroup();
-//TODO        assertTrue(reading.allPropertiesHaveSameOwner(properties));
     }
 
     @Test
@@ -72,13 +65,6 @@ public class PropertyGroupTest {
         balticAve.setOwner(player2);
         List<Space> properties = mediterraneanAve.getAllPropertiesInGroup();
         assertFalse(mediterraneanAve.allPropertiesHaveSameOwner(properties));
-
-        reading.setOwner(player1);
-        pennsylvania.setOwner(player1);
-        bAndO.setOwner(player1);
-        shortLine.setOwner(player2);
-//TODO        properties = reading.getAllPropertiesInGroup();
-//TODO        assertFalse(reading.allPropertiesHaveSameOwner(properties));
     }
 
     @Test

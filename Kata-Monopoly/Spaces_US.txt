@@ -3,17 +3,17 @@ RealEstate,Mediterranean Avenue,Brown
 Other,Community Chest South
 RealEstate,Baltic Avenue,Brown
 IncomeTax,Income Tax
-Property,Reading Railroad,Railroad
+Railroad,Reading Railroad,Railroad
 RealEstate,Oriental Avenue,Light Blue
 Other,Chance South
 RealEstate,Vermont Avenue,Light Blue
 RealEstate,Connecticut Avenue,Light Blue
 Jail,Just Visiting/Jail
 RealEstate,St. Charles Place,Purple
-Property,Electric Company,Utility
+Utility,Electric Company,Utility
 RealEstate,States Avenue,Purple
 RealEstate,Virginia Avenue,Purple
-Property,Pennsylvania Railroad,Railroad
+Railroad,Pennsylvania Railroad,Railroad
 RealEstate,St. James Place,Orange
 Other,Community Chest West
 RealEstate,Tennessee Avenue,Orange
@@ -23,17 +23,17 @@ RealEstate,Kentucky Avenue,Red
 Other,Chance North
 RealEstate,Indiana Avenue,Red
 RealEstate,Illinois Avenue,Red
-Property,B & O Railroad,Railroad
+Railroad,B & O Railroad,Railroad
 RealEstate,Atlantic Avenue,Yellow
 RealEstate,Ventnor Avenue,Yellow
-Property,Water Works,Utility
+Utility,Water Works,Utility
 RealEstate,Marvin Gardens,Yellow
 GoToJail,Go to Jail
 RealEstate,Pacific Avenue,Green
 RealEstate,North Carolina Avenue,Green
 Other,Community Chest East
 RealEstate,Pennsylvania Avenue,Green
-Property,Short Line,Railroad
+Railroad,Short Line,Railroad
 Other,Chance East
 RealEstate,Park Place,Blue
 LuxuryTax,Luxury Tax
