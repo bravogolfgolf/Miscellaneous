@@ -3,7 +3,7 @@ package pkg.monopoly;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Property extends Space {
+abstract class Property extends Space {
 
     public Property(String description, String group) {
         setDescription(description);
