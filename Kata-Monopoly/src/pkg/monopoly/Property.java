@@ -47,6 +47,16 @@ abstract class Property extends Space {
         return properties;
     }
 
+    public boolean allPropertiesHaveSameOwner(List<Space> properties) {
+        Player thisOwner = this.getOwner();
+        for (int i = 1; i < properties.size(); i++) {
+            Property next = (Property) properties.get(i);
+            if (!next.getOwner().equals(thisOwner))
+                return false;
+        }
+        return true;
+    }
+
     public boolean isMortgaged() {
         return isMortgaged;
     }
