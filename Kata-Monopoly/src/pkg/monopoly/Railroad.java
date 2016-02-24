@@ -4,8 +4,8 @@ import java.util.List;
 
 public class Railroad extends Property {
 
-    public Railroad(String description, String group) {
-        super(description, group);
+    public Railroad(String description, String group, int price) {
+        super(description, group, price);
     }
 
     public int getCountOfPropertiesInGroupWithSameOwner(List<Space> properties) {

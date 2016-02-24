@@ -211,7 +211,7 @@ public class GameTest {
     private List<Space> createExpected() {
         List<Space> expected = new ArrayList<Space>();
         Space first = Space.create("Other", "Description");
-        Space second = Space.create("RealEstate", "Description", "Group");
+        Space second = Space.create("RealEstate", "Description", "Group", 78);
         first.setNextSpace(second);
         second.setNextSpace(first);
         expected.add(first);
@@ -222,7 +222,6 @@ public class GameTest {
     @Test
     public void testCreateActualBoard() throws IOException {
         int goCount = 0;
-        int propertyCount = 0;
         int otherCount = 0;
         int jailCount = 0;
         int goToJailCount = 0;

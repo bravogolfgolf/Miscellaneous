@@ -31,7 +31,7 @@ public class RailroadGroupTest {
 
     @Test
     public void testCreation() {
-        Space property = Space.create("Railroad", "Short Line", "Railroad");
+        Space property = Space.create("Railroad", "Short Line", "Railroad", -1);
         assertEquals("Short Line", property.getDescription());
         assertEquals("Railroad", property.getGroup());
     }

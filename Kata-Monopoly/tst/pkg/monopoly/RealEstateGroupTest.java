@@ -27,7 +27,7 @@ public class RealEstateGroupTest {
 
     @Test
     public void testCreation() {
-        Space property = Space.create("RealEstate", "Park Place", "Blue");
+        Space property = Space.create("RealEstate", "Park Place", "Blue", -1);
         assertEquals("Park Place", property.getDescription());
         assertEquals("Blue", property.getGroup());
     }

@@ -9,13 +9,13 @@ import java.util.List;
 abstract class Space {
 
     private String description = "";
-    private Space nextSpace;
     private String group = "";
+    private Space nextSpace;
 
-    public static Space create(String classType, String description, String group) {
-        if (classType.equals("RealEstate")) return new RealEstate(description, group);
-        if (classType.equals("Railroad")) return new Railroad(description, group);
-        if (classType.equals("Utility")) return new Utility(description, group);
+    public static Space create(String classType, String description, String group, int price) {
+        if (classType.equals("RealEstate")) return new RealEstate(description, group, price);
+        if (classType.equals("Railroad")) return new Railroad(description, group, price);
+        if (classType.equals("Utility")) return new Utility(description, group, price);
         throw new IllegalArgumentException("Incorrect value");
     }
 
@@ -37,20 +37,20 @@ abstract class Space {
         return description;
     }
 
-    public void setNextSpace(Space space) {
-        nextSpace = space;
-    }
-
-    public Space getNextSpace() {
-        return nextSpace;
-    }
-
     public void setGroup(String group) {
         this.group = group;
     }
 
     public String getGroup() {
         return group;
+    }
+
+    public void setNextSpace(Space space) {
+        nextSpace = space;
+    }
+
+    public Space getNextSpace() {
+        return nextSpace;
     }
 
     public void move(Player player, int numberRolled) {
@@ -92,7 +92,7 @@ abstract class Space {
             String[] tokens = line.split(",");
 
             if (tokens[0].equals("RealEstate") || tokens[0].equals("Railroad") || tokens[0].equals("Utility"))
-                spaces.add(Space.create(tokens[0], tokens[1], tokens[2]));
+                spaces.add(Space.create(tokens[0], tokens[1], tokens[2], Integer.parseInt(tokens[3])));
             else spaces.add(Space.create(tokens[0], tokens[1]));
         }
         return spaces;

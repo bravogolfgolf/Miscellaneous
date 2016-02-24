@@ -13,6 +13,7 @@ import static org.junit.Assert.assertTrue;
 
 public class PlayerTest {
 
+    public static final int PRICE_OF_VIRGINIA_AVENUE = 160;
     private Game game;
     private List<Space> board;
     private Player player1;
@@ -133,6 +134,7 @@ public class PlayerTest {
 
         Property virginiaAve = (Property) board.get(14);
         assertTrue(virginiaAve.getOwner().isBank());
+        endingBalance = endingBalance - PRICE_OF_VIRGINIA_AVENUE;
 
         Jail jail = (Jail) board.get(10);
         assertTrue(jail.getDescription().equals("Just Visiting/Jail"));
@@ -142,14 +144,11 @@ public class PlayerTest {
         assertTrue(virginiaAve.getOwner().equals(player1));
         assertEquals(endingBalance, player1.getCashBalance());
         assertTrue(player1.getSpace().equals(jail));
-
     }
 
     @Test
     public void testPlayerHashcode() {
         Player player2 = new Player("Cat");
         assertEquals(player1.hashCode(), player2.hashCode());
-
-
     }
 }

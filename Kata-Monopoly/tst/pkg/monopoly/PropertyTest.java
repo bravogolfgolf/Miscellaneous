@@ -21,7 +21,7 @@ public class PropertyTest {
     public void setUp() throws Exception {
         player = new Player("Cat");
         owner = new Player("Dog");
-        realEstate = new RealEstate("RealEstate", "Group");
+        realEstate = new RealEstate("RealEstate", "Group", -1);
         realEstate.setPrice(PRICE_OF_PROPERTY);
         realEstate.setRent(RENT);
         playerBeginningBalance = player.getCashBalance();

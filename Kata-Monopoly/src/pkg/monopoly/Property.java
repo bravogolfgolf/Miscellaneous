@@ -5,15 +5,16 @@ import java.util.List;
 
 abstract class Property extends Space {
 
-    public Property(String description, String group) {
+    public Property(String description, String group, int price) {
         setDescription(description);
         setGroup(group);
+        setPrice(price);
     }
 
     private int price;
-    private Player owner = Player.newBank();
     private int rent;
     private boolean isMortgaged;
+    private Player owner = Player.newBank();
 
     public void setPrice(int price) {
         this.price = price;
@@ -21,14 +22,6 @@ abstract class Property extends Space {
 
     public int getPrice() {
         return price;
-    }
-
-    public void setOwner(Player owner) {
-        this.owner = owner;
-    }
-
-    public Player getOwner() {
-        return owner;
     }
 
     public void setRent(int rent) {
@@ -53,6 +46,14 @@ abstract class Property extends Space {
 
     public int unMortgageAmount() {
         return (int) -(mortgageAmount() * 1.10);
+    }
+
+    public void setOwner(Player owner) {
+        this.owner = owner;
+    }
+
+    public Player getOwner() {
+        return owner;
     }
 
     public List<Space> getAllPropertiesInGroup() {
