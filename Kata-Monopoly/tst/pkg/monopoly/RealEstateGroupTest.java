@@ -26,6 +26,21 @@ public class RealEstateGroupTest {
     }
 
     @Test
+    public void testCreation() {
+        Space property = Space.create("RealEstate", "Park Place", "Blue");
+        assertEquals("Park Place", property.getDescription());
+        assertEquals("Blue", property.getGroup());
+    }
+
+    @Test
+    public void testOwnership() {
+        assertTrue(mediterraneanAve.getOwner().isBank());
+        mediterraneanAve.setOwner(player1);
+        assertEquals(player1, mediterraneanAve.getOwner());
+        assertTrue(balticAve.getOwner().isBank());
+    }
+
+    @Test
     public void testPropertyGroup() throws IOException {
         assertEquals("Brown", mediterraneanAve.getGroup());
         assertEquals("Brown", balticAve.getGroup());

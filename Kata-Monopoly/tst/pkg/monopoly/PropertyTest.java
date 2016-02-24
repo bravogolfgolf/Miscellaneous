@@ -36,18 +36,6 @@ public class PropertyTest {
     }
 
     @Test
-    public void testPropertyCreation() {
-        Space property = Space.create("RealEstate", "Short Line", "Railroad");
-        assertEquals("Short Line", property.getDescription());
-    }
-
-    @Test
-    public void testOwnership() {
-        realEstate.setOwner(player);
-        assertEquals(player, realEstate.getOwner());
-    }
-
-    @Test
     public void testPrice() {
         assertEquals(PRICE_OF_PROPERTY, realEstate.getPrice());
     }

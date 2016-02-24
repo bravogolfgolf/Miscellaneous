@@ -7,9 +7,11 @@ import java.io.IOException;
 import java.util.List;
 
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertTrue;
 
 public class RailroadGroupTest {
 
+    private static final int PRICE_OF_PROPERTY = 200;
     private Railroad reading;
     private Railroad pennsylvania;
     private Railroad bAndO;
@@ -25,6 +27,32 @@ public class RailroadGroupTest {
         pennsylvania = (Railroad) board.get(15);
         bAndO = (Railroad) board.get(25);
         shortLine = (Railroad) board.get(35);
+    }
+
+    @Test
+    public void testCreation() {
+        Space property = Space.create("Railroad", "Short Line", "Railroad");
+        assertEquals("Short Line", property.getDescription());
+        assertEquals("Railroad", property.getGroup());
+    }
+
+    @Test
+    public void testOwnership() {
+        assertTrue(reading.getOwner().isBank());
+        reading.setOwner(player1);
+        assertEquals(player1, reading.getOwner());
+        assertTrue(pennsylvania.getOwner().isBank());
+        assertTrue(bAndO.getOwner().isBank());
+        assertTrue(shortLine.getOwner().isBank());
+    }
+
+    @Test
+    public void testPrice() {
+        assertEquals(PRICE_OF_PROPERTY, reading.getPrice());
+        assertEquals(PRICE_OF_PROPERTY, pennsylvania.getPrice());
+        assertEquals(PRICE_OF_PROPERTY, bAndO.getPrice());
+        assertEquals(PRICE_OF_PROPERTY, shortLine.getPrice());
+
     }
 
     @Test
@@ -47,27 +75,27 @@ public class RailroadGroupTest {
         bAndO.setOwner(player2);
         shortLine.setOwner(player2);
         List<Space> properties = reading.getAllPropertiesInGroup();
-        assertEquals(1,reading.getCountOfPropertiesInGroupWithSameOwner(properties));
+        assertEquals(1, reading.getCountOfPropertiesInGroupWithSameOwner(properties));
 
         reading.setOwner(player1);
         pennsylvania.setOwner(player1);
         bAndO.setOwner(player2);
         shortLine.setOwner(player2);
         properties = reading.getAllPropertiesInGroup();
-        assertEquals(2,reading.getCountOfPropertiesInGroupWithSameOwner(properties));
+        assertEquals(2, reading.getCountOfPropertiesInGroupWithSameOwner(properties));
 
         reading.setOwner(player1);
         pennsylvania.setOwner(player1);
         bAndO.setOwner(player1);
         shortLine.setOwner(player2);
         properties = reading.getAllPropertiesInGroup();
-        assertEquals(3,reading.getCountOfPropertiesInGroupWithSameOwner(properties));
+        assertEquals(3, reading.getCountOfPropertiesInGroupWithSameOwner(properties));
 
         reading.setOwner(player1);
         pennsylvania.setOwner(player1);
         bAndO.setOwner(player1);
         shortLine.setOwner(player1);
         properties = reading.getAllPropertiesInGroup();
-        assertEquals(4,reading.getCountOfPropertiesInGroupWithSameOwner(properties));
+        assertEquals(4, reading.getCountOfPropertiesInGroupWithSameOwner(properties));
     }
 }
