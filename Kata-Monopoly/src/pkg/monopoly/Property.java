@@ -12,8 +12,8 @@ abstract class Property extends Space {
 
     private int price;
     private Player owner = Player.newBank();
-    private boolean isMortgaged;
     private int rent;
+    private boolean isMortgaged;
 
     public void setPrice(int price) {
         this.price = price;
@@ -29,6 +29,30 @@ abstract class Property extends Space {
 
     public Player getOwner() {
         return owner;
+    }
+
+    public void setRent(int rent) {
+        this.rent = rent;
+    }
+
+    public int getRent() {
+        return rent;
+    }
+
+    public void setIsMortgaged(boolean status) {
+        isMortgaged = status;
+    }
+
+    public boolean isMortgaged() {
+        return isMortgaged;
+    }
+
+    public int mortgageAmount() {
+        return price / 2;
+    }
+
+    public int unMortgageAmount() {
+        return (int) -(mortgageAmount() * 1.10);
     }
 
     public List<Space> getAllPropertiesInGroup() {
@@ -57,22 +81,6 @@ abstract class Property extends Space {
         return true;
     }
 
-    public boolean isMortgaged() {
-        return isMortgaged;
-    }
-
-    public void setIsMortgaged(boolean status) {
-        isMortgaged = status;
-    }
-
-    public int mortgageAmount() {
-        return price / 2;
-    }
-
-    public int unMortgageAmount() {
-        return (int) -(mortgageAmount() * 1.10);
-    }
-
     @Override
     public void landOn(Player player) {
         if (playerIsNotOwner(player))
@@ -97,14 +105,6 @@ abstract class Property extends Space {
     private void buyProperty(Player player) {
         this.owner = player;
         player.changeCashBalanceBy(-price);
-    }
-
-    public void setRent(int rent) {
-        this.rent = rent;
-    }
-
-    public int getRent() {
-        return rent;
     }
 
     private void payRent(Player player) {

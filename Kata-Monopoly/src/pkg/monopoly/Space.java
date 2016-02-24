@@ -41,6 +41,18 @@ abstract class Space {
         nextSpace = space;
     }
 
+    public Space getNextSpace() {
+        return nextSpace;
+    }
+
+    public void setGroup(String group) {
+        this.group = group;
+    }
+
+    public String getGroup() {
+        return group;
+    }
+
     public void move(Player player, int numberRolled) {
         for (int i = 1; i < numberRolled; i++) {
             moveForwardOneSpace(player);
@@ -56,10 +68,6 @@ abstract class Space {
         player.setSpace(next);
     }
 
-    public Space getNextSpace() {
-        return nextSpace;
-    }
-
     Space searchForSpace(Player player, String className) {
         Space currentSpace = player.getSpace();
         Space nextSpace = currentSpace.getNextSpace();
@@ -72,14 +80,6 @@ abstract class Space {
     }
 
     public void passBy(Player player) {
-    }
-
-    public void setGroup(String group) {
-        this.group = group;
-    }
-
-    public String getGroup() {
-        return group;
     }
 
     public void landOn(Player player) {
