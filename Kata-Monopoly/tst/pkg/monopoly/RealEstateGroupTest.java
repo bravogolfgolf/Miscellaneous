@@ -67,6 +67,6 @@ public class RealEstateGroupTest {
 
     @Test
     public void testPropertiesOwnedBySameOwnerCostDoublesRent() {
-//TODO        assertTrue(false);
+//TODO
     }
 }
