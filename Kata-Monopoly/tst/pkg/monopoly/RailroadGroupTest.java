@@ -19,6 +19,8 @@ public class RailroadGroupTest {
     private Railroad shortLine;
     private final Player player1 = new Player("Cat");
     private final Player player2 = new Player("Dog");
+    private int player1BeginningBalance = player1.getCashBalance();
+    private int player2BeginningBalance = player2.getCashBalance();
 
     @Before
     public void setUp() throws IOException {
@@ -61,6 +63,63 @@ public class RailroadGroupTest {
         assertEquals(RENT_OF_RAILROAD, pennsylvania.getRent());
         assertEquals(RENT_OF_RAILROAD, bAndO.getRent());
         assertEquals(RENT_OF_RAILROAD, shortLine.getRent());
+    }
+
+    @Test
+    public void testMortgaged() {
+        assertEquals(false, reading.isMortgaged());
+        reading.setIsMortgaged(true);
+        assertEquals(true, reading.isMortgaged());
+    }
+
+    @Test
+    public void testLandOnUnownedProperty() {
+        assertTrue(reading.getOwner().isBank());
+        int endingBalance = player1BeginningBalance - PRICE_OF_RAILROAD;
+        reading.landOn(player1);
+        assertEquals(player1, reading.getOwner());
+        assertEquals(endingBalance, player1.getCashBalance());
+    }
+
+    @Test
+    public void testLandOnOwnedAndUnmortgagedProperty() {
+        ownedUnMortgagedProperty(player2);
+        int player1EndingBalance = player1BeginningBalance - RENT_OF_RAILROAD;
+        int player2EndingBalance = player2BeginningBalance + RENT_OF_RAILROAD;
+        reading.landOn(player1);
+        assertEquals(player2, reading.getOwner());
+        assertEquals(player1EndingBalance, player1.getCashBalance());
+        assertEquals(player2EndingBalance, player2.getCashBalance());
+    }
+
+    private void ownedUnMortgagedProperty(Player player) {
+        reading.setOwner(player);
+        assertEquals(player, reading.getOwner());
+        assertEquals(false, reading.isMortgaged());
+    }
+
+    @Test
+    public void testLandOnOwnedAndMortgagedProperty() {
+        ownedMortgagedProperty();
+        reading.landOn(player1);
+        assertEquals(player2, reading.getOwner());
+        assertEquals(player1BeginningBalance, player1.getCashBalance());
+        assertEquals(player2BeginningBalance, player2.getCashBalance());
+    }
+
+    private void ownedMortgagedProperty() {
+        reading.setOwner(player2);
+        reading.setIsMortgaged(true);
+        assertEquals(player2, reading.getOwner());
+        assertEquals(true, reading.isMortgaged());
+    }
+
+    @Test
+    public void testPlayerDoesNotPayHimselfRent() {
+        PlayerMockCashBalanceCounter playerMock = new PlayerMockCashBalanceCounter();
+        ownedUnMortgagedProperty(playerMock);
+        reading.landOn(playerMock);
+        assertEquals(0, playerMock.changeCashBalanceBy);
     }
 
     @Test

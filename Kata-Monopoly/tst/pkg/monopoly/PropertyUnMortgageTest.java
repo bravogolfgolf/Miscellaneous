@@ -44,7 +44,6 @@ public class PropertyUnMortgageTest {
         assertEquals(expectedBalance, player.getCashBalance());
         assertEquals(false, property.isMortgaged());
         assertTrue(property.getOwner().equals(player));
-
     }
 
     @Test
@@ -66,7 +65,6 @@ public class PropertyUnMortgageTest {
         assertEquals(expectedBalance, player.getCashBalance());
         assertEquals(true, property.isMortgaged());
         assertTrue(property.getOwner().isBank());
-
     }
 
     @Test

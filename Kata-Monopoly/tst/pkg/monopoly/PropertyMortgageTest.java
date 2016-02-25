@@ -78,5 +78,4 @@ public class PropertyMortgageTest {
         assertEquals(false, property.isMortgaged());
         assertTrue(property.getOwner().equals(owner));
     }
-
 }
