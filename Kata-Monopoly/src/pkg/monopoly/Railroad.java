@@ -9,7 +9,7 @@ public class Railroad extends Property {
     }
 
     @Override
-    protected int calculateRentOwed(int numberRolled) {
+    protected int calculateRentOwed() {
         List<Space> properties = getAllPropertiesInGroup();
         int exponent = getCountOfPropertiesInGroupWithSameOwner(properties) - 1;
         int rentMultiplier = (int) Math.pow(2,exponent);

@@ -76,7 +76,7 @@ public class RailroadGroupTest {
     public void testLandOnUnownedProperty() {
         assertTrue(reading.getOwner().isBank());
         int endingBalance = player1BeginningBalance - PRICE_OF_RAILROAD;
-        reading.landOn(player1, 0);
+        reading.landOn(player1);
         assertEquals(player1, reading.getOwner());
         assertEquals(endingBalance, player1.getCashBalance());
     }
@@ -86,7 +86,7 @@ public class RailroadGroupTest {
         ownedUnMortgagedProperty(player2);
         int player1EndingBalance = player1BeginningBalance - RENT_OF_RAILROAD;
         int player2EndingBalance = player2BeginningBalance + RENT_OF_RAILROAD;
-        reading.landOn(player1, 0);
+        reading.landOn(player1);
         assertEquals(player2, reading.getOwner());
         assertEquals(player1EndingBalance, player1.getCashBalance());
         assertEquals(player2EndingBalance, player2.getCashBalance());
@@ -101,7 +101,7 @@ public class RailroadGroupTest {
     @Test
     public void testLandOnOwnedAndMortgagedProperty() {
         ownedMortgagedProperty();
-        reading.landOn(player1, 0);
+        reading.landOn(player1);
         assertEquals(player2, reading.getOwner());
         assertEquals(player1BeginningBalance, player1.getCashBalance());
         assertEquals(player2BeginningBalance, player2.getCashBalance());
@@ -118,7 +118,7 @@ public class RailroadGroupTest {
     public void testPlayerDoesNotPayHimselfRent() {
         PlayerMockCashBalanceCounter playerMock = new PlayerMockCashBalanceCounter();
         ownedUnMortgagedProperty(playerMock);
-        reading.landOn(playerMock, 0);
+        reading.landOn(playerMock);
         assertEquals(0, playerMock.changeCashBalanceBy);
     }
 

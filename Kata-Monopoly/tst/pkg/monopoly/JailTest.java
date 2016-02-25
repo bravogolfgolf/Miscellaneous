@@ -26,7 +26,7 @@ public class JailTest {
     @Test
     public void testLandOn() {
         int expectedEndingBalance = player.getCashBalance();
-        jail.landOn(player, 0);
+        jail.landOn(player);
         assertEquals(expectedEndingBalance, player.getCashBalance());
     }
 

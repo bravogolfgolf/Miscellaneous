@@ -7,7 +7,7 @@ public class LuxuryTax extends Space {
     }
 
     @Override
-    public void landOn(Player player, int rollValue) {
+    public void landOn(Player player) {
         final int LUXURY_TAX_AMOUNT = -75;
         player.changeCashBalanceBy(LUXURY_TAX_AMOUNT);
     }

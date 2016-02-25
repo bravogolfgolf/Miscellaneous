@@ -10,7 +10,7 @@ public class SpaceMockLandOnPassByCounter extends Space {
     }
 
     @Override
-    public void landOn(Player player, int rollValue) {
+    public void landOn(Player player) {
         landOnCounter++;
     }
 

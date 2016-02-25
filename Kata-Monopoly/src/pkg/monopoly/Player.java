@@ -68,7 +68,7 @@ public class Player {
 
     private void goToJail() {
         Space goToJail = space.searchForSpace(this, GoToJail.class.getSimpleName());
-        goToJail.landOn(this, 0);
+        goToJail.landOn(this);
         resetDoublesRolledInATurnCounter();
     }
 

@@ -11,6 +11,7 @@ abstract class Space {
     private String description = "";
     private String group = "";
     private Space nextSpace;
+    protected int numberRolled;
 
     public static Space create(String classType, String description, String group, int price, int rent) {
         if (classType.equals("RealEstate")) return new RealEstate(description, group, price, rent);
@@ -58,12 +59,13 @@ abstract class Space {
     }
 
     public void move(Player player, int numberRolled) {
+        this.numberRolled = numberRolled;
         for (int i = 1; i < numberRolled; i++) {
             moveForwardOneSpace(player);
             player.getSpace().passBy(player);
         }
         moveForwardOneSpace(player);
-        player.getSpace().landOn(player, numberRolled);
+        player.getSpace().landOn(player);
     }
 
     private void moveForwardOneSpace(Player player) {
@@ -86,7 +88,7 @@ abstract class Space {
     public void passBy(Player player) {
     }
 
-    public void landOn(Player player, int numberRolled) {
+    public void landOn(Player player) {
     }
 
     public static List<Space> load(String filename) throws IOException {

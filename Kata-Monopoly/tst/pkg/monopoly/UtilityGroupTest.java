@@ -65,7 +65,7 @@ public class UtilityGroupTest {
     public void testLandOnUnownedProperty() {
         assertTrue(electric.getOwner().isBank());
         int endingBalance = player1BeginningBalance - PRICE_OF_ELECTRIC;
-        electric.landOn(player1, 0);
+        electric.landOn(player1);
         assertEquals(player1, electric.getOwner());
         assertEquals(endingBalance, player1.getCashBalance());
     }
@@ -75,7 +75,8 @@ public class UtilityGroupTest {
         ownedUnMortgagedProperty(player2);
         int player1EndingBalance = player1BeginningBalance - RENT_OWED_IF_ONE_UTILITY_OWNED;
         int player2EndingBalance = player2BeginningBalance + RENT_OWED_IF_ONE_UTILITY_OWNED;
-        electric.landOn(player1, MOCK_ROLL_VALUE);
+        electric.numberRolled = MOCK_ROLL_VALUE;
+        electric.landOn(player1);
         assertEquals(player2, electric.getOwner());
         assertTrue(water.getOwner().isBank());
         assertEquals(player1EndingBalance, player1.getCashBalance());
@@ -91,7 +92,7 @@ public class UtilityGroupTest {
     @Test
     public void testLandOnOwnedAndMortgagedProperty() {
         ownedMortgagedProperty();
-        electric.landOn(player1, 0);
+        electric.landOn(player1);
         assertEquals(player2, electric.getOwner());
         assertEquals(player1BeginningBalance, player1.getCashBalance());
         assertEquals(player2BeginningBalance, player2.getCashBalance());
@@ -108,7 +109,7 @@ public class UtilityGroupTest {
     public void testPlayerDoesNotPayHimselfRent() {
         PlayerMockCashBalanceCounter playerMock = new PlayerMockCashBalanceCounter();
         ownedUnMortgagedProperty(playerMock);
-        electric.landOn(playerMock, 0);
+        electric.landOn(playerMock);
         assertEquals(0, playerMock.changeCashBalanceBy);
     }
 

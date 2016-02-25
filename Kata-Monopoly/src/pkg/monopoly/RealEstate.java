@@ -9,7 +9,7 @@ public class RealEstate extends Property {
     }
 
     @Override
-    protected int calculateRentOwed(int numberRolled) {
+    protected int calculateRentOwed() {
         List<Space> properties = getAllPropertiesInGroup();
         if (allPropertiesHaveSameOwner(properties))
             return rent * 2;
