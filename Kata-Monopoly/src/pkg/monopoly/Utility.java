@@ -12,7 +12,7 @@ public class Utility extends Property {
     protected int calculateRentOwed() {
         List<Space> properties = getAllPropertiesInGroup();
         if (allPropertiesHaveSameOwner(properties))
-            return numberRolled * 10;
+            return 0;
         return numberRolled * 4;
     }
 }

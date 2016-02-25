@@ -12,7 +12,7 @@ public class RealEstate extends Property {
     protected int calculateRentOwed() {
         List<Space> properties = getAllPropertiesInGroup();
         if (allPropertiesHaveSameOwner(properties))
-            return rent * 2;
+            return 0;
         return rent;
     }
 }
