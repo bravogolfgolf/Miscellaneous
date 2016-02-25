@@ -13,7 +13,7 @@ abstract class Property extends Space {
     }
 
     private int price;
-    private int rent;
+    protected int rent;
     private boolean isMortgaged;
     private Player owner = Player.newBank();
 
@@ -84,13 +84,17 @@ abstract class Property extends Space {
     }
 
     @Override
-    public void landOn(Player player) {
+    public void landOn(Player player, int rollValue) {
         if (playerIsNotOwner(player))
             if (propertyIsUnowned())
                 buyProperty(player);
-            else if (propertyIsNotMortgaged())
-                payRent(player);
+            else if (propertyIsNotMortgaged()) {
+                int rentOwed = calculateRentOwed(rollValue);
+                payRent(player, rentOwed);
+            }
     }
+
+    protected abstract int calculateRentOwed(int rollValue);
 
     private boolean playerIsNotOwner(Player player) {
         return !player.equals(this.getOwner());
@@ -109,9 +113,9 @@ abstract class Property extends Space {
         player.changeCashBalanceBy(-price);
     }
 
-    private void payRent(Player player) {
-        player.changeCashBalanceBy(-rent);
-        this.owner.changeCashBalanceBy(rent);
+    private void payRent(Player player, int rentOwed) {
+        player.changeCashBalanceBy(-rentOwed);
+        this.owner.changeCashBalanceBy(rentOwed);
     }
 
     public void mortgagedBy(Player player) {

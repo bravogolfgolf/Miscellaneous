@@ -71,7 +71,7 @@ public class SpaceTest {
     @Test
     public void testLandOnSpaceWithNoChangeInCash() {
         int expectedEndingBalance = player.getCashBalance();
-        space.landOn(player);
+        space.landOn(player, 0);
         assertEquals(expectedEndingBalance, player.getCashBalance());
     }
 

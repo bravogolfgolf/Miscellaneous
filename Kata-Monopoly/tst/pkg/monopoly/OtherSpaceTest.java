@@ -26,7 +26,7 @@ public class OtherSpaceTest {
     @Test
     public void testLandOn() {
         int expectedEndingBalance = player.getCashBalance();
-        property.landOn(player);
+        property.landOn(player, 0);
         assertEquals(expectedEndingBalance, player.getCashBalance());
     }
 

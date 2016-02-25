@@ -69,7 +69,7 @@ public class RealEstateGroupTest {
     public void testLandOnUnownedProperty() {
         assertTrue(mediterraneanAve.getOwner().isBank());
         int endingBalance = player1BeginningBalance - PRICE_OF_MEDITERRANEAN;
-        mediterraneanAve.landOn(player1);
+        mediterraneanAve.landOn(player1, 0);
         assertEquals(player1, mediterraneanAve.getOwner());
         assertEquals(endingBalance, player1.getCashBalance());
     }
@@ -79,7 +79,7 @@ public class RealEstateGroupTest {
         ownedUnMortgagedProperty(player2);
         int player1EndingBalance = player1BeginningBalance - RENT_OF_MEDITERRANEAN;
         int player2EndingBalance = player2BeginningBalance + RENT_OF_MEDITERRANEAN;
-        mediterraneanAve.landOn(player1);
+        mediterraneanAve.landOn(player1, 0);
         assertEquals(player2, mediterraneanAve.getOwner());
         assertEquals(player1EndingBalance, player1.getCashBalance());
         assertEquals(player2EndingBalance, player2.getCashBalance());
@@ -94,7 +94,7 @@ public class RealEstateGroupTest {
     @Test
     public void testLandOnOwnedAndMortgagedProperty() {
         ownedMortgagedProperty();
-        mediterraneanAve.landOn(player1);
+        mediterraneanAve.landOn(player1, 0);
         assertEquals(player2, mediterraneanAve.getOwner());
         assertEquals(player1BeginningBalance, player1.getCashBalance());
         assertEquals(player2BeginningBalance, player2.getCashBalance());
@@ -111,7 +111,7 @@ public class RealEstateGroupTest {
     public void testPlayerDoesNotPayHimselfRent() {
         PlayerMockCashBalanceCounter playerMock = new PlayerMockCashBalanceCounter();
         ownedUnMortgagedProperty(playerMock);
-        mediterraneanAve.landOn(playerMock);
+        mediterraneanAve.landOn(playerMock, 0);
         assertEquals(0, playerMock.changeCashBalanceBy);
     }
 

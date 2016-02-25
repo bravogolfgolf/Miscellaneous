@@ -7,7 +7,7 @@ public class IncomeTax extends Space {
     }
 
     @Override
-    public void landOn(Player player) {
+    public void landOn(Player player, int rollValue) {
         final double TEN_PERCENT = .10;
 
         int tax;

@@ -8,6 +8,14 @@ public class Railroad extends Property {
         super(description, group, price, rent);
     }
 
+    @Override
+    protected int calculateRentOwed(int numberRolled) {
+        List<Space> properties = getAllPropertiesInGroup();
+        int exponent = getCountOfPropertiesInGroupWithSameOwner(properties) - 1;
+        int rentMultiplier = (int) Math.pow(2,exponent);
+        return rent * rentMultiplier;
+    }
+
     public int getCountOfPropertiesInGroupWithSameOwner(List<Space> properties) {
         Player thisOwner = this.getOwner();
         int ownerCount = 0;

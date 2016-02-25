@@ -7,7 +7,7 @@ public class GoToJail extends Space {
     }
 
     @Override
-    public void landOn(Player player) {
+    public void landOn(Player player, int rollValue) {
         player.setSpace(searchForSpace(player, Jail.class.getSimpleName()));
     }
 }

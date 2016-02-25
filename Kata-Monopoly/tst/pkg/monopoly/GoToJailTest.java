@@ -44,7 +44,7 @@ public class GoToJailTest {
 
     @Test
     public void testLandOnGoToJailAndPlayerDoesGoToJailWithNoChangeInCash() {
-        goToJail.landOn(player);
+        goToJail.landOn(player, 0);
         assertTrue(player.getSpace().equals(jail));
         assertEquals(beginningBalance,endingBalance);
     }

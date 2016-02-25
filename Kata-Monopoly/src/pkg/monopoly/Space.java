@@ -63,7 +63,7 @@ abstract class Space {
             player.getSpace().passBy(player);
         }
         moveForwardOneSpace(player);
-        player.getSpace().landOn(player);
+        player.getSpace().landOn(player, numberRolled);
     }
 
     private void moveForwardOneSpace(Player player) {
@@ -86,7 +86,7 @@ abstract class Space {
     public void passBy(Player player) {
     }
 
-    public void landOn(Player player) {
+    public void landOn(Player player, int numberRolled) {
     }
 
     public static List<Space> load(String filename) throws IOException {
