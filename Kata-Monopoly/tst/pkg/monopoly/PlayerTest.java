@@ -65,6 +65,7 @@ public class PlayerTest {
         player1.takeATurn(diceMock);
         Space endingLocation = space2;
         assertTrue(endingLocation.equals(player1.getSpace()));
+        assertEquals(0,player1.getNumberOfDoublesRolledInARoww());
     }
 
     @Test
@@ -73,6 +74,7 @@ public class PlayerTest {
         player1.takeATurn(diceMock);
         Space endingLocation = start;
         assertTrue(endingLocation.equals(player1.getSpace()));
+        assertEquals(0,player1.getNumberOfDoublesRolledInARoww());
     }
 
     @Test
@@ -96,6 +98,7 @@ public class PlayerTest {
 
         assertTrue(player1.getSpace().getDescription().equals(property2.getDescription()));
         assertTrue(property1.getOwner().equals(player1));
+        assertEquals(0,player1.getNumberOfDoublesRolledInARoww());
     }
 
     @Test
@@ -115,6 +118,7 @@ public class PlayerTest {
         assertTrue(vermontAve.getOwner().equals(player1));
         assertTrue(tennesseeAve.getOwner().equals(player1));
         assertTrue(atlanticAve.getOwner().equals(player1));
+        assertEquals(0,player1.getNumberOfDoublesRolledInARoww());
     }
 
     private int playerInitialization() {
@@ -144,6 +148,7 @@ public class PlayerTest {
         assertTrue(virginiaAve.getOwner().equals(player1));
         assertEquals(endingBalance, player1.getCashBalance());
         assertTrue(player1.getSpace().equals(jail));
+        assertEquals(0,player1.getNumberOfDoublesRolledInARoww());
     }
 
     @Test
