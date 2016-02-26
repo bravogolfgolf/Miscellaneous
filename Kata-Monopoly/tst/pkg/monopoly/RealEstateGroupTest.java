@@ -81,8 +81,22 @@ public class RealEstateGroupTest {
         int player2EndingBalance = player2BeginningBalance + RENT_OF_MEDITERRANEAN;
         mediterraneanAve.landOn(player1);
         assertEquals(player2, mediterraneanAve.getOwner());
+        assertTrue(balticAve.getOwner().isBank());
         assertEquals(player1EndingBalance, player1.getCashBalance());
         assertEquals(player2EndingBalance, player2.getCashBalance());
+
+
+        balticAve.setOwner(player2);
+        player1EndingBalance = player1EndingBalance - (RENT_OF_BALTIC * 2);
+        player2EndingBalance = player2EndingBalance + (RENT_OF_BALTIC * 2);
+        balticAve.landOn(player1);
+        assertEquals(player1EndingBalance, player1.getCashBalance());
+        assertEquals(player2EndingBalance, player2.getCashBalance());
+
+        balticAve.landOn(player2);
+        assertEquals(player1EndingBalance, player1.getCashBalance());
+        assertEquals(player2EndingBalance, player2.getCashBalance());
+
     }
 
     private void ownedUnMortgagedProperty(Player player) {
