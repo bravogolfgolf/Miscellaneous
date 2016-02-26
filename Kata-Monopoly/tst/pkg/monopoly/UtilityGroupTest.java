@@ -81,6 +81,18 @@ public class UtilityGroupTest {
         assertTrue(water.getOwner().isBank());
         assertEquals(player1EndingBalance, player1.getCashBalance());
         assertEquals(player2EndingBalance, player2.getCashBalance());
+
+        water.numberRolled = MOCK_ROLL_VALUE;
+        water.setOwner(player2);
+        water.landOn(player1);
+        player1EndingBalance = player1EndingBalance - RENT_OWED_IF_BOTH_UTILITIES_OWNED;
+        player2EndingBalance = player2EndingBalance + RENT_OWED_IF_BOTH_UTILITIES_OWNED;
+        assertEquals(player1EndingBalance, player1.getCashBalance());
+        assertEquals(player2EndingBalance, player2.getCashBalance());
+
+        water.landOn(player2);
+        assertEquals(player1EndingBalance, player1.getCashBalance());
+        assertEquals(player2EndingBalance, player2.getCashBalance());
     }
 
     private void ownedUnMortgagedProperty(Player player) {
