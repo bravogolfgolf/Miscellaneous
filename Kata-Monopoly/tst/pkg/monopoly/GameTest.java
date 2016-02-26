@@ -174,7 +174,7 @@ public class GameTest {
         game.start();
         PlayerMockManagePropertiesCounter player1 = (PlayerMockManagePropertiesCounter) game.getPlayer(0);
         PlayerMockManagePropertiesCounter player2 = (PlayerMockManagePropertiesCounter) game.getPlayer(1);
-        assertEquals(4, player1.manageProperties);
+        assertEquals(3, player1.manageProperties);
         assertEquals(2, player2.manageProperties);
     }
 

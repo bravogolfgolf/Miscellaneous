@@ -42,7 +42,7 @@ public class GoToJailTest {
         player = null;
     }
 
-    @Test
+    @Test(expected = GoToJail.GoToJailException.class)
     public void testLandOnGoToJailAndPlayerDoesGoToJailWithNoChangeInCash() {
         goToJail.landOn(player);
         assertTrue(player.getSpace().equals(jail));
