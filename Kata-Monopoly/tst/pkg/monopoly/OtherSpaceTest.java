@@ -9,31 +9,31 @@ import static org.junit.Assert.assertEquals;
 public class OtherSpaceTest {
 
     private Player player;
-    private Space property;
+    private Other other;
 
     @Before
     public void setUp() {
         player = new Player("Cat");
-        property = Space.create("Other","Other");
+        other = (Other) Space.create("Other","Other");
     }
 
     @After
     public void teardown() {
         player = null;
-        property = null;
+        other = null;
     }
 
     @Test
-    public void testLandOn() {
+    public void testLandOn() throws GoToJail.GoToJailException {
         int expectedEndingBalance = player.getCashBalance();
-        property.landOn(player);
+        other.landOn(player);
         assertEquals(expectedEndingBalance, player.getCashBalance());
     }
 
     @Test
     public void testPassBy() {
         int expectedEndingBalance = player.getCashBalance();
-        property.passBy(player);
+        other.passBy(player);
         assertEquals(expectedEndingBalance, player.getCashBalance());
     }
 }

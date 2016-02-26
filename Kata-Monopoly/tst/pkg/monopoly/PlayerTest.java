@@ -13,7 +13,9 @@ import static org.junit.Assert.assertTrue;
 
 public class PlayerTest {
 
-    public static final int PRICE_OF_VIRGINIA_AVENUE = 160;
+    public static final int PRICE_OF_BOARDWALK = 400;
+    public static final int PASS_GO = 200;
+    public static final int PRICE_OF_CONNECTICUT_AVENUE = 120;
     private Game game;
     private List<Space> board;
     private Player player1;
@@ -60,7 +62,7 @@ public class PlayerTest {
     }
 
     @Test
-    public void testMovesAndDoesNoWrap() {
+    public void testMovesAndDoesNoWrap() throws GoToJail.GoToJailException {
         player1.setSpace(start);
         player1.takeATurn(diceMock);
         Space endingLocation = space2;
@@ -69,7 +71,7 @@ public class PlayerTest {
     }
 
     @Test
-    public void testMovesAndWraps() {
+    public void testMovesAndWraps() throws GoToJail.GoToJailException {
         player1.setSpace(space1);
         player1.takeATurn(diceMock);
         Space endingLocation = start;
@@ -85,7 +87,7 @@ public class PlayerTest {
     }
 
     @Test
-    public void testPlayerRollsDoublesThenNot() {
+    public void testPlayerRollsDoublesThenNot() throws GoToJail.GoToJailException {
         Dice diceMock = new DiceMockRollsDouble3sThenPlain4();
         playerInitialization();
         Property property1 = (Property) board.get(6);
@@ -102,7 +104,7 @@ public class PlayerTest {
     }
 
     @Test
-    public void testPlayerRollsDoublesTwiceThenNot() {
+    public void testPlayerRollsDoublesTwiceThenNot() throws GoToJail.GoToJailException {
         Dice diceMock = new DiceMockRollsDoubleTwiceThenNot();
         playerInitialization();
 
@@ -129,24 +131,46 @@ public class PlayerTest {
 
     @Test
     public void testPlayerRollsDoublesThreeTimesGoesToJail() {
+        int beginningBalance = player1.getCashBalance();
         Dice diceMock = new DiceMockRollsDoubleThreeTimesInARow();
-        int beginningBalance = playerInitialization();
+        player1.setSpace(board.get(35));
+        player1.resetDoublesRolledInATurnCounter();
 
-        IncomeTax incomeTax = (IncomeTax) board.get(4);
-        assertTrue(incomeTax.getDescription().equals("Income Tax"));
-        int endingBalance = beginningBalance - (beginningBalance / 10);
+        RealEstate boardwalk = (RealEstate) board.get(39);
+        assertTrue(boardwalk.getOwner().isBank());
+        int endingBalance = beginningBalance - PRICE_OF_BOARDWALK;
 
-        Property virginiaAve = (Property) board.get(14);
-        assertTrue(virginiaAve.getOwner().isBank());
-        endingBalance = endingBalance - PRICE_OF_VIRGINIA_AVENUE;
+        endingBalance = endingBalance + PASS_GO;
+
+        Property connecticut = (Property) board.get(9);
+        assertTrue(connecticut.getOwner().isBank());
+        endingBalance = endingBalance - PRICE_OF_CONNECTICUT_AVENUE;
 
         Jail jail = (Jail) board.get(10);
         assertTrue(jail.getDescription().equals("Just Visiting/Jail"));
 
-        player1.takeATurn(diceMock);
-
-        assertTrue(virginiaAve.getOwner().equals(player1));
+        game.addPlayer(player1);
+        game.play(diceMock);
+        assertTrue(boardwalk.getOwner().equals(player1));
+        assertTrue(connecticut.getOwner().equals(player1));
         assertEquals(endingBalance, player1.getCashBalance());
+        assertTrue(player1.getSpace().equals(jail));
+        assertEquals(0,player1.getNumberOfDoublesRolledInARoww());
+    }
+
+    @Test
+    public void testPlayerRollsDoublesAndLandsOnGoesToJail() {
+        int beginningBalance = player1.getCashBalance();
+        Dice diceMock = new DiceMockRollsDoubleThreeTimesInARow();
+        player1.setSpace(board.get(26));
+        player1.resetDoublesRolledInATurnCounter();
+
+        Jail jail = (Jail) board.get(10);
+        assertTrue(jail.getDescription().equals("Just Visiting/Jail"));
+
+        game.addPlayer(player1);
+        game.play(diceMock);
+        assertEquals(beginningBalance, player1.getCashBalance());
         assertTrue(player1.getSpace().equals(jail));
         assertEquals(0,player1.getNumberOfDoublesRolledInARoww());
     }

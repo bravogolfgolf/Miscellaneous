@@ -53,13 +53,20 @@ public class Game {
         if (getNumberOfPlayers() < MINIMUM_NUMBER_OF_PLAYERS ||
                 getNumberOfPlayers() > MAXIMUM_NUMBER_OF_PLAYERS)
             throw new InvalidPlayerCount(String.format("Number of Players: %d", getNumberOfPlayers()));
-        play();
+        play(dice);
     }
 
-    public void play() {
+    public void play(Dice dice) {
         for (Player player : players) {
-            player.takeATurn(dice);
-            player.manageProperties();
+            Boolean didNotGoToJail = true;
+            try {
+                player.takeATurn(dice);
+            } catch (GoToJail.GoToJailException e) {
+                player.resetDoublesRolledInATurnCounter();
+                didNotGoToJail = false;
+            }
+            if (didNotGoToJail)
+                player.manageProperties();
         }
     }
 }

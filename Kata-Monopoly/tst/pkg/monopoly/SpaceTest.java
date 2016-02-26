@@ -69,7 +69,7 @@ public class SpaceTest {
     }
 
     @Test
-    public void testLandOnSpaceWithNoChangeInCash() {
+    public void testLandOnSpaceWithNoChangeInCash() throws GoToJail.GoToJailException {
         int expectedEndingBalance = player.getCashBalance();
         space.landOn(player);
         assertEquals(expectedEndingBalance, player.getCashBalance());
@@ -83,7 +83,7 @@ public class SpaceTest {
     }
 
     @Test
-    public void testLandOnMethodCalledProperly() {
+    public void testLandOnMethodCalledProperly() throws GoToJail.GoToJailException {
         player.setSpace(start);
         player.takeATurn(diceMock);
         assertEquals(0, start.landOnCounter);
@@ -92,7 +92,7 @@ public class SpaceTest {
     }
 
     @Test
-    public void testPassByMethodCalledProperly() {
+    public void testPassByMethodCalledProperly() throws GoToJail.GoToJailException {
         player.setSpace(start);
         player.takeATurn(diceMock);
         assertEquals(0, start.passByCounter);

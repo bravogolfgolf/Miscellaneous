@@ -8,11 +8,18 @@ public class GameMockPlay20Rounds extends Game {
     }
 
     @Override
-    public void play() {
+    public void play(Dice dice) {
         for (int i = 0; i < 20; i++)
             for (Player player : players) {
-                player.takeATurn(dice);
-                player.manageProperties();
+                Boolean didNotGoToJail = true;
+                try {
+                    player.takeATurn(dice);
+                } catch (GoToJail.GoToJailException e) {
+                    player.resetDoublesRolledInATurnCounter();
+                    didNotGoToJail = false;
+                }
+                if (didNotGoToJail)
+                    player.manageProperties();
             }
     }
 }

@@ -9,12 +9,12 @@ import static org.junit.Assert.assertEquals;
 public class JailTest {
 
     private Player player;
-    private Space jail;
+    private Jail jail;
 
     @Before
     public void setUp() {
         player = new Player("Cat");
-        jail = Space.create("Jail","Other");
+        jail = (Jail) Space.create("Jail","Other");
     }
 
     @After
@@ -24,7 +24,7 @@ public class JailTest {
     }
 
     @Test
-    public void testLandOn() {
+    public void testLandOn() throws GoToJail.GoToJailException {
         int expectedEndingBalance = player.getCashBalance();
         jail.landOn(player);
         assertEquals(expectedEndingBalance, player.getCashBalance());

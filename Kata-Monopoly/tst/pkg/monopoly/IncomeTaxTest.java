@@ -7,12 +7,12 @@ import static org.junit.Assert.assertEquals;
 
 public class IncomeTaxTest {
 
-    private Space incomeTax;
+    private IncomeTax incomeTax;
     private Player player;
 
     @Before
     public void setUp() throws Exception {
-        incomeTax = Space.create("IncomeTax","Income Tax");
+        incomeTax = (IncomeTax) Space.create("IncomeTax","Income Tax");
         player = new Player("Cat");
     }
 

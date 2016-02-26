@@ -58,7 +58,7 @@ abstract class Space {
         return nextSpace;
     }
 
-    public void move(Player player, int numberRolled) {
+    public void move(Player player, int numberRolled) throws GoToJail.GoToJailException {
         this.numberRolled = numberRolled;
         for (int i = 1; i < numberRolled; i++) {
             moveForwardOneSpace(player);
@@ -88,7 +88,7 @@ abstract class Space {
     public void passBy(Player player) {
     }
 
-    public void landOn(Player player) {
+    public void landOn(Player player) throws GoToJail.GoToJailException {
     }
 
     public static List<Space> load(String filename) throws IOException {

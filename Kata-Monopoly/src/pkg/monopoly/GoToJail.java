@@ -10,7 +10,8 @@ public class GoToJail extends Space {
     }
 
     @Override
-    public void landOn(Player player) {
+    public void landOn(Player player) throws GoToJailException {
         player.setSpace(searchForSpace(player, Jail.class.getSimpleName()));
+        throw new GoToJailException();
     }
 }

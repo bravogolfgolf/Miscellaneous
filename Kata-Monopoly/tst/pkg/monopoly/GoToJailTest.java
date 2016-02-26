@@ -6,7 +6,6 @@ import org.junit.Test;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
-import static org.junit.Assert.assertTrue;
 
 public class GoToJailTest {
 
@@ -43,10 +42,8 @@ public class GoToJailTest {
     }
 
     @Test(expected = GoToJail.GoToJailException.class)
-    public void testLandOnGoToJailAndPlayerDoesGoToJailWithNoChangeInCash() {
+    public void testLandOnGoToJailAndPlayerDoesGoToJailWithNoChangeInCash() throws GoToJail.GoToJailException {
         goToJail.landOn(player);
-        assertTrue(player.getSpace().equals(jail));
-        assertEquals(beginningBalance,endingBalance);
     }
 
     @Test

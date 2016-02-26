@@ -12,11 +12,11 @@ public class Player {
         this.cashBalance = 1500;
     }
 
-    public static Player newBank(){
+    public static Player newBank() {
         return new BankPlayer("Bank");
     }
 
-    public boolean isBank(){
+    public boolean isBank() {
         return false;
     }
 
@@ -39,7 +39,7 @@ public class Player {
     public void manageProperties() {
     }
 
-    public void takeATurn(Dice dice) {
+    public void takeATurn(Dice dice) throws GoToJail.GoToJailException {
         manageProperties();
         dice.rollTwoDie();
         if (dice.rolledDouble())
@@ -48,7 +48,7 @@ public class Player {
             doubleNotRolled(dice);
     }
 
-    private void doubleRolled(Dice dice) {
+    private void doubleRolled(Dice dice) throws GoToJail.GoToJailException {
         incrementDoublesRolledInATurnCounter();
         if (getNumberOfDoublesRolledInARoww() == 3) {
             goToJail();
@@ -66,17 +66,15 @@ public class Player {
         return doublesRolledInATurnCounter;
     }
 
-    private void goToJail() {
+    private void goToJail() throws GoToJail.GoToJailException {
         Space goToJail = space.searchForSpace(this, GoToJail.class.getSimpleName());
-        goToJail.landOn(this);
-        resetDoublesRolledInATurnCounter();
-    }
+        goToJail.landOn(this);}
 
     public void resetDoublesRolledInATurnCounter() {
         doublesRolledInATurnCounter = 0;
     }
 
-    private void doubleNotRolled(Dice dice) {
+    private void doubleNotRolled(Dice dice) throws GoToJail.GoToJailException {
         space.move(this, dice.getTwoDieRollValue());
         resetDoublesRolledInATurnCounter();
     }

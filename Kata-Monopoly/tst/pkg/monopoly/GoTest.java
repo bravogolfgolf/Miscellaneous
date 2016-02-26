@@ -10,12 +10,12 @@ public class GoTest {
 
     public static final int LAND_ON_GO_COLLECT_200 = 200;
     private Player player;
-    private Space go;
+    private Go go;
 
     @Before
     public void setUp() {
         player = new Player("Cat");
-        go = Space.create("Go","Go");
+        go = (Go) Space.create("Go","Go");
     }
 
     @After
