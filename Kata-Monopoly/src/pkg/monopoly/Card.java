@@ -6,7 +6,7 @@ public class Card {
     private String instruction = "";
 
     public static Card create(String classType, String instruction){
-        if (classType.equals("CommunityChest")) return new CommunityChest(instruction);
+        if (classType.equals("CommunityChestCard")) return new CommunityChestCard(instruction);
         throw new IllegalArgumentException();
     }
 

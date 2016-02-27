@@ -4,11 +4,11 @@ import org.junit.Test;
 
 import static org.junit.Assert.assertTrue;
 
-public class CommunityChestTest {
+public class CommunityChestCardTest {
 
     @Test
     public void testCreateCommunityChestCard() {
-        CommunityChest communityChest = (CommunityChest) Card.create("CommunityChest", "Bank error in your favor – Collect $200");
+        CommunityChestCard communityChest = (CommunityChestCard) Card.create("CommunityChestCard", "Bank error in your favor – Collect $200");
         assertTrue("Bank error in your favor – Collect $200".equals(communityChest.getInstruction()));
     }
 
