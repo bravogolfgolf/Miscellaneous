@@ -1,17 +1,17 @@
-CommunityChest,Advance to Go (Collect $200)
-CommunityChest,Bank error in your favor – Collect $200
-CommunityChest,Doctor's fees – Pay $50
-CommunityChest,From sale of stock you get $50
-CommunityChest,Get out of Jail Free
-CommunityChest,Go to Jail – Go directly to jail – Do not pass Go – Do not collect $200
-CommunityChest,Grand Opera Night – Collect $50 from every player for opening night seats
-CommunityChest,Holiday Fund matures - Receive $100
-CommunityChest,Income tax refund – Collect $20
-CommunityChest,It is your birthday - Collect $10 from each player
-CommunityChest,Life insurance matures – Collect $100
-CommunityChest,Pay hospital fees of $100
-CommunityChest,Pay school fees of $150
-CommunityChest,Receive $25 consultancy fee
-CommunityChest,You are assessed for street repairs – $40 per house – $115 per hotel
-CommunityChest,You have won second prize in a beauty contest – Collect $10
-CommunityChest,You inherit $100
+CommunityChest,Advance to Go (Collect $200),Move,Go
+CommunityChest,Bank error in your favor – Collect $200,Transaction,200,Bank
+CommunityChest,Doctor's fees – Pay $50,Transaction,-50,Bank
+CommunityChest,From sale of stock you get $50,Transaction,50,Bank
+CommunityChest,Get out of Jail Free,Keep
+CommunityChest,Go to Jail – Go directly to jail – Do not pass Go – Do not collect $200,Move,Jail
+CommunityChest,Grand Opera Night – Collect $50 from every player for opening night seats,Transaction,50,Players
+CommunityChest,Holiday Fund matures - Receive $100,Transaction,100,Bank
+CommunityChest,Income tax refund – Collect $20,Transaction,20,Bank
+CommunityChest,It is your birthday - Collect $10 from each player,Transaction,10,Players
+CommunityChest,Life insurance matures – Collect $100,Transaction,100,Bank
+CommunityChest,Pay hospital fees of $100,Transaction,-100,Bank
+CommunityChest,Pay school fees of $150,Transaction,-150,Bank
+CommunityChest,Receive $25 consultancy fee,Transaction,25,Bank
+CommunityChest,You are assessed for street repairs – $40 per house – $115 per hotel,Repairs,40,115
+CommunityChest,You have won second prize in a beauty contest – Collect $10,Transaction,10,Bank
+CommunityChest,You inherit $100,Transaction,100,Bank

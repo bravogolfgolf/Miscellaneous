@@ -8,20 +8,31 @@ import java.util.List;
 
 public class Card {
 
+    private String cardType;
+    private String cardText;
 
-    private String instruction = "";
-
-    public static Card create(String classType, String instruction) {
-        if (classType.equals("CommunityChest")) return new CommunityChestCard(instruction);
+    public static Card create(String cardType, String cardText, String classType, String space) {
+        if (classType.equals("Move")) return new Move(cardType, cardText, space);
         throw new IllegalArgumentException();
     }
 
-    public String getInstruction() {
-        return instruction;
+    public static Card create(String cardType, String cardText, String classType, String parameter1, String parameter2) {
+        if (classType.equals("Transaction")) return new Transaction(cardType, cardText, parameter1, parameter2);
+        if (classType.equals("Repairs")) return new Repair(cardType, cardText, parameter1, parameter2);
+        throw new IllegalArgumentException();
     }
 
-    public void setInstruction(String instruction) {
-        this.instruction = instruction;
+    public static Card create(String cardType, String cardText, String classType) {
+        if (classType.equals("Keep")) return new Keep(cardType, cardText);
+        throw new IllegalArgumentException();
+    }
+
+    public void setCardType(String cardType) {
+        this.cardType = cardType;
+    }
+
+    public void setCardText(String cardText) {
+        this.cardText = cardText;
     }
 
     public static List<Card> load(String filename) throws IOException {
@@ -29,7 +40,12 @@ public class Card {
         List<Card> cards = new ArrayList<Card>();
         for (String line : content) {
             String[] tokens = line.split(",");
-            cards.add(Card.create(tokens[0], tokens[1]));
+            if (tokens[2].equals("Move"))
+                cards.add(Card.create(tokens[0], tokens[1], tokens[2], tokens[3]));
+            if (tokens[2].equals("Transaction") || tokens[2].equals("Repairs"))
+                cards.add(Card.create(tokens[0], tokens[1], tokens[2], tokens[3], tokens[4]));
+            if (tokens[2].equals("Keep"))
+                cards.add(Card.create(tokens[0], tokens[1], tokens[2]));
         }
         return cards;
     }
@@ -41,13 +57,15 @@ public class Card {
 
         Card card = (Card) o;
 
-        return instruction.equals(card.instruction);
+        return cardType.equals(card.cardType) && cardText.equals(card.cardText);
 
     }
 
     @Override
     public int hashCode() {
-        return instruction.hashCode();
+        int result = cardType.hashCode();
+        result = 31 * result + cardText.hashCode();
+        return result;
     }
 }
 

@@ -12,21 +12,19 @@ import static org.junit.Assert.assertTrue;
 
 public class CardTest {
 
-    private CommunityChestCard communityChestCard1;
-
-    @Before
-    public void setUp() throws Exception {
-        communityChestCard1 = (CommunityChestCard) Card.create("CommunityChest", "Bank error in your favor – Collect $200");
-    }
-
-    @Test
-    public void testCreateCommunityChestCard() {
-        assertTrue("Bank error in your favor – Collect $200".equals(communityChestCard1.getInstruction()));
+    @Test(expected = IllegalArgumentException.class)
+    public void testInvalidCard1() {
+        Card.create("Invalid", "Invalid", "Invalid");
     }
 
     @Test(expected = IllegalArgumentException.class)
-    public void testInvalidCard() {
-        Card.create("Invalid", "Invalid");
+    public void testInvalidCard2() {
+        Card.create("Invalid", "Invalid", "Invalid", "Invalid");
+    }
+
+    @Test(expected = IllegalArgumentException.class)
+    public void testInvalidCard3() {
+        Card.create("Invalid", "Invalid", "Invalid", "Invalid", "Invalid");
     }
 
     @Test
@@ -34,8 +32,10 @@ public class CardTest {
         final String filename = "Cards_TEST.txt";
         List<Card> expected = new ArrayList<Card>();
         List<Card> actual;
-        expected.add(Card.create("CommunityChest", "Instruction1"));
-        expected.add(Card.create("CommunityChest", "Instruction2"));
+        expected.add(Card.create("CommunityChest", "Instruction1", "Move", "Go"));
+        expected.add(Card.create("CommunityChest", "Instruction2", "Transaction", "100", "Bank"));
+        expected.add(Card.create("CommunityChest", "Instruction2", "Keep"));
+        expected.add(Card.create("CommunityChest", "Instruction2", "Repairs", "40", "115"));
         actual = Card.load(filename);
         assertEquals(expected.size(), actual.size());
         assertTrue(expected.equals(actual));
@@ -45,8 +45,9 @@ public class CardTest {
     }
 
     @Test
-    public void testCardHashcode() {
-        CommunityChestCard communityChestCard2 = (CommunityChestCard) Card.create("CommunityChest", "Bank error in your favor – Collect $200");
-        assertEquals(communityChestCard1.hashCode(), communityChestCard2.hashCode());
+    public void testHashcode(){
+        Move move1 = (Move) Card.create("CommunityChest", "Instruction1", "Move", "Go");
+        Move move2 = (Move) Card.create("CommunityChest", "Instruction1", "Move", "Go");
+        assertEquals(move1.hashCode(),move2.hashCode());
     }
 }

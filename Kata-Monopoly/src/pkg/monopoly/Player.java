@@ -87,8 +87,7 @@ public class Player {
 
     private void goToJail() throws GoToJail.GoToJailException {
         Space goToJail = space.searchForSpace(this, GoToJail.class.getSimpleName());
-        goToJail.landOn(this);
-    }
+        goToJail.landOn(this);}
 
     public void resetRollCounter() {
         rollCounter = 0;
