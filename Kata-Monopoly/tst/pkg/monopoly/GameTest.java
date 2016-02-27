@@ -16,9 +16,6 @@ public class GameTest {
 
     static final int EXPECTED_NUMBER_OF_PLAYERS = 2;
     private Game game;
-    private Space start;
-    private Space space1;
-    private Space space2;
     private Go go;
     private Jail jail;
     private Utility electric;
@@ -27,12 +24,6 @@ public class GameTest {
     @Before
     public void setUp() throws IOException {
         game = new Game("Spaces_US.txt");
-        start = Space.create("Other", "Start");
-        space1 = Space.create("Other", "Space1");
-        space2 = Space.create("Other", "Space2");
-        start.setNextSpace(space1);
-        space1.setNextSpace(space2);
-        space2.setNextSpace(start);
         go = (Go) game.getBoard().get(0);
         jail = (Jail) game.getBoard().get(10);
         electric = (Utility) game.getBoard().get(12);
@@ -41,9 +32,6 @@ public class GameTest {
     @After
     public void tearDown() {
         game = null;
-        start = null;
-        space1 = null;
-        space2 = null;
         go = null;
         jail = null;
         electric = null;
@@ -52,7 +40,6 @@ public class GameTest {
     private void addThisManyPlayers(int number) {
         for (int i = 0; i < number; i++) {
             Player player = new Player("Cat");
-            player.setSpace(start);
             game.addPlayer(player);
         }
     }
