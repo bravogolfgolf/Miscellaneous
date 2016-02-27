@@ -16,9 +16,13 @@ public class Card {
         throw new IllegalArgumentException();
     }
 
-    public static Card create(String cardType, String cardText, String classType, String parameter1, String parameter2) {
-        if (classType.equals("Transaction")) return new Transaction(cardType, cardText, parameter1, parameter2);
-        if (classType.equals("Repairs")) return new Repair(cardType, cardText, parameter1, parameter2);
+    public static Card create(String cardType, String cardText, String classType, int amount, String recipient) {
+        if (classType.equals("Transaction")) return new Transaction(cardType, cardText, amount, recipient);
+        throw new IllegalArgumentException();
+    }
+
+    public static Card create(String cardType, String cardText, String classType, int house, int hotel) {
+        if (classType.equals("Repairs")) return new Repair(cardType, cardText, house, hotel);
         throw new IllegalArgumentException();
     }
 
@@ -40,12 +44,14 @@ public class Card {
         List<Card> cards = new ArrayList<Card>();
         for (String line : content) {
             String[] tokens = line.split(",");
-            if (tokens[2].equals("Move"))
-                cards.add(Card.create(tokens[0], tokens[1], tokens[2], tokens[3]));
-            if (tokens[2].equals("Transaction") || tokens[2].equals("Repairs"))
-                cards.add(Card.create(tokens[0], tokens[1], tokens[2], tokens[3], tokens[4]));
             if (tokens[2].equals("Keep"))
                 cards.add(Card.create(tokens[0], tokens[1], tokens[2]));
+            if (tokens[2].equals("Move"))
+                cards.add(Card.create(tokens[0], tokens[1], tokens[2], tokens[3]));
+            if (tokens[2].equals("Repairs"))
+                cards.add(Card.create(tokens[0], tokens[1], tokens[2], Integer.parseInt(tokens[3]), Integer.parseInt(tokens[4])));
+            if (tokens[2].equals("Transaction"))
+                cards.add(Card.create(tokens[0], tokens[1], tokens[2], Integer.parseInt(tokens[3]), tokens[4]));
         }
         return cards;
     }

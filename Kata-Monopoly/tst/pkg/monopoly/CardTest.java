@@ -24,8 +24,14 @@ public class CardTest {
 
     @Test(expected = IllegalArgumentException.class)
     public void testInvalidCard3() {
-        Card.create("Invalid", "Invalid", "Invalid", "Invalid", "Invalid");
+        Card.create("Invalid", "Invalid", "Invalid", 1, "Invalid");
     }
+
+    @Test(expected = IllegalArgumentException.class)
+    public void testInvalidCard4() {
+        Card.create("Invalid", "Invalid", "Invalid", 1, 1);
+    }
+
 
     @Test
     public void testReadOfCardDefinitionFile() throws IOException {
@@ -33,9 +39,9 @@ public class CardTest {
         List<Card> expected = new ArrayList<Card>();
         List<Card> actual;
         expected.add(Card.create("CommunityChest", "Instruction1", "Move", "Go"));
-        expected.add(Card.create("CommunityChest", "Instruction2", "Transaction", "100", "Bank"));
+        expected.add(Card.create("CommunityChest", "Instruction2", "Transaction", 100, "Bank"));
         expected.add(Card.create("CommunityChest", "Instruction2", "Keep"));
-        expected.add(Card.create("CommunityChest", "Instruction2", "Repairs", "40", "115"));
+        expected.add(Card.create("CommunityChest", "Instruction2", "Repairs", 40, 115));
         actual = Card.load(filename);
         assertEquals(expected.size(), actual.size());
         assertTrue(expected.equals(actual));
@@ -45,9 +51,9 @@ public class CardTest {
     }
 
     @Test
-    public void testHashcode(){
+    public void testHashcode() {
         Move move1 = (Move) Card.create("CommunityChest", "Instruction1", "Move", "Go");
         Move move2 = (Move) Card.create("CommunityChest", "Instruction1", "Move", "Go");
-        assertEquals(move1.hashCode(),move2.hashCode());
+        assertEquals(move1.hashCode(), move2.hashCode());
     }
 }

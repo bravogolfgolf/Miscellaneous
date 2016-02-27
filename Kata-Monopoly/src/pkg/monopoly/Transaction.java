@@ -1,17 +1,17 @@
 package pkg.monopoly;
 
 public class Transaction extends Card {
-    private String amount;
-    private String recipient;
+    private int amount = 0;
+    private String recipient = "";
 
-    public Transaction(String cardType, String cardText, String amount, String recipient) {
+    public Transaction(String cardType, String cardText, int amount, String recipient) {
         setCardType(cardType);
         setCardText(cardText);
         setAmount(amount);
         setRecipient(recipient);
     }
 
-    public void setAmount(String amount) {
+    public void setAmount(int amount) {
         this.amount = amount;
     }
 

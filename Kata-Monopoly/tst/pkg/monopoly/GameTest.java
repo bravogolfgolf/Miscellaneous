@@ -292,7 +292,7 @@ public class GameTest {
         for (int i = 0; i < 100; i++) {
             Game gameTest = new Game("TWO");
             Card card1 = Card.create("CommunityChest","Instruction1","Move","Go");
-            Card card2 = Card.create("CommunityChest","Instruction2","Transaction","100","Bank");
+            Card card2 = Card.create("CommunityChest","Instruction2","Transaction",100,"Bank");
             gameTest.randomizeCardOrder();
             assertEquals(2, gameTest.getNumberOfCards());
 
