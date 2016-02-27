@@ -144,8 +144,8 @@ public class GameTest {
     public void testGameOfTwentyRoundsCountManageProperties() throws Game.InvalidPlayerCount, IOException {
         DiceMock dice = new DiceMock();
         setUpPlayerMockManagePropertiesCounter(gameMock, start);
-        game.setDice(dice);
-        game.start();
+        gameMock.setDice(dice);
+        gameMock.start();
         checkPropertiesManageCounts(gameMock, 40, 40);
     }
 
@@ -192,10 +192,9 @@ public class GameTest {
     }
 
     @Test
-    public void testGameCountManagePropertiesThreeRollsNoDoublesPay50() throws Game.InvalidPlayerCount {
+    public void testGameCountManagePropertiesThreeRollsNoDoublesPays50() throws Game.InvalidPlayerCount {
         DiceMock dice = new DiceMock();
         PlayerMockManagePropertiesCounter player = new PlayerMockManagePropertiesCounter();
-        int endingBalance = player.getCashBalance();
         player.setInJail(true);
         game.addPlayer(player);
         player.setSpace(jail);
@@ -205,27 +204,18 @@ public class GameTest {
         assertEquals(2, player.manageProperties);
         assertEquals(1, player.getNumberOfRolls());
         assertTrue(jail.equals(player.getSpace()));
-        assertEquals(endingBalance, player.getCashBalance());
         assertTrue(player.isInJail());
-        assertEquals(1, player.getNumberOfRolls());
 
         game.play(dice);
         assertEquals(4, player.manageProperties);
         assertEquals(2, player.getNumberOfRolls());
         assertTrue(jail.equals(player.getSpace()));
-        assertEquals(endingBalance, player.getCashBalance());
         assertTrue(player.isInJail());
-
-        endingBalance = endingBalance - 50;
-        assertTrue(electric.getOwner().isBank());
-        endingBalance = endingBalance - 150;
 
         game.play(dice);
         assertEquals(6, player.manageProperties);
         assertEquals(0, player.getNumberOfRolls());
         assertTrue(electric.equals(player.getSpace()));
-        assertTrue(player.equals(electric.getOwner()));
-        assertEquals(endingBalance, player.getCashBalance());
         assertFalse(player.isInJail());
     }
 
