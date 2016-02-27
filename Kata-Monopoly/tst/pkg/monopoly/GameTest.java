@@ -308,10 +308,8 @@ public class GameTest {
         assertTrue(oneTwo && twoOne);
     }
 
-
     @Test
     public void testCreateBoard() throws IOException {
-//        Game gameTest = new Game("Spaces_TEST.txt");
         List<Space> expected = createExpected();
         List<Space> actual = gameTest.getBoard();
         assertEquals(expected.size(), actual.size());
@@ -398,6 +396,5 @@ public class GameTest {
         assertEquals(3, yellowGroupCount);
         assertEquals(3, greenGroupCount);
         assertEquals(2, blueGroupCount);
-
     }
 }

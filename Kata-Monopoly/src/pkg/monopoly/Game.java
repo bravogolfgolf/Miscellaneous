@@ -50,10 +50,6 @@ public class Game {
         return players.get(index);
     }
 
-    public void setDice(Dice dice) {
-        this.dice = dice;
-    }
-
     public int getNumberOfPlayers() {
         return players.size();
     }

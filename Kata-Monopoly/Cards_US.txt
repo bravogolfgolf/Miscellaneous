@@ -1,2 +1,17 @@
-CommunityChest,Instruction1
-CommunityChest,Instruction2
+CommunityChest,Advance to Go (Collect $200)
+CommunityChest,Bank error in your favor – Collect $200
+CommunityChest,Doctor's fees – Pay $50
+CommunityChest,From sale of stock you get $50
+CommunityChest,Get out of Jail Free
+CommunityChest,Go to Jail – Go directly to jail – Do not pass Go – Do not collect $200
+CommunityChest,Grand Opera Night – Collect $50 from every player for opening night seats
+CommunityChest,Holiday Fund matures - Receive $100
+CommunityChest,Income tax refund – Collect $20
+CommunityChest,It is your birthday - Collect $10 from each player
+CommunityChest,Life insurance matures – Collect $100
+CommunityChest,Pay hospital fees of $100
+CommunityChest,Pay school fees of $150
+CommunityChest,Receive $25 consultancy fee
+CommunityChest,You are assessed for street repairs – $40 per house – $115 per hotel
+CommunityChest,You have won second prize in a beauty contest – Collect $10
+CommunityChest,You inherit $100
