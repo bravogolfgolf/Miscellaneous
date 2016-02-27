@@ -4,7 +4,8 @@ public class Player {
     private final String description;
     private int cashBalance = 0;
     private Space space;
-    private int doublesRolledInATurnCounter;
+    private int rollCounter = 0;
+    private boolean inJail = false;
 
     public Player(String description) {
         this.description = description;
@@ -36,6 +37,10 @@ public class Player {
         return cashBalance;
     }
 
+    public boolean isInJail() {
+        return inJail;
+    }
+
     public void manageProperties() {
     }
 
@@ -50,7 +55,7 @@ public class Player {
 
     private void doubleRolled(Dice dice) throws GoToJail.GoToJailException {
         incrementDoublesRolledInATurnCounter();
-        if (getNumberOfDoublesRolledInARoww() == 3) {
+        if (getNumberOfRolls() == 3) {
             goToJail();
         } else {
             space.move(this, dice.getTwoDieRollValue());
@@ -59,24 +64,39 @@ public class Player {
     }
 
     private void incrementDoublesRolledInATurnCounter() {
-        doublesRolledInATurnCounter++;
+        rollCounter++;
     }
 
-    public int getNumberOfDoublesRolledInARoww() {
-        return doublesRolledInATurnCounter;
+    public int getNumberOfRolls() {
+        return rollCounter;
     }
 
     private void goToJail() throws GoToJail.GoToJailException {
         Space goToJail = space.searchForSpace(this, GoToJail.class.getSimpleName());
-        goToJail.landOn(this);}
+        goToJail.landOn(this);
+    }
 
-    public void resetDoublesRolledInATurnCounter() {
-        doublesRolledInATurnCounter = 0;
+    public void resetRollCounter() {
+        rollCounter = 0;
     }
 
     private void doubleNotRolled(Dice dice) throws GoToJail.GoToJailException {
-        space.move(this, dice.getTwoDieRollValue());
-        resetDoublesRolledInATurnCounter();
+        if (isInJail()) {
+            if (rollCounter == 2) {
+                payToGetOutOfJail();
+                space.move(this, dice.getTwoDieRollValue());
+                resetRollCounter();
+            } else {
+                rollCounter++;
+            }
+        } else {
+            space.move(this, dice.getTwoDieRollValue());
+            resetRollCounter();
+        }
+    }
+
+    private void payToGetOutOfJail() {
+        changeCashBalanceBy(-50);
     }
 
     @Override
@@ -86,7 +106,7 @@ public class Player {
 
         Player player = (Player) o;
 
-        return cashBalance == player.cashBalance && doublesRolledInATurnCounter == player.doublesRolledInATurnCounter && description.equals(player.description) && (space != null ? space.equals(player.space) : player.space == null);
+        return cashBalance == player.cashBalance && rollCounter == player.rollCounter && description.equals(player.description) && (space != null ? space.equals(player.space) : player.space == null);
 
     }
 
@@ -95,7 +115,11 @@ public class Player {
         int result = description.hashCode();
         result = 31 * result + cashBalance;
         result = 31 * result + (space != null ? space.hashCode() : 0);
-        result = 31 * result + doublesRolledInATurnCounter;
+        result = 31 * result + rollCounter;
         return result;
+    }
+
+    public void setInJail(boolean inJail) {
+        this.inJail = inJail;
     }
 }

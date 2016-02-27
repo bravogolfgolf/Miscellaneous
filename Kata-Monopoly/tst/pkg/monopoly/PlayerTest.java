@@ -67,7 +67,7 @@ public class PlayerTest {
         player1.takeATurn(diceMock);
         Space endingLocation = space2;
         assertTrue(endingLocation.equals(player1.getSpace()));
-        assertEquals(0,player1.getNumberOfDoublesRolledInARoww());
+        assertEquals(0,player1.getNumberOfRolls());
     }
 
     @Test
@@ -76,7 +76,7 @@ public class PlayerTest {
         player1.takeATurn(diceMock);
         Space endingLocation = start;
         assertTrue(endingLocation.equals(player1.getSpace()));
-        assertEquals(0,player1.getNumberOfDoublesRolledInARoww());
+        assertEquals(0,player1.getNumberOfRolls());
     }
 
     @Test
@@ -100,7 +100,7 @@ public class PlayerTest {
 
         assertTrue(player1.getSpace().getDescription().equals(property2.getDescription()));
         assertTrue(property1.getOwner().equals(player1));
-        assertEquals(0,player1.getNumberOfDoublesRolledInARoww());
+        assertEquals(0,player1.getNumberOfRolls());
     }
 
     @Test
@@ -120,12 +120,12 @@ public class PlayerTest {
         assertTrue(vermontAve.getOwner().equals(player1));
         assertTrue(tennesseeAve.getOwner().equals(player1));
         assertTrue(atlanticAve.getOwner().equals(player1));
-        assertEquals(0,player1.getNumberOfDoublesRolledInARoww());
+        assertEquals(0,player1.getNumberOfRolls());
     }
 
     private int playerInitialization() {
         player1.setSpace(board.get(0));
-        player1.resetDoublesRolledInATurnCounter();
+        player1.resetRollCounter();
         return player1.getCashBalance();
     }
 
@@ -134,7 +134,7 @@ public class PlayerTest {
         int beginningBalance = player1.getCashBalance();
         Dice diceMock = new DiceMockRollsDoubleThreeTimesInARow();
         player1.setSpace(board.get(35));
-        player1.resetDoublesRolledInATurnCounter();
+        player1.resetRollCounter();
 
         RealEstate boardwalk = (RealEstate) board.get(39);
         assertTrue(boardwalk.getOwner().isBank());
@@ -155,7 +155,7 @@ public class PlayerTest {
         assertTrue(connecticut.getOwner().equals(player1));
         assertEquals(endingBalance, player1.getCashBalance());
         assertTrue(player1.getSpace().equals(jail));
-        assertEquals(0,player1.getNumberOfDoublesRolledInARoww());
+        assertEquals(0,player1.getNumberOfRolls());
     }
 
     @Test
@@ -163,7 +163,7 @@ public class PlayerTest {
         int beginningBalance = player1.getCashBalance();
         Dice diceMock = new DiceMockRollsDoubleThreeTimesInARow();
         player1.setSpace(board.get(26));
-        player1.resetDoublesRolledInATurnCounter();
+        player1.resetRollCounter();
 
         Jail jail = (Jail) board.get(10);
         assertTrue(jail.getDescription().equals("Just Visiting/Jail"));
@@ -172,7 +172,14 @@ public class PlayerTest {
         game.play(diceMock);
         assertEquals(beginningBalance, player1.getCashBalance());
         assertTrue(player1.getSpace().equals(jail));
-        assertEquals(0,player1.getNumberOfDoublesRolledInARoww());
+        assertEquals(0,player1.getNumberOfRolls());
+    }
+
+    @Test
+    public void testPlayerIsInJail(){
+        assertFalse(player1.isInJail());
+        player1.setInJail(true);
+        assertTrue(player1.isInJail());
     }
 
     @Test

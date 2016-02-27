@@ -15,7 +15,7 @@ public class GameMockPlay20Rounds extends Game {
                 try {
                     player.takeATurn(dice);
                 } catch (GoToJail.GoToJailException e) {
-                    player.resetDoublesRolledInATurnCounter();
+                    player.resetRollCounter();
                     didNotGoToJail = false;
                 }
                 if (didNotGoToJail)

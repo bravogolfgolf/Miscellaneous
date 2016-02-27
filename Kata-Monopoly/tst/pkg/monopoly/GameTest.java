@@ -19,6 +19,10 @@ public class GameTest {
     private Space start;
     private Space space1;
     private Space space2;
+    private Go go;
+    private Jail jail;
+    private Utility electric;
+
 
     @Before
     public void setUp() throws IOException {
@@ -30,6 +34,9 @@ public class GameTest {
         start.setNextSpace(space1);
         space1.setNextSpace(space2);
         space2.setNextSpace(start);
+        go = (Go) game.getBoard().get(0);
+        jail = (Jail) game.getBoard().get(10);
+        electric = (Utility) game.getBoard().get(12);
     }
 
     @After
@@ -39,6 +46,9 @@ public class GameTest {
         start = null;
         space1 = null;
         space2 = null;
+        go = null;
+        jail = null;
+        electric = null;
     }
 
     private void addThisManyPlayers(int number) {
@@ -115,70 +125,6 @@ public class GameTest {
     }
 
     @Test
-    public void testGameOfTwentyRoundsCountManageProperties() throws Game.InvalidPlayerCount, IOException {
-        DiceMock dice = new DiceMock();
-        for (int i = 0; i < 2; i++) {
-            PlayerMockManagePropertiesCounter player = new PlayerMockManagePropertiesCounter();
-            gameMock.addPlayer(player);
-            player.setSpace(start);
-        }
-        gameMock.setDice(dice);
-        gameMock.start();
-        PlayerMockManagePropertiesCounter player1 = (PlayerMockManagePropertiesCounter) gameMock.getPlayer(0);
-        PlayerMockManagePropertiesCounter player2 = (PlayerMockManagePropertiesCounter) gameMock.getPlayer(1);
-        assertEquals(40, player1.manageProperties);
-        assertEquals(40, player2.manageProperties);
-    }
-
-    @Test
-    public void testGameCountManagePropertiesWithDoublesRolled() throws Game.InvalidPlayerCount, IOException {
-        DiceMockRollsDouble3sThenPlain4 dice = new DiceMockRollsDouble3sThenPlain4();
-        for (int i = 0; i < 2; i++) {
-            PlayerMockManagePropertiesCounter player = new PlayerMockManagePropertiesCounter();
-            game.addPlayer(player);
-            player.setSpace(start);
-        }
-        game.setDice(dice);
-        game.start();
-        PlayerMockManagePropertiesCounter player1 = (PlayerMockManagePropertiesCounter) game.getPlayer(0);
-        PlayerMockManagePropertiesCounter player2 = (PlayerMockManagePropertiesCounter) game.getPlayer(1);
-        assertEquals(3, player1.manageProperties);
-        assertEquals(2, player2.manageProperties);
-    }
-
-    @Test
-    public void testGameCountManagePropertiesWithDoublesRolledTwice() throws Game.InvalidPlayerCount, IOException {
-        DiceMockRollsDoubleTwiceThenNot dice = new DiceMockRollsDoubleTwiceThenNot();
-        for (int i = 0; i < 2; i++) {
-            PlayerMockManagePropertiesCounter player = new PlayerMockManagePropertiesCounter();
-            game.addPlayer(player);
-            player.setSpace(game.getBoard().get(0));
-        }
-        game.setDice(dice);
-        game.start();
-        PlayerMockManagePropertiesCounter player1 = (PlayerMockManagePropertiesCounter) game.getPlayer(0);
-        PlayerMockManagePropertiesCounter player2 = (PlayerMockManagePropertiesCounter) game.getPlayer(1);
-        assertEquals(4, player1.manageProperties);
-        assertEquals(2, player2.manageProperties);
-    }
-
-    @Test
-    public void testGameCountManagePropertiesWithDoublesRolledThreeTimes() throws Game.InvalidPlayerCount, IOException {
-        DiceMockRollsDoubleThreeTimesInARow dice = new DiceMockRollsDoubleThreeTimesInARow();
-        for (int i = 0; i < 2; i++) {
-            PlayerMockManagePropertiesCounter player = new PlayerMockManagePropertiesCounter();
-            game.addPlayer(player);
-            player.setSpace(game.getBoard().get(0));
-        }
-        game.setDice(dice);
-        game.start();
-        PlayerMockManagePropertiesCounter player1 = (PlayerMockManagePropertiesCounter) game.getPlayer(0);
-        PlayerMockManagePropertiesCounter player2 = (PlayerMockManagePropertiesCounter) game.getPlayer(1);
-        assertEquals(3, player1.manageProperties);
-        assertEquals(2, player2.manageProperties);
-    }
-
-    @Test
     public void testPlayersAlternateOrder() throws Game.InvalidPlayerCount, IOException {
         PlayerMockAlternateOrder player1 = new PlayerMockAlternateOrder();
         PlayerMockAlternateOrder player2 = new PlayerMockAlternateOrder();
@@ -191,6 +137,84 @@ public class GameTest {
             else
                 assertTrue(gameMock.getPlayer(1).equals(PlayerMockAlternateOrder.order.get(i)));
         }
+    }
+
+    @Test
+    public void testGameOfTwentyRoundsCountManageProperties() throws Game.InvalidPlayerCount, IOException {
+        DiceMock dice = new DiceMock();
+        setUpPlayerMockManagePropertiesCounter(gameMock, dice, start);
+        checkPropertiesManageCounts(gameMock, 40, 40);
+    }
+
+    private void setUpPlayerMockManagePropertiesCounter(Game game, Dice dice, Space startingSpace) throws Game.InvalidPlayerCount {
+        for (int i = 0; i < 2; i++) {
+            PlayerMockManagePropertiesCounter player = new PlayerMockManagePropertiesCounter();
+            game.addPlayer(player);
+            player.setSpace(startingSpace);
+        }
+        game.setDice(dice);
+        game.start();
+    }
+
+    private void checkPropertiesManageCounts(Game game, int player1Expected, int player2Expected) {
+        PlayerMockManagePropertiesCounter player1 = (PlayerMockManagePropertiesCounter) game.getPlayer(0);
+        PlayerMockManagePropertiesCounter player2 = (PlayerMockManagePropertiesCounter) game.getPlayer(1);
+        assertEquals(player1Expected, player1.manageProperties);
+        assertEquals(player2Expected, player2.manageProperties);
+    }
+
+    @Test
+    public void testGameCountManagePropertiesWithDoublesRolled() throws Game.InvalidPlayerCount, IOException {
+        DiceMockRollsDouble3sThenPlain4 dice = new DiceMockRollsDouble3sThenPlain4();
+        setUpPlayerMockManagePropertiesCounter(game, dice, go);
+        checkPropertiesManageCounts(game, 3, 2);
+    }
+
+    @Test
+    public void testGameCountManagePropertiesWithDoublesRolledTwice() throws Game.InvalidPlayerCount, IOException {
+        DiceMockRollsDoubleTwiceThenNot dice = new DiceMockRollsDoubleTwiceThenNot();
+        setUpPlayerMockManagePropertiesCounter(game, dice, go);
+        checkPropertiesManageCounts(game, 4, 2);
+    }
+
+    @Test
+    public void testGameCountManagePropertiesWithDoublesRolledThreeTimes() throws Game.InvalidPlayerCount, IOException {
+        DiceMockRollsDoubleThreeTimesInARow dice = new DiceMockRollsDoubleThreeTimesInARow();
+        setUpPlayerMockManagePropertiesCounter(game, dice, go);
+        checkPropertiesManageCounts(game, 3, 2);
+    }
+
+    @Test
+    public void testGameCountManagePropertiesWhileInJail() throws Game.InvalidPlayerCount {
+        DiceMock dice = new DiceMock();
+        PlayerMockManagePropertiesCounter player = new PlayerMockManagePropertiesCounter();
+        int endingBalance = player.getCashBalance();
+        player.setInJail(true);
+        game.addPlayer(player);
+        player.setSpace(jail);
+        game.setDice(dice);
+        game.play(dice);
+        assertEquals(2,player.manageProperties);
+        assertEquals(1,player.getNumberOfRolls());
+        assertTrue(jail.equals(player.getSpace()));
+        assertEquals(endingBalance,player.getCashBalance());
+
+        game.play(dice);
+        assertEquals(4,player.manageProperties);
+        assertEquals(2,player.getNumberOfRolls());
+        assertTrue(jail.equals(player.getSpace()));
+        assertEquals(endingBalance,player.getCashBalance());
+
+        endingBalance = endingBalance - 50;
+        assertTrue(electric.getOwner().isBank());
+        endingBalance = endingBalance - 150;
+
+        game.play(dice);
+        assertEquals(6,player.manageProperties);
+        assertEquals(0,player.getNumberOfRolls());
+        assertTrue(electric.equals(player.getSpace()));
+        assertTrue(player.equals(electric.getOwner()));
+        assertEquals(endingBalance,player.getCashBalance());
     }
 
     @Test
@@ -283,5 +307,4 @@ public class GameTest {
         assertEquals(2, blueGroupCount);
 
     }
-
 }

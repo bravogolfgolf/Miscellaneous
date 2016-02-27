@@ -58,14 +58,14 @@ public class Game {
 
     public void play(Dice dice) {
         for (Player player : players) {
-            Boolean didNotGoToJail = true;
+            Boolean managePropertiesAtEndOfTurn = true;
             try {
                 player.takeATurn(dice);
             } catch (GoToJail.GoToJailException e) {
-                player.resetDoublesRolledInATurnCounter();
-                didNotGoToJail = false;
+                player.resetRollCounter();
+                managePropertiesAtEndOfTurn = false;
             }
-            if (didNotGoToJail)
+            if (managePropertiesAtEndOfTurn)
                 player.manageProperties();
         }
     }
