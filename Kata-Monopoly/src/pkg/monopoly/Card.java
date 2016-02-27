@@ -3,13 +3,18 @@ package pkg.monopoly;
 public class Card {
 
 
-    private final String instruction;
+    private String instruction = "";
 
-    public Card(String instruction) {
-        this.instruction = instruction;
+    public static Card create(String classType, String instruction){
+        if (classType.equals("CommunityChest")) return new CommunityChest(instruction);
+        throw new IllegalArgumentException();
     }
 
-    public String getInstructions() {
+    public String getInstruction() {
         return instruction;
+    }
+
+    public void setInstruction(String instruction) {
+        this.instruction = instruction;
     }
 }
