@@ -27,7 +27,7 @@ public class UtilityGroupTest {
 
     @Before
     public void setUp() throws IOException {
-        Game game = new Game("Spaces_US.txt");
+        Game game = new Game("US");
         List<Space> board = game.getBoard();
         electric = (Utility) board.get(12);
         water = (Utility) board.get(28);

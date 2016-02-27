@@ -25,7 +25,7 @@ public class RealEstateGroupTest {
 
     @Before
     public void setUp() throws IOException {
-        Game game = new Game("Spaces_US.txt");
+        Game game = new Game("US");
         List<Space> board = game.getBoard();
         mediterraneanAve = (RealEstate) board.get(1);
         balticAve = (RealEstate) board.get(3);

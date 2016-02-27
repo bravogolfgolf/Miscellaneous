@@ -27,7 +27,8 @@ public class CardTest {
         final String filename = "Cards_TEST.txt";
         List<Card> expected = new ArrayList<Card>();
         List<Card> actual;
-        expected.add(Card.create("CommunityChest","Instruction"));
+        expected.add(Card.create("CommunityChest","Instruction1"));
+        expected.add(Card.create("CommunityChest","Instruction2"));
         actual = Card.load(filename);
         assertEquals(expected.size(), actual.size());
         assertTrue(expected.equals(actual));

@@ -24,7 +24,7 @@ public class RailroadGroupTest {
 
     @Before
     public void setUp() throws IOException {
-        Game game = new Game("Spaces_US.txt");
+        Game game = new Game("US");
         List<Space> board = game.getBoard();
         reading = (Railroad) board.get(5);
         pennsylvania = (Railroad) board.get(15);

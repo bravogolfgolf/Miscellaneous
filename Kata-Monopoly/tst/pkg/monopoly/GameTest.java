@@ -17,6 +17,7 @@ public class GameTest {
 
     static final int EXPECTED_NUMBER_OF_PLAYERS = 2;
     private Game game;
+    private Game gameTest;
     private Go go;
     private Jail jail;
     private Utility electric;
@@ -24,7 +25,8 @@ public class GameTest {
 
     @Before
     public void setUp() throws IOException {
-        game = new Game("Spaces_US.txt");
+        game = new Game("US");
+        gameTest = new Game("TEST");
         go = (Go) game.getBoard().get(0);
         jail = (Jail) game.getBoard().get(10);
         electric = (Utility) game.getBoard().get(12);
@@ -33,6 +35,7 @@ public class GameTest {
     @After
     public void tearDown() {
         game = null;
+        gameTest = null;
         go = null;
         jail = null;
         electric = null;
@@ -53,7 +56,7 @@ public class GameTest {
 
     @Test
     public void testGameWithTwoPlayers() throws Game.InvalidPlayerCount, IOException {
-        Game game = new Game("Spaces_US.txt");
+        Game game = new Game("US");
         for (int i = 0; i < 2; i++) {
             Player player = new Player("Cat");
             player.setSpace(game.getBoard().get(0));
@@ -76,18 +79,18 @@ public class GameTest {
         boolean bootCat = false;
 
         for (int i = 0; i < 100; i++) {
-            Game game = new Game("Spaces_TEST.txt");
+            Game gameTest = new Game("TEST");
             Player catPlayer = new Player("Cat");
             Player dogPlayer = new Player("Dog");
-            game.addPlayer(catPlayer);
-            game.addPlayer(dogPlayer);
-            game.randomizePlayerOrder();
-            assertEquals(EXPECTED_NUMBER_OF_PLAYERS, game.getNumberOfPlayers());
+            gameTest.addPlayer(catPlayer);
+            gameTest.addPlayer(dogPlayer);
+            gameTest.randomizePlayerOrder();
+            assertEquals(EXPECTED_NUMBER_OF_PLAYERS, gameTest.getNumberOfPlayers());
 
-            if (game.getPlayer(0).equals(catPlayer) && game.getPlayer(1).equals(dogPlayer))
+            if (gameTest.getPlayer(0).equals(catPlayer) && gameTest.getPlayer(1).equals(dogPlayer))
                 catBoot = true;
 
-            if (game.getPlayer(0).equals(dogPlayer) && game.getPlayer(1).equals(catPlayer))
+            if (gameTest.getPlayer(0).equals(dogPlayer) && gameTest.getPlayer(1).equals(catPlayer))
                 bootCat = true;
 
             if (catBoot && bootCat)
@@ -281,10 +284,36 @@ public class GameTest {
     }
 
     @Test
+    public void testCardsAreNotAlwaysInSameOrder() throws IOException {
+
+        boolean oneTwo = false;
+        boolean twoOne = false;
+
+        for (int i = 0; i < 100; i++) {
+            Game gameTest = new Game("TEST");
+            Card card1 = Card.create("CommunityChest","Instruction1");
+            Card card2 = Card.create("CommunityChest","Instruction2");
+            gameTest.randomizeCardOrder();
+            assertEquals(2, gameTest.getNumberOfCards());
+
+            if (gameTest.getCard(0).equals(card1) && gameTest.getCard(1).equals(card2))
+                oneTwo = true;
+
+            if (gameTest.getCard(0).equals(card2) && gameTest.getCard(1).equals(card1))
+                twoOne = true;
+
+            if (oneTwo && twoOne)
+                break;
+        }
+        assertTrue(oneTwo && twoOne);
+    }
+
+
+    @Test
     public void testCreateBoard() throws IOException {
-        Game game = new Game("Spaces_TEST.txt");
+//        Game gameTest = new Game("Spaces_TEST.txt");
         List<Space> expected = createExpected();
-        List<Space> actual = game.getBoard();
+        List<Space> actual = gameTest.getBoard();
         assertEquals(expected.size(), actual.size());
         for (int i = 0; i < expected.size(); i++) {
             assertEquals(expected.get(i).getClass(), actual.get(i).getClass());

@@ -26,7 +26,7 @@ public class PlayerTest {
 
     @Before
     public void setup() throws IOException {
-        game = new Game("Spaces_US.txt");
+        game = new Game("US");
         board = game.getBoard();
         player1 = new Player("Cat");
         diceMock = new DiceMock();

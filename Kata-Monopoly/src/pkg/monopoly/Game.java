@@ -5,12 +5,26 @@ import java.util.*;
 
 public class Game {
 
-    public Game(String spaceDefinitionFile) throws IOException {
-        board = Space.load(spaceDefinitionFile);
+    private int numberOfCards;
+
+    public Game(String localization) throws IOException {
+        String spacesFileName = String.format("Spaces_%s.txt",localization);
+        board = Space.load(spacesFileName);
         for (int i = 0; i < board.size() - 1; i++) {
             board.get(i).setNextSpace(board.get(i + 1));
         }
         board.get(board.size() - 1).setNextSpace(board.get(0));
+    }
+
+    public void randomizeCardOrder() {
+    }
+
+    public int getNumberOfCards() {
+        return numberOfCards;
+    }
+
+    public Card getCard(int index) {
+        return null;
     }
 
     public class InvalidPlayerCount extends Exception {

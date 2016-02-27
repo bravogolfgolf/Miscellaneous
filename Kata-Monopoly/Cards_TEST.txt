@@ -1,1 +1,2 @@
-CommunityChest,Instruction
+CommunityChest,Instruction1
+CommunityChest,Instruction2
