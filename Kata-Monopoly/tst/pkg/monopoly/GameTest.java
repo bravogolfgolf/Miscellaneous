@@ -2,6 +2,7 @@ package pkg.monopoly;
 
 import org.junit.After;
 import org.junit.Before;
+import org.junit.Ignore;
 import org.junit.Test;
 
 import java.io.IOException;
@@ -179,7 +180,7 @@ public class GameTest {
     }
 
     @Test
-    public void testGameCountManagePropertiesThreeRollsNoDoublesPays50() throws Game.InvalidPlayerCount {
+    public void testInJailThreeRollsNoDoublesPays50() throws Game.InvalidPlayerCount {
         DiceMock dice = new DiceMock();
         PlayerMockManagePropertiesCounter player = new PlayerMockManagePropertiesCounter();
         player.setInJail(true);
@@ -206,7 +207,7 @@ public class GameTest {
     }
 
     @Test
-    public void testGameCountManagePropertiesRollDoubleMoveNoNextTurn() throws Game.InvalidPlayerCount {
+    public void testInJailRollsDoubleMovesNoNextTurn() throws Game.InvalidPlayerCount {
         DiceMockRollsDoubleThreeTimesInARow dice = new DiceMockRollsDoubleThreeTimesInARow();
         setUpPlayerMockManagePropertiesCounter(game, go);
 
@@ -228,6 +229,55 @@ public class GameTest {
         assertTrue(marvinGardens.equals(player2.getSpace()));
         assertEquals(0, player2.getNumberOfRolls());
         assertFalse(player2.isInJail());
+    }
+
+    @Test
+    public void testInJailPays50RollsDoubleMovesAndNextTurn() throws Game.InvalidPlayerCount {
+        DiceMockRollsDouble3sThenPlain4 dice = new DiceMockRollsDouble3sThenPlain4();
+        setUpPlayerMockManagePropertiesCounter(game, go);
+        PlayerMockManagePropertiesCounter player = (PlayerMockManagePropertiesCounter) game.getPlayer(0);
+        player.setSpace(jail);
+        player.setInJail(true);
+        player.postBail();
+
+        Other freeParking = (Other) game.getBoard().get(20);
+
+        game.play(dice);
+        assertEquals(3, player.manageProperties);
+        assertTrue(freeParking.equals(player.getSpace()));
+        assertEquals(0, player.getNumberOfRolls());
+    }
+
+    @Test
+    public void testInJailRollsDoubleOnThirdRollMovesNoNextTurn() throws Game.InvalidPlayerCount {
+        DiceMock dice = new DiceMock();
+        setUpPlayerMockManagePropertiesCounter(game, go);
+        PlayerMockManagePropertiesCounter player = (PlayerMockManagePropertiesCounter) game.getPlayer(0);
+        player.setSpace(jail);
+        player.setInJail(true);
+
+        game.play(dice);
+
+        assertEquals(2, player.manageProperties);
+        assertEquals(1, player.getNumberOfRolls());
+        assertTrue(jail.equals(player.getSpace()));
+        assertTrue(player.isInJail());
+
+        game.play(dice);
+
+        assertEquals(4, player.manageProperties);
+        assertEquals(2, player.getNumberOfRolls());
+        assertTrue(jail.equals(player.getSpace()));
+        assertTrue(player.isInJail());
+
+        DiceMockRollsDouble3sThenPlain4 newDice = new DiceMockRollsDouble3sThenPlain4();
+        RealEstate stJamesPlace = (RealEstate) game.getBoard().get(16);
+        game.play(newDice);
+
+        assertEquals(6, player.manageProperties);
+        assertEquals(0, player.getNumberOfRolls());
+        assertTrue(stJamesPlace.equals(player.getSpace()));
+        assertFalse(player.isInJail());
     }
 
     @Test

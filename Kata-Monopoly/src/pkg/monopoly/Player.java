@@ -56,17 +56,25 @@ public class Player {
     private void doubleRolled(Dice dice) throws GoToJail.GoToJailException {
         incrementDoublesRolledInATurnCounter();
         if (getNumberOfRolls() == 3) {
-            goToJail();
+            if (inJail) {
+                releasedFromJail();
+                space.move(this, dice.getTwoDieRollValue());
+            } else
+                goToJail();
         } else {
             if (inJail) {
-                setInJail(false);
-                resetRollCounter();
+                releasedFromJail();
                 space.move(this, dice.getTwoDieRollValue());
             } else {
                 space.move(this, dice.getTwoDieRollValue());
                 takeATurn(dice);
             }
         }
+    }
+
+    private void releasedFromJail() {
+        setInJail(false);
+        resetRollCounter();
     }
 
     private void incrementDoublesRolledInATurnCounter() {
@@ -89,9 +97,7 @@ public class Player {
     private void doubleNotRolled(Dice dice) throws GoToJail.GoToJailException {
         if (isInJail()) {
             if (rollCounter == 2) {
-                payToGetOutOfJail();
-                setInJail(false);
-                resetRollCounter();
+                postBail();
                 space.move(this, dice.getTwoDieRollValue());
             } else {
                 rollCounter++;
@@ -102,8 +108,9 @@ public class Player {
         }
     }
 
-    private void payToGetOutOfJail() {
+    public void postBail() {
         changeCashBalanceBy(-50);
+        releasedFromJail();
     }
 
     @Override

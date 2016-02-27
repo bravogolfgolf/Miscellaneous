@@ -183,6 +183,19 @@ public class PlayerTest {
     }
 
     @Test
+    public void testPostBail(){
+        Jail jail = (Jail) board.get(10);
+        player1.setSpace(jail);
+        player1.setInJail(true);
+        assertEquals(1500,player1.getCashBalance());
+        assertTrue(player1.isInJail());
+        player1.postBail();
+        assertEquals(1450,player1.getCashBalance());
+        assertFalse(player1.isInJail());
+        assertEquals(0,player1.getNumberOfRolls());
+    }
+
+    @Test
     public void testPlayerHashcode() {
         Player player2 = new Player("Cat");
         assertEquals(player1.hashCode(), player2.hashCode());
