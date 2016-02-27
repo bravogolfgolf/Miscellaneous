@@ -9,6 +9,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
 
 public class GameTest {
@@ -185,36 +186,83 @@ public class GameTest {
     }
 
     @Test
-    public void testGameCountManagePropertiesWhileInJail() throws Game.InvalidPlayerCount {
+    public void testGameCountManagePropertiesThreeRollsNoDoublesPay50() throws Game.InvalidPlayerCount {
         DiceMock dice = new DiceMock();
         PlayerMockManagePropertiesCounter player = new PlayerMockManagePropertiesCounter();
         int endingBalance = player.getCashBalance();
         player.setInJail(true);
         game.addPlayer(player);
         player.setSpace(jail);
+
         game.setDice(dice);
         game.play(dice);
-        assertEquals(2,player.manageProperties);
-        assertEquals(1,player.getNumberOfRolls());
+        assertEquals(2, player.manageProperties);
+        assertEquals(1, player.getNumberOfRolls());
         assertTrue(jail.equals(player.getSpace()));
-        assertEquals(endingBalance,player.getCashBalance());
+        assertEquals(endingBalance, player.getCashBalance());
+        assertTrue(player.isInJail());
 
         game.play(dice);
-        assertEquals(4,player.manageProperties);
-        assertEquals(2,player.getNumberOfRolls());
+        assertEquals(4, player.manageProperties);
+        assertEquals(2, player.getNumberOfRolls());
         assertTrue(jail.equals(player.getSpace()));
-        assertEquals(endingBalance,player.getCashBalance());
+        assertEquals(endingBalance, player.getCashBalance());
+        assertTrue(player.isInJail());
 
         endingBalance = endingBalance - 50;
         assertTrue(electric.getOwner().isBank());
         endingBalance = endingBalance - 150;
 
         game.play(dice);
-        assertEquals(6,player.manageProperties);
-        assertEquals(0,player.getNumberOfRolls());
+        assertEquals(6, player.manageProperties);
+        assertEquals(0, player.getNumberOfRolls());
         assertTrue(electric.equals(player.getSpace()));
         assertTrue(player.equals(electric.getOwner()));
-        assertEquals(endingBalance,player.getCashBalance());
+        assertEquals(endingBalance, player.getCashBalance());
+        assertFalse(player.isInJail());
+    }
+
+    @Test
+    public void testGameCountManagePropertiesRollDoubleMoveNoNextTurn() throws Game.InvalidPlayerCount {
+        DiceMockRollsDoubleThreeTimesInARow dice = new DiceMockRollsDoubleThreeTimesInARow();
+        PlayerMockManagePropertiesCounter player1 = new PlayerMockManagePropertiesCounter();
+        PlayerMockManagePropertiesCounter player2 = new PlayerMockManagePropertiesCounter();
+        int player1endingBalance = player1.getCashBalance();
+        int player2endingBalance = player2.getCashBalance();
+        game.addPlayer(player1);
+        game.addPlayer(player2);
+        player1.setSpace(jail);
+        player1.setInJail(true);
+        player2.setSpace(go);
+
+        RealEstate virginiaAvenue = (RealEstate) game.getBoard().get(14);
+        assertTrue(virginiaAvenue.getOwner().isBank());
+        player1endingBalance = player1endingBalance - 160;
+
+        RealEstate stJamesPlace = (RealEstate) game.getBoard().get(16);
+        assertTrue(stJamesPlace.getOwner().isBank());
+        player2endingBalance = player2endingBalance - 180;
+
+        RealEstate marvinGardens = (RealEstate) game.getBoard().get(29);
+        assertTrue(marvinGardens.getOwner().isBank());
+        player2endingBalance = player2endingBalance - 280;
+
+        game.setDice(dice);
+        game.start();
+
+        checkPropertiesManageCounts(game, 2, 4);
+        assertTrue(virginiaAvenue.equals(player1.getSpace()));
+        assertTrue(player1.equals(virginiaAvenue.getOwner()));
+        assertEquals(player1endingBalance, player1.getCashBalance());
+        assertEquals(0,player1.getNumberOfRolls());
+        assertFalse(player1.isInJail());
+
+        assertTrue(marvinGardens.equals(player2.getSpace()));
+        assertTrue(player2.equals(stJamesPlace.getOwner()));
+        assertTrue(player2.equals(marvinGardens.getOwner()));
+        assertEquals(player2endingBalance, player2.getCashBalance());
+        assertEquals(0,player2.getNumberOfRolls());
+        assertFalse(player2.isInJail());
     }
 
     @Test

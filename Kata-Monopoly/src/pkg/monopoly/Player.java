@@ -58,8 +58,14 @@ public class Player {
         if (getNumberOfRolls() == 3) {
             goToJail();
         } else {
-            space.move(this, dice.getTwoDieRollValue());
-            takeATurn(dice);
+            if (inJail) {
+                setInJail(false);
+                resetRollCounter();
+                space.move(this, dice.getTwoDieRollValue());
+            } else {
+                space.move(this, dice.getTwoDieRollValue());
+                takeATurn(dice);
+            }
         }
     }
 
@@ -84,8 +90,9 @@ public class Player {
         if (isInJail()) {
             if (rollCounter == 2) {
                 payToGetOutOfJail();
-                space.move(this, dice.getTwoDieRollValue());
+                setInJail(false);
                 resetRollCounter();
+                space.move(this, dice.getTwoDieRollValue());
             } else {
                 rollCounter++;
             }
