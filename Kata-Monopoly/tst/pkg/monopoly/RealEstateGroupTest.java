@@ -121,7 +121,7 @@ public class RealEstateGroupTest {
 
     @Test
     public void testPlayerDoesNotPayHimselfRent() {
-        PlayerMockCashBalanceCounter playerMock = new PlayerMockCashBalanceCounter();
+        PlayerMockDoesNotPaySelfRent playerMock = new PlayerMockDoesNotPaySelfRent();
         ownedUnMortgagedProperty(playerMock);
         mediterraneanAve.landOn(playerMock);
         assertEquals(0, playerMock.changeCashBalanceBy);

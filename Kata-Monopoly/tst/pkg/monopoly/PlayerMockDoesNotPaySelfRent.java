@@ -1,10 +1,10 @@
 package pkg.monopoly;
 
-public class PlayerMockCashBalanceCounter extends Player {
+public class PlayerMockDoesNotPaySelfRent extends Player {
     public int changeCashBalanceBy = 0;
 
-    public PlayerMockCashBalanceCounter() {
-        super("PlayerMockCashBalanceCounter");
+    public PlayerMockDoesNotPaySelfRent() {
+        super("PlayerMockDoesNotPaySelfRent");
     }
 
     @Override
