@@ -15,7 +15,6 @@ import static org.junit.Assert.assertTrue;
 public class GameTest {
 
     static final int EXPECTED_NUMBER_OF_PLAYERS = 2;
-    private Game gameMock;
     private Game game;
     private Space start;
     private Space space1;
@@ -27,7 +26,6 @@ public class GameTest {
 
     @Before
     public void setUp() throws IOException {
-        gameMock = new GameMockPlay20Rounds("Spaces_TEST.txt");
         game = new Game("Spaces_US.txt");
         start = Space.create("Other", "Start");
         space1 = Space.create("Other", "Space1");
@@ -42,7 +40,6 @@ public class GameTest {
 
     @After
     public void tearDown() {
-        gameMock = null;
         game = null;
         start = null;
         space1 = null;
@@ -56,14 +53,14 @@ public class GameTest {
         for (int i = 0; i < number; i++) {
             Player player = new Player("Cat");
             player.setSpace(start);
-            gameMock.addPlayer(player);
+            game.addPlayer(player);
         }
     }
 
     @Test(expected = Game.InvalidPlayerCount.class)
     public void testGameThrowsExceptionWhenFewerThanTwoPlayers() throws Game.InvalidPlayerCount {
         addThisManyPlayers(1);
-        gameMock.start();
+        game.start();
     }
 
     @Test
@@ -81,7 +78,7 @@ public class GameTest {
     @Test(expected = Game.InvalidPlayerCount.class)
     public void testGameThrowsExceptionWhenMoreThanEightPlayers() throws Game.InvalidPlayerCount {
         addThisManyPlayers(9);
-        gameMock.start();
+        game.start();
     }
 
     @Test
@@ -113,40 +110,46 @@ public class GameTest {
 
     @Test
     public void testGameOfTwentyRoundsCountTurnsTaken() throws Game.InvalidPlayerCount, IOException {
+        Dice dice = new Dice();
         for (int i = 0; i < 2; i++) {
             PlayerMockTurnCounter player = new PlayerMockTurnCounter();
-            gameMock.addPlayer(player);
+            game.addPlayer(player);
 
         }
-        gameMock.start();
-        PlayerMockTurnCounter player1 = (PlayerMockTurnCounter) gameMock.getPlayer(0);
-        PlayerMockTurnCounter player2 = (PlayerMockTurnCounter) gameMock.getPlayer(1);
+        for (int i = 0; i < 20; i++)
+            game.play(dice);
+        PlayerMockTurnCounter player1 = (PlayerMockTurnCounter) game.getPlayer(0);
+        PlayerMockTurnCounter player2 = (PlayerMockTurnCounter) game.getPlayer(1);
         assertEquals(20, player1.turnsTaken);
         assertEquals(20, player2.turnsTaken);
     }
 
     @Test
     public void testPlayersAlternateOrder() throws Game.InvalidPlayerCount, IOException {
+        Dice dice = new Dice();
         PlayerMockAlternateOrder player1 = new PlayerMockAlternateOrder();
         PlayerMockAlternateOrder player2 = new PlayerMockAlternateOrder();
-        gameMock.addPlayer(player1);
-        gameMock.addPlayer(player2);
-        gameMock.start();
+        game.addPlayer(player1);
+        game.addPlayer(player2);
+
+        for (int i = 0; i < 20; i++)
+            game.play(dice);
+
         for (int i = 0; i < 20; i++) {
             if (i % 2 == 0)
-                assertTrue(gameMock.getPlayer(0).equals(PlayerMockAlternateOrder.order.get(i)));
+                assertTrue(player1.equals(PlayerMockAlternateOrder.order.get(i)));
             else
-                assertTrue(gameMock.getPlayer(1).equals(PlayerMockAlternateOrder.order.get(i)));
+                assertTrue(player2.equals(PlayerMockAlternateOrder.order.get(i)));
         }
     }
 
     @Test
-    public void testGameOfTwentyRoundsCountManageProperties() throws Game.InvalidPlayerCount, IOException {
+    public void testGameOfTenRoundsCountManageProperties() throws Game.InvalidPlayerCount, IOException {
         DiceMock dice = new DiceMock();
-        setUpPlayerMockManagePropertiesCounter(gameMock, start);
-        gameMock.setDice(dice);
-        gameMock.start();
-        checkPropertiesManageCounts(gameMock, 40, 40);
+        setUpPlayerMockManagePropertiesCounter(game, go);
+        for (int i = 0; i < 10; i++)
+            game.play(dice);
+        checkPropertiesManageCounts(game, 20, 20);
     }
 
     private void setUpPlayerMockManagePropertiesCounter(Game game, Space startingSpace) throws Game.InvalidPlayerCount {
@@ -168,8 +171,7 @@ public class GameTest {
     public void testGameCountManagePropertiesWithDoublesRolled() throws Game.InvalidPlayerCount, IOException {
         DiceMockRollsDouble3sThenPlain4 dice = new DiceMockRollsDouble3sThenPlain4();
         setUpPlayerMockManagePropertiesCounter(game, go);
-        game.setDice(dice);
-        game.start();
+        game.play(dice);
         checkPropertiesManageCounts(game, 3, 2);
     }
 
@@ -177,8 +179,7 @@ public class GameTest {
     public void testGameCountManagePropertiesWithDoublesRolledTwice() throws Game.InvalidPlayerCount, IOException {
         DiceMockRollsDoubleTwiceThenNot dice = new DiceMockRollsDoubleTwiceThenNot();
         setUpPlayerMockManagePropertiesCounter(game, go);
-        game.setDice(dice);
-        game.start();
+        game.play(dice);
         checkPropertiesManageCounts(game, 4, 2);
     }
 
@@ -186,8 +187,7 @@ public class GameTest {
     public void testGameCountManagePropertiesWithDoublesRolledThreeTimes() throws Game.InvalidPlayerCount, IOException {
         DiceMockRollsDoubleThreeTimesInARow dice = new DiceMockRollsDoubleThreeTimesInARow();
         setUpPlayerMockManagePropertiesCounter(game, go);
-        game.setDice(dice);
-        game.start();
+        game.play(dice);
         checkPropertiesManageCounts(game, 3, 2);
     }
 
@@ -199,7 +199,6 @@ public class GameTest {
         game.addPlayer(player);
         player.setSpace(jail);
 
-        game.setDice(dice);
         game.play(dice);
         assertEquals(2, player.manageProperties);
         assertEquals(1, player.getNumberOfRolls());
@@ -232,8 +231,7 @@ public class GameTest {
         RealEstate virginiaAvenue = (RealEstate) game.getBoard().get(14);
         RealEstate marvinGardens = (RealEstate) game.getBoard().get(29);
 
-        game.setDice(dice);
-        game.start();
+        game.play(dice);
 
         checkPropertiesManageCounts(game, 2, 4);
         assertTrue(virginiaAvenue.equals(player1.getSpace()));
@@ -247,8 +245,9 @@ public class GameTest {
 
     @Test
     public void testCreateBoard() throws IOException {
+        Game game = new Game("Spaces_TEST.txt");
         List<Space> expected = createExpected();
-        List<Space> actual = gameMock.getBoard();
+        List<Space> actual = game.getBoard();
         assertEquals(expected.size(), actual.size());
         for (int i = 0; i < expected.size(); i++) {
             assertEquals(expected.get(i).getClass(), actual.get(i).getClass());
