@@ -143,18 +143,18 @@ public class GameTest {
     @Test
     public void testGameOfTwentyRoundsCountManageProperties() throws Game.InvalidPlayerCount, IOException {
         DiceMock dice = new DiceMock();
-        setUpPlayerMockManagePropertiesCounter(gameMock, dice, start);
+        setUpPlayerMockManagePropertiesCounter(gameMock, start);
+        game.setDice(dice);
+        game.start();
         checkPropertiesManageCounts(gameMock, 40, 40);
     }
 
-    private void setUpPlayerMockManagePropertiesCounter(Game game, Dice dice, Space startingSpace) throws Game.InvalidPlayerCount {
+    private void setUpPlayerMockManagePropertiesCounter(Game game, Space startingSpace) throws Game.InvalidPlayerCount {
         for (int i = 0; i < 2; i++) {
             PlayerMockManagePropertiesCounter player = new PlayerMockManagePropertiesCounter();
             game.addPlayer(player);
             player.setSpace(startingSpace);
         }
-        game.setDice(dice);
-        game.start();
     }
 
     private void checkPropertiesManageCounts(Game game, int player1Expected, int player2Expected) {
@@ -167,21 +167,27 @@ public class GameTest {
     @Test
     public void testGameCountManagePropertiesWithDoublesRolled() throws Game.InvalidPlayerCount, IOException {
         DiceMockRollsDouble3sThenPlain4 dice = new DiceMockRollsDouble3sThenPlain4();
-        setUpPlayerMockManagePropertiesCounter(game, dice, go);
+        setUpPlayerMockManagePropertiesCounter(game, go);
+        game.setDice(dice);
+        game.start();
         checkPropertiesManageCounts(game, 3, 2);
     }
 
     @Test
     public void testGameCountManagePropertiesWithDoublesRolledTwice() throws Game.InvalidPlayerCount, IOException {
         DiceMockRollsDoubleTwiceThenNot dice = new DiceMockRollsDoubleTwiceThenNot();
-        setUpPlayerMockManagePropertiesCounter(game, dice, go);
+        setUpPlayerMockManagePropertiesCounter(game, go);
+        game.setDice(dice);
+        game.start();
         checkPropertiesManageCounts(game, 4, 2);
     }
 
     @Test
     public void testGameCountManagePropertiesWithDoublesRolledThreeTimes() throws Game.InvalidPlayerCount, IOException {
         DiceMockRollsDoubleThreeTimesInARow dice = new DiceMockRollsDoubleThreeTimesInARow();
-        setUpPlayerMockManagePropertiesCounter(game, dice, go);
+        setUpPlayerMockManagePropertiesCounter(game, go);
+        game.setDice(dice);
+        game.start();
         checkPropertiesManageCounts(game, 3, 2);
     }
 
@@ -201,6 +207,7 @@ public class GameTest {
         assertTrue(jail.equals(player.getSpace()));
         assertEquals(endingBalance, player.getCashBalance());
         assertTrue(player.isInJail());
+        assertEquals(1, player.getNumberOfRolls());
 
         game.play(dice);
         assertEquals(4, player.manageProperties);
@@ -225,43 +232,26 @@ public class GameTest {
     @Test
     public void testGameCountManagePropertiesRollDoubleMoveNoNextTurn() throws Game.InvalidPlayerCount {
         DiceMockRollsDoubleThreeTimesInARow dice = new DiceMockRollsDoubleThreeTimesInARow();
-        PlayerMockManagePropertiesCounter player1 = new PlayerMockManagePropertiesCounter();
-        PlayerMockManagePropertiesCounter player2 = new PlayerMockManagePropertiesCounter();
-        int player1endingBalance = player1.getCashBalance();
-        int player2endingBalance = player2.getCashBalance();
-        game.addPlayer(player1);
-        game.addPlayer(player2);
+        setUpPlayerMockManagePropertiesCounter(game, go);
+
+        PlayerMockManagePropertiesCounter player1 = (PlayerMockManagePropertiesCounter) game.getPlayer(0);
+        PlayerMockManagePropertiesCounter player2 = (PlayerMockManagePropertiesCounter) game.getPlayer(1);
         player1.setSpace(jail);
         player1.setInJail(true);
-        player2.setSpace(go);
 
         RealEstate virginiaAvenue = (RealEstate) game.getBoard().get(14);
-        assertTrue(virginiaAvenue.getOwner().isBank());
-        player1endingBalance = player1endingBalance - 160;
-
-        RealEstate stJamesPlace = (RealEstate) game.getBoard().get(16);
-        assertTrue(stJamesPlace.getOwner().isBank());
-        player2endingBalance = player2endingBalance - 180;
-
         RealEstate marvinGardens = (RealEstate) game.getBoard().get(29);
-        assertTrue(marvinGardens.getOwner().isBank());
-        player2endingBalance = player2endingBalance - 280;
 
         game.setDice(dice);
         game.start();
 
         checkPropertiesManageCounts(game, 2, 4);
         assertTrue(virginiaAvenue.equals(player1.getSpace()));
-        assertTrue(player1.equals(virginiaAvenue.getOwner()));
-        assertEquals(player1endingBalance, player1.getCashBalance());
-        assertEquals(0,player1.getNumberOfRolls());
+        assertEquals(0, player1.getNumberOfRolls());
         assertFalse(player1.isInJail());
 
         assertTrue(marvinGardens.equals(player2.getSpace()));
-        assertTrue(player2.equals(stJamesPlace.getOwner()));
-        assertTrue(player2.equals(marvinGardens.getOwner()));
-        assertEquals(player2endingBalance, player2.getCashBalance());
-        assertEquals(0,player2.getNumberOfRolls());
+        assertEquals(0, player2.getNumberOfRolls());
         assertFalse(player2.isInJail());
     }
 
