@@ -30,10 +30,12 @@ public class Game {
     }
 
     public static final int MINIMUM_NUMBER_OF_PLAYERS = 2;
+
     public static final int MAXIMUM_NUMBER_OF_PLAYERS = 8;
 
     private List<Space> board;
     private List<Card> chests;
+
     private List<Card> chances;
     List<Player> players = new ArrayList<Player>();
     Dice dice = new Dice();
@@ -44,6 +46,10 @@ public class Game {
 
     public Card getChest(int index) {
         return chests.get(index);
+    }
+
+    public Card getChance(int index) {
+        return chances.get(index);
     }
 
     public void addPlayer(Player player) {
@@ -64,6 +70,10 @@ public class Game {
 
     public int getNumberOfChests() {
         return chests.size();
+    }
+
+    public int getNumberOfChance() {
+        return chances.size();
     }
 
     public void randomizeCardOrder() {
