@@ -32,7 +32,6 @@ public class CardTest {
         Card.create("Invalid", "Invalid", "Invalid", 1, 1);
     }
 
-
     @Test
     public void testReadOfCardDefinitionFile() throws IOException {
         final String filename = "Cards_TEST.txt";

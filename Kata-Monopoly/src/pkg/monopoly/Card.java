@@ -43,7 +43,7 @@ public class Card {
         List<String> content = Files.readAllLines(Paths.get(filename));
         List<Card> cards = new ArrayList<Card>();
         for (String line : content) {
-            String[] tokens = line.split(",");
+            String[] tokens = line.split(";");
             if (tokens[2].equals("Keep"))
                 cards.add(Card.create(tokens[0], tokens[1], tokens[2]));
             if (tokens[2].equals("Move"))

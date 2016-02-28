@@ -1,17 +1,32 @@
-CommunityChest,Advance to Go (Collect $200),Move,Go
-CommunityChest,Bank error in your favor – Collect $200,Transaction,200,Bank
-CommunityChest,Doctor's fees – Pay $50,Transaction,-50,Bank
-CommunityChest,From sale of stock you get $50,Transaction,50,Bank
-CommunityChest,Get out of Jail Free,Keep
-CommunityChest,Go to Jail – Go directly to jail – Do not pass Go – Do not collect $200,Move,Jail
-CommunityChest,Grand Opera Night – Collect $50 from every player for opening night seats,Transaction,50,Players
-CommunityChest,Holiday Fund matures - Receive $100,Transaction,100,Bank
-CommunityChest,Income tax refund – Collect $20,Transaction,20,Bank
-CommunityChest,It is your birthday - Collect $10 from each player,Transaction,10,Players
-CommunityChest,Life insurance matures – Collect $100,Transaction,100,Bank
-CommunityChest,Pay hospital fees of $100,Transaction,-100,Bank
-CommunityChest,Pay school fees of $150,Transaction,-150,Bank
-CommunityChest,Receive $25 consultancy fee,Transaction,25,Bank
-CommunityChest,You are assessed for street repairs – $40 per house – $115 per hotel,Repairs,40,115
-CommunityChest,You have won second prize in a beauty contest – Collect $10,Transaction,10,Bank
-CommunityChest,You inherit $100,Transaction,100,Bank
+CommunityChest;Advance to Go (Collect $200);Move;Go
+CommunityChest;Bank error in your favor – Collect $200;Transaction;200;Bank
+CommunityChest;Doctor's fees – Pay $50;Transaction;-50;Bank
+CommunityChest;From sale of stock you get $50;Transaction;50;Bank
+CommunityChest;Get out of Jail Free – This card may be kept until needed or sold;Keep
+CommunityChest;Go to Jail – Go directly to jail – Do not pass Go – Do not collect $200;Move;Jail
+CommunityChest;Grand Opera Night – Collect $50 from every player for opening night seats;Transaction;50;Players
+CommunityChest;Holiday Fund matures - Receive $100;Transaction;100;Bank
+CommunityChest;Income tax refund – Collect $20;Transaction;20;Bank
+CommunityChest;It is your birthday - Collect $10 from each player;Transaction;10;Players
+CommunityChest;Life insurance matures – Collect $100;Transaction;100;Bank
+CommunityChest;Pay hospital fees of $100;Transaction;-100;Bank
+CommunityChest;Pay school fees of $150;Transaction;-150;Bank
+CommunityChest;Receive $25 consultancy fee;Transaction;25;Bank
+CommunityChest;You are assessed for street repairs – $40 per house – $115 per hotel;Repairs;40;115
+CommunityChest;You have won second prize in a beauty contest – Collect $10;Transaction;10;Bank
+CommunityChest;You inherit $100;Transaction;100;Bank
+Chance;Advance to Go (Collect $200);Move;Go
+Chance;Advance to Illinois Ave. - If you pass Go, collect $200;Move;Illinois Avenue
+Chance;Advance to St. Charles Place – If you pass Go, collect $200;Move;St. Charles Place
+Chance;Advance token to nearest Utility. If unowned, you may buy it from the Bank. If owned, throw dice and pay owner a total ten times the amount thrown.;Move;Utility
+Chance;Advance token to the nearest Railroad and pay owner twice the rental to which he is otherwise entitled. If Railroad is unowned, you may buy it from the Bank;Move;Railroad
+Chance;Bank pays you dividend of $50;Transaction;50;Bank
+Chance;Get out of Jail Free – This card may be kept until needed or sold;Keep
+Chance;Go Back 3 Spaces;Move;Back
+Chance;Go to Jail – Go directly to jail – Do not pass Go – Do not collect $200;Move;Jail
+Chance;Make general repairs on all your property – For each house pay $25 – For each hotel $100;Repairs;25;100
+Chance;Pay poor tax of $15;Transaction;-15;Bank
+Chance;Take a trip to Reading Railroad;Move;Reading Railroad
+Chance;Take a walk on the Boardwalk – Advance token to Boardwalk;Move;Boardwalk
+Chance;You have been elected Chairman of the Board – Pay each player $50;Transaction;-50;Players
+Chance;Your building loan matures – Collect $150;Transaction;150;Bank

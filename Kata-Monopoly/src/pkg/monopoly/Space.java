@@ -95,7 +95,7 @@ abstract class Space {
         List<String> content = Files.readAllLines(Paths.get(filename));
         List<Space> spaces = new ArrayList<Space>();
         for (String line : content) {
-            String[] tokens = line.split(",");
+            String[] tokens = line.split(";");
             if (tokens[0].equals("RealEstate") || tokens[0].equals("Railroad"))
                 spaces.add(Space.create(tokens[0], tokens[1], tokens[2], Integer.parseInt(tokens[3]), Integer.parseInt(tokens[4])));
             else if (tokens[0].equals("Utility"))
