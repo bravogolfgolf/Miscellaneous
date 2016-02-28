@@ -2,7 +2,6 @@ package pkg.monopoly;
 
 import org.junit.After;
 import org.junit.Before;
-import org.junit.Ignore;
 import org.junit.Test;
 
 import java.io.IOException;
@@ -294,12 +293,12 @@ public class GameTest {
             Card card1 = Card.create("CommunityChest","Instruction1","Move","Go");
             Card card2 = Card.create("CommunityChest","Instruction2","Transaction",100,"Bank");
             gameTest.randomizeCardOrder();
-            assertEquals(2, gameTest.getNumberOfCards());
+            assertEquals(2, gameTest.getNumberOfChests());
 
-            if (gameTest.getCard(0).equals(card1) && gameTest.getCard(1).equals(card2))
+            if (gameTest.getChest(0).equals(card1) && gameTest.getChest(1).equals(card2))
                 oneTwo = true;
 
-            if (gameTest.getCard(0).equals(card2) && gameTest.getCard(1).equals(card1))
+            if (gameTest.getChest(0).equals(card2) && gameTest.getChest(1).equals(card1))
                 twoOne = true;
 
             if (oneTwo && twoOne)

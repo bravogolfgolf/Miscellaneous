@@ -34,7 +34,7 @@ public class CardTest {
 
     @Test
     public void testReadOfCardDefinitionFile() throws IOException {
-        final String filename = "Cards_TEST.txt";
+        final String filename = "Chest_TEST.txt";
         List<Card> expected = new ArrayList<Card>();
         List<Card> actual;
         expected.add(Card.create("CommunityChest", "Instruction1", "Move", "Go"));

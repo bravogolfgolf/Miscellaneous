@@ -1,0 +1,4 @@
+CommunityChest;Instruction1;Move;Go
+CommunityChest;Instruction2;Transaction;100;Bank
+CommunityChest;Instruction2;Keep
+CommunityChest;Instruction2;Repairs;40;115

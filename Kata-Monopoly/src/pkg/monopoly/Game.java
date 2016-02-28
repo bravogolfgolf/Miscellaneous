@@ -14,8 +14,11 @@ public class Game {
         }
         board.get(board.size() - 1).setNextSpace(board.get(0));
 
-        String cardsFileName = String.format("Cards_%s.txt",localization);
-        cards = Card.load(cardsFileName);
+        String cardsFileName = String.format("Chest_%s.txt",localization);
+        chests = Card.load(cardsFileName);
+        cardsFileName = String.format("Chance_%s.txt",localization);
+        chances = Card.load(cardsFileName);
+
     }
 
     public class InvalidPlayerCount extends Exception {
@@ -30,7 +33,8 @@ public class Game {
     public static final int MAXIMUM_NUMBER_OF_PLAYERS = 8;
 
     private List<Space> board;
-    private List<Card> cards;
+    private List<Card> chests;
+    private List<Card> chances;
     List<Player> players = new ArrayList<Player>();
     Dice dice = new Dice();
 
@@ -38,8 +42,8 @@ public class Game {
         return board;
     }
 
-    public Card getCard(int index) {
-        return cards.get(index);
+    public Card getChest(int index) {
+        return chests.get(index);
     }
 
     public void addPlayer(Player player) {
@@ -58,12 +62,13 @@ public class Game {
         Collections.shuffle(players);
     }
 
-    public int getNumberOfCards() {
-        return cards.size();
+    public int getNumberOfChests() {
+        return chests.size();
     }
 
     public void randomizeCardOrder() {
-        Collections.shuffle(cards);
+        Collections.shuffle(chests);
+        Collections.shuffle(chances);
     }
 
     public void start() throws InvalidPlayerCount {
