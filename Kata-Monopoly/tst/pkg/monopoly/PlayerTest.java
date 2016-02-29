@@ -67,7 +67,7 @@ public class PlayerTest {
         player1.takeATurn(diceMock);
         Space endingLocation = space2;
         assertTrue(endingLocation.equals(player1.getSpace()));
-        assertEquals(0,player1.getNumberOfRolls());
+        assertEquals(0, player1.getNumberOfRolls());
     }
 
     @Test
@@ -76,7 +76,7 @@ public class PlayerTest {
         player1.takeATurn(diceMock);
         Space endingLocation = start;
         assertTrue(endingLocation.equals(player1.getSpace()));
-        assertEquals(0,player1.getNumberOfRolls());
+        assertEquals(0, player1.getNumberOfRolls());
     }
 
     @Test
@@ -100,7 +100,7 @@ public class PlayerTest {
 
         assertTrue(player1.getSpace().getDescription().equals(property2.getDescription()));
         assertTrue(property1.getOwner().equals(player1));
-        assertEquals(0,player1.getNumberOfRolls());
+        assertEquals(0, player1.getNumberOfRolls());
     }
 
     @Test
@@ -120,7 +120,7 @@ public class PlayerTest {
         assertTrue(vermontAve.getOwner().equals(player1));
         assertTrue(tennesseeAve.getOwner().equals(player1));
         assertTrue(atlanticAve.getOwner().equals(player1));
-        assertEquals(0,player1.getNumberOfRolls());
+        assertEquals(0, player1.getNumberOfRolls());
     }
 
     private int playerInitialization() {
@@ -155,7 +155,7 @@ public class PlayerTest {
         assertTrue(connecticut.getOwner().equals(player1));
         assertEquals(endingBalance, player1.getCashBalance());
         assertTrue(player1.getSpace().equals(jail));
-        assertEquals(0,player1.getNumberOfRolls());
+        assertEquals(0, player1.getNumberOfRolls());
     }
 
     @Test
@@ -172,27 +172,34 @@ public class PlayerTest {
         game.play(diceMock);
         assertEquals(beginningBalance, player1.getCashBalance());
         assertTrue(player1.getSpace().equals(jail));
-        assertEquals(0,player1.getNumberOfRolls());
+        assertEquals(0, player1.getNumberOfRolls());
     }
 
     @Test
-    public void testPlayerIsInJail(){
+    public void testPlayerIsInJail() {
         assertFalse(player1.isInJail());
         player1.setInJail(true);
         assertTrue(player1.isInJail());
     }
 
     @Test
-    public void testPostBail(){
+    public void testPostBail() {
         Jail jail = (Jail) board.get(10);
         player1.setSpace(jail);
         player1.setInJail(true);
-        assertEquals(1500,player1.getCashBalance());
+        assertEquals(1500, player1.getCashBalance());
         assertTrue(player1.isInJail());
         player1.postBail();
-        assertEquals(1450,player1.getCashBalance());
+        assertEquals(1450, player1.getCashBalance());
         assertFalse(player1.isInJail());
-        assertEquals(0,player1.getNumberOfRolls());
+        assertEquals(0, player1.getNumberOfRolls());
+    }
+
+    @Test
+    public void testAddGetOutOfJailCard() {
+        Card getOutOfJail = Card.create("CommunityChest", "Get out of Jail Free – This card may be kept until needed or sold", "Keep");
+        player1.addCard(getOutOfJail);
+        assertTrue(getOutOfJail.equals(player1.getCard()));
     }
 
     @Test

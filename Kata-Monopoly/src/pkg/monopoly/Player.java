@@ -6,6 +6,7 @@ public class Player {
     private Space space;
     private int rollCounter = 0;
     private boolean inJail = false;
+    private Card getOutOfJailCard;
 
     public Player(String description) {
         this.description = description;
@@ -86,8 +87,9 @@ public class Player {
     }
 
     private void goToJail() throws GoToJail.GoToJailException {
-        Space goToJail = space.searchForSpace(this, GoToJail.class.getSimpleName());
-        goToJail.landOn(this);}
+        Space goToJail = Space.searchForSpace(this, GoToJail.class.getSimpleName());
+        goToJail.landOn(this);
+    }
 
     public void resetRollCounter() {
         rollCounter = 0;
@@ -134,5 +136,13 @@ public class Player {
 
     public void setInJail(boolean inJail) {
         this.inJail = inJail;
+    }
+
+    public void addCard(Card getOutOfJail) {
+        this.getOutOfJailCard = getOutOfJail;
+    }
+
+    public Card getCard() {
+        return getOutOfJailCard;
     }
 }
