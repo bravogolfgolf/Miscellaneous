@@ -72,7 +72,7 @@ public class CommunityChestTest {
         assertEquals(1,Card.getCommunityChestCards().size());
     }
 
-    @Ignore
+    @Test
     public void testLandOnDrawsGetOutOfJailCard() throws GoToJail.GoToJailException {
         Card.clearCards();
         Card getOutOfJail = Card.create("CommunityChest","Get out of Jail Free – This card may be kept until needed or sold","Keep");
@@ -84,6 +84,7 @@ public class CommunityChestTest {
         assertTrue(player.getSpace().equals(communityChest));
         assertEquals(endingBalance,player.getCashBalance());
         assertEquals(0,Card.getCommunityChestCards().size());
+        assertTrue(getOutOfJail.equals(player.getCard()));
     }
 
     private void createCards(Card move) {
