@@ -311,6 +311,7 @@ public class GameTest {
     @Test
     public void testCreateActualBoard() throws IOException {
         int goCount = 0;
+        int communityChestCount = 0;
         int otherCount = 0;
         int jailCount = 0;
         int goToJailCount = 0;
@@ -332,6 +333,7 @@ public class GameTest {
         for (Space space : board) {
             String classType = space.getClass().getSimpleName();
             if (classType.equals("Go")) goCount++;
+            if (classType.equals("CommunityChest")) communityChestCount++;
             if (classType.equals("Other")) otherCount++;
             if (classType.equals("Jail")) jailCount++;
             if (classType.equals("GoToJail")) goToJailCount++;
@@ -353,7 +355,8 @@ public class GameTest {
             }
         }
         assertEquals(1, goCount);
-        assertEquals(7, otherCount);
+        assertEquals(3, communityChestCount);
+        assertEquals(4, otherCount);
         assertEquals(1, jailCount);
         assertEquals(1, goToJailCount);
         assertEquals(1, incomeTaxCount);

@@ -1,6 +1,6 @@
 Go;Go
 RealEstate;Mediterranean Avenue;Brown;60;2
-Other;Community Chest
+CommunityChest;Community Chest
 RealEstate;Baltic Avenue;Brown;60;4
 IncomeTax;Income Tax
 Railroad;Reading Railroad;Railroad;200;25
@@ -15,7 +15,7 @@ RealEstate;States Avenue;Purple;140;10
 RealEstate;Virginia Avenue;Purple;160;12
 Railroad;Pennsylvania Railroad;Railroad;200;25
 RealEstate;St. James Place;Orange;180;14
-Other;Community Chest
+CommunityChest;Community Chest
 RealEstate;Tennessee Avenue;Orange;180;14
 RealEstate;New York Avenue;Orange;200;16
 Other;Free Parking
@@ -31,7 +31,7 @@ RealEstate;Marvin Gardens;Yellow;280;24
 GoToJail;Go to Jail
 RealEstate;Pacific Avenue;Green;300;26
 RealEstate;North Carolina Avenue;Green;300;26
-Other;Community Chest
+CommunityChest;Community Chest
 RealEstate;Pennsylvania Avenue;Green;320;28
 Railroad;Short Line;Railroad;200;25
 Other;Chance

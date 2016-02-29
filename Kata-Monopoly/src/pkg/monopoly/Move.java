@@ -17,6 +17,7 @@ public class Move extends Card {
         return cardSpace;
     }
 
+    @Override
     public void action(Player player) throws GoToJail.GoToJailException {
         Space space = Space.searchForSpace(player, cardSpace);
         player.setSpace(space);

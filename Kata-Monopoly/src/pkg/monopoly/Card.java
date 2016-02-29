@@ -106,5 +106,9 @@ public class Card {
         result = 31 * result + cardText.hashCode();
         return result;
     }
+
+    public void action(Player player) throws GoToJail.GoToJailException {
+
+    }
 }
 
