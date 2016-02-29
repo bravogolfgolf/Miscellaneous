@@ -4,12 +4,15 @@ import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.util.ArrayList;
+import java.util.Collection;
+import java.util.Collections;
 import java.util.List;
 
 public class Card {
 
     private String cardType;
     private String cardText;
+    private static List<Card> cards = new ArrayList<Card>();
 
     public static Card create(String cardType, String cardText, String classType, String space) {
         if (classType.equals("Move")) return new Move(cardType, cardText, space);
@@ -29,6 +32,23 @@ public class Card {
     public static Card create(String cardType, String cardText, String classType) {
         if (classType.equals("Keep")) return new Keep(cardType, cardText);
         throw new IllegalArgumentException();
+    }
+
+    public static void addCard(Card card) {
+        cards.add(card);
+    }
+
+    public static List<Card> getCards() {
+        return cards;
+    }
+
+    public static void randomizeCardOrder() {
+        Collections.shuffle(cards);
+
+    }
+
+    public static void clearCards() {
+        cards.clear();
     }
 
     public void setCardType(String cardType) {

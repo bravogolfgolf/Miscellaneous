@@ -1,6 +1,5 @@
 package pkg.monopoly;
 
-import org.junit.Before;
 import org.junit.Test;
 
 import java.io.IOException;
@@ -30,6 +29,36 @@ public class CardTest {
     @Test(expected = IllegalArgumentException.class)
     public void testInvalidCard4() {
         Card.create("Invalid", "Invalid", "Invalid", 1, 1);
+    }
+
+    @Test
+    public void testChestCardsAreNotAlwaysInSameOrder() throws IOException {
+
+        boolean oneTwo = false;
+        boolean twoOne = false;
+
+        for (int i = 0; i < 100; i++) {
+            Card.clearCards();
+            List<Card> cards = Card.getCards();
+            assertEquals(0, cards.size());
+            Card card1 = Card.create("CommunityChest", "Instruction1", "Move", "Go");
+            Card card2 = Card.create("CommunityChest", "Instruction2", "Transaction", 100, "Bank");
+            Card.addCard(card1);
+            Card.addCard(card2);
+            Card.randomizeCardOrder();
+            cards = Card.getCards();
+            assertEquals(2, cards.size());
+
+            if (cards.get(0).equals(card1) && cards.get(1).equals(card2))
+                oneTwo = true;
+
+            if (cards.get(0).equals(card2) && cards.get(1).equals(card1))
+                twoOne = true;
+
+            if (oneTwo && twoOne)
+                break;
+        }
+        assertTrue(oneTwo && twoOne);
     }
 
     @Test

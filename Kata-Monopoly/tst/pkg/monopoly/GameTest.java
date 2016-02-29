@@ -283,31 +283,6 @@ public class GameTest {
     }
 
     @Test
-    public void testChestCardsAreNotAlwaysInSameOrder() throws IOException {
-
-        boolean oneTwo = false;
-        boolean twoOne = false;
-
-        for (int i = 0; i < 100; i++) {
-            Game gameTest = new Game("TWO");
-            Card card1 = Card.create("CommunityChest","Instruction1","Move","Go");
-            Card card2 = Card.create("CommunityChest","Instruction2","Transaction",100,"Bank");
-            gameTest.randomizeCardOrder();
-            assertEquals(2, gameTest.getNumberOfChests());
-
-            if (gameTest.getChest(0).equals(card1) && gameTest.getChest(1).equals(card2))
-                oneTwo = true;
-
-            if (gameTest.getChest(0).equals(card2) && gameTest.getChest(1).equals(card1))
-                twoOne = true;
-
-            if (oneTwo && twoOne)
-                break;
-        }
-        assertTrue(oneTwo && twoOne);
-    }
-
-    @Test
     public void testChanceCardsAreNotAlwaysInSameOrder() throws IOException {
 
         boolean oneTwo = false;
