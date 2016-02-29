@@ -4,7 +4,6 @@ import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.util.ArrayList;
-import java.util.Collection;
 import java.util.Collections;
 import java.util.List;
 
@@ -12,7 +11,8 @@ public class Card {
 
     private String cardType;
     private String cardText;
-    private static List<Card> cards = new ArrayList<Card>();
+    private static List<Card> communityChestCards = new ArrayList<Card>();
+    private static List<Card> chanceCards = new ArrayList<Card>();
 
     public static Card create(String cardType, String cardText, String classType, String space) {
         if (classType.equals("Move")) return new Move(cardType, cardText, space);
@@ -35,20 +35,29 @@ public class Card {
     }
 
     public static void addCard(Card card) {
-        cards.add(card);
+        if (card.getCardType().equals("CommunityChest"))
+            communityChestCards.add(card);
+        if (card.getCardType().equals("Chance"))
+            chanceCards.add(card);
     }
 
-    public static List<Card> getCards() {
-        return cards;
+    public static List<Card> getCommunityChestCards() {
+        return communityChestCards;
     }
 
     public static void randomizeCardOrder() {
-        Collections.shuffle(cards);
+        Collections.shuffle(communityChestCards);
+        Collections.shuffle(chanceCards);
 
     }
 
     public static void clearCards() {
-        cards.clear();
+        communityChestCards.clear();
+        chanceCards.clear();
+    }
+
+    public static List<Card> getChanceCards() {
+        return chanceCards;
     }
 
     public void setCardType(String cardType) {
@@ -96,6 +105,10 @@ public class Card {
         int result = cardType.hashCode();
         result = 31 * result + cardText.hashCode();
         return result;
+    }
+
+    public String getCardType() {
+        return cardType;
     }
 }
 

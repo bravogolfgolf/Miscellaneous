@@ -39,20 +39,50 @@ public class CardTest {
 
         for (int i = 0; i < 100; i++) {
             Card.clearCards();
-            List<Card> cards = Card.getCards();
-            assertEquals(0, cards.size());
+            List<Card> CommunityChestCards = Card.getCommunityChestCards();
+            assertEquals(0, CommunityChestCards.size());
             Card card1 = Card.create("CommunityChest", "Instruction1", "Move", "Go");
             Card card2 = Card.create("CommunityChest", "Instruction2", "Transaction", 100, "Bank");
             Card.addCard(card1);
             Card.addCard(card2);
             Card.randomizeCardOrder();
-            cards = Card.getCards();
-            assertEquals(2, cards.size());
+            CommunityChestCards = Card.getCommunityChestCards();
+            assertEquals(2, CommunityChestCards.size());
 
-            if (cards.get(0).equals(card1) && cards.get(1).equals(card2))
+            if (CommunityChestCards.get(0).equals(card1) && CommunityChestCards.get(1).equals(card2))
                 oneTwo = true;
 
-            if (cards.get(0).equals(card2) && cards.get(1).equals(card1))
+            if (CommunityChestCards.get(0).equals(card2) && CommunityChestCards.get(1).equals(card1))
+                twoOne = true;
+
+            if (oneTwo && twoOne)
+                break;
+        }
+        assertTrue(oneTwo && twoOne);
+    }
+
+    @Test
+    public void testChanceCardsAreNotAlwaysInSameOrder() throws IOException {
+
+        boolean oneTwo = false;
+        boolean twoOne = false;
+
+        for (int i = 0; i < 100; i++) {
+            Card.clearCards();
+            List<Card> ChanceCards = Card.getChanceCards();
+            assertEquals(0, ChanceCards.size());
+            Card card1 = Card.create("Chance", "Instruction1", "Move", "Go");
+            Card card2 = Card.create("Chance", "Instruction2", "Transaction", 100, "Bank");
+            Card.addCard(card1);
+            Card.addCard(card2);
+            Card.randomizeCardOrder();
+            ChanceCards = Card.getChanceCards();
+            assertEquals(2, ChanceCards.size());
+
+            if (ChanceCards.get(0).equals(card1) && ChanceCards.get(1).equals(card2))
+                oneTwo = true;
+
+            if (ChanceCards.get(0).equals(card2) && ChanceCards.get(1).equals(card1))
                 twoOne = true;
 
             if (oneTwo && twoOne)
