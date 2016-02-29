@@ -76,28 +76,12 @@ public class CardTest {
 
         Card expectedTopCard = Card.create("CommunityChest", "Instruction1", "Move", "Go");
         Card topCard = Card.drawCommunityChestCard();
+        Card.replaceCommunityChestCard(topCard);
         Card expectedBottomCard = Card.getCommunityChestCards().get(BOTTOM_CARD);
 
         assertEquals(NUMBER_OF_CARDS_IN_DECK, Card.getCommunityChestCards().size());
         assertTrue(expectedTopCard.equals(topCard));
         assertTrue(topCard.equals(expectedBottomCard));
-
-        expectedTopCard = Card.create("CommunityChest", "Instruction2", "Transaction", 100, "Bank");
-        topCard = Card.drawCommunityChestCard();
-        expectedBottomCard = Card.getCommunityChestCards().get(BOTTOM_CARD);
-
-        assertEquals(NUMBER_OF_CARDS_IN_DECK, Card.getCommunityChestCards().size());
-        assertTrue(expectedTopCard.equals(topCard));
-        assertTrue(topCard.equals(expectedBottomCard));
-
-        expectedTopCard = Card.create("CommunityChest", "Instruction2", "Keep");
-        topCard = Card.drawCommunityChestCard();
-        expectedBottomCard = Card.getCommunityChestCards().get(2);
-
-        assertEquals(3, Card.getCommunityChestCards().size());
-        assertTrue(expectedTopCard.equals(topCard));
-        assertTrue(topCard.equals(expectedBottomCard));
-
     }
 
     @Test

@@ -34,13 +34,6 @@ public class Card {
         throw new IllegalArgumentException();
     }
 
-    static Card drawCommunityChestCard() {
-        Card card = communityChestCards.remove(0);
-        communityChestCards.add(card);
-        return card;
-
-    }
-
     public void setCardType(String cardType) {
         this.cardType = cardType;
     }
@@ -57,16 +50,27 @@ public class Card {
         Card.communityChestCards = communityChestCards;
     }
 
-    public static void addChanceCards(List<Card> chanceCards) {
-        Card.chanceCards = chanceCards;
-    }
-
     public static List<Card> getCommunityChestCards() {
         return communityChestCards;
     }
 
+    static Card drawCommunityChestCard() {
+        return communityChestCards.remove(0);
+    }
+
+    public static void replaceCommunityChestCard(Card card) {
+        communityChestCards.add(card);
+    }
+
+    public static void addChanceCards(List<Card> chanceCards) {
+        Card.chanceCards = chanceCards;
+    }
+
     public static List<Card> getChanceCards() {
         return chanceCards;
+    }
+
+    public void action(Player player) throws GoToJail.GoToJailException {
     }
 
     public static void randomizeCardOrder() {
@@ -112,10 +116,6 @@ public class Card {
         int result = cardType.hashCode();
         result = 31 * result + cardText.hashCode();
         return result;
-    }
-
-    public void action(Player player) throws GoToJail.GoToJailException {
-
     }
 }
 
