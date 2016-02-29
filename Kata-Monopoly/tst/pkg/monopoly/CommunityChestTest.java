@@ -2,6 +2,7 @@ package pkg.monopoly;
 
 import org.junit.After;
 import org.junit.Before;
+import org.junit.Ignore;
 import org.junit.Test;
 
 import java.util.ArrayList;
@@ -43,7 +44,7 @@ public class CommunityChestTest {
         assertEquals("Community Chest", communityChest.getDescription());
     }
 
-    @Test
+    @Ignore
     public void testLandOnDrawsMoveCard() throws GoToJail.GoToJailException {
         Card move = Card.create("CommunityChest","Advance to Go (Collect $200)","Move","Go");
         createCards(move);

@@ -11,6 +11,9 @@ import static org.junit.Assert.assertTrue;
 
 public class CardTest {
 
+    public static final int NUMBER_OF_CARDS_IN_DECK = 4;
+    public static final int BOTTOM_CARD = 3;
+
     @Test(expected = IllegalArgumentException.class)
     public void testInvalidCard1() {
         Card.create("Invalid", "Invalid", "Invalid");
@@ -64,6 +67,37 @@ public class CardTest {
                 break;
         }
         assertTrue(oneTwo && twoOne);
+    }
+
+    @Test
+    public void testDrawCommunityChestCard() throws IOException {
+        List<Card> communityChestCards = Card.load("Chest_TEST.txt");
+        Card.addCommunityChestCards(communityChestCards);
+
+        Card expectedTopCard = Card.create("CommunityChest", "Instruction1", "Move", "Go");
+        Card topCard = Card.drawCommunityChestCard();
+        Card expectedBottomCard = Card.getCommunityChestCards().get(BOTTOM_CARD);
+
+        assertEquals(NUMBER_OF_CARDS_IN_DECK, Card.getCommunityChestCards().size());
+        assertTrue(expectedTopCard.equals(topCard));
+        assertTrue(topCard.equals(expectedBottomCard));
+
+        expectedTopCard = Card.create("CommunityChest", "Instruction2", "Transaction", 100, "Bank");
+        topCard = Card.drawCommunityChestCard();
+        expectedBottomCard = Card.getCommunityChestCards().get(BOTTOM_CARD);
+
+        assertEquals(NUMBER_OF_CARDS_IN_DECK, Card.getCommunityChestCards().size());
+        assertTrue(expectedTopCard.equals(topCard));
+        assertTrue(topCard.equals(expectedBottomCard));
+
+        expectedTopCard = Card.create("CommunityChest", "Instruction2", "Keep");
+        topCard = Card.drawCommunityChestCard();
+        expectedBottomCard = Card.getCommunityChestCards().get(2);
+
+        assertEquals(3, Card.getCommunityChestCards().size());
+        assertTrue(expectedTopCard.equals(topCard));
+        assertTrue(topCard.equals(expectedBottomCard));
+
     }
 
     @Test

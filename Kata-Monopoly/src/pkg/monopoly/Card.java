@@ -34,6 +34,13 @@ public class Card {
         throw new IllegalArgumentException();
     }
 
+    static Card drawCommunityChestCard() {
+        Card card = communityChestCards.remove(0);
+        communityChestCards.add(card);
+        return card;
+
+    }
+
     public void setCardType(String cardType) {
         this.cardType = cardType;
     }
