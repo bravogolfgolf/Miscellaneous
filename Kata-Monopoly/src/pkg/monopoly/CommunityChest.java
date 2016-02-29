@@ -9,7 +9,7 @@ public class CommunityChest extends Space {
     public void landOn(Player player) throws GoToJail.GoToJailException {
         Card card = Card.drawCommunityChestCard();
         card.action(player);
-        Card.replaceChanceCard(card);
+        Card.replaceCommunityChestCard(card);
     }
 
 }

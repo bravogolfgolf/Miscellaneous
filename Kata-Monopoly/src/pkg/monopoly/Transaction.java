@@ -18,4 +18,9 @@ public class Transaction extends Card {
     public void setRecipient(String recipient) {
         this.recipient = recipient;
     }
+
+    @Override
+    public void action(Player player) throws GoToJail.GoToJailException {
+        player.changeCashBalanceBy(amount);
+    }
 }

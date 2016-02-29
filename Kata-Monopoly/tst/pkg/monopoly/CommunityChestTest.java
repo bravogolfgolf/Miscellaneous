@@ -2,6 +2,7 @@ package pkg.monopoly;
 
 import org.junit.After;
 import org.junit.Before;
+import org.junit.Ignore;
 import org.junit.Test;
 
 import java.util.ArrayList;
@@ -50,9 +51,39 @@ public class CommunityChestTest {
         createCards(move);
         assertTrue(player.getSpace().equals(communityChest));
         int endingBalance = player.getCashBalance() + 200;
+        assertEquals(1,Card.getCommunityChestCards().size());
         communityChest.landOn(player);
         assertTrue(player.getSpace().equals(go));
         assertEquals(endingBalance,player.getCashBalance());
+        assertEquals(1,Card.getCommunityChestCards().size());
+    }
+
+    @Test
+    public void testLandOnDrawsTransactionCardForBank() throws GoToJail.GoToJailException {
+        Card.clearCards();
+        Card transaction = Card.create("CommunityChest","Bank error in your favor – Collect $200","Transaction",200,"Bank");
+        createCards(transaction);
+        assertTrue(player.getSpace().equals(communityChest));
+        int endingBalance = player.getCashBalance() + 200;
+        assertEquals(1,Card.getCommunityChestCards().size());
+        communityChest.landOn(player);
+        assertTrue(player.getSpace().equals(communityChest));
+        assertEquals(endingBalance,player.getCashBalance());
+        assertEquals(1,Card.getCommunityChestCards().size());
+    }
+
+    @Ignore
+    public void testLandOnDrawsGetOutOfJailCard() throws GoToJail.GoToJailException {
+        Card.clearCards();
+        Card getOutOfJail = Card.create("CommunityChest","Get out of Jail Free – This card may be kept until needed or sold","Keep");
+        createCards(getOutOfJail);
+        assertTrue(player.getSpace().equals(communityChest));
+        int endingBalance = player.getCashBalance();
+        assertEquals(1,Card.getCommunityChestCards().size());
+        communityChest.landOn(player);
+        assertTrue(player.getSpace().equals(communityChest));
+        assertEquals(endingBalance,player.getCashBalance());
+        assertEquals(0,Card.getCommunityChestCards().size());
     }
 
     private void createCards(Card move) {

@@ -5,4 +5,9 @@ public class Keep extends Card {
         setCardType(cardType);
         setCardText(cardText);
     }
+
+    @Override
+    public void action(Player player) throws GoToJail.GoToJailException {
+
+    }
 }
