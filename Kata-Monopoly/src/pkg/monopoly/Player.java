@@ -1,12 +1,15 @@
 package pkg.monopoly;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class Player {
     private final String description;
     private int cashBalance = 0;
     private Space space;
     private int rollCounter = 0;
     private boolean inJail = false;
-    private Card getOutOfJailCard;
+    private List<Card> getOutOfJailCards = new ArrayList<Card>();
 
     public Player(String description) {
         this.description = description;
@@ -38,11 +41,20 @@ public class Player {
         return cashBalance;
     }
 
-    public boolean isInJail() {
-        return inJail;
+    public void addCard(Card getOutOfJail) {
+        getOutOfJailCards.add(getOutOfJail);
     }
 
-    public void manageProperties() {
+    public Card getCard() {
+        return getOutOfJailCards.remove(0);
+    }
+
+    public void setInJail(boolean inJail) {
+        this.inJail = inJail;
+    }
+
+    public boolean isInJail() {
+        return inJail;
     }
 
     public void takeATurn(Dice dice) throws GoToJail.GoToJailException {
@@ -52,6 +64,9 @@ public class Player {
             doubleRolled(dice);
         else
             doubleNotRolled(dice);
+    }
+
+    public void manageProperties() {
     }
 
     private void doubleRolled(Dice dice) throws GoToJail.GoToJailException {
@@ -73,11 +88,6 @@ public class Player {
         }
     }
 
-    private void releasedFromJail() {
-        setInJail(false);
-        resetRollCounter();
-    }
-
     private void incrementDoublesRolledInATurnCounter() {
         rollCounter++;
     }
@@ -86,12 +96,13 @@ public class Player {
         return rollCounter;
     }
 
+    private void releasedFromJail() {
+        setInJail(false);
+        resetRollCounter();
+    }
+
     private void goToJail() throws GoToJail.GoToJailException {
         Space goToJail = Space.searchForSpace(this, GoToJail.class.getSimpleName());goToJail.landOn(this);}
-
-    public void resetRollCounter() {
-        rollCounter = 0;
-    }
 
     private void doubleNotRolled(Dice dice) throws GoToJail.GoToJailException {
         if (isInJail()) {
@@ -112,6 +123,10 @@ public class Player {
         releasedFromJail();
     }
 
+    public void resetRollCounter() {
+        rollCounter = 0;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -130,17 +145,5 @@ public class Player {
         result = 31 * result + (space != null ? space.hashCode() : 0);
         result = 31 * result + rollCounter;
         return result;
-    }
-
-    public void setInJail(boolean inJail) {
-        this.inJail = inJail;
-    }
-
-    public void addCard(Card getOutOfJail) {
-        this.getOutOfJailCard = getOutOfJail;
-    }
-
-    public Card getCard() {
-        return getOutOfJailCard;
     }
 }

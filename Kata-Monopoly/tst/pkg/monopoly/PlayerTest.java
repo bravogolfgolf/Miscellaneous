@@ -203,6 +203,16 @@ public class PlayerTest {
     }
 
     @Test
+    public void testAddGetOutOfJailCards() {
+        Card getOutOfJail1 = Card.create("CommunityChest", "Get out of Jail Free – This card may be kept until needed or sold", "Keep");
+        Card getOutOfJail2 = Card.create("Chance", "Get out of Jail Free – This card may be kept until needed or sold", "Keep");
+        player1.addCard(getOutOfJail1);
+        player1.addCard(getOutOfJail2);
+        assertTrue(getOutOfJail1.equals(player1.getCard()));
+        assertTrue(getOutOfJail2.equals(player1.getCard()));
+    }
+
+    @Test
     public void testPlayerHashcode() {
         Player player2 = new Player("Cat");
         assertEquals(player1.hashCode(), player2.hashCode());
