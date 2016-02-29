@@ -13,6 +13,8 @@ public class Game {
             board.get(i).setNextSpace(board.get(i + 1));
         }
         board.get(board.size() - 1).setNextSpace(board.get(0));
+        Card.addCommunityChestCards(Card.load(String.format("Chest_%s.txt",localization)));
+        Card.addChanceCards(Card.load(String.format("Chance_%s.txt",localization)));
     }
 
     public class InvalidPlayerCount extends Exception {

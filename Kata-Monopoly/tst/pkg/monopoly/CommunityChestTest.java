@@ -44,7 +44,7 @@ public class CommunityChestTest {
         assertEquals("Community Chest", communityChest.getDescription());
     }
 
-    @Ignore
+    @Test
     public void testLandOnDrawsMoveCard() throws GoToJail.GoToJailException {
         Card move = Card.create("CommunityChest","Advance to Go (Collect $200)","Move","Go");
         createCards(move);
