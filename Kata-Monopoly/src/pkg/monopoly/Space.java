@@ -31,6 +31,7 @@ abstract class Space {
         if (classType.equals("GoToJail")) return new GoToJail(description);
         if (classType.equals("IncomeTax")) return new IncomeTax(description);
         if (classType.equals("LuxuryTax")) return new LuxuryTax(description);
+        if(classType.equals("CommunityChest")) return new CommunityChest(description);
         throw new IllegalArgumentException("Incorrect value");
     }
 
