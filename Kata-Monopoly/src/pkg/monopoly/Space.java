@@ -75,7 +75,7 @@ abstract class Space {
         player.setSpace(next);
     }
 
-    Space searchForSpace(Player player, String className) {
+    static Space searchForSpace(Player player, String className) {
         Space currentSpace = player.getSpace();
         Space nextSpace = currentSpace.getNextSpace();
 

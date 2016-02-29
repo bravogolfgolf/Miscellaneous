@@ -39,6 +39,10 @@ public class Card {
         this.cardText = cardText;
     }
 
+    public String getCardText() {
+        return cardText;
+    }
+
     public static List<Card> load(String filename) throws IOException {
         List<String> content = Files.readAllLines(Paths.get(filename));
         List<Card> cards = new ArrayList<Card>();
