@@ -41,10 +41,15 @@ public class CardTest {
             Card.clearCards();
             List<Card> CommunityChestCards = Card.getCommunityChestCards();
             assertEquals(0, CommunityChestCards.size());
+
+            List<Card> mimicOutputFromCardLoadMethod = new ArrayList<Card>();
             Card card1 = Card.create("CommunityChest", "Instruction1", "Move", "Go");
             Card card2 = Card.create("CommunityChest", "Instruction2", "Transaction", 100, "Bank");
-            Card.addCard(card1);
-            Card.addCard(card2);
+
+            mimicOutputFromCardLoadMethod.add(card1);
+            mimicOutputFromCardLoadMethod.add(card2);
+
+            Card.addCommunityChestCards(mimicOutputFromCardLoadMethod);
             Card.randomizeCardOrder();
             CommunityChestCards = Card.getCommunityChestCards();
             assertEquals(2, CommunityChestCards.size());
@@ -71,10 +76,15 @@ public class CardTest {
             Card.clearCards();
             List<Card> ChanceCards = Card.getChanceCards();
             assertEquals(0, ChanceCards.size());
+
+            List<Card> mimicOutputFromCardLoadMethod = new ArrayList<Card>();
             Card card1 = Card.create("Chance", "Instruction1", "Move", "Go");
             Card card2 = Card.create("Chance", "Instruction2", "Transaction", 100, "Bank");
-            Card.addCard(card1);
-            Card.addCard(card2);
+
+            mimicOutputFromCardLoadMethod.add(card1);
+            mimicOutputFromCardLoadMethod.add(card2);
+
+            Card.addChanceCards(mimicOutputFromCardLoadMethod);
             Card.randomizeCardOrder();
             ChanceCards = Card.getChanceCards();
             assertEquals(2, ChanceCards.size());

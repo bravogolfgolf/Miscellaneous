@@ -34,32 +34,6 @@ public class Card {
         throw new IllegalArgumentException();
     }
 
-    public static void addCard(Card card) {
-        if (card.getCardType().equals("CommunityChest"))
-            communityChestCards.add(card);
-        if (card.getCardType().equals("Chance"))
-            chanceCards.add(card);
-    }
-
-    public static List<Card> getCommunityChestCards() {
-        return communityChestCards;
-    }
-
-    public static void randomizeCardOrder() {
-        Collections.shuffle(communityChestCards);
-        Collections.shuffle(chanceCards);
-
-    }
-
-    public static void clearCards() {
-        communityChestCards.clear();
-        chanceCards.clear();
-    }
-
-    public static List<Card> getChanceCards() {
-        return chanceCards;
-    }
-
     public void setCardType(String cardType) {
         this.cardType = cardType;
     }
@@ -70,6 +44,32 @@ public class Card {
 
     public String getCardText() {
         return cardText;
+    }
+
+    public static void addCommunityChestCards(List<Card> communityChestCards) {
+        Card.communityChestCards = communityChestCards;
+    }
+
+    public static void addChanceCards(List<Card> chanceCards) {
+        Card.chanceCards = chanceCards;
+    }
+
+    public static List<Card> getCommunityChestCards() {
+        return communityChestCards;
+    }
+
+    public static List<Card> getChanceCards() {
+        return chanceCards;
+    }
+
+    public static void randomizeCardOrder() {
+        Collections.shuffle(communityChestCards);
+        Collections.shuffle(chanceCards);
+    }
+
+    public static void clearCards() {
+        communityChestCards.clear();
+        chanceCards.clear();
     }
 
     public static List<Card> load(String filename) throws IOException {
@@ -105,10 +105,6 @@ public class Card {
         int result = cardType.hashCode();
         result = 31 * result + cardText.hashCode();
         return result;
-    }
-
-    public String getCardType() {
-        return cardType;
     }
 }
 
