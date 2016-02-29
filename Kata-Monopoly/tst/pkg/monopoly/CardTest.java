@@ -85,6 +85,21 @@ public class CardTest {
     }
 
     @Test
+    public void testDrawChanceCard() throws IOException {
+        List<Card> chanceCards = Card.load("Chance_TEST.txt");
+        Card.addChanceCards(chanceCards);
+
+        Card expectedTopCard = Card.create("Chance", "Instruction1", "Move", "Go");
+        Card topCard = Card.drawChanceCard();
+        Card.replaceChanceCard(topCard);
+        Card expectedBottomCard = Card.getChanceCards().get(BOTTOM_CARD);
+
+        assertEquals(NUMBER_OF_CARDS_IN_DECK, Card.getChanceCards().size());
+        assertTrue(expectedTopCard.equals(topCard));
+        assertTrue(topCard.equals(expectedBottomCard));
+    }
+
+    @Test
     public void testChanceCardsAreNotAlwaysInSameOrder() throws IOException {
 
         boolean oneTwo = false;

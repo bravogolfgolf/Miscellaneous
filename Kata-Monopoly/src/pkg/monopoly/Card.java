@@ -70,6 +70,14 @@ public class Card {
         return chanceCards;
     }
 
+    public static Card drawChanceCard() {
+        return chanceCards.remove(0);
+    }
+
+    public static void replaceChanceCard(Card card) {
+        chanceCards.add(card);
+    }
+
     public void action(Player player) throws GoToJail.GoToJailException {
     }
 
@@ -118,4 +126,3 @@ public class Card {
         return result;
     }
 }
-
