@@ -7,7 +7,7 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
-public class Card {
+public abstract class Card {
 
     private String cardType;
     private String cardText;
@@ -78,8 +78,7 @@ public class Card {
         chanceCards.add(card);
     }
 
-    public void action(Player player) throws GoToJail.GoToJailException {
-    }
+    abstract void action(Player player) throws GoToJail.GoToJailException;
 
     public static void randomizeCardOrder() {
         Collections.shuffle(communityChestCards);

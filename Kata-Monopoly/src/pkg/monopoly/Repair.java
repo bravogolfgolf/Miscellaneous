@@ -18,4 +18,9 @@ public class Repair extends Card {
     public void setHotelAssessmentAmount(int hotelAssessmentAmount) {
         this.hotelAssesmentAmount = hotelAssessmentAmount;
     }
+
+    @Override
+    void action(Player player) throws GoToJail.GoToJailException {
+
+    }
 }

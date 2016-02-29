@@ -8,6 +8,5 @@ public class Keep extends Card {
 
     @Override
     public void action(Player player) throws GoToJail.GoToJailException {
-
     }
 }
