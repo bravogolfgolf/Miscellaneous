@@ -55,6 +55,7 @@ public class Game {
         if (getNumberOfPlayers() < MINIMUM_NUMBER_OF_PLAYERS ||
                 getNumberOfPlayers() > MAXIMUM_NUMBER_OF_PLAYERS)
             throw new InvalidPlayerCount(String.format("Number of Players: %d", getNumberOfPlayers()));
+        randomizePlayerOrder();
         play(dice);
     }
 

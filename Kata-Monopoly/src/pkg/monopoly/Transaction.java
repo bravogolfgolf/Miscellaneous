@@ -21,6 +21,8 @@ public class Transaction extends Card {
 
     @Override
     public void action(Player player) throws GoToJail.GoToJailException {
-        player.changeCashBalanceBy(amount);
+        if (recipient.equals("Bank"))
+            player.changeCashBalanceBy(amount);
+            // TODO figure out how to get all players still in game
     }
 }
