@@ -66,6 +66,14 @@ public class RealEstateGroupTest {
     }
 
     @Test
+    public void testImprovements() {
+        mediterraneanAve.addImprovements();
+        assertEquals(1, mediterraneanAve.getImprovements());
+        mediterraneanAve.removeImprovements();
+        assertEquals(0,mediterraneanAve.getImprovements());
+    }
+
+    @Test
     public void testLandOnUnownedProperty() {
         assertTrue(mediterraneanAve.getOwner().isBank());
         int endingBalance = player1BeginningBalance - PRICE_OF_MEDITERRANEAN;

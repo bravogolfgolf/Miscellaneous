@@ -87,7 +87,7 @@ public class CommunityChestTest {
         assertTrue(getOutOfJail.equals(player.getCard()));
     }
 
-    @Test
+    @Ignore
     public void testLandOnDrawsRepairsCard() throws GoToJail.GoToJailException {
         assertTrue(false);
         //TODO Start here in the moring
