@@ -54,7 +54,7 @@ public class SpaceTest {
     }
 
     @Test(expected = IllegalArgumentException.class)
-    public void testCreateSpaceUtilitiyThrowsException() throws IllegalArgumentException {
+    public void testCreateSpaceUtilityThrowsException() throws IllegalArgumentException {
         Space.create("Invalid", "Invalid", "Invalid", -1);
     }
 
@@ -98,6 +98,22 @@ public class SpaceTest {
         assertEquals(0, start.passByCounter);
         assertEquals(1, space1.passByCounter);
         assertEquals(0, space2.passByCounter);
+    }
+
+    @Test
+    public void testGetAllRealEstateOfPlayer() throws IOException {
+        Game game = new Game("US");
+        List<Space> board = game.getBoard();
+        RealEstate mediterranean = (RealEstate) board.get(1);
+        RealEstate baltic = (RealEstate) board.get(3);
+        CommunityChest communityChest = (CommunityChest) board.get(2);
+        player.setSpace(communityChest);
+        mediterranean.setOwner(player);
+        baltic.setOwner(player);
+        List<RealEstate> realEstateHoldings= Space.getAllRealEstateOf(player);
+        assertEquals(2,realEstateHoldings.size());
+        assertTrue(baltic.equals(realEstateHoldings.get(0)));
+        assertTrue(mediterranean.equals(realEstateHoldings.get(1)));
     }
 
     @Test

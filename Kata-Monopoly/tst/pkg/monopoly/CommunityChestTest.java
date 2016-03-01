@@ -2,7 +2,6 @@ package pkg.monopoly;
 
 import org.junit.After;
 import org.junit.Before;
-import org.junit.Ignore;
 import org.junit.Test;
 
 import java.util.ArrayList;
@@ -18,6 +17,8 @@ public class CommunityChestTest {
     private Go go;
     private CommunityChest communityChest;
     private Player player;
+    private RealEstate mediterranean;
+    private RealEstate baltic;
 
     @Before
     public void setUp() throws Exception {
@@ -27,6 +28,8 @@ public class CommunityChestTest {
         communityChest = (CommunityChest) board.get(2);
         player = new Player("Cat");
         player.setSpace(communityChest);
+        mediterranean = (RealEstate) board.get(1);
+        baltic = (RealEstate) board.get(3);
     }
 
     @After
@@ -36,7 +39,8 @@ public class CommunityChestTest {
         go = null;
         communityChest = null;
         player = null;
-
+        mediterranean = null;
+        baltic = null;
     }
 
     @Test
@@ -87,21 +91,38 @@ public class CommunityChestTest {
         assertTrue(getOutOfJail.equals(player.getCard()));
     }
 
-    @Ignore
+    @Test
     public void testLandOnDrawsRepairsCard() throws GoToJail.GoToJailException {
-        assertTrue(false);
-        //TODO Start here in the moring
-        // need to add building improvements to properties first
         Card.clearCards();
         Card repairs = Card.create("CommunityChest", "You are assessed for street repairs – $40 per house – $115 per hotel", "Repairs", 40, 115);
         createCards(repairs);
-        assertTrue(player.getSpace().equals(communityChest));
-        int endingBalance = player.getCashBalance();
         assertEquals(1, Card.getCommunityChestCards().size());
+
+        int endingBalance = player.getCashBalance() - ((40*4) + 115);
+        assertTrue(player.getSpace().equals(communityChest));
+        mediterranean.setOwner(player);
+        baltic.setOwner(player);
+        addFourHouses(mediterranean);
+        addHotel(baltic);
         communityChest.landOn(player);
         assertTrue(player.getSpace().equals(communityChest));
         assertEquals(endingBalance, player.getCashBalance());
         assertEquals(1, Card.getCommunityChestCards().size());
+    }
+
+    private void addHotel(RealEstate realEstate) {
+        realEstate.addImprovements();
+        realEstate.addImprovements();
+        realEstate.addImprovements();
+        realEstate.addImprovements();
+        realEstate.addImprovements();
+        }
+
+    private void addFourHouses(RealEstate realEstate) {
+        realEstate.addImprovements();
+        realEstate.addImprovements();
+        realEstate.addImprovements();
+        realEstate.addImprovements();
     }
 
     private void createCards(Card move) {

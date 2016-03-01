@@ -10,14 +10,6 @@ public class RealEstate extends Property {
         super(description, group, price, rent);
     }
 
-    @Override
-    protected int calculateRentOwed() {
-        List<Space> properties = getAllPropertiesInGroup();
-        if (allPropertiesHaveSameOwner(properties))
-            return rent * 2;
-        return rent;
-    }
-
     public void addImprovements() {
         numberOfImprovments++;
     }
@@ -28,6 +20,14 @@ public class RealEstate extends Property {
 
     public int getImprovements() {
         return numberOfImprovments;
+    }
+
+    @Override
+    protected int calculateRentOwed() {
+        List<Space> properties = getAllPropertiesInGroup();
+        if (allPropertiesHaveSameOwner(properties))
+            return rent * 2;
+        return rent;
     }
 }
 

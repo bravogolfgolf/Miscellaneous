@@ -31,7 +31,7 @@ abstract class Space {
         if (classType.equals("GoToJail")) return new GoToJail(description);
         if (classType.equals("IncomeTax")) return new IncomeTax(description);
         if (classType.equals("LuxuryTax")) return new LuxuryTax(description);
-        if(classType.equals("CommunityChest")) return new CommunityChest(description);
+        if (classType.equals("CommunityChest")) return new CommunityChest(description);
         throw new IllegalArgumentException("Incorrect value");
     }
 
@@ -75,7 +75,13 @@ abstract class Space {
         player.setSpace(next);
     }
 
-    static Space searchForSpace(Player player, String className) {
+    public void passBy(Player player) {
+    }
+
+    public void landOn(Player player) throws GoToJail.GoToJailException {
+    }
+
+    public static Space searchForSpace(Player player, String className) {
         Space currentSpace = player.getSpace();
         Space nextSpace = currentSpace.getNextSpace();
 
@@ -86,10 +92,22 @@ abstract class Space {
         return nextSpace;
     }
 
-    public void passBy(Player player) {
-    }
-
-    public void landOn(Player player) throws GoToJail.GoToJailException {
+    public static List<RealEstate> getAllRealEstateOf(Player player) {
+        List<RealEstate> realEstateHoldings = new ArrayList<RealEstate>();
+        Space startingSpace = player.getSpace();
+        Space currentSpace = startingSpace;
+        Space nextSpace = currentSpace.getNextSpace();
+        while (!nextSpace.equals(startingSpace)) {
+            if (nextSpace.getClass().getSimpleName().equals("RealEstate")) {
+                RealEstate realEstate = (RealEstate) nextSpace;
+                if (realEstate.getOwner().equals(player)) {
+                    realEstateHoldings.add(realEstate);
+                }
+            }
+            currentSpace = nextSpace;
+            nextSpace = currentSpace.getNextSpace();
+        }
+        return realEstateHoldings;
     }
 
     public static List<Space> load(String filename) throws IOException {
