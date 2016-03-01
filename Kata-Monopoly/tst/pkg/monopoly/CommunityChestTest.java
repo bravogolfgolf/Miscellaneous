@@ -19,6 +19,7 @@ public class CommunityChestTest {
     private Player player;
     private RealEstate mediterranean;
     private RealEstate baltic;
+    private Jail jail;
 
     @Before
     public void setUp() throws Exception {
@@ -30,6 +31,7 @@ public class CommunityChestTest {
         player.setSpace(communityChest);
         mediterranean = (RealEstate) board.get(1);
         baltic = (RealEstate) board.get(3);
+        jail = (Jail) board.get(10);
     }
 
     @After
@@ -41,6 +43,7 @@ public class CommunityChestTest {
         player = null;
         mediterranean = null;
         baltic = null;
+        jail = null;
     }
 
     @Test
@@ -98,7 +101,7 @@ public class CommunityChestTest {
         createCards(repairs);
         assertEquals(1, Card.getCommunityChestCards().size());
 
-        int endingBalance = player.getCashBalance() - ((40*4) + 115);
+        int endingBalance = player.getCashBalance() - ((40 * 4) + 115);
         assertTrue(player.getSpace().equals(communityChest));
         mediterranean.setOwner(player);
         baltic.setOwner(player);
@@ -116,13 +119,23 @@ public class CommunityChestTest {
         realEstate.addImprovements();
         realEstate.addImprovements();
         realEstate.addImprovements();
-        }
+    }
 
     private void addFourHouses(RealEstate realEstate) {
         realEstate.addImprovements();
         realEstate.addImprovements();
         realEstate.addImprovements();
         realEstate.addImprovements();
+    }
+
+    @Test (expected = GoToJail.GoToJailException.class)
+    public void testGotToJailCard() throws GoToJail.GoToJailException {
+        Card.clearCards();
+        Card goToJail = Card.create("CommunityChest", "Go to Jail – Go directly to jail – Do not pass Go – Do not collect $200", "Move", "GoToJail");
+        createCards(goToJail);
+        assertEquals(1, Card.getCommunityChestCards().size());
+        assertTrue(player.getSpace().equals(communityChest));
+        communityChest.landOn(player);
     }
 
     private void createCards(Card move) {
