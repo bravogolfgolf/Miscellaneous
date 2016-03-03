@@ -11,7 +11,7 @@ import java.util.List;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
 
-public class CommunityChestTest {
+public class CardActionTest {
 
     private Game game;
     private List<Space> board;
