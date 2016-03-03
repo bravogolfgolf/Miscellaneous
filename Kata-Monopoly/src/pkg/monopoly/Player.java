@@ -29,6 +29,18 @@ public class Player {
         return nextPlayer;
     }
 
+    public List<Player> getAllOtherPlayersInGame() {
+        List<Player> otherPlayers = new ArrayList<Player>();
+        Player currentPlayer = this;
+        Player nextPlayer = currentPlayer.getNextPlayer();
+        while (!nextPlayer.equals(this)) {
+            otherPlayers.add(nextPlayer);
+            currentPlayer = nextPlayer;
+            nextPlayer = currentPlayer.getNextPlayer();
+        }
+        return otherPlayers;
+    }
+
     public static Player newBank() {
         return new BankPlayer("Bank");
     }
@@ -115,8 +127,7 @@ public class Player {
 
     private void goToJail() throws GoToJail.GoToJailException {
         Space goToJail = Space.searchForSpace(this, GoToJail.class.getSimpleName());
-        goToJail.landOn(this);
-    }
+        goToJail.landOn(this);}
 
     private void doubleNotRolled(Dice dice) throws GoToJail.GoToJailException {
         if (isInJail()) {

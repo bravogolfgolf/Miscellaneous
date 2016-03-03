@@ -1,6 +1,5 @@
 package pkg.monopoly;
 
-import java.util.ArrayList;
 import java.util.List;
 
 public class Transaction extends Card {
@@ -27,24 +26,15 @@ public class Transaction extends Card {
         if (recipient.equals("Bank"))
             player.changeCashBalanceBy(amount);
         if (recipient.equals("Players")) {
-            List<Player> otherPlayers = getAllOtherPlayersInGame(player);
-            int multipleAmount = amount * otherPlayers.size();
-            player.changeCashBalanceBy(multipleAmount);
-            for (Player otherPlayer : otherPlayers) {
-                otherPlayer.changeCashBalanceBy(-amount);
-            }
+            List<Player> otherPlayers = player.getAllOtherPlayersInGame();
+            int thisPlayersAmount = determineHowMuchThisPlayerCollectsOrPays(otherPlayers);
+            player.changeCashBalanceBy(thisPlayersAmount);
+            for (Player otherPlayer : otherPlayers) otherPlayer.changeCashBalanceBy(-amount);
         }
     }
 
-    private List<Player> getAllOtherPlayersInGame(Player player) {
-        List<Player> otherPlayers = new ArrayList<Player>();
-        Player currentPlayer = player;
-        Player nextPlayer = currentPlayer.getNextPlayer();
-        while (!nextPlayer.equals(player)) {
-            otherPlayers.add(nextPlayer);
-            currentPlayer = nextPlayer;
-            nextPlayer = currentPlayer.getNextPlayer();
-        }
-        return otherPlayers;
+    private int determineHowMuchThisPlayerCollectsOrPays(List<Player> otherPlayers) {
+        return amount * otherPlayers.size();
     }
+
 }
