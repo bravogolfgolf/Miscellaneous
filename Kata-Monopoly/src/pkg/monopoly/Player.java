@@ -10,6 +10,7 @@ public class Player {
     private int rollCounter = 0;
     private boolean inJail = false;
     private List<Card> getOutOfJailCards = new ArrayList<Card>();
+    private Player nextPlayer;
 
     public Player(String description) {
         this.description = description;
@@ -18,6 +19,14 @@ public class Player {
 
     public String getDescription() {
         return description;
+    }
+
+    public void setNextPlayer(Player player) {
+        this.nextPlayer = player;
+    }
+
+    public Player getNextPlayer() {
+        return nextPlayer;
     }
 
     public static Player newBank() {
@@ -105,7 +114,9 @@ public class Player {
     }
 
     private void goToJail() throws GoToJail.GoToJailException {
-        Space goToJail = Space.searchForSpace(this, GoToJail.class.getSimpleName());goToJail.landOn(this);}
+        Space goToJail = Space.searchForSpace(this, GoToJail.class.getSimpleName());
+        goToJail.landOn(this);
+    }
 
     private void doubleNotRolled(Dice dice) throws GoToJail.GoToJailException {
         if (isInJail()) {

@@ -19,6 +19,7 @@ public class PlayerTest {
     private Game game;
     private List<Space> board;
     private Player player1;
+    private Player player2;
     private DiceMock diceMock;
     private SpaceMockLandOnPassByCounter start;
     private SpaceMockLandOnPassByCounter space1;
@@ -29,6 +30,7 @@ public class PlayerTest {
         game = new Game("US");
         board = game.getBoard();
         player1 = new Player("Cat");
+        player2 = new Player("Dog");
         diceMock = new DiceMock();
         mockSpaceSetUp();
     }
@@ -56,8 +58,10 @@ public class PlayerTest {
     @Test
     public void testCreatePlayer() {
         final int EXPECTED_INITIAL_CASH_BALANCE = 1500;
+        player1.setNextPlayer(player2);
         assertEquals("Cat",player1.getDescription());
         assertEquals(EXPECTED_INITIAL_CASH_BALANCE, player1.getCashBalance());
+        assertTrue(player1.getNextPlayer().equals(player2));
     }
 
     @Test
