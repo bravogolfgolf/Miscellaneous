@@ -13,6 +13,8 @@ import static org.junit.Assert.assertTrue;
 
 public class CardActionTest {
 
+    public static final int PASS_GO = 200;
+    public static final int PRICE_OF_ILLINOIS_AVENUE = 240;
     private Game game;
     private List<Space> board;
     private Go go;
@@ -60,13 +62,14 @@ public class CardActionTest {
         assertEquals("Chance", chance.getDescription());
     }
 
-    @Ignore
+    @Test
     public void testLandOnDrawsMoveCard() throws GoToJail.GoToJailException {
         Card.clearCards();
         Card move = Card.create("Chance", "Advance to Illinois Ave. - If you pass Go, collect $200", "Move", "Illinois Avenue");
         createChanceCard(move);
         assertTrue(player2.getSpace().equals(chance));
-        int endingBalance = player2.getCashBalance() + 200;
+        int endingBalance = player2.getCashBalance() + PASS_GO;
+        endingBalance -= PRICE_OF_ILLINOIS_AVENUE;
         assertEquals(1, Card.getChanceCards().size());
         chance.landOn(player2);
         assertTrue(player2.getSpace().equals(illinoisAve));
@@ -143,7 +146,7 @@ public class CardActionTest {
         realEstate.addImprovements();
     }
 
-    @Test (expected = GoToJail.GoToJailException.class)
+    @Test(expected = GoToJail.GoToJailException.class)
     public void testLandOnDrawsGotToJailCard() throws GoToJail.GoToJailException {
         Card.clearCards();
         Card goToJail = Card.create("CommunityChest", "Go to Jail – Go directly to jail – Do not pass Go – Do not collect $200", "Move", "Go to Jail");
