@@ -136,17 +136,21 @@ public class CommunityChestTest {
         communityChest.landOn(player1);
     }
 
-    @Ignore
+    @Test
     public void testLandOnDrawsTransactionCardForPlayers() throws GoToJail.GoToJailException {
         Player player2 = new Player("Dog");
         Player player3 = new Player("Ship");
+
+        player1.setNextPlayer(player2);
+        player2.setNextPlayer(player3);
+        player3.setNextPlayer(player1);
 
         game.addPlayer(player1);
         game.addPlayer(player2);
         game.addPlayer(player3);
 
         Card.clearCards();
-        Card transaction = Card.create("CommunityChest", "Grand Opera Night – Collect $50 from every player1 for opening night seats", "Transaction", 50, "Players");
+        Card transaction = Card.create("CommunityChest", "Grand Opera Night – Collect $50 from every player for opening night seats", "Transaction", 50, "Players");
         createCards(transaction);
 
         assertTrue(player1.getSpace().equals(communityChest));
