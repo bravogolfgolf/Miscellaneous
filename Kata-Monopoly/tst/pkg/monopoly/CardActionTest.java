@@ -20,6 +20,7 @@ public class CardActionTest {
     private Player player1;
     private RealEstate mediterranean;
     private RealEstate baltic;
+    private Chance chance;
 
     @Before
     public void setUp() throws Exception {
@@ -27,6 +28,7 @@ public class CardActionTest {
         board = game.getBoard();
         go = (Go) board.get(0);
         communityChest = (CommunityChest) board.get(2);
+        chance = (Chance) board.get(36);
         player1 = new Player("Cat");
         player1.setSpace(communityChest);
         mediterranean = (RealEstate) board.get(1);
@@ -47,6 +49,7 @@ public class CardActionTest {
     @Test
     public void testCreation() {
         assertEquals("Community Chest", communityChest.getDescription());
+        assertEquals("Chance", chance.getDescription());
     }
 
     @Test

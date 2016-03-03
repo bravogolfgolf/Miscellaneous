@@ -32,6 +32,7 @@ abstract class Space {
         if (classType.equals("IncomeTax")) return new IncomeTax(description);
         if (classType.equals("LuxuryTax")) return new LuxuryTax(description);
         if (classType.equals("CommunityChest")) return new CommunityChest(description);
+        if (classType.equals("Chance")) return new Chance(description);
         throw new IllegalArgumentException("Incorrect value");
     }
 

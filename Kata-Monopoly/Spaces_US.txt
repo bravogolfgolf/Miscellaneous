@@ -5,7 +5,7 @@ RealEstate;Baltic Avenue;Brown;60;4
 IncomeTax;Income Tax
 Railroad;Reading Railroad;Railroad;200;25
 RealEstate;Oriental Avenue;Light Blue;100;6
-Other;Chance
+Chance;Chance
 RealEstate;Vermont Avenue;Light Blue;100;6
 RealEstate;Connecticut Avenue;Light Blue;120;8
 Jail;Just Visiting/Jail
@@ -20,7 +20,7 @@ RealEstate;Tennessee Avenue;Orange;180;14
 RealEstate;New York Avenue;Orange;200;16
 Other;Free Parking
 RealEstate;Kentucky Avenue;Red;220;18
-Other;Chance
+Chance;Chance
 RealEstate;Indiana Avenue;Red;220;18
 RealEstate;Illinois Avenue;Red;240;20
 Railroad;B & O Railroad;Railroad;200;25
@@ -34,7 +34,7 @@ RealEstate;North Carolina Avenue;Green;300;26
 CommunityChest;Community Chest
 RealEstate;Pennsylvania Avenue;Green;320;28
 Railroad;Short Line;Railroad;200;25
-Other;Chance
+Chance;Chance
 RealEstate;Park Place;Blue;350;35
 LuxuryTax;Luxury Tax
 RealEstate;Boardwalk;Blue;400;40
