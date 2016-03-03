@@ -56,6 +56,7 @@ public class PlayerTest {
     @Test
     public void testCreatePlayer() {
         final int EXPECTED_INITIAL_CASH_BALANCE = 1500;
+        assertEquals("Cat",player1.getDescription());
         assertEquals(EXPECTED_INITIAL_CASH_BALANCE, player1.getCashBalance());
     }
 

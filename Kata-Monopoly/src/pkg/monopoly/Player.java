@@ -16,6 +16,10 @@ public class Player {
         this.cashBalance = 1500;
     }
 
+    public String getDescription() {
+        return description;
+    }
+
     public static Player newBank() {
         return new BankPlayer("Bank");
     }
