@@ -55,9 +55,7 @@ public class PlayerTest {
 
     @Test
     public void testCreatePlayer() {
-        final Space EXPECTED_INITIAL_LOCATION = new Go("Go");
         final int EXPECTED_INITIAL_CASH_BALANCE = 1500;
-        assertEquals(EXPECTED_INITIAL_LOCATION, player1.getSpace());
         assertEquals(EXPECTED_INITIAL_CASH_BALANCE, player1.getCashBalance());
     }
 

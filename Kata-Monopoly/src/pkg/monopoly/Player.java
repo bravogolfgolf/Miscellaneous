@@ -13,7 +13,6 @@ public class Player {
 
     public Player(String description) {
         this.description = description;
-        this.space = new Go("Go");
         this.cashBalance = 1500;
     }
 
