@@ -82,11 +82,11 @@ abstract class Space {
     public void landOn(Player player) throws GoToJail.GoToJailException {
     }
 
-    public static Space searchForSpace(Player player, String className) {
+    public static Space searchForSpace(Player player, String description) {
         Space currentSpace = player.getSpace();
         Space nextSpace = currentSpace.getNextSpace();
 
-        while (!nextSpace.getClass().getSimpleName().equals(className)) {
+        while (!nextSpace.getDescription().equals(description)) {
             currentSpace = nextSpace;
             nextSpace = currentSpace.getNextSpace();
         }

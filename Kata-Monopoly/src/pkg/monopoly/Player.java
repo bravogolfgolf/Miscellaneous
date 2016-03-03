@@ -126,7 +126,7 @@ public class Player {
     }
 
     private void goToJail() throws GoToJail.GoToJailException {
-        Space goToJail = Space.searchForSpace(this, GoToJail.class.getSimpleName());
+        Space goToJail = Space.searchForSpace(this, "Go to Jail");
         goToJail.landOn(this);}
 
     private void doubleNotRolled(Dice dice) throws GoToJail.GoToJailException {

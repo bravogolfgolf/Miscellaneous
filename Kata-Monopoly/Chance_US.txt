@@ -6,7 +6,7 @@ Chance;Advance token to the nearest Railroad and pay owner twice the rental to w
 Chance;Bank pays you dividend of $50;Transaction;50;Bank
 Chance;Get out of Jail Free – This card may be kept until needed or sold;Keep
 Chance;Go Back 3 Spaces;Move;Back
-Chance;Go to Jail – Go directly to jail – Do not pass Go – Do not collect $200;Move;Jail
+Chance;Go to Jail – Go directly to jail – Do not pass Go – Do not collect $200;Move;Go to Jail
 Chance;Make general repairs on all your property – For each house pay $25 – For each hotel $100;Repairs;25;100
 Chance;Pay poor tax of $15;Transaction;-15;Bank
 Chance;Take a trip to Reading Railroad;Move;Reading Railroad

@@ -19,7 +19,7 @@ public class GoToJailTest {
     @Before
     public void setUp() throws Exception {
         go = new Go("Go");
-        jail = new Jail("Jail");
+        jail = new Jail("Just Visiting/Jail");
         goToJail = new GoToJail("Go to Jail");
 
         go.setNextSpace(jail);
