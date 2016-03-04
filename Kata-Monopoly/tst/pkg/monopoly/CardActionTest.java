@@ -27,6 +27,7 @@ public class CardActionTest {
     private RealEstate baltic;
     private Chance chance;
     private RealEstate illinoisAve;
+    private Utility electric;
 
     @Before
     public void setUp() throws Exception {
@@ -43,6 +44,7 @@ public class CardActionTest {
         mediterranean = (RealEstate) board.get(1);
         baltic = (RealEstate) board.get(3);
         illinoisAve = (RealEstate) board.get(24);
+        electric = (Utility) game.getBoard().get(12);
     }
 
     @After
@@ -58,6 +60,7 @@ public class CardActionTest {
         mediterranean = null;
         baltic = null;
         illinoisAve = null;
+        electric = null;
     }
 
     @Test
@@ -87,9 +90,22 @@ public class CardActionTest {
         assertEquals(endingBalance, player2.getCashBalance());
     }
 
-    @Test
+    @Ignore
     public void testMoveForwardNextCardAction() throws GoToJail.GoToJailException {
-        }
+        Card.clearCards();
+        Card moveForwardNext = Card.create("Chance", "Advance token to nearest Utility. If unowned, you may buy it from the Bank. If owned, throw dice and pay owner a total ten times the amount thrown.", "MoveForwardNext", "Utility");
+        createChanceCard(moveForwardNext);
+        electric.setOwner(player1);
+        assertTrue(player2.getSpace().equals(chance));
+        int player1EndingBalance = player1.getCashBalance();
+        int player2EndingBalance = player2.getCashBalance();
+
+        moveForwardNext.action(player2);
+
+        assertEquals(player1EndingBalance, player1.getCashBalance());
+        assertEquals(player2EndingBalance, player2.getCashBalance());
+        assertTrue(player2.getSpace().equals(electric));
+    }
 
     @Test
     public void testMoveForwardSpecificCardAction() throws GoToJail.GoToJailException {
@@ -102,16 +118,15 @@ public class CardActionTest {
         moveForwardSpecific.action(player2);
         assertTrue(player2.getSpace().equals(illinoisAve));
         assertEquals(endingBalance, player2.getCashBalance());
-        }
+    }
 
-    @Ignore //(expected = GoToJail.GoToJailException.class)
+    @Test(expected = GoToJail.GoToJailException.class)
     public void testMoveJail() throws GoToJail.GoToJailException {
         Card.clearCards();
         Card goToJail = Card.create("CommunityChest", "Go to Jail – Go directly to jail – Do not pass Go – Do not collect $200", "MoveJail", "Go to Jail");
         createCommunityChestCard(goToJail);
-        assertEquals(1, Card.getCommunityChestCards().size());
         assertTrue(player1.getSpace().equals(communityChest1));
-        communityChest1.landOn(player1);
+        goToJail.action(player1);
     }
 
     @Test
@@ -162,7 +177,6 @@ public class CardActionTest {
 
     @Test
     public void testTransactionCardActionForPlayers() throws GoToJail.GoToJailException {
-        Player player2 = new Player("Dog");
         Player player3 = new Player("Ship");
 
         player1.setNextPlayer(player2);

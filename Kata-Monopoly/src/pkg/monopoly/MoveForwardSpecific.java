@@ -1,12 +1,12 @@
 package pkg.monopoly;
 
 public class MoveForwardSpecific extends Card {
-    private String cardSpace;
+    private String destination;
 
-    public MoveForwardSpecific(String cardType, String cardText, String space) {
+    public MoveForwardSpecific(String cardType, String cardText, String destination) {
         setCardType(cardType);
         setCardText(cardText);
-        cardSpace = space;
+        this.destination = destination;
     }
 
     @Override
@@ -16,16 +16,9 @@ public class MoveForwardSpecific extends Card {
 
     @Override
     public void action(Player player) throws GoToJail.GoToJailException {
-        int numberOfSpacesToDestination = 0;
         Space originalSpace = player.getSpace();
-        Space currentSpace = player.getSpace();
-        Space nextSpace = currentSpace.getNextSpace();
-        Space destinationSpace = Space.searchForSpace(player, cardSpace);
-        while (!currentSpace.equals(destinationSpace)) {
-            currentSpace = nextSpace;
-            nextSpace = currentSpace.getNextSpace();
-            numberOfSpacesToDestination++;
-        }
+        int numberOfSpacesToDestination = originalSpace.getNumberOfSpacesTo(destination);
         originalSpace.move(player, numberOfSpacesToDestination);
     }
+
 }

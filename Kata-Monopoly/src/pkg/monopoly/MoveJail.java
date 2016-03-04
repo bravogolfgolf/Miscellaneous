@@ -1,8 +1,12 @@
 package pkg.monopoly;
 
 public class MoveJail extends Card {
-    public MoveJail(String cardType, String cardText, String space) {
-        super();
+    private String destination;
+
+    public MoveJail(String cardType, String cardText, String destination) {
+        setCardType(cardType);
+        setCardText(cardText);
+        this.destination = destination;
     }
 
     @Override
@@ -12,5 +16,8 @@ public class MoveJail extends Card {
 
     @Override
     void action(Player player) throws GoToJail.GoToJailException {
+        Space space = player.getSpace();
+        Space goToJail = space.searchForSpaceByDescription(destination);
+        goToJail.landOn(player);
     }
 }

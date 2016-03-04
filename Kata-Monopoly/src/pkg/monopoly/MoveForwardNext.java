@@ -1,8 +1,12 @@
 package pkg.monopoly;
 
 public class MoveForwardNext extends Card {
-    public MoveForwardNext(String cardType, String cardText, String space) {
-        super();
+    private String group;
+
+    public MoveForwardNext(String cardType, String cardText, String group) {
+        setCardType(cardType);
+        setCardText(cardText);
+        this.group = group;
     }
 
     @Override
@@ -11,5 +15,7 @@ public class MoveForwardNext extends Card {
     }
 
     @Override
-    void action(Player player) throws GoToJail.GoToJailException {}
+    void action(Player player) throws GoToJail.GoToJailException {
+
+    }
 }

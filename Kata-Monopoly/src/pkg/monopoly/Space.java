@@ -82,8 +82,8 @@ abstract class Space {
     public void landOn(Player player) throws GoToJail.GoToJailException {
     }
 
-    public static Space searchForSpace(Player player, String description) {
-        Space currentSpace = player.getSpace();
+    public Space searchForSpaceByDescription(String description) {
+        Space currentSpace = this;
         Space nextSpace = currentSpace.getNextSpace();
 
         while (!nextSpace.getDescription().equals(description)) {
@@ -91,6 +91,19 @@ abstract class Space {
             nextSpace = currentSpace.getNextSpace();
         }
         return nextSpace;
+    }
+
+    public int getNumberOfSpacesTo(String description) {
+        int result = 0;
+        Space currentSpace = this;
+        Space nextSpace = currentSpace.getNextSpace();
+        Space destinationSpace = searchForSpaceByDescription(description);
+        while (!currentSpace.equals(destinationSpace)) {
+            currentSpace = nextSpace;
+            nextSpace = currentSpace.getNextSpace();
+            result++;
+        }
+        return result;
     }
 
     public static List<RealEstate> getAllRealEstateOf(Player player) {
