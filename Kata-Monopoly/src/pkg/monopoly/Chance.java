@@ -7,9 +7,7 @@ public class Chance extends Space {
 
     @Override
     public void landOn(Player player) throws GoToJail.GoToJailException {
-        Card card = Card.drawChanceCard();
+        Card card = Card.drawCard("Chance");
         card.action(player);
-        if (card.isNotGetOfOfJailCard())
-            Card.replaceChanceCard(card);
     }
 }

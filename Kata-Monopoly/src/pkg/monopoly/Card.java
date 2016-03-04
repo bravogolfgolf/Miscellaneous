@@ -45,10 +45,6 @@ public abstract class Card {
         this.cardText = cardText;
     }
 
-    public String getCardText() {
-        return cardText;
-    }
-
     public static void addCommunityChestCards(List<Card> communityChestCards) {
         Card.communityChestCards = communityChestCards;
     }
@@ -57,12 +53,20 @@ public abstract class Card {
         return communityChestCards;
     }
 
-    static Card drawCommunityChestCard() {
-        return communityChestCards.remove(0);
-    }
+    static Card drawCard(String deck) {
+        Card card = null;
+        if (deck.equals("Community Chest")) {
+            card = communityChestCards.remove(0);
+            if (card.isNotGetOfOfJailCard())
+                communityChestCards.add(card);
+        }
 
-    public static void replaceCommunityChestCard(Card card) {
-        communityChestCards.add(card);
+        if (deck.equals("Chance")) {
+            card = chanceCards.remove(0);
+            if (card.isNotGetOfOfJailCard())
+                chanceCards.add(card);
+        }
+        return card;
     }
 
     public static void addChanceCards(List<Card> chanceCards) {
@@ -71,14 +75,6 @@ public abstract class Card {
 
     public static List<Card> getChanceCards() {
         return chanceCards;
-    }
-
-    public static Card drawChanceCard() {
-        return chanceCards.remove(0);
-    }
-
-    public static void replaceChanceCard(Card card) {
-        chanceCards.add(card);
     }
 
     abstract void action(Player player) throws GoToJail.GoToJailException;

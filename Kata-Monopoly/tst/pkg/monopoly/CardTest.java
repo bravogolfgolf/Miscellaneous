@@ -71,14 +71,12 @@ public class CardTest {
 
     @Test
     public void testDrawCommunityChestCard() throws IOException {
-// TODO probably should get this down to on parametrized method (chance v cc) and do get out of jail checking as part of method
 
         List<Card> communityChestCards = Card.load("Chest_TEST.txt");
         Card.addCommunityChestCards(communityChestCards);
 
         Card expectedTopCard = Card.create("CommunityChest", "Instruction1", "MoveForwardSpecific", "Go");
-        Card topCard = Card.drawCommunityChestCard();
-        Card.replaceCommunityChestCard(topCard);
+        Card topCard = Card.drawCard("Community Chest");
         Card expectedBottomCard = Card.getCommunityChestCards().get(BOTTOM_CARD);
 
         assertEquals(NUMBER_OF_CARDS_IN_DECK, Card.getCommunityChestCards().size());
@@ -92,8 +90,7 @@ public class CardTest {
         Card.addChanceCards(chanceCards);
 
         Card expectedTopCard = Card.create("Chance", "Instruction1", "MoveForwardSpecific", "Go");
-        Card topCard = Card.drawChanceCard();
-        Card.replaceChanceCard(topCard);
+        Card topCard = Card.drawCard("Chance");
         Card expectedBottomCard = Card.getChanceCards().get(BOTTOM_CARD);
 
         assertEquals(NUMBER_OF_CARDS_IN_DECK, Card.getChanceCards().size());

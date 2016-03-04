@@ -6,7 +6,5 @@ public class MoveForwardNext extends Card {
     }
 
     @Override
-    void action(Player player) throws GoToJail.GoToJailException {
-
-    }
+    void action(Player player) throws GoToJail.GoToJailException {}
 }
