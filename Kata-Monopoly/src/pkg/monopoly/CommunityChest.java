@@ -9,12 +9,8 @@ public class CommunityChest extends Space {
     public void landOn(Player player) throws GoToJail.GoToJailException {
         Card card = Card.drawCommunityChestCard();
         card.action(player);
-        if (isNotGetOfOfJailCard(card))
+        if (card.isNotGetOfOfJailCard())
             Card.replaceCommunityChestCard(card);
-    }
-
-    private boolean isNotGetOfOfJailCard(Card card) {
-        return !card.getClass().getSimpleName().equals("Keep");
     }
 
 }

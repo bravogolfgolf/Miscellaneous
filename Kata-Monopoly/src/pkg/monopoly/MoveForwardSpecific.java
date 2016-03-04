@@ -1,9 +1,9 @@
 package pkg.monopoly;
 
-public class Move extends Card {
+public class MoveForwardSpecific extends Card {
     private String cardSpace;
 
-    public Move(String cardType, String cardText, String space) {
+    public MoveForwardSpecific(String cardType, String cardText, String space) {
         setCardType(cardType);
         setCardText(cardText);
         setCardSpace(space);

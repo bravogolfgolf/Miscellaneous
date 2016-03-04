@@ -15,7 +15,9 @@ public abstract class Card {
     private static List<Card> chanceCards = new ArrayList<Card>();
 
     public static Card create(String cardType, String cardText, String classType, String space) {
-        if (classType.equals("Move")) return new Move(cardType, cardText, space);
+        if (classType.equals("MoveForwardSpecific")) return new MoveForwardSpecific(cardType, cardText, space);
+        if (classType.equals("MoveForwardNext")) return new MoveForwardNext(cardType, cardText, space);
+        if (classType.equals("MoveBack")) return new MoveBack(cardType, cardText, space);
         throw new IllegalArgumentException();
     }
 
@@ -97,12 +99,17 @@ public abstract class Card {
             String[] tokens = line.split(";");
             if (tokens[2].equals("Keep"))
                 cards.add(Card.create(tokens[0], tokens[1], tokens[2]));
-            if (tokens[2].equals("Move"))
+            else if (tokens[2].equals("MoveForwardSpecific"))
                 cards.add(Card.create(tokens[0], tokens[1], tokens[2], tokens[3]));
-            if (tokens[2].equals("Repairs"))
+            else if (tokens[2].equals("MoveForwardNext"))
+                cards.add(Card.create(tokens[0], tokens[1], tokens[2], tokens[3]));
+            else if (tokens[2].equals("MoveBack"))
+                cards.add(Card.create(tokens[0], tokens[1], tokens[2], tokens[3]));
+            else if (tokens[2].equals("Repairs"))
                 cards.add(Card.create(tokens[0], tokens[1], tokens[2], Integer.parseInt(tokens[3]), Integer.parseInt(tokens[4])));
-            if (tokens[2].equals("Transaction"))
+            else if (tokens[2].equals("Transaction"))
                 cards.add(Card.create(tokens[0], tokens[1], tokens[2], Integer.parseInt(tokens[3]), tokens[4]));
+            else throw new IllegalArgumentException();
         }
         return cards;
     }
@@ -123,5 +130,11 @@ public abstract class Card {
         int result = cardType.hashCode();
         result = 31 * result + cardText.hashCode();
         return result;
+    }
+
+    public boolean isNotGetOfOfJailCard() {
+        return !getClass().getSimpleName().equals("Keep");
+        // TODO changes this to a field like isGetOutOfJailCard
+
     }
 }

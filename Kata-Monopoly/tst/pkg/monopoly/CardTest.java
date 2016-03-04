@@ -46,7 +46,7 @@ public class CardTest {
             assertEquals(0, CommunityChestCards.size());
 
             List<Card> mimicOutputFromCardLoadMethod = new ArrayList<Card>();
-            Card card1 = Card.create("CommunityChest", "Instruction1", "Move", "Go");
+            Card card1 = Card.create("CommunityChest", "Instruction1", "MoveForwardSpecific", "Go");
             Card card2 = Card.create("CommunityChest", "Instruction2", "Transaction", 100, "Bank");
 
             mimicOutputFromCardLoadMethod.add(card1);
@@ -74,7 +74,7 @@ public class CardTest {
         List<Card> communityChestCards = Card.load("Chest_TEST.txt");
         Card.addCommunityChestCards(communityChestCards);
 
-        Card expectedTopCard = Card.create("CommunityChest", "Instruction1", "Move", "Go");
+        Card expectedTopCard = Card.create("CommunityChest", "Instruction1", "MoveForwardSpecific", "Go");
         Card topCard = Card.drawCommunityChestCard();
         Card.replaceCommunityChestCard(topCard);
         Card expectedBottomCard = Card.getCommunityChestCards().get(BOTTOM_CARD);
@@ -89,7 +89,7 @@ public class CardTest {
         List<Card> chanceCards = Card.load("Chance_TEST.txt");
         Card.addChanceCards(chanceCards);
 
-        Card expectedTopCard = Card.create("Chance", "Instruction1", "Move", "Go");
+        Card expectedTopCard = Card.create("Chance", "Instruction1", "MoveForwardSpecific", "Go");
         Card topCard = Card.drawChanceCard();
         Card.replaceChanceCard(topCard);
         Card expectedBottomCard = Card.getChanceCards().get(BOTTOM_CARD);
@@ -111,7 +111,7 @@ public class CardTest {
             assertEquals(0, ChanceCards.size());
 
             List<Card> mimicOutputFromCardLoadMethod = new ArrayList<Card>();
-            Card card1 = Card.create("Chance", "Instruction1", "Move", "Go");
+            Card card1 = Card.create("Chance", "Instruction1", "MoveForwardSpecific", "Go");
             Card card2 = Card.create("Chance", "Instruction2", "Transaction", 100, "Bank");
 
             mimicOutputFromCardLoadMethod.add(card1);
@@ -139,7 +139,7 @@ public class CardTest {
         final String filename = "Chest_TEST.txt";
         List<Card> expected = new ArrayList<Card>();
         List<Card> actual;
-        expected.add(Card.create("CommunityChest", "Instruction1", "Move", "Go"));
+        expected.add(Card.create("CommunityChest", "Instruction1", "MoveForwardSpecific", "Go"));
         expected.add(Card.create("CommunityChest", "Instruction2", "Transaction", 100, "Bank"));
         expected.add(Card.create("CommunityChest", "Instruction2", "Keep"));
         expected.add(Card.create("CommunityChest", "Instruction2", "Repairs", 40, 115));
@@ -153,8 +153,8 @@ public class CardTest {
 
     @Test
     public void testHashcode() {
-        Move move1 = (Move) Card.create("CommunityChest", "Instruction1", "Move", "Go");
-        Move move2 = (Move) Card.create("CommunityChest", "Instruction1", "Move", "Go");
+        MoveForwardSpecific move1 = (MoveForwardSpecific) Card.create("CommunityChest", "Instruction1", "MoveForwardSpecific", "Go");
+        MoveForwardSpecific move2 = (MoveForwardSpecific) Card.create("CommunityChest", "Instruction1", "MoveForwardSpecific", "Go");
         assertEquals(move1.hashCode(), move2.hashCode());
     }
 }

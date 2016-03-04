@@ -1,2 +1,2 @@
-Chance;Instruction1;Move;Go
+Chance;Instruction1;MoveForwardSpecific;Go
 Chance;Instruction2;Transaction;100;Bank

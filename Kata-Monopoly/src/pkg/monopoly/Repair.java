@@ -9,16 +9,8 @@ public class Repair extends Card {
     public Repair(String cardType, String cardText, int house, int hotel) {
         setCardType(cardType);
         setCardText(cardText);
-        setHouseAssessmentAmount(house);
-        setHotelAssessmentAmount(hotel);
-    }
-
-    public void setHouseAssessmentAmount(int houseAssessmentAmount) {
-        this.houseAssessmentAmount = houseAssessmentAmount;
-    }
-
-    public void setHotelAssessmentAmount(int hotelAssessmentAmount) {
-        this.hotelAssessmentAmount = hotelAssessmentAmount;
+        houseAssessmentAmount = house;
+        hotelAssessmentAmount = hotel;
     }
 
     @Override

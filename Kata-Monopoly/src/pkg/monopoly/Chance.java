@@ -9,12 +9,7 @@ public class Chance extends Space {
     public void landOn(Player player) throws GoToJail.GoToJailException {
         Card card = Card.drawChanceCard();
         card.action(player);
-        if (isNotGetOfOfJailCard(card))
+        if (card.isNotGetOfOfJailCard())
             Card.replaceChanceCard(card);
     }
-
-    private boolean isNotGetOfOfJailCard(Card card) {
-        return !card.getClass().getSimpleName().equals("Keep");
-    }
-
 }
