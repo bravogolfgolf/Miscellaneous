@@ -35,6 +35,11 @@ public class CardTest {
         Card.create("Invalid", "Invalid", "Invalid", 1, 1);
     }
 
+    @Test(expected = IllegalArgumentException.class)
+    public void testLoadCardException() throws IOException {
+        Card.load("Card_EXCEPTION.txt");
+    }
+
     @Test
     public void testCardIsGetOutOfJailCard() {
         Card card = Card.create("CommunityChest", "Instruction", "GetOutOfJail");
