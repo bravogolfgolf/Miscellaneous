@@ -43,7 +43,7 @@ public class GoToJailTest {
 
     @Test(expected = GoToJail.GoToJailException.class)
     public void testLandOnGoToJailAndPlayerDoesGoToJailWithNoChangeInCash() throws GoToJail.GoToJailException {
-        goToJail.landOn(player);
+        goToJail.landOn(player, "Roll");
     }
 
     @Test

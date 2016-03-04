@@ -26,7 +26,7 @@ public class JailTest {
     @Test
     public void testLandOn() throws GoToJail.GoToJailException {
         int expectedEndingBalance = player.getCashBalance();
-        jail.landOn(player);
+        jail.landOn(player, "Roll");
         assertEquals(expectedEndingBalance, player.getCashBalance());
     }
 

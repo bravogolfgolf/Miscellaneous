@@ -16,6 +16,10 @@ public class MoveForwardNext extends Card {
 
     @Override
     void action(Player player) throws GoToJail.GoToJailException {
-
+        Space startingSpace = player.getSpace();
+        Space endingSpace = startingSpace.searchForNextSpaceInGroup(group);
+        String destination = endingSpace.getDescription();
+        int numberOfSpacesToDestination = startingSpace.getNumberOfSpacesTo(destination);
+        startingSpace.move(player,numberOfSpacesToDestination, "Card");
     }
 }

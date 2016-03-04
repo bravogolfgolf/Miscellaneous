@@ -2,7 +2,6 @@ package pkg.monopoly;
 
 import org.junit.After;
 import org.junit.Before;
-import org.junit.Ignore;
 import org.junit.Test;
 
 import java.util.ArrayList;
@@ -16,6 +15,9 @@ public class CardActionTest {
     public static final int PRICE_OF_ILLINOIS_AVENUE = 240;
     public static final int BANK_ERROR_200 = 200;
     public static final int PASS_GO = 200;
+    public static final int NUMBER_ROLLED = 5;
+    public static final int TEN_TIMES_NUMBER_ROLLED = NUMBER_ROLLED * 10;
+    public static final int TWO_TIMES_NORMAL_RENT = 400;
     private Game game;
     private List<Space> board;
     private Go go;
@@ -25,9 +27,14 @@ public class CardActionTest {
     private Player player2;
     private RealEstate mediterranean;
     private RealEstate baltic;
-    private Chance chance;
+    private Chance chance1;
     private RealEstate illinoisAve;
     private Utility electric;
+    private Chance chance2;
+    private Railroad reading;
+    private Railroad bAndO;
+    private Railroad penn;
+    private Railroad shortLine;
 
     @Before
     public void setUp() throws Exception {
@@ -36,15 +43,20 @@ public class CardActionTest {
         go = (Go) board.get(0);
         communityChest1 = (CommunityChest) board.get(2);
         communityChest2 = (CommunityChest) board.get(33);
-        chance = (Chance) board.get(36);
+        chance1 = (Chance) board.get(36);
         player1 = new Player("Cat");
         player1.setSpace(communityChest1);
         player2 = new Player("Dog");
-        player2.setSpace(chance);
+        player2.setSpace(chance1);
         mediterranean = (RealEstate) board.get(1);
         baltic = (RealEstate) board.get(3);
         illinoisAve = (RealEstate) board.get(24);
         electric = (Utility) game.getBoard().get(12);
+        chance2 = (Chance) game.getBoard().get(22);
+        reading = (Railroad) game.getBoard().get(5);
+        penn = (Railroad) game.getBoard().get(15);
+        bAndO = (Railroad) game.getBoard().get(25);
+        shortLine = (Railroad) game.getBoard().get(35);
     }
 
     @After
@@ -54,13 +66,18 @@ public class CardActionTest {
         go = null;
         communityChest1 = null;
         communityChest2 = null;
-        chance = null;
+        chance1 = null;
         player1 = null;
         player2 = null;
         mediterranean = null;
         baltic = null;
         illinoisAve = null;
         electric = null;
+        chance2 = null;
+        reading = null;
+        penn = null;
+        bAndO = null;
+        shortLine = null;
     }
 
     @Test
@@ -83,22 +100,25 @@ public class CardActionTest {
         createChanceCard(moveBack);
         Card transaction = Card.create("CommunityChest", "Bank error in your favor – Collect $200", "Transaction", 200, "Bank");
         createCommunityChestCard(transaction);
-        assertTrue(player2.getSpace().equals(chance));
+        assertTrue(player2.getSpace().equals(chance1));
         int endingBalance = player2.getCashBalance() + BANK_ERROR_200;
         moveBack.action(player2);
         assertTrue(player2.getSpace().equals(communityChest2));
         assertEquals(endingBalance, player2.getCashBalance());
     }
 
-    @Ignore
-    public void testMoveForwardNextCardAction() throws GoToJail.GoToJailException {
+    @Test
+    public void testMoveForwardNextCardAction_Utility() throws GoToJail.GoToJailException {
         Card.clearCards();
         Card moveForwardNext = Card.create("Chance", "Advance token to nearest Utility. If unowned, you may buy it from the Bank. If owned, throw dice and pay owner a total ten times the amount thrown.", "MoveForwardNext", "Utility");
         createChanceCard(moveForwardNext);
+
+        electric.numberRolled = NUMBER_ROLLED;
+
         electric.setOwner(player1);
-        assertTrue(player2.getSpace().equals(chance));
-        int player1EndingBalance = player1.getCashBalance();
-        int player2EndingBalance = player2.getCashBalance();
+        assertTrue(player2.getSpace().equals(chance1));
+        int player1EndingBalance = player1.getCashBalance() + TEN_TIMES_NUMBER_ROLLED;
+        int player2EndingBalance = player2.getCashBalance() + PASS_GO - TEN_TIMES_NUMBER_ROLLED;
 
         moveForwardNext.action(player2);
 
@@ -108,11 +128,33 @@ public class CardActionTest {
     }
 
     @Test
+    public void testMoveForwardNextCardAction_Railroad() throws GoToJail.GoToJailException {
+        Card.clearCards();
+        Card moveForwardNext = Card.create("Chance", "Advance token to the nearest Railroad and pay owner twice the rental to which he is otherwise entitled. If Railroad is unowned, you may buy it from the Bank", "MoveForwardNext", "Railroad");
+        createChanceCard(moveForwardNext);
+        reading.setOwner(player1);
+        penn.setOwner(player1);
+        bAndO.setOwner(player1);
+        shortLine.setOwner(player1);
+        player2.setSpace(chance2);
+        assertTrue(player2.getSpace().equals(chance2));
+
+        int player1EndingBalance = player1.getCashBalance() + TWO_TIMES_NORMAL_RENT;
+        int player2EndingBalance = player2.getCashBalance() - TWO_TIMES_NORMAL_RENT;
+
+        moveForwardNext.action(player2);
+
+        assertTrue(player2.getSpace().equals(bAndO));
+        assertEquals(player1EndingBalance, player1.getCashBalance());
+        assertEquals(player2EndingBalance, player2.getCashBalance());
+    }
+
+    @Test
     public void testMoveForwardSpecificCardAction() throws GoToJail.GoToJailException {
         Card.clearCards();
         Card moveForwardSpecific = Card.create("Chance", "Advance to Illinois Ave. - If you pass Go, collect $200", "MoveForwardSpecific", "Illinois Avenue");
         createChanceCard(moveForwardSpecific);
-        assertTrue(player2.getSpace().equals(chance));
+        assertTrue(player2.getSpace().equals(chance1));
         int endingBalance = player2.getCashBalance() + PASS_GO;
         endingBalance -= PRICE_OF_ILLINOIS_AVENUE;
         moveForwardSpecific.action(player2);

@@ -18,7 +18,7 @@ public class MoveForwardSpecific extends Card {
     public void action(Player player) throws GoToJail.GoToJailException {
         Space originalSpace = player.getSpace();
         int numberOfSpacesToDestination = originalSpace.getNumberOfSpacesTo(destination);
-        originalSpace.move(player, numberOfSpacesToDestination);
+        originalSpace.move(player, numberOfSpacesToDestination, "Roll");
     }
 
 }

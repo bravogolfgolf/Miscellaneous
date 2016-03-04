@@ -60,14 +60,14 @@ abstract class Space {
         return nextSpace;
     }
 
-    public void move(Player player, int numberRolled) throws GoToJail.GoToJailException {
+    public void move(Player player, int numberRolled, String sourceOfMove) throws GoToJail.GoToJailException {
         this.numberRolled = numberRolled;
         for (int i = 1; i < numberRolled; i++) {
             moveForwardOneSpace(player);
             player.getSpace().passBy(player);
         }
         moveForwardOneSpace(player);
-        player.getSpace().landOn(player);
+        player.getSpace().landOn(player, sourceOfMove);
     }
 
     private void moveForwardOneSpace(Player player) {
@@ -79,7 +79,7 @@ abstract class Space {
     public void passBy(Player player) {
     }
 
-    public void landOn(Player player) throws GoToJail.GoToJailException {
+    public void landOn(Player player, String sourceOfMove) throws GoToJail.GoToJailException {
     }
 
     public Space searchForSpaceByDescription(String description) {
@@ -92,6 +92,18 @@ abstract class Space {
         }
         return nextSpace;
     }
+
+    public Space searchForNextSpaceInGroup(String group) {
+        Space currentSpace = this;
+        Space nextSpace = currentSpace.getNextSpace();
+
+        while (!nextSpace.getGroup().equals(group)) {
+            currentSpace = nextSpace;
+            nextSpace = currentSpace.getNextSpace();
+        }
+        return nextSpace;
+    }
+
 
     public int getNumberOfSpacesTo(String description) {
         int result = 0;

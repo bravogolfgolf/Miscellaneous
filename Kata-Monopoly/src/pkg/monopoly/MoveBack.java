@@ -19,6 +19,6 @@ public class MoveBack extends Card {
             nextSpace = currentSpace.getNextSpace();
         }
         player.setSpace(nextSpace);
-        nextSpace.landOn(player);
+        nextSpace.landOn(player, "Roll");
     }
 }

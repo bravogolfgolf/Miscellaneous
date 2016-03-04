@@ -98,15 +98,15 @@ public class Player {
         if (getNumberOfRolls() == 3) {
             if (inJail) {
                 releasedFromJail();
-                space.move(this, dice.getTwoDieRollValue());
+                space.move(this, dice.getTwoDieRollValue(), "Roll");
             } else
                 goToJail();
         } else {
             if (inJail) {
                 releasedFromJail();
-                space.move(this, dice.getTwoDieRollValue());
+                space.move(this, dice.getTwoDieRollValue(), "Roll");
             } else {
-                space.move(this, dice.getTwoDieRollValue());
+                space.move(this, dice.getTwoDieRollValue(), "Roll");
                 takeATurn(dice);
             }
         }
@@ -127,18 +127,18 @@ public class Player {
 
     private void goToJail() throws GoToJail.GoToJailException {
         Space goToJail = space.searchForSpaceByDescription("Go to Jail");
-        goToJail.landOn(this);}
+        goToJail.landOn(this, "Roll");}
 
     private void doubleNotRolled(Dice dice) throws GoToJail.GoToJailException {
         if (isInJail()) {
             if (rollCounter == 2) {
                 postBail();
-                space.move(this, dice.getTwoDieRollValue());
+                space.move(this, dice.getTwoDieRollValue(), "Roll");
             } else {
                 rollCounter++;
             }
         } else {
-            space.move(this, dice.getTwoDieRollValue());
+            space.move(this, dice.getTwoDieRollValue(), "Roll");
             resetRollCounter();
         }
     }

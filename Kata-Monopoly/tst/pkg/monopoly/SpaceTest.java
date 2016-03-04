@@ -71,7 +71,7 @@ public class SpaceTest {
     @Test
     public void testLandOnSpaceWithNoChangeInCash() throws GoToJail.GoToJailException {
         int expectedEndingBalance = player.getCashBalance();
-        space.landOn(player);
+        space.landOn(player, "Roll");
         assertEquals(expectedEndingBalance, player.getCashBalance());
     }
 

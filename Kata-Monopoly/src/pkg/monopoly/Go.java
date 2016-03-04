@@ -7,12 +7,12 @@ public class Go extends Space {
     }
 
     @Override
-    public void landOn(Player player) {
+    public void landOn(Player player, String sourceOfMove) {
         player.changeCashBalanceBy(200);
     }
 
     @Override
     public void passBy(Player player) {
-        landOn(player);
+        landOn(player, "Roll");
     }
 }
