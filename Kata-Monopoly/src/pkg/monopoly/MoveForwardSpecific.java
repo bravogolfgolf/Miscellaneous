@@ -6,7 +6,7 @@ public class MoveForwardSpecific extends Card {
     public MoveForwardSpecific(String cardType, String cardText, String space) {
         setCardType(cardType);
         setCardText(cardText);
-        this.cardSpace = space;
+        cardSpace = space;
     }
 
     @Override
@@ -16,5 +16,16 @@ public class MoveForwardSpecific extends Card {
 
     @Override
     public void action(Player player) throws GoToJail.GoToJailException {
+        int numberOfSpacesToDestination = 0;
+        Space originalSpace = player.getSpace();
+        Space currentSpace = player.getSpace();
+        Space nextSpace = currentSpace.getNextSpace();
+        Space destinationSpace = Space.searchForSpace(player, cardSpace);
+        while (!currentSpace.equals(destinationSpace)) {
+            currentSpace = nextSpace;
+            nextSpace = currentSpace.getNextSpace();
+            numberOfSpacesToDestination++;
+        }
+        originalSpace.move(player, numberOfSpacesToDestination);
     }
 }

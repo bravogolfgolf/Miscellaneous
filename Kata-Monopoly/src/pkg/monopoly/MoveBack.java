@@ -11,5 +11,14 @@ public class MoveBack extends Card {
     }
 
     @Override
-    void action(Player player) throws GoToJail.GoToJailException {}
+    void action(Player player) throws GoToJail.GoToJailException {
+        Space currentSpace = player.getSpace();
+        Space nextSpace = currentSpace.getNextSpace();
+        for (int i = 0; i < 36; i++) {
+            currentSpace = nextSpace;
+            nextSpace = currentSpace.getNextSpace();
+        }
+        player.setSpace(nextSpace);
+        nextSpace.landOn(player);
+    }
 }
