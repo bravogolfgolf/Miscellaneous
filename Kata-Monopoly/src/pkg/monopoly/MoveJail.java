@@ -3,8 +3,7 @@ package pkg.monopoly;
 public class MoveJail extends Card {
     private String destination;
 
-    public MoveJail(String cardType, String cardText, String destination) {
-        setCardType(cardType);
+    public MoveJail( String cardText, String destination) {
         setCardText(cardText);
         this.destination = destination;
     }

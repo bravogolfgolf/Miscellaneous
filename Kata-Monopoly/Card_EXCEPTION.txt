@@ -1,1 +1,1 @@
-Chance;Text;Exception;Text
+Text;Exception;Text

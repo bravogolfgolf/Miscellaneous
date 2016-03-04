@@ -1,17 +1,17 @@
-CommunityChest;Advance to Go (Collect $200);MoveForwardSpecific;Go
-CommunityChest;Bank error in your favor – Collect $200;Transaction;200;Bank
-CommunityChest;Doctor's fees – Pay $50;Transaction;-50;Bank
-CommunityChest;From sale of stock you get $50;Transaction;50;Bank
-CommunityChest;Get out of Jail Free – This card may be kept until needed or sold;GetOutOfJail
-CommunityChest;Go to Jail – Go directly to jail – Do not pass Go – Do not collect $200;MoveJail;Go to Jail
-CommunityChest;Grand Opera Night – Collect $50 from every player for opening night seats;Transaction;50;Players
-CommunityChest;Holiday Fund matures - Receive $100;Transaction;100;Bank
-CommunityChest;Income tax refund – Collect $20;Transaction;20;Bank
-CommunityChest;It is your birthday - Collect $10 from each player;Transaction;10;Players
-CommunityChest;Life insurance matures – Collect $100;Transaction;100;Bank
-CommunityChest;Pay hospital fees of $100;Transaction;-100;Bank
-CommunityChest;Pay school fees of $150;Transaction;-150;Bank
-CommunityChest;Receive $25 consultancy fee;Transaction;25;Bank
-CommunityChest;You are assessed for street repairs – $40 per house – $115 per hotel;Repairs;40;115
-CommunityChest;You have won second prize in a beauty contest – Collect $10;Transaction;10;Bank
-CommunityChest;You inherit $100;Transaction;100;Bank
+Advance to Go (Collect $200);MoveForwardSpecific;Go
+Bank error in your favor – Collect $200;Transaction;200;Bank
+Doctor's fees – Pay $50;Transaction;-50;Bank
+From sale of stock you get $50;Transaction;50;Bank
+Get out of Jail Free – This card may be kept until needed or sold;GetOutOfJail
+Go to Jail – Go directly to jail – Do not pass Go – Do not collect $200;MoveJail;Go to Jail
+Grand Opera Night – Collect $50 from every player for opening night seats;Transaction;50;Players
+Holiday Fund matures - Receive $100;Transaction;100;Bank
+Income tax refund – Collect $20;Transaction;20;Bank
+It is your birthday - Collect $10 from each player;Transaction;10;Players
+Life insurance matures – Collect $100;Transaction;100;Bank
+Pay hospital fees of $100;Transaction;-100;Bank
+Pay school fees of $150;Transaction;-150;Bank
+Receive $25 consultancy fee;Transaction;25;Bank
+You are assessed for street repairs – $40 per house – $115 per hotel;Repairs;40;115
+You have won second prize in a beauty contest – Collect $10;Transaction;10;Bank
+You inherit $100;Transaction;100;Bank

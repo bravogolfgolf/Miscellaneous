@@ -3,8 +3,7 @@ package pkg.monopoly;
 public class MoveForwardNext extends Card {
     private String group;
 
-    public MoveForwardNext(String cardType, String cardText, String group) {
-        setCardType(cardType);
+    public MoveForwardNext( String cardText, String group) {
         setCardText(cardText);
         this.group = group;
     }

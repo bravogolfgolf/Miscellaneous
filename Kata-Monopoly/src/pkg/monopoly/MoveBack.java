@@ -1,8 +1,8 @@
 package pkg.monopoly;
 
 public class MoveBack extends Card {
-    public MoveBack(String cardType, String cardText, String space) {
-        super();
+    public MoveBack( String cardText) {
+        setCardText(cardText);
     }
 
     @Override

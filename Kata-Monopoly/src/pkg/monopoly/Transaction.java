@@ -6,8 +6,7 @@ public class Transaction extends Card {
     private int amount = 0;
     private String recipient = "";
 
-    public Transaction(String cardType, String cardText, int amount, String recipient) {
-        setCardType(cardType);
+    public Transaction( String cardText, int amount, String recipient) {
         setCardText(cardText);
         this.amount = amount;
         this.recipient = recipient;

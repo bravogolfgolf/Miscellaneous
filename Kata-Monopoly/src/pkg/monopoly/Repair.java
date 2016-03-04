@@ -7,8 +7,7 @@ public class Repair extends Card {
     private int hotelAssessmentAmount = 0;
     private int houseAssessmentAmount = 0;
 
-    public Repair(String cardType, String cardText, int house, int hotel) {
-        setCardType(cardType);
+    public Repair( String cardText, int house, int hotel) {
         setCardText(cardText);
         houseAssessmentAmount = house;
         hotelAssessmentAmount = hotel;

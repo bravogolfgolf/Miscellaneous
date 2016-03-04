@@ -17,22 +17,22 @@ public class CardTest {
 
     @Test(expected = IllegalArgumentException.class)
     public void testInvalidCard1() {
-        Card.create("Invalid", "Invalid", "Invalid");
+        Card.create("Invalid", "Invalid");
     }
 
     @Test(expected = IllegalArgumentException.class)
     public void testInvalidCard2() {
-        Card.create("Invalid", "Invalid", "Invalid", "Invalid");
+        Card.create("Invalid", "Invalid", "Invalid");
     }
 
     @Test(expected = IllegalArgumentException.class)
     public void testInvalidCard3() {
-        Card.create("Invalid", "Invalid", "Invalid", 1, "Invalid");
+        Card.create("Invalid", "Invalid", 1, "Invalid");
     }
 
     @Test(expected = IllegalArgumentException.class)
     public void testInvalidCard4() {
-        Card.create("Invalid", "Invalid", "Invalid", 1, 1);
+        Card.create("Invalid", "Invalid", 1, 1);
     }
 
     @Test(expected = IllegalArgumentException.class)
@@ -42,19 +42,19 @@ public class CardTest {
 
     @Test
     public void testCardIsGetOutOfJailCard() {
-        Card card = Card.create("CommunityChest", "Instruction", "GetOutOfJail");
+        Card card = Card.create("Instruction", "GetOutOfJail");
         assertTrue(card.isGetOutOfJailCard());
-        card = Card.create("CommunityChest", "Text", "MoveBack", "Text");
+        card = Card.create("Text", "MoveBack");
         assertFalse(card.isGetOutOfJailCard());
-        card = Card.create("CommunityChest", "Text", "MoveForwardNext", "Text");
+        card = Card.create("Text", "MoveForwardNext", "Text");
         assertFalse(card.isGetOutOfJailCard());
-        card = Card.create("CommunityChest", "Text", "MoveForwardSpecific", "Text");
+        card = Card.create("Text", "MoveForwardSpecific", "Text");
         assertFalse(card.isGetOutOfJailCard());
-        card = Card.create("CommunityChest", "Text", "MoveJail", "Text");
+        card = Card.create("Text", "MoveJail", "Text");
         assertFalse(card.isGetOutOfJailCard());
-        card = Card.create("CommunityChest", "Text", "Repairs", 0, 0);
+        card = Card.create("Text", "Repairs", 0, 0);
         assertFalse(card.isGetOutOfJailCard());
-        card = Card.create("CommunityChest", "Text", "Transaction", 0, "Text");
+        card = Card.create("Text", "Transaction", 0, "Text");
         assertFalse(card.isGetOutOfJailCard());
     }
 
@@ -70,8 +70,8 @@ public class CardTest {
             assertEquals(0, CommunityChestCards.size());
 
             List<Card> mimicOutputFromCardLoadMethod = new ArrayList<Card>();
-            Card card1 = Card.create("CommunityChest", "Instruction1", "MoveForwardSpecific", "Go");
-            Card card2 = Card.create("CommunityChest", "Instruction2", "Transaction", 100, "Bank");
+            Card card1 = Card.create("Instruction1", "MoveForwardSpecific", "Go");
+            Card card2 = Card.create("Instruction2", "Transaction", 100, "Bank");
 
             mimicOutputFromCardLoadMethod.add(card1);
             mimicOutputFromCardLoadMethod.add(card2);
@@ -99,7 +99,7 @@ public class CardTest {
         List<Card> communityChestCards = Card.load("Chest_TEST.txt");
         Card.addCommunityChestCards(communityChestCards);
 
-        Card expectedTopCard = Card.create("CommunityChest", "Instruction1", "MoveForwardSpecific", "Go");
+        Card expectedTopCard = Card.create("Instruction1", "MoveForwardSpecific", "Go");
         Card topCard = Card.drawCard("Community Chest");
         Card expectedBottomCard = Card.getCommunityChestCards().get(BOTTOM_CARD);
 
@@ -113,7 +113,7 @@ public class CardTest {
         List<Card> chanceCards = Card.load("Chance_TEST.txt");
         Card.addChanceCards(chanceCards);
 
-        Card expectedTopCard = Card.create("Chance", "Instruction1", "MoveForwardSpecific", "Go");
+        Card expectedTopCard = Card.create("Instruction1", "MoveForwardSpecific", "Go");
         Card topCard = Card.drawCard("Chance");
         Card expectedBottomCard = Card.getChanceCards().get(BOTTOM_CARD);
 
@@ -134,8 +134,8 @@ public class CardTest {
             assertEquals(0, ChanceCards.size());
 
             List<Card> mimicOutputFromCardLoadMethod = new ArrayList<Card>();
-            Card card1 = Card.create("Chance", "Instruction1", "MoveForwardSpecific", "Go");
-            Card card2 = Card.create("Chance", "Instruction2", "Transaction", 100, "Bank");
+            Card card1 = Card.create("Instruction1", "MoveForwardSpecific", "Go");
+            Card card2 = Card.create("Instruction2", "Transaction", 100, "Bank");
 
             mimicOutputFromCardLoadMethod.add(card1);
             mimicOutputFromCardLoadMethod.add(card2);
@@ -162,10 +162,10 @@ public class CardTest {
         final String filename = "Chest_TEST.txt";
         List<Card> expected = new ArrayList<Card>();
         List<Card> actual;
-        expected.add(Card.create("CommunityChest", "Instruction1", "MoveForwardSpecific", "Go"));
-        expected.add(Card.create("CommunityChest", "Instruction2", "Transaction", 100, "Bank"));
-        expected.add(Card.create("CommunityChest", "Instruction2", "GetOutOfJail"));
-        expected.add(Card.create("CommunityChest", "Instruction2", "Repairs", 40, 115));
+        expected.add(Card.create("Instruction1", "MoveForwardSpecific", "Go"));
+        expected.add(Card.create("Instruction2", "Transaction", 100, "Bank"));
+        expected.add(Card.create("Instruction2", "GetOutOfJail"));
+        expected.add(Card.create("Instruction2", "Repairs", 40, 115));
         actual = Card.load(filename);
         assertEquals(expected.size(), actual.size());
         assertTrue(expected.equals(actual));
@@ -176,8 +176,8 @@ public class CardTest {
 
     @Test
     public void testHashcode() {
-        MoveForwardSpecific move1 = (MoveForwardSpecific) Card.create("CommunityChest", "Instruction1", "MoveForwardSpecific", "Go");
-        MoveForwardSpecific move2 = (MoveForwardSpecific) Card.create("CommunityChest", "Instruction1", "MoveForwardSpecific", "Go");
+        MoveForwardSpecific move1 = (MoveForwardSpecific) Card.create("Instruction1", "MoveForwardSpecific", "Go");
+        MoveForwardSpecific move2 = (MoveForwardSpecific) Card.create("Instruction1", "MoveForwardSpecific", "Go");
         assertEquals(move1.hashCode(), move2.hashCode());
     }
 }

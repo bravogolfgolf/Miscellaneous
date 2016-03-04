@@ -59,7 +59,7 @@ public class PlayerTest {
     public void testCreatePlayer() {
         final int EXPECTED_INITIAL_CASH_BALANCE = 1500;
         player1.setNextPlayer(player2);
-        assertEquals("Cat",player1.getDescription());
+        assertEquals("Cat", player1.getDescription());
         assertEquals(EXPECTED_INITIAL_CASH_BALANCE, player1.getCashBalance());
         assertTrue(player1.getNextPlayer().equals(player2));
     }
@@ -200,15 +200,15 @@ public class PlayerTest {
 
     @Test
     public void testAddGetOutOfJailCard() {
-        Card getOutOfJail = Card.create("CommunityChest", "Get out of Jail Free – This card may be kept until needed or sold", "GetOutOfJail");
+        Card getOutOfJail = Card.create("Get out of Jail Free – This card may be kept until needed or sold", "GetOutOfJail");
         player1.addCard(getOutOfJail);
         assertTrue(getOutOfJail.equals(player1.getCard()));
     }
 
     @Test
     public void testAddGetOutOfJailCards() {
-        Card getOutOfJail1 = Card.create("CommunityChest", "Get out of Jail Free – This card may be kept until needed or sold", "GetOutOfJail");
-        Card getOutOfJail2 = Card.create("Chance", "Get out of Jail Free – This card may be kept until needed or sold", "GetOutOfJail");
+        Card getOutOfJail1 = Card.create("Get out of Jail Free – This card may be kept until needed or sold", "GetOutOfJail");
+        Card getOutOfJail2 = Card.create("Get out of Jail Free – This card may be kept until needed or sold", "GetOutOfJail");
         player1.addCard(getOutOfJail1);
         player1.addCard(getOutOfJail2);
         assertTrue(getOutOfJail1.equals(player1.getCard()));

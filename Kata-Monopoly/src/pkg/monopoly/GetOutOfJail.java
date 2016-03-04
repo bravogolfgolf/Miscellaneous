@@ -1,8 +1,7 @@
 package pkg.monopoly;
 
 public class GetOutOfJail extends Card {
-    public GetOutOfJail(String cardType, String cardText) {
-        setCardType(cardType);
+    public GetOutOfJail( String cardText) {
         setCardText(cardText);
     }
 
