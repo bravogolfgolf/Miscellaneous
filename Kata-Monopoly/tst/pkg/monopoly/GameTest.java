@@ -306,7 +306,7 @@ public class GameTest {
     private List<Space> createExpected() {
         List<Space> expected = new ArrayList<Space>();
         Space first = Space.create("FreeParking", "Description");
-        Space second = Space.create("RealEstate", "Description", "Group", 78, 3);
+        Space second = Space.create("RealEstate", "Description", "Group", 78, 3, -1, -2, -3, -4, -5);
         first.setNextSpace(second);
         second.setNextSpace(first);
         expected.add(first);

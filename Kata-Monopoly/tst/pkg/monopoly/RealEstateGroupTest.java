@@ -33,7 +33,7 @@ public class RealEstateGroupTest {
 
     @Test
     public void testCreation() {
-        Space property = Space.create("RealEstate", "Park Place", "Blue", -1, -1);
+        Space property = Space.create("RealEstate", "Park Place", "Blue", -1, -1, 1, 2, 3, 4, 5);
         assertEquals("Park Place", property.getDescription());
         assertEquals("Blue", property.getGroup());
     }
@@ -70,7 +70,7 @@ public class RealEstateGroupTest {
         mediterraneanAve.addImprovements();
         assertEquals(1, mediterraneanAve.getImprovements());
         mediterraneanAve.removeImprovements();
-        assertEquals(0,mediterraneanAve.getImprovements());
+        assertEquals(0, mediterraneanAve.getImprovements());
     }
 
     @Test

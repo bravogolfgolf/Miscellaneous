@@ -59,8 +59,13 @@ public class SpaceTest {
     }
 
     @Test(expected = IllegalArgumentException.class)
-    public void testCreateSpaceRealEstateOrRailroadThrowsException() throws IllegalArgumentException {
+    public void testCreateSpaceRailroadThrowsException() throws IllegalArgumentException {
         Space.create("Invalid", "Invalid", "Invalid", -1, -1);
+    }
+
+    @Test(expected = IllegalArgumentException.class)
+    public void testCreateSpaceRealEstateThrowsException() throws IllegalArgumentException {
+        Space.create("Invalid", "Invalid", "Invalid", -1, -1, -1, -1, -1, -1, -1);
     }
 
     @Test
@@ -110,8 +115,8 @@ public class SpaceTest {
         player.setSpace(communityChest);
         mediterranean.setOwner(player);
         baltic.setOwner(player);
-        List<RealEstate> realEstateHoldings= Space.getAllRealEstateOf(player);
-        assertEquals(2,realEstateHoldings.size());
+        List<RealEstate> realEstateHoldings = Space.getAllRealEstateOf(player);
+        assertEquals(2, realEstateHoldings.size());
         assertTrue(baltic.equals(realEstateHoldings.get(0)));
         assertTrue(mediterranean.equals(realEstateHoldings.get(1)));
     }
@@ -122,7 +127,7 @@ public class SpaceTest {
         List<Space> expected = new ArrayList<Space>();
         List<Space> actual;
         expected.add(Space.create("FreeParking", "Description"));
-        expected.add(Space.create("RealEstate", "Description", "Group", 78, 3));
+        expected.add(Space.create("RealEstate", "Description", "Group", 78, 3, -1, -2, -3, -4, -5));
         actual = Space.load(filename);
         assertEquals(expected.size(), actual.size());
         assertTrue(expected.equals(actual));
@@ -133,9 +138,9 @@ public class SpaceTest {
 
     @Test
     public void testEqualsAndHashcode() {
-        Space space1 = Space.create("RealEstate", "Description", "Group", -1, -1);
+        Space space1 = Space.create("Railroad", "Description", "Group", -1, -1);
         space1.setNextSpace(Space.create("FreeParking", "Description"));
-        Space space2 = Space.create("RealEstate", "Description", "Group", -1, -1);
+        Space space2 = Space.create("Railroad", "Description", "Group", -1, -1);
         space2.setNextSpace(Space.create("FreeParking", "Description"));
         assertTrue(space1.equals(space2));
         assertTrue(space1.hashCode() == space2.hashCode());
