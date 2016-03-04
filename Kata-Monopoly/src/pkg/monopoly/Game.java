@@ -5,7 +5,6 @@ import java.util.*;
 
 public class Game {
 
-
     public Game(String localization) throws IOException {
         String spacesFileName = String.format("Spaces_%s.txt",localization);
         board = Space.load(spacesFileName);
@@ -65,6 +64,9 @@ public class Game {
             try {
                 player.takeATurn(dice);
             } catch (GoToJail.GoToJailException e) {
+                Space space = player.getSpace();
+                player.setSpace(space.searchForSpaceByDescription("Just Visiting/Jail"));
+                player.setInJail(true);
                 player.resetRollCounter();
                 managePropertiesAtEndOfTurn = false;
             }

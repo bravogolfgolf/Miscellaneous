@@ -11,8 +11,6 @@ public class GoToJail extends Space {
 
     @Override
     public void landOn(Player player, String sourceOfMove) throws GoToJailException {
-        Space space = player.getSpace();
-        player.setSpace(space.searchForSpaceByDescription("Just Visiting/Jail"));
         throw new GoToJailException();
     }
 }

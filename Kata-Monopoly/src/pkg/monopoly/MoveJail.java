@@ -17,6 +17,5 @@ public class MoveJail extends Card {
     void action(Player player) throws GoToJail.GoToJailException {
         Space space = player.getSpace();
         Space goToJail = space.searchForSpaceByDescription(destination);
-        goToJail.landOn(player, "Roll");
-    }
+        goToJail.landOn(player, "Roll");}
 }
