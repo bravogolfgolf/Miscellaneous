@@ -6,34 +6,34 @@ import org.junit.Test;
 
 import static org.junit.Assert.assertEquals;
 
-public class OtherSpaceTest {
+public class FreeParkingSpaceTest {
 
     private Player player;
-    private Other other;
+    private FreeParking freeParking;
 
     @Before
     public void setUp() {
         player = new Player("Cat");
-        other = (Other) Space.create("Other","Other");
+        freeParking = (FreeParking) Space.create("FreeParking","FreeParking");
     }
 
     @After
     public void teardown() {
         player = null;
-        other = null;
+        freeParking = null;
     }
 
     @Test
     public void testLandOn() throws GoToJail.GoToJailException {
         int expectedEndingBalance = player.getCashBalance();
-        other.landOn(player, "Roll");
+        freeParking.landOn(player, "Roll");
         assertEquals(expectedEndingBalance, player.getCashBalance());
     }
 
     @Test
     public void testPassBy() {
         int expectedEndingBalance = player.getCashBalance();
-        other.passBy(player);
+        freeParking.passBy(player);
         assertEquals(expectedEndingBalance, player.getCashBalance());
     }
 }

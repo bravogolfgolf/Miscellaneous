@@ -18,7 +18,7 @@ RealEstate;St. James Place;Orange;180;14
 CommunityChest;Community Chest
 RealEstate;Tennessee Avenue;Orange;180;14
 RealEstate;New York Avenue;Orange;200;16
-Other;Free Parking
+FreeParking;Free Parking
 RealEstate;Kentucky Avenue;Red;220;18
 Chance;Chance
 RealEstate;Indiana Avenue;Red;220;18

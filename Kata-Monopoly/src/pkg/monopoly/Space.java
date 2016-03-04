@@ -26,7 +26,7 @@ abstract class Space {
 
     public static Space create(String classType, String description) {
         if (classType.equals("Go")) return new Go(description);
-        if (classType.equals("Other")) return new Other(description);
+        if (classType.equals("FreeParking")) return new FreeParking(description);
         if (classType.equals("Jail")) return new Jail(description);
         if (classType.equals("GoToJail")) return new GoToJail(description);
         if (classType.equals("IncomeTax")) return new IncomeTax(description);

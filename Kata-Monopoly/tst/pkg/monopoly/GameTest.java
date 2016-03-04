@@ -1,7 +1,6 @@
 package pkg.monopoly;
 
 import org.junit.After;
-import org.junit.Before;
 import org.junit.Test;
 
 import java.io.IOException;
@@ -247,7 +246,7 @@ public class GameTest {
         player.setInJail(true);
         player.postBail();
 
-        Other freeParking = (Other) game.getBoard().get(20);
+        FreeParking freeParking = (FreeParking) game.getBoard().get(20);
 
         game.play(dice);
         assertEquals(3, player.manageProperties);
@@ -306,7 +305,7 @@ public class GameTest {
 
     private List<Space> createExpected() {
         List<Space> expected = new ArrayList<Space>();
-        Space first = Space.create("Other", "Description");
+        Space first = Space.create("FreeParking", "Description");
         Space second = Space.create("RealEstate", "Description", "Group", 78, 3);
         first.setNextSpace(second);
         second.setNextSpace(first);
@@ -321,7 +320,7 @@ public class GameTest {
         int goCount = 0;
         int communityChestCount = 0;
         int chanceCount = 0;
-        int otherCount = 0;
+        int freeParkingCount = 0;
         int jailCount = 0;
         int goToJailCount = 0;
         int incomeTaxCount = 0;
@@ -344,7 +343,7 @@ public class GameTest {
             if (classType.equals("Go")) goCount++;
             if (classType.equals("CommunityChest")) communityChestCount++;
             if (classType.equals("Chance")) chanceCount++;
-            if (classType.equals("Other")) otherCount++;
+            if (classType.equals("FreeParking")) freeParkingCount++;
             if (classType.equals("Jail")) jailCount++;
             if (classType.equals("GoToJail")) goToJailCount++;
             if (classType.equals("IncomeTax")) incomeTaxCount++;
@@ -367,7 +366,7 @@ public class GameTest {
         assertEquals(1, goCount);
         assertEquals(3, communityChestCount);
         assertEquals(3, chanceCount);
-        assertEquals(1, otherCount);
+        assertEquals(1, freeParkingCount);
         assertEquals(1, jailCount);
         assertEquals(1, goToJailCount);
         assertEquals(1, incomeTaxCount);
