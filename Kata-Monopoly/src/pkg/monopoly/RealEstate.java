@@ -4,22 +4,22 @@ import java.util.List;
 
 public class RealEstate extends Property {
 
-    private int numberOfImprovments;
+    private int numberOfImprovements;
 
     public RealEstate(String description, String group, int price, int rent) {
         super(description, group, price, rent);
     }
 
     public void addImprovements() {
-        numberOfImprovments++;
+        numberOfImprovements++;
     }
 
     public void removeImprovements() {
-        numberOfImprovments--;
+        numberOfImprovements--;
     }
 
     public int getImprovements() {
-        return numberOfImprovments;
+        return numberOfImprovements;
     }
 
     @Override
