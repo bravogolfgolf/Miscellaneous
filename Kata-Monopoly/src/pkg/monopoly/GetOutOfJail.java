@@ -7,6 +7,11 @@ public class GetOutOfJail extends Card {
     }
 
     @Override
+    boolean isGetOutOfJailCard() {
+        return true;
+    }
+
+    @Override
     public void action(Player player) throws GoToJail.GoToJailException {
         player.addCard(this);
     }

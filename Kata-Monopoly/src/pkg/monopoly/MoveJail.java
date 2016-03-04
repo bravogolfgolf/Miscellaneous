@@ -6,6 +6,11 @@ public class MoveJail extends Card {
     }
 
     @Override
+    boolean isGetOutOfJailCard() {
+        return false;
+    }
+
+    @Override
     void action(Player player) throws GoToJail.GoToJailException {
     }
 }

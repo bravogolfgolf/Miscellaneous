@@ -7,6 +7,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
 
 public class CardTest {
@@ -32,6 +33,24 @@ public class CardTest {
     @Test(expected = IllegalArgumentException.class)
     public void testInvalidCard4() {
         Card.create("Invalid", "Invalid", "Invalid", 1, 1);
+    }
+
+    @Test
+    public void testCardIsGetOutOfJailCard() {
+        Card card = Card.create("CommunityChest", "Instruction", "GetOutOfJail");
+        assertTrue(card.isGetOutOfJailCard());
+        card = Card.create("CommunityChest", "Text", "MoveBack", "Text");
+        assertFalse(card.isGetOutOfJailCard());
+        card = Card.create("CommunityChest", "Text", "MoveForwardNext", "Text");
+        assertFalse(card.isGetOutOfJailCard());
+        card = Card.create("CommunityChest", "Text", "MoveForwardSpecific", "Text");
+        assertFalse(card.isGetOutOfJailCard());
+        card = Card.create("CommunityChest", "Text", "MoveJail", "Text");
+        assertFalse(card.isGetOutOfJailCard());
+        card = Card.create("CommunityChest", "Text", "Repairs", 0, 0);
+        assertFalse(card.isGetOutOfJailCard());
+        card = Card.create("CommunityChest", "Text", "Transaction", 0, "Text");
+        assertFalse(card.isGetOutOfJailCard());
     }
 
     @Test

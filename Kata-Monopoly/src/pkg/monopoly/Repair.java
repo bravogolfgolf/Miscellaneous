@@ -15,6 +15,11 @@ public class Repair extends Card {
     }
 
     @Override
+    boolean isGetOutOfJailCard() {
+        return false;
+    }
+
+    @Override
     void action(Player player) throws GoToJail.GoToJailException {
         int assessment = 0;
         List<RealEstate> realEstateHoldings = Space.getAllRealEstateOf(player);

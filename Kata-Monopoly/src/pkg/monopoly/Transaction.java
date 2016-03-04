@@ -14,6 +14,11 @@ public class Transaction extends Card {
     }
 
     @Override
+    boolean isGetOutOfJailCard() {
+        return false;
+    }
+
+    @Override
     public void action(Player player) throws GoToJail.GoToJailException {
         if (recipient.equals("Bank"))
             player.changeCashBalanceBy(amount);

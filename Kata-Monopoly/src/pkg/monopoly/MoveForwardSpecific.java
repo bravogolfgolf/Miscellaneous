@@ -10,6 +10,11 @@ public class MoveForwardSpecific extends Card {
     }
 
     @Override
+    boolean isGetOutOfJailCard() {
+        return false;
+    }
+
+    @Override
     public void action(Player player) throws GoToJail.GoToJailException {
     }
 }

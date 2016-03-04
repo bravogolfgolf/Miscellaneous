@@ -37,6 +37,8 @@ public abstract class Card {
         throw new IllegalArgumentException();
     }
 
+    abstract boolean isGetOutOfJailCard();
+
     public void setCardType(String cardType) {
         this.cardType = cardType;
     }
@@ -53,22 +55,6 @@ public abstract class Card {
         return communityChestCards;
     }
 
-    static Card drawCard(String deck) {
-        Card card = null;
-        if (deck.equals("Community Chest")) {
-            card = communityChestCards.remove(0);
-            if (card.isNotGetOfOfJailCard())
-                communityChestCards.add(card);
-        }
-
-        if (deck.equals("Chance")) {
-            card = chanceCards.remove(0);
-            if (card.isNotGetOfOfJailCard())
-                chanceCards.add(card);
-        }
-        return card;
-    }
-
     public static void addChanceCards(List<Card> chanceCards) {
         Card.chanceCards = chanceCards;
     }
@@ -76,8 +62,6 @@ public abstract class Card {
     public static List<Card> getChanceCards() {
         return chanceCards;
     }
-
-    abstract void action(Player player) throws GoToJail.GoToJailException;
 
     public static void randomizeCardOrder() {
         Collections.shuffle(communityChestCards);
@@ -88,6 +72,28 @@ public abstract class Card {
         communityChestCards.clear();
         chanceCards.clear();
     }
+
+    static Card drawCard(String deck) {
+        Card card = null;
+        if (deck.equals("Community Chest")) {
+            card = communityChestCards.remove(0);
+            if (isNotGetOutOfJail(card))
+                communityChestCards.add(card);
+        }
+
+        if (deck.equals("Chance")) {
+            card = chanceCards.remove(0);
+            if (isNotGetOutOfJail(card))
+                chanceCards.add(card);
+        }
+        return card;
+    }
+
+    private static boolean isNotGetOutOfJail(Card card) {
+        return !card.isGetOutOfJailCard();
+    }
+
+    abstract void action(Player player) throws GoToJail.GoToJailException;
 
     public static List<Card> load(String filename) throws IOException {
         List<String> content = Files.readAllLines(Paths.get(filename));
@@ -129,12 +135,5 @@ public abstract class Card {
         int result = cardType.hashCode();
         result = 31 * result + cardText.hashCode();
         return result;
-    }
-
-    public boolean isNotGetOfOfJailCard() {
-        return !getClass().getSimpleName().equals("GetOutOfJail");
-        //TODO changes this to a field like isGetOutOfJailCard
-
-
     }
 }
