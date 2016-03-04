@@ -4,9 +4,9 @@ Chance;Advance to St. Charles Place – If you pass Go, collect $200;MoveForward
 Chance;Advance token to nearest Utility. If unowned, you may buy it from the Bank. If owned, throw dice and pay owner a total ten times the amount thrown.;MoveForwardNext;Utility
 Chance;Advance token to the nearest Railroad and pay owner twice the rental to which he is otherwise entitled. If Railroad is unowned, you may buy it from the Bank;MoveForwardNext;Railroad
 Chance;Bank pays you dividend of $50;Transaction;50;Bank
-Chance;Get out of Jail Free – This card may be kept until needed or sold;Keep
+Chance;Get out of Jail Free – This card may be kept until needed or sold;GetOutOfJail
 Chance;Go Back 3 Spaces;MoveBack;Three
-Chance;Go to Jail – Go directly to jail – Do not pass Go – Do not collect $200;MoveForwardSpecific;Go to Jail
+Chance;Go to Jail – Go directly to jail – Do not pass Go – Do not collect $200;MoveJail;Go to Jail
 Chance;Make general repairs on all your property – For each house pay $25 – For each hotel $100;Repairs;25;100
 Chance;Pay poor tax of $15;Transaction;-15;Bank
 Chance;Take a trip to Reading Railroad;MoveForwardSpecific;Reading Railroad

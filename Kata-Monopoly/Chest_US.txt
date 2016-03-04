@@ -2,8 +2,8 @@ CommunityChest;Advance to Go (Collect $200);MoveForwardSpecific;Go
 CommunityChest;Bank error in your favor – Collect $200;Transaction;200;Bank
 CommunityChest;Doctor's fees – Pay $50;Transaction;-50;Bank
 CommunityChest;From sale of stock you get $50;Transaction;50;Bank
-CommunityChest;Get out of Jail Free – This card may be kept until needed or sold;Keep
-CommunityChest;Go to Jail – Go directly to jail – Do not pass Go – Do not collect $200;MoveForwardSpecific;Go to Jail
+CommunityChest;Get out of Jail Free – This card may be kept until needed or sold;GetOutOfJail
+CommunityChest;Go to Jail – Go directly to jail – Do not pass Go – Do not collect $200;MoveJail;Go to Jail
 CommunityChest;Grand Opera Night – Collect $50 from every player for opening night seats;Transaction;50;Players
 CommunityChest;Holiday Fund matures - Receive $100;Transaction;100;Bank
 CommunityChest;Income tax refund – Collect $20;Transaction;20;Bank

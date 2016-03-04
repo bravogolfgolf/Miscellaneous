@@ -1,7 +1,7 @@
 package pkg.monopoly;
 
-public class Keep extends Card {
-    public Keep(String cardType, String cardText) {
+public class GetOutOfJail extends Card {
+    public GetOutOfJail(String cardType, String cardText) {
         setCardType(cardType);
         setCardText(cardText);
     }

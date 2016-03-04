@@ -17,6 +17,7 @@ public abstract class Card {
     public static Card create(String cardType, String cardText, String classType, String space) {
         if (classType.equals("MoveForwardSpecific")) return new MoveForwardSpecific(cardType, cardText, space);
         if (classType.equals("MoveForwardNext")) return new MoveForwardNext(cardType, cardText, space);
+        if (classType.equals("MoveJail")) return new MoveJail(cardType, cardText, space);
         if (classType.equals("MoveBack")) return new MoveBack(cardType, cardText, space);
         throw new IllegalArgumentException();
     }
@@ -32,7 +33,7 @@ public abstract class Card {
     }
 
     public static Card create(String cardType, String cardText, String classType) {
-        if (classType.equals("Keep")) return new Keep(cardType, cardText);
+        if (classType.equals("GetOutOfJail")) return new GetOutOfJail(cardType, cardText);
         throw new IllegalArgumentException();
     }
 
@@ -97,13 +98,15 @@ public abstract class Card {
         List<Card> cards = new ArrayList<Card>();
         for (String line : content) {
             String[] tokens = line.split(";");
-            if (tokens[2].equals("Keep"))
+            if (tokens[2].equals("GetOutOfJail"))
                 cards.add(Card.create(tokens[0], tokens[1], tokens[2]));
             else if (tokens[2].equals("MoveForwardSpecific"))
                 cards.add(Card.create(tokens[0], tokens[1], tokens[2], tokens[3]));
             else if (tokens[2].equals("MoveForwardNext"))
                 cards.add(Card.create(tokens[0], tokens[1], tokens[2], tokens[3]));
             else if (tokens[2].equals("MoveBack"))
+                cards.add(Card.create(tokens[0], tokens[1], tokens[2], tokens[3]));
+            else if (tokens[2].equals("MoveJail"))
                 cards.add(Card.create(tokens[0], tokens[1], tokens[2], tokens[3]));
             else if (tokens[2].equals("Repairs"))
                 cards.add(Card.create(tokens[0], tokens[1], tokens[2], Integer.parseInt(tokens[3]), Integer.parseInt(tokens[4])));
@@ -133,8 +136,9 @@ public abstract class Card {
     }
 
     public boolean isNotGetOfOfJailCard() {
-        return !getClass().getSimpleName().equals("Keep");
-        // TODO changes this to a field like isGetOutOfJailCard
+        return !getClass().getSimpleName().equals("GetOutOfJail");
+        //TODO changes this to a field like isGetOutOfJailCard
+
 
     }
 }

@@ -71,6 +71,8 @@ public class CardTest {
 
     @Test
     public void testDrawCommunityChestCard() throws IOException {
+// TODO probably should get this down to on parametrized method (chance v cc) and do get out of jail checking as part of method
+
         List<Card> communityChestCards = Card.load("Chest_TEST.txt");
         Card.addCommunityChestCards(communityChestCards);
 
@@ -141,7 +143,7 @@ public class CardTest {
         List<Card> actual;
         expected.add(Card.create("CommunityChest", "Instruction1", "MoveForwardSpecific", "Go"));
         expected.add(Card.create("CommunityChest", "Instruction2", "Transaction", 100, "Bank"));
-        expected.add(Card.create("CommunityChest", "Instruction2", "Keep"));
+        expected.add(Card.create("CommunityChest", "Instruction2", "GetOutOfJail"));
         expected.add(Card.create("CommunityChest", "Instruction2", "Repairs", 40, 115));
         actual = Card.load(filename);
         assertEquals(expected.size(), actual.size());

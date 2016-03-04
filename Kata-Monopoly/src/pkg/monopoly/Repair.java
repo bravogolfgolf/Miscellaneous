@@ -3,6 +3,7 @@ package pkg.monopoly;
 import java.util.List;
 
 public class Repair extends Card {
+    public static final int HOTEL = 5;
     private int hotelAssessmentAmount = 0;
     private int houseAssessmentAmount = 0;
 
@@ -19,7 +20,7 @@ public class Repair extends Card {
         List<RealEstate> realEstateHoldings = Space.getAllRealEstateOf(player);
         for (RealEstate realEstate : realEstateHoldings) {
             int numberOfImprovements = realEstate.getImprovements();
-            if (numberOfImprovements == 5)
+            if (numberOfImprovements == HOTEL)
                 assessment += hotelAssessmentAmount;
             else
                 assessment += (numberOfImprovements * houseAssessmentAmount);

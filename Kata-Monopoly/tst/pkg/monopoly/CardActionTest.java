@@ -57,13 +57,26 @@ public class CardActionTest {
     }
 
     @Test
-    public void testCreation() {
-        assertEquals("Community Chest", communityChest.getDescription());
-        assertEquals("Chance", chance.getDescription());
+    public void testGetOutOfJailCardAction() throws GoToJail.GoToJailException {
+        Card.clearCards();
+        Card getOutOfJail = Card.create("CommunityChest", "Get out of Jail Free – This card may be kept until needed or sold", "GetOutOfJail");
+        createCommunityChestCard(getOutOfJail);
+        assertTrue(player1.getSpace().equals(communityChest));
+        int endingBalance = player1.getCashBalance();
+        getOutOfJail.action(player1);
+        assertTrue(player1.getSpace().equals(communityChest));
+        assertEquals(endingBalance, player1.getCashBalance());
+        assertTrue(getOutOfJail.equals(player1.getCard()));
     }
 
     @Ignore
-    public void testLandOnDrawsMoveCard() throws GoToJail.GoToJailException {
+    public void testMoveBackCardAction() throws GoToJail.GoToJailException {;}
+
+    @Ignore
+    public void testMoveForwardNextCardAction() throws GoToJail.GoToJailException {;}
+
+    @Ignore
+    public void testMoveForwardSpecificCardAction() throws GoToJail.GoToJailException {
         Card.clearCards();
         Card move = Card.create("Chance", "Advance to Illinois Ave. - If you pass Go, collect $200", "MoveForwardSpecific", "Illinois Avenue");
         createChanceCard(move);
@@ -77,47 +90,21 @@ public class CardActionTest {
         assertEquals(1, Card.getChanceCards().size());
     }
 
-    private void createChanceCard(Card card) {
-        List<Card> cards = new ArrayList<Card>();
-        cards.add(card);
-        Card.addChanceCards(cards);
-    }
-
-    @Test
-    public void testLandOnDrawsTransactionCardForBank() throws GoToJail.GoToJailException {
+    @Ignore //(expected = GoToJail.GoToJailException.class)
+    public void testMoveJail() throws GoToJail.GoToJailException {
         Card.clearCards();
-        Card transaction = Card.create("CommunityChest", "Bank error in your favor – Collect $200", "Transaction", 200, "Bank");
-        createCommunityChestCard(transaction);
-        assertTrue(player1.getSpace().equals(communityChest));
-        int endingBalance = player1.getCashBalance() + 200;
+        Card goToJail = Card.create("CommunityChest", "Go to Jail – Go directly to jail – Do not pass Go – Do not collect $200", "MoveJail", "Go to Jail");
+        createCommunityChestCard(goToJail);
         assertEquals(1, Card.getCommunityChestCards().size());
+        assertTrue(player1.getSpace().equals(communityChest));
         communityChest.landOn(player1);
-        assertTrue(player1.getSpace().equals(communityChest));
-        assertEquals(endingBalance, player1.getCashBalance());
-        assertEquals(1, Card.getCommunityChestCards().size());
     }
 
     @Test
-    public void testLandOnDrawsGetOutOfJailCard() throws GoToJail.GoToJailException {
-        Card.clearCards();
-        Card getOutOfJail = Card.create("CommunityChest", "Get out of Jail Free – This card may be kept until needed or sold", "Keep");
-        createCommunityChestCard(getOutOfJail);
-        assertTrue(player1.getSpace().equals(communityChest));
-        int endingBalance = player1.getCashBalance();
-        assertEquals(1, Card.getCommunityChestCards().size());
-        communityChest.landOn(player1);
-        assertTrue(player1.getSpace().equals(communityChest));
-        assertEquals(endingBalance, player1.getCashBalance());
-        assertEquals(0, Card.getCommunityChestCards().size());
-        assertTrue(getOutOfJail.equals(player1.getCard()));
-    }
-
-    @Test
-    public void testLandOnDrawsRepairsCard() throws GoToJail.GoToJailException {
+    public void testRepairsCardAction() throws GoToJail.GoToJailException {
         Card.clearCards();
         Card repairs = Card.create("CommunityChest", "You are assessed for street repairs – $40 per house – $115 per hotel", "Repairs", 40, 115);
         createCommunityChestCard(repairs);
-        assertEquals(1, Card.getCommunityChestCards().size());
 
         int endingBalance = player1.getCashBalance() - ((40 * 4) + 115);
         assertTrue(player1.getSpace().equals(communityChest));
@@ -125,10 +112,9 @@ public class CardActionTest {
         baltic.setOwner(player1);
         addFourHouses(mediterranean);
         addHotel(baltic);
-        communityChest.landOn(player1);
+        repairs.action(player1);
         assertTrue(player1.getSpace().equals(communityChest));
         assertEquals(endingBalance, player1.getCashBalance());
-        assertEquals(1, Card.getCommunityChestCards().size());
     }
 
     private void addHotel(RealEstate realEstate) {
@@ -146,18 +132,22 @@ public class CardActionTest {
         realEstate.addImprovements();
     }
 
-    @Ignore //(expected = GoToJail.GoToJailException.class)
-    public void testLandOnDrawsGotToJailCard() throws GoToJail.GoToJailException {
+    @Test
+    public void testLandOnDrawsTransactionCardForBank() throws GoToJail.GoToJailException {
         Card.clearCards();
-        Card goToJail = Card.create("CommunityChest", "Go to Jail – Go directly to jail – Do not pass Go – Do not collect $200", "MoveForwardSpecific", "Go to Jail");
-        createCommunityChestCard(goToJail);
-        assertEquals(1, Card.getCommunityChestCards().size());
+        Card transaction = Card.create("CommunityChest", "Bank error in your favor – Collect $200", "Transaction", 200, "Bank");
+        createCommunityChestCard(transaction);
         assertTrue(player1.getSpace().equals(communityChest));
-        communityChest.landOn(player1);
+        int endingBalance = player1.getCashBalance() + 200;
+        assertEquals(1, Card.getCommunityChestCards().size());
+        transaction.action(player1);
+        assertTrue(player1.getSpace().equals(communityChest));
+        assertEquals(endingBalance, player1.getCashBalance());
+        assertEquals(1, Card.getCommunityChestCards().size());
     }
 
     @Test
-    public void testLandOnDrawsTransactionCardForPlayers() throws GoToJail.GoToJailException {
+    public void testTransactionCardActionForPlayers() throws GoToJail.GoToJailException {
         Player player2 = new Player("Dog");
         Player player3 = new Player("Ship");
 
@@ -177,19 +167,23 @@ public class CardActionTest {
         int player1EndingBalance = player1.getCashBalance() + 100;
         int player2EndingBalance = player2.getCashBalance() - 50;
         int player3EndingBalance = player3.getCashBalance() - 50;
-        assertEquals(1, Card.getCommunityChestCards().size());
 
-        communityChest.landOn(player1);
+        transaction.action(player1);
         assertTrue(player1.getSpace().equals(communityChest));
         assertEquals(player1EndingBalance, player1.getCashBalance());
         assertEquals(player2EndingBalance, player2.getCashBalance());
         assertEquals(player3EndingBalance, player3.getCashBalance());
-        assertEquals(1, Card.getCommunityChestCards().size());
     }
 
     private void createCommunityChestCard(Card card) {
         List<Card> cards = new ArrayList<Card>();
         cards.add(card);
         Card.addCommunityChestCards(cards);
+    }
+
+    private void createChanceCard(Card card) {
+        List<Card> cards = new ArrayList<Card>();
+        cards.add(card);
+        Card.addChanceCards(cards);
     }
 }
