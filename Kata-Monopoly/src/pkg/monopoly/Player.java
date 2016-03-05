@@ -73,7 +73,6 @@ public class Player {
         }
     }
 
-
     public int getCashBalance() {
         return cashBalance;
     }
