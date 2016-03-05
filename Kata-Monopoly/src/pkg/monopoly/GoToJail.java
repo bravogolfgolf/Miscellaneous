@@ -6,7 +6,7 @@ public class GoToJail extends Space {
         setDescription(description);
     }
 
-    public class GoToJailException extends Exception {
+    public class GoToJailException extends RuntimeException {
     }
 
     @Override

@@ -154,10 +154,9 @@ public class PlayerTest {
         assertEquals(0, player1.getNumberOfRolls());
     }
 
-    private int playerInitialization() {
+    private void playerInitialization() {
         player1.setSpace(board.get(0));
         player1.resetRollCounter();
-        return player1.getCashBalance();
     }
 
     @Test
