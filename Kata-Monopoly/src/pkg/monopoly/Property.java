@@ -87,6 +87,7 @@ abstract class Property extends Space {
     public void landOn(Player player, String sourceOfMove) {
         if (playerIsNotOwner(player))
             if (propertyIsUnowned())
+                // TODO Add ability to buy property or auction
                 buyProperty(player);
             else if (propertyIsNotMortgaged()) {
                 int rentOwed = calculateRentOwed(sourceOfMove);
