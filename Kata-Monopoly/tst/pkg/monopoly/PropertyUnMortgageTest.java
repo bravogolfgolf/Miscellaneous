@@ -38,7 +38,7 @@ public class PropertyUnMortgageTest {
     @Test
     public void testPlayerUnMortgagesProperty() {
         int expectedBalance = player.getCashBalance() + UNMORTGAGE_AMOUNT;
-        int exceptedNetWorth = player.getNetWorth() + (property.getPrice() / 2);
+        int exceptedNetWorth = player.getNetWorth() + UNMORTGAGE_AMOUNT + (property.getPrice() / 2);
         property.setOwner(player);
         property.setIsMortgaged(true);
         property.unMortgageBy(player);

@@ -92,6 +92,32 @@ public class PlayerTest {
     }
 
     @Test
+    public void testTransactions() {
+        assertEquals(1500, player1.getCashBalance());
+        assertEquals(1500, player1.getNetWorth());
+
+        player1.transaction(-1400, "Cash");
+        assertEquals(100, player1.getCashBalance());
+        assertEquals(100, player1.getNetWorth());
+
+        player1.transaction(-100, "Purchase");
+        assertEquals(0, player1.getCashBalance());
+        assertEquals(50, player1.getNetWorth());
+
+        player1.transaction(50, "Mortgage");
+        assertEquals(50, player1.getCashBalance());
+        assertEquals(50, player1.getNetWorth());
+
+        player1.transaction(60, "Cash");
+        assertEquals(110, player1.getCashBalance());
+        assertEquals(110, player1.getNetWorth());
+
+        player1.transaction(-110, "Un-mortgage");
+        assertEquals(0, player1.getCashBalance());
+        assertEquals(100, player1.getNetWorth());
+    }
+
+    @Test
     public void testPlayerRollsDoublesThenNot() throws GoToJail.GoToJailException {
         Dice diceMock = new DiceMockRollsDouble3sThenPlain4();
         playerInitialization();
@@ -145,7 +171,7 @@ public class PlayerTest {
         RealEstate boardwalk = (RealEstate) board.get(39);
         assertTrue(boardwalk.getOwner().isBank());
         int endingBalance = beginningBalance - PRICE_OF_BOARDWALK;
-        int endingNetWorth = beginningNetWorth + (PRICE_OF_BOARDWALK / 2);
+        int endingNetWorth = beginningNetWorth - PRICE_OF_BOARDWALK + (PRICE_OF_BOARDWALK / 2);
 
         endingBalance = endingBalance + PASS_GO;
         endingNetWorth = endingNetWorth + PASS_GO;
@@ -153,7 +179,7 @@ public class PlayerTest {
         Property connecticut = (Property) board.get(9);
         assertTrue(connecticut.getOwner().isBank());
         endingBalance = endingBalance - PRICE_OF_CONNECTICUT_AVENUE;
-        endingNetWorth = endingNetWorth + (PRICE_OF_CONNECTICUT_AVENUE / 2);
+        endingNetWorth = endingNetWorth - PRICE_OF_CONNECTICUT_AVENUE + (PRICE_OF_CONNECTICUT_AVENUE / 2);
 
         Jail jail = (Jail) board.get(10);
         assertTrue(jail.getDescription().equals("Just Visiting/Jail"));

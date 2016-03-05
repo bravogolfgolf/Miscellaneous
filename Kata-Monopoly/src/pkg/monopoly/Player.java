@@ -63,12 +63,12 @@ public class Player {
             cashBalance += amount;
             netWorth += amount;
         } else if (transactionType.equals("Purchase")) {
-            cashBalance += amount;
+            transaction(amount,"Cash");
             netWorth -= (amount / 2);
         } else if (transactionType.equals("Mortgage")) {
             cashBalance += amount;
         } else if (transactionType.equals("Un-mortgage")) {
-            cashBalance += amount;
+            transaction(amount,"Cash");
             netWorth-= ((amount / 11) * 10);
         }
     }

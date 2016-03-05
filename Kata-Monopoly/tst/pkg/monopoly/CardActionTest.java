@@ -159,7 +159,7 @@ public class CardActionTest {
         int endingNetWorth = player2.getNetWorth() + PASS_GO;
 
         endingBalance -= PRICE_OF_ILLINOIS_AVENUE;
-        endingNetWorth += (PRICE_OF_ILLINOIS_AVENUE / 2);
+        endingNetWorth += -PRICE_OF_ILLINOIS_AVENUE + (PRICE_OF_ILLINOIS_AVENUE / 2);
         moveForwardSpecific.action(player2);
         assertTrue(player2.getSpace().equals(illinoisAve));
         assertEquals(endingBalance, player2.getCashBalance());
