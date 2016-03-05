@@ -65,9 +65,11 @@ public class UtilityGroupTest {
     public void testLandOnUnownedProperty() {
         assertTrue(electric.getOwner().isBank());
         int endingBalance = player1BeginningBalance - PRICE_OF_ELECTRIC;
+        int exceptedNetWorth = player1.getNetWorth() + (PRICE_OF_ELECTRIC / 2);
         electric.landOn(player1, "Roll");
         assertEquals(player1, electric.getOwner());
         assertEquals(endingBalance, player1.getCashBalance());
+        assertEquals(exceptedNetWorth,player1.getNetWorth());
     }
 
     @Test

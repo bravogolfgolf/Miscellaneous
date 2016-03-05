@@ -85,8 +85,10 @@ public class PlayerTest {
     @Test
     public void testIncreaseCashBalance() {
         int expectedBalance = player1.getCashBalance() + 100;
-        player1.changeCashBalanceBy(100);
+        int expectedNetWorth = player1.getNetWorth() + 100;
+        player1.transaction(100, "Cash");
         assertEquals(expectedBalance, player1.getCashBalance());
+        assertEquals(expectedNetWorth, player1.getNetWorth());
     }
 
     @Test
@@ -135,6 +137,7 @@ public class PlayerTest {
     @Test
     public void testPlayerRollsDoublesThreeTimesGoesToJail() {
         int beginningBalance = player1.getCashBalance();
+        int beginningNetWorth = player1.getNetWorth();
         Dice diceMock = new DiceMockRollsDoubleThreeTimesInARow();
         player1.setSpace(board.get(35));
         player1.resetRollCounter();
@@ -142,12 +145,15 @@ public class PlayerTest {
         RealEstate boardwalk = (RealEstate) board.get(39);
         assertTrue(boardwalk.getOwner().isBank());
         int endingBalance = beginningBalance - PRICE_OF_BOARDWALK;
+        int endingNetWorth = beginningNetWorth + (PRICE_OF_BOARDWALK / 2);
 
         endingBalance = endingBalance + PASS_GO;
+        endingNetWorth = endingNetWorth + PASS_GO;
 
         Property connecticut = (Property) board.get(9);
         assertTrue(connecticut.getOwner().isBank());
         endingBalance = endingBalance - PRICE_OF_CONNECTICUT_AVENUE;
+        endingNetWorth = endingNetWorth + (PRICE_OF_CONNECTICUT_AVENUE / 2);
 
         Jail jail = (Jail) board.get(10);
         assertTrue(jail.getDescription().equals("Just Visiting/Jail"));
@@ -157,6 +163,7 @@ public class PlayerTest {
         assertTrue(boardwalk.getOwner().equals(player1));
         assertTrue(connecticut.getOwner().equals(player1));
         assertEquals(endingBalance, player1.getCashBalance());
+        assertEquals(endingNetWorth, player1.getNetWorth());
         assertTrue(player1.getSpace().equals(jail));
         assertEquals(0, player1.getNumberOfRolls());
     }

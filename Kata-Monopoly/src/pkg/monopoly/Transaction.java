@@ -20,12 +20,12 @@ public class Transaction extends Card {
     @Override
     public void action(Player player) throws GoToJail.GoToJailException {
         if (recipient.equals("Bank"))
-            player.changeCashBalanceBy(amount);
+            player.transaction(amount, "Cash");
         if (recipient.equals("Players")) {
             List<Player> otherPlayers = player.getAllOtherPlayersInGame();
             int thisPlayersAmount = determineHowMuchThisPlayerCollectsOrPays(otherPlayers);
-            player.changeCashBalanceBy(thisPlayersAmount);
-            for (Player otherPlayer : otherPlayers) otherPlayer.changeCashBalanceBy(-amount);
+            player.transaction(thisPlayersAmount, "Cash");
+            for (Player otherPlayer : otherPlayers) otherPlayer.transaction(-amount, "Cash");
         }
     }
 

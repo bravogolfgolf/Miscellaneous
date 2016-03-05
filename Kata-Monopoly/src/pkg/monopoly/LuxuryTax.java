@@ -9,6 +9,6 @@ public class LuxuryTax extends Space {
     @Override
     public void landOn(Player player, String sourceOfMove) {
         final int LUXURY_TAX_AMOUNT = -75;
-        player.changeCashBalanceBy(LUXURY_TAX_AMOUNT);
+        player.transaction(LUXURY_TAX_AMOUNT, "Cash");
     }
 }

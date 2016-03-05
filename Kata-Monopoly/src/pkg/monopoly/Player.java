@@ -6,6 +6,7 @@ import java.util.List;
 public class Player {
     private final String description;
     private int cashBalance = 0;
+    private int netWorth = 0;
     private Space space;
     private int rollCounter = 0;
     private boolean inJail = false;
@@ -14,7 +15,7 @@ public class Player {
 
     public Player(String description) {
         this.description = description;
-        this.cashBalance = 1500;
+        transaction(1500, "Cash");
     }
 
     public String getDescription() {
@@ -57,12 +58,28 @@ public class Player {
         return space;
     }
 
-    public void changeCashBalanceBy(int cash) {
-        cashBalance += cash;
+    public void transaction(int amount, String transactionType) {
+        if (transactionType.equals("Cash")) {
+            cashBalance += amount;
+            netWorth += amount;
+        } else if (transactionType.equals("Purchase")) {
+            cashBalance += amount;
+            netWorth -= (amount / 2);
+        } else if (transactionType.equals("Mortgage")) {
+            cashBalance += amount;
+        } else if (transactionType.equals("Un-mortgage")) {
+            cashBalance += amount;
+            netWorth-= ((amount / 11) * 10);
+        }
     }
+
 
     public int getCashBalance() {
         return cashBalance;
+    }
+
+    public int getNetWorth() {
+        return netWorth;
     }
 
     public void addCard(Card getOutOfJail) {
@@ -127,7 +144,8 @@ public class Player {
 
     private void goToJail() throws GoToJail.GoToJailException {
         Space goToJail = space.searchForSpaceByDescription("Go to Jail");
-        goToJail.landOn(this, "Roll");}
+        goToJail.landOn(this, "Roll");
+    }
 
     private void doubleNotRolled(Dice dice) throws GoToJail.GoToJailException {
         if (isInJail()) {
@@ -144,7 +162,7 @@ public class Player {
     }
 
     public void postBail() {
-        changeCashBalanceBy(-50);
+        transaction(-50, "Cash");
         releasedFromJail();
     }
 

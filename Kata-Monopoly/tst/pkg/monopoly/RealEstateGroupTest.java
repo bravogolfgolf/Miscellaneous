@@ -82,9 +82,12 @@ public class RealEstateGroupTest {
     public void testLandOnUnownedProperty() {
         assertTrue(mediterraneanAve.getOwner().isBank());
         int endingBalance = player1BeginningBalance - PRICE_OF_MEDITERRANEAN;
+        int exceptedNetWorth = player1.getNetWorth() + (PRICE_OF_MEDITERRANEAN / 2);
         mediterraneanAve.landOn(player1, "Roll");
         assertEquals(player1, mediterraneanAve.getOwner());
         assertEquals(endingBalance, player1.getCashBalance());
+        assertEquals(exceptedNetWorth, player1.getNetWorth());
+
     }
 
     @Test

@@ -19,6 +19,6 @@ public class Go extends Space {
     }
 
     private void collectSalary(Player player) {
-        player.changeCashBalanceBy(SALARY);
+        player.transaction(SALARY, "Cash");
     }
 }

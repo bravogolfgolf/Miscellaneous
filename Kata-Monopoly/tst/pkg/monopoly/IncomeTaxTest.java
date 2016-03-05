@@ -21,15 +21,17 @@ public class IncomeTaxTest {
         final int AFTER_TAX_BALANCE = 1350;
         incomeTax.landOn(player, "Roll");
         assertEquals(AFTER_TAX_BALANCE, player.getCashBalance());
+        assertEquals(AFTER_TAX_BALANCE, player.getNetWorth());
 
     }
 
     @Test
     public void testLandOnIncomeTaxWithGreaterThan2000InNetWorth() {
         final int AFTER_TAX_BALANCE = 1900;
-        player.changeCashBalanceBy(600);
+        player.transaction(600, "Cash");
         incomeTax.landOn(player, "Roll");
         assertEquals(AFTER_TAX_BALANCE, player.getCashBalance());
+        assertEquals(AFTER_TAX_BALANCE, player.getNetWorth());
 
     }
 }

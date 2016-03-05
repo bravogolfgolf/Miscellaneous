@@ -109,18 +109,18 @@ abstract class Property extends Space {
     }
 
     private void buyProperty(Player player) {
+        player.transaction(-price, "Purchase");
         this.owner = player;
-        player.changeCashBalanceBy(-price);
     }
 
     private void payRent(Player player, int rentOwed) {
-        player.changeCashBalanceBy(-rentOwed);
-        this.owner.changeCashBalanceBy(rentOwed);
+        player.transaction(-rentOwed, "Cash");
+        this.owner.transaction(rentOwed, "Cash");
     }
 
     public void mortgagedBy(Player player) {
         if (mortgageConditionsAreMeet(player)) {
-            player.changeCashBalanceBy(mortgageAmount());
+            player.transaction(mortgageAmount(), "Mortgage");
             setIsMortgaged(true);
         }
     }
@@ -135,7 +135,7 @@ abstract class Property extends Space {
 
     public void unMortgageBy(Player player) {
         if (unMortgageConditionsAreMeet(player)) {
-            player.changeCashBalanceBy(unMortgageAmount());
+            player.transaction(unMortgageAmount(), "Un-mortgage");
             setIsMortgaged(false);
         }
     }

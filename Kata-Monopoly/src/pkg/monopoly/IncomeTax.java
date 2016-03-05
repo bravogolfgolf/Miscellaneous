@@ -11,9 +11,9 @@ public class IncomeTax extends Space {
         final double TEN_PERCENT = .10;
 
         int tax;
-        if (player.getCashBalance() <= 2000)
-            tax = (int) (player.getCashBalance() * TEN_PERCENT);
+        if (player.getNetWorth() <= 2000)
+            tax = (int) (player.getNetWorth() * TEN_PERCENT);
         else tax = 200;
-        player.changeCashBalanceBy(-tax);
+        player.transaction(-tax, "Cash");
     }
 }

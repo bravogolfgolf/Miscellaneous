@@ -76,9 +76,15 @@ public class RailroadGroupTest {
     public void testLandOnUnownedProperty() {
         assertTrue(reading.getOwner().isBank());
         int endingBalance = player1BeginningBalance - PRICE_OF_RAILROAD;
+        int exceptedNetWorth = player1.getNetWorth() + (PRICE_OF_RAILROAD / 2);
         reading.landOn(player1, "Roll");
         assertEquals(player1, reading.getOwner());
         assertEquals(endingBalance, player1.getCashBalance());
+        assertEquals(exceptedNetWorth,player1.getNetWorth());
+
+
+
+
     }
 
     @Test

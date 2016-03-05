@@ -8,7 +8,7 @@ public class PlayerMockDoesNotPaySelfRent extends Player {
     }
 
     @Override
-    public void changeCashBalanceBy(int cash) {
+    public void transaction(int amount, String transactionType) {
         changeCashBalanceBy++;
     }
 }

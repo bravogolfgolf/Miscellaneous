@@ -39,10 +39,12 @@ public class PropertyMortgageTest {
     @Test
     public void testPlayerMortgagesProperty() {
         int expectedBalance = player.getCashBalance() + MORTGAGE_AMOUNT;
+        int exceptedNetWorth = player.getNetWorth();
         property.setIsMortgaged(false);
         property.setOwner(player);
         property.mortgagedBy(player);
         assertEquals(expectedBalance, player.getCashBalance());
+        assertEquals(exceptedNetWorth,player.getNetWorth());
         assertEquals(true, property.isMortgaged());
         assertTrue(property.getOwner().equals(player));
     }
