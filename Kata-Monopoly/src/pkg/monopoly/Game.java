@@ -6,14 +6,14 @@ import java.util.*;
 public class Game {
 
     public Game(String localization) throws IOException {
-        String spacesFileName = String.format("Spaces_%s.txt",localization);
+        String spacesFileName = String.format("Spaces_%s.txt", localization);
         board = Space.load(spacesFileName);
         for (int i = 0; i < board.size() - 1; i++) {
             board.get(i).setNextSpace(board.get(i + 1));
         }
         board.get(board.size() - 1).setNextSpace(board.get(0));
-        Card.addCommunityChestCards(Card.load(String.format("Chest_%s.txt",localization)));
-        Card.addChanceCards(Card.load(String.format("Chance_%s.txt",localization)));
+        Card.addCommunityChestCards(Card.load(String.format("Chest_%s.txt", localization)));
+        Card.addChanceCards(Card.load(String.format("Chance_%s.txt", localization)));
     }
 
     public class InvalidPlayerCount extends Exception {
@@ -55,6 +55,7 @@ public class Game {
                 getNumberOfPlayers() > MAXIMUM_NUMBER_OF_PLAYERS)
             throw new InvalidPlayerCount(String.format("Number of Players: %d", getNumberOfPlayers()));
         randomizePlayerOrder();
+        Card.randomizeCardOrder();
         play(dice);
     }
 

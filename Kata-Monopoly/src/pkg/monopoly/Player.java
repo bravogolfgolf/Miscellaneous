@@ -147,8 +147,7 @@ public class Player {
 
     private void goToJail() throws GoToJail.GoToJailException {
         Space goToJail = space.searchForSpaceByDescription("Go to Jail");
-        goToJail.landOn(this, "Roll");
-    }
+        goToJail.landOn(this, "Roll");}
 
     private void doubleNotRolled(Dice dice) throws GoToJail.GoToJailException {
         if (isInJail()) {
