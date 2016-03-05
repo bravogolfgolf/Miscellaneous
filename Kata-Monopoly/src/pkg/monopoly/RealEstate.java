@@ -4,20 +4,20 @@ import java.util.List;
 
 public class RealEstate extends Property {
 
-    private final int house1rent;
-    private final int house2rent;
-    private final int house3rent;
-    private final int house4rent;
-    private final int hotelrent;
+    private final int house1Rent;
+    private final int house2Rent;
+    private final int house3Rent;
+    private final int house4Rent;
+    private final int hotelRent;
     private int numberOfImprovements;
 
     public RealEstate(String description, String group, int price, int rent, int house1Rent, int house2Rent, int house3Rent, int house4Rent, int hotelRent) {
         super(description, group, price, rent);
-        this.house1rent = house1Rent;
-        this.house2rent = house2Rent;
-        this.house3rent = house3Rent;
-        this.house4rent = house4Rent;
-        this.hotelrent = hotelRent;
+        this.house1Rent = house1Rent;
+        this.house2Rent = house2Rent;
+        this.house3Rent = house3Rent;
+        this.house4Rent = house4Rent;
+        this.hotelRent = hotelRent;
 
     }
 
@@ -42,15 +42,15 @@ public class RealEstate extends Property {
             if (numberOfImprovements == 0)
                 return rent * 2;
             else if (numberOfImprovements == 1)
-                return house1rent;
+                return house1Rent;
             else if (numberOfImprovements == 2)
-                return house2rent;
+                return house2Rent;
             else if (numberOfImprovements == 3)
-                return house3rent;
+                return house3Rent;
             else if (numberOfImprovements == 4)
-                return house4rent;
+                return house4Rent;
             else if (numberOfImprovements == 5)
-                return hotelrent;
+                return hotelRent;
         return rent;
     }
 }
