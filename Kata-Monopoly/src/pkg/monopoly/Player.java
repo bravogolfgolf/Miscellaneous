@@ -10,7 +10,7 @@ public class Player {
     private Space space;
     private int rollCounter = 0;
     private boolean inJail = false;
-    private List<Card> getOutOfJailCards = new ArrayList<Card>();
+    private final List<Card> getOutOfJailCards = new ArrayList<Card>();
     private Player nextPlayer;
 
     public Player(String description) {
@@ -43,7 +43,7 @@ public class Player {
     }
 
     public static Player newBank() {
-        return new BankPlayer("Bank");
+        return new BankPlayer();
     }
 
     public boolean isBank() {

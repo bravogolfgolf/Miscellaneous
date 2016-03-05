@@ -8,25 +8,17 @@ abstract class Property extends Space {
     public Property(String description, String group, int price, int rent) {
         setDescription(description);
         setGroup(group);
-        setPrice(price);
-        setRent(rent);
+        this.price = price;
+        this.rent = rent;
     }
 
-    private int price;
-    protected int rent;
+    private final int price;
+    private final int rent;
     private boolean isMortgaged;
     private Player owner = Player.newBank();
 
-    public void setPrice(int price) {
-        this.price = price;
-    }
-
     public int getPrice() {
         return price;
-    }
-
-    public void setRent(int rent) {
-        this.rent = rent;
     }
 
     public int getRent() {

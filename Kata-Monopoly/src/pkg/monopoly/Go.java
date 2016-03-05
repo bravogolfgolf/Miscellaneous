@@ -2,7 +2,7 @@ package pkg.monopoly;
 
 public class Go extends Space {
 
-    public static final int SALARY = 200;
+    private static final int SALARY = 200;
 
     public Go(String description) {
         setDescription(description);

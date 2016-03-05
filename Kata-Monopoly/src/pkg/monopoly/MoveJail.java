@@ -1,7 +1,7 @@
 package pkg.monopoly;
 
 public class MoveJail extends Card {
-    private String destination;
+    private final String destination;
 
     public MoveJail( String cardText, String destination) {
         setCardText(cardText);

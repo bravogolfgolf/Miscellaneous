@@ -8,7 +8,7 @@ import static org.junit.Assert.assertEquals;
 
 public class GoTest {
 
-    public static final int LAND_ON_GO_COLLECT_200 = 200;
+    private static final int LAND_ON_GO_COLLECT_200 = 200;
     private Player player;
     private Go go;
 

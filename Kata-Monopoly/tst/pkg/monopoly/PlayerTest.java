@@ -13,9 +13,9 @@ import static org.junit.Assert.assertTrue;
 
 public class PlayerTest {
 
-    public static final int PRICE_OF_BOARDWALK = 400;
-    public static final int PASS_GO = 200;
-    public static final int PRICE_OF_CONNECTICUT_AVENUE = 120;
+    private static final int PRICE_OF_BOARDWALK = 400;
+    private static final int PASS_GO = 200;
+    private static final int PRICE_OF_CONNECTICUT_AVENUE = 120;
     private Game game;
     private List<Space> board;
     private Player player1;

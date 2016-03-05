@@ -1,7 +1,7 @@
 package pkg.monopoly;
 
 public class MoveForwardSpecific extends Card {
-    private String destination;
+    private final String destination;
 
     public MoveForwardSpecific( String cardText, String destination) {
         setCardText(cardText);

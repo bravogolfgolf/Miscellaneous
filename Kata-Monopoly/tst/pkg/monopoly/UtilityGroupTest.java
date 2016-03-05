@@ -21,8 +21,8 @@ public class UtilityGroupTest {
     private Utility water;
     private final Player player1 = new Player("Cat");
     private final Player player2 = new Player("Dog");
-    private int player1BeginningBalance = player1.getCashBalance();
-    private int player2BeginningBalance = player2.getCashBalance();
+    private final int player1BeginningBalance = player1.getCashBalance();
+    private final int player2BeginningBalance = player2.getCashBalance();
 
 
     @Before

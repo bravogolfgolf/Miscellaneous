@@ -12,8 +12,8 @@ import static org.junit.Assert.assertTrue;
 
 public class CardTest {
 
-    public static final int NUMBER_OF_CARDS_IN_DECK = 4;
-    public static final int BOTTOM_CARD = 3;
+    private static final int NUMBER_OF_CARDS_IN_DECK = 4;
+    private static final int BOTTOM_CARD = 3;
 
     @Test(expected = IllegalArgumentException.class)
     public void testInvalidCard1() {

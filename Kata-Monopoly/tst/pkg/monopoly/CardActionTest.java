@@ -12,15 +12,14 @@ import static org.junit.Assert.assertTrue;
 
 public class CardActionTest {
 
-    public static final int PRICE_OF_ILLINOIS_AVENUE = 240;
-    public static final int BANK_ERROR_200 = 200;
-    public static final int PASS_GO = 200;
-    public static final int NUMBER_ROLLED = 5;
-    public static final int TEN_TIMES_NUMBER_ROLLED = NUMBER_ROLLED * 10;
-    public static final int TWO_TIMES_NORMAL_RENT = 400;
+    private static final int PRICE_OF_ILLINOIS_AVENUE = 240;
+    private static final int BANK_ERROR_200 = 200;
+    private static final int PASS_GO = 200;
+    private static final int NUMBER_ROLLED = 5;
+    private static final int TEN_TIMES_NUMBER_ROLLED = NUMBER_ROLLED * 10;
+    private static final int TWO_TIMES_NORMAL_RENT = 400;
     private Game game;
     private List<Space> board;
-    private Go go;
     private CommunityChest communityChest1;
     private CommunityChest communityChest2;
     private Player player1;
@@ -40,7 +39,6 @@ public class CardActionTest {
     public void setUp() throws Exception {
         game = new Game("US");
         board = game.getBoard();
-        go = (Go) board.get(0);
         communityChest1 = (CommunityChest) board.get(2);
         communityChest2 = (CommunityChest) board.get(33);
         chance1 = (Chance) board.get(36);
@@ -63,7 +61,6 @@ public class CardActionTest {
     public void teardown() {
         game = null;
         board = null;
-        go = null;
         communityChest1 = null;
         communityChest2 = null;
         chance1 = null;

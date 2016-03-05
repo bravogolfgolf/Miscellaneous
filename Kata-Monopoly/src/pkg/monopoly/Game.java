@@ -24,11 +24,11 @@ public class Game {
 
     }
 
-    public static final int MINIMUM_NUMBER_OF_PLAYERS = 2;
-    public static final int MAXIMUM_NUMBER_OF_PLAYERS = 8;
+    private static final int MINIMUM_NUMBER_OF_PLAYERS = 2;
+    private static final int MAXIMUM_NUMBER_OF_PLAYERS = 8;
     private List<Space> board;
-    List<Player> players = new ArrayList<Player>();
-    Dice dice = new Dice();
+    private final List<Player> players = new ArrayList<Player>();
+    private final Dice dice = new Dice();
 
     public List<Space> getBoard() {
         return board;

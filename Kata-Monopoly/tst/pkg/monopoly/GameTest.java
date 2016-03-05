@@ -13,7 +13,7 @@ import static org.junit.Assert.assertTrue;
 
 public class GameTest {
 
-    static final int EXPECTED_NUMBER_OF_PLAYERS = 2;
+    private static final int EXPECTED_NUMBER_OF_PLAYERS = 2;
     private Go go;
     private Jail jail;
     private Utility electric;

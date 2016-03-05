@@ -38,7 +38,7 @@ public class RealEstate extends Property {
         List<Space> properties = getAllPropertiesInGroup();
         if (allPropertiesHaveSameOwner(properties))
             if (numberOfImprovements == 0)
-                return rent * 2;
+                return getRent() * 2;
             else if (numberOfImprovements == 1)
                 return house1Rent;
             else if (numberOfImprovements == 2)
@@ -49,7 +49,7 @@ public class RealEstate extends Property {
                 return house4Rent;
             else if (numberOfImprovements == 5)
                 return hotelRent;
-        return rent;
+        return getRent();
     }
 }
 
