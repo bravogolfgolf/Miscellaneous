@@ -37,7 +37,18 @@ public class RealEstate extends Property {
     protected int calculateRentOwed(String scourceOfMove) {
         List<Space> properties = getAllPropertiesInGroup();
         if (allPropertiesHaveSameOwner(properties))
-            return rent * 2;
+            if (numberOfImprovements == 0)
+                return rent * 2;
+            else if (numberOfImprovements == 1)
+                return house1rent;
+            else if (numberOfImprovements == 2)
+                return house2rent;
+            else if (numberOfImprovements == 3)
+                return house3rent;
+            else if (numberOfImprovements == 4)
+                return house4rent;
+            else if (numberOfImprovements == 5)
+                return hotelrent;
         return rent;
     }
 }
