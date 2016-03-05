@@ -107,6 +107,10 @@ public class Player {
     }
 
     public void manageProperties() {
+        // TODO If beginning of turn and player is in jail -- add ability to use card (if player has one) or post bail and move
+        // TODO Add ability to buy or sell improvement
+        // TODO Add ability to mortgage or un-mortgage property
+        // TODO Add ability to trade
     }
 
     private void doubleRolled(Dice dice) throws GoToJail.GoToJailException {
