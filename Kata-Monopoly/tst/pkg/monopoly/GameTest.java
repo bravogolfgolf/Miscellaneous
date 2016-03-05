@@ -140,7 +140,7 @@ public class GameTest {
         checkPropertiesManageCounts(game, 20, 20);
     }
 
-    private void setUpPlayerMockManagePropertiesCounter(Game game, Space startingSpace) throws Game.InvalidPlayerCount {
+    private void setUpPlayerMockManagePropertiesCounter(Game game, Space startingSpace) {
         for (int i = 0; i < 2; i++) {
             PlayerMockManagePropertiesCounter player = new PlayerMockManagePropertiesCounter();
             game.addPlayer(player);

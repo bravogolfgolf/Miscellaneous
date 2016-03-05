@@ -73,7 +73,7 @@ public class UtilityGroupTest {
     }
 
     @Test
-    public void testLandOnOwnedAndUnmortgagedUtility() {
+    public void testLandOnOwnedAndUnMortgagedUtility() {
         ownedUnMortgagedProperty(player2);
         int player1EndingBalance = player1BeginningBalance - RENT_OWED_IF_ONE_UTILITY_OWNED;
         int player2EndingBalance = player2BeginningBalance + RENT_OWED_IF_ONE_UTILITY_OWNED;

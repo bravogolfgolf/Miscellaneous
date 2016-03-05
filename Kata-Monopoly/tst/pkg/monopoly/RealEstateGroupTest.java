@@ -91,7 +91,7 @@ public class RealEstateGroupTest {
     }
 
     @Test
-    public void testLandOnOwnedAndUnmortgagedPropertyNoHousesOrHotel() {
+    public void testLandOnOwnedAndUnMortgagedPropertyNoHousesOrHotel() {
         ownedUnMortgagedProperty(player2, mediterraneanAve);
         int player1EndingBalance = player1BeginningBalance - RENT_OF_MEDITERRANEAN;
         int player2EndingBalance = player2BeginningBalance + RENT_OF_MEDITERRANEAN;
@@ -111,7 +111,7 @@ public class RealEstateGroupTest {
     }
 
     @Test
-    public void testLandOnOwnedAndUnmortgagedPropertyWithHousesOrHotel() {
+    public void testLandOnOwnedAndUnMortgagedPropertyWithHousesOrHotel() {
         ownedUnMortgagedProperty(player2, mediterraneanAve);
         ownedUnMortgagedProperty(player2, balticAve);
 

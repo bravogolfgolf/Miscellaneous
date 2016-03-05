@@ -95,7 +95,7 @@ abstract class Property extends Space {
             }
     }
 
-    protected abstract int calculateRentOwed(String scourceOfMove);
+    protected abstract int calculateRentOwed(String sourceOfMove);
 
     private boolean playerIsNotOwner(Player player) {
         return !player.equals(this.getOwner());

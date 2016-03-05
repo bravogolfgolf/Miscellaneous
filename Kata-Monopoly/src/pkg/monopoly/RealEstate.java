@@ -34,7 +34,7 @@ public class RealEstate extends Property {
     }
 
     @Override
-    protected int calculateRentOwed(String scourceOfMove) {
+    protected int calculateRentOwed(String sourceOfMove) {
         List<Space> properties = getAllPropertiesInGroup();
         if (allPropertiesHaveSameOwner(properties))
             if (numberOfImprovements == 0)

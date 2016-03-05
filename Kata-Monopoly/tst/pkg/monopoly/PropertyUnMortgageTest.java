@@ -10,7 +10,7 @@ import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
 
 public class PropertyUnMortgageTest {
-    public static final int UNMORTGAGE_AMOUNT = -110;
+    public static final int UN_MORTGAGE_AMOUNT = -110;
     private Player player;
     private Player owner;
     private Property property;
@@ -32,13 +32,13 @@ public class PropertyUnMortgageTest {
 
     @Test
     public void testUnMortgageAmount() {
-        assertEquals(UNMORTGAGE_AMOUNT, property.unMortgageAmount());
+        assertEquals(UN_MORTGAGE_AMOUNT, property.unMortgageAmount());
     }
 
     @Test
     public void testPlayerUnMortgagesProperty() {
-        int expectedBalance = player.getCashBalance() + UNMORTGAGE_AMOUNT;
-        int exceptedNetWorth = player.getNetWorth() + UNMORTGAGE_AMOUNT + (property.getPrice() / 2);
+        int expectedBalance = player.getCashBalance() + UN_MORTGAGE_AMOUNT;
+        int exceptedNetWorth = player.getNetWorth() + UN_MORTGAGE_AMOUNT + (property.getPrice() / 2);
         property.setOwner(player);
         property.setIsMortgaged(true);
         property.unMortgageBy(player);

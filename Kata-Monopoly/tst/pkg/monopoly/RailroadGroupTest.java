@@ -88,7 +88,7 @@ public class RailroadGroupTest {
     }
 
     @Test
-    public void testLandOnOwnedAndUnmortgagedProperty() {
+    public void testLandOnOwnedAndUnMortgagedProperty() {
         ownedUnMortgagedProperty(player2);
         int player1EndingBalance = player1BeginningBalance - RENT_OF_RAILROAD;
         int player2EndingBalance = player2BeginningBalance + RENT_OF_RAILROAD;
