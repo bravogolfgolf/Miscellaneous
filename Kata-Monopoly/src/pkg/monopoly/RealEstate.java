@@ -22,12 +22,10 @@ public class RealEstate extends Property {
     }
 
     public void addImprovements() {
-        // TODO add transaction
         numberOfImprovements++;
     }
 
     public void removeImprovements() {
-        // TODO add transaction
         numberOfImprovements--;
     }
 
