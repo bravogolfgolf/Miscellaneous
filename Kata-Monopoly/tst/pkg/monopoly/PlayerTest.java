@@ -65,7 +65,7 @@ public class PlayerTest {
     }
 
     @Test
-    public void testMovesAndDoesNoWrap() throws GoToJail.GoToJailException {
+    public void testMovesAndDoesNoWrap()  {
         player1.setSpace(start);
         player1.takeATurn(diceMock);
         Space endingLocation = space2;
@@ -74,7 +74,7 @@ public class PlayerTest {
     }
 
     @Test
-    public void testMovesAndWraps() throws GoToJail.GoToJailException {
+    public void testMovesAndWraps()  {
         player1.setSpace(space1);
         player1.takeATurn(diceMock);
         Space endingLocation = start;
@@ -118,7 +118,7 @@ public class PlayerTest {
     }
 
     @Test
-    public void testPlayerRollsDoublesThenNot() throws GoToJail.GoToJailException {
+    public void testPlayerRollsDoublesThenNot()  {
         Dice diceMock = new DiceMockRollsDouble3sThenPlain4();
         playerInitialization();
         Property property1 = (Property) board.get(6);
@@ -135,7 +135,7 @@ public class PlayerTest {
     }
 
     @Test
-    public void testPlayerRollsDoublesTwiceThenNot() throws GoToJail.GoToJailException {
+    public void testPlayerRollsDoublesTwiceThenNot()  {
         Dice diceMock = new DiceMockRollsDoubleTwiceThenNot();
         playerInitialization();
 

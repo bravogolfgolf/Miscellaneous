@@ -19,7 +19,7 @@ public class Repair extends Card {
     }
 
     @Override
-    void action(Player player) throws GoToJail.GoToJailException {
+    void action(Player player)  {
         int assessment = 0;
         List<RealEstate> realEstateHoldings = Space.getAllRealEstateOf(player);
         for (RealEstate realEstate : realEstateHoldings) {

@@ -97,7 +97,7 @@ public class Player {
         return inJail;
     }
 
-    public void takeATurn(Dice dice) throws GoToJail.GoToJailException {
+    public void takeATurn(Dice dice) {
         manageProperties();
         dice.rollTwoDie();
         if (dice.rolledDouble())
@@ -113,7 +113,7 @@ public class Player {
         // TODO Add ability to trade
     }
 
-    private void doubleRolled(Dice dice) throws GoToJail.GoToJailException {
+    private void doubleRolled(Dice dice) {
         incrementDoublesRolledInATurnCounter();
         if (getNumberOfRolls() == 3) {
             if (inJail) {
@@ -145,11 +145,11 @@ public class Player {
         resetRollCounter();
     }
 
-    private void goToJail() throws GoToJail.GoToJailException {
+    private void goToJail()  {
         Space goToJail = space.searchForSpaceByDescription("Go to Jail");
         goToJail.landOn(this, "Roll");}
 
-    private void doubleNotRolled(Dice dice) throws GoToJail.GoToJailException {
+    private void doubleNotRolled(Dice dice) {
         if (isInJail()) {
             if (rollCounter == 2) {
                 postBail();

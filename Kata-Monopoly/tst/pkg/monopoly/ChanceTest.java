@@ -28,7 +28,7 @@ public class ChanceTest {
     }
 
     @Test
-    public void testLandOn() throws GoToJail.GoToJailException {
+    public void testLandOn()  {
         List<Card> cards = new ArrayList<Card>();
         Card.clearCards();
         Card card = Card.create("Instruction", "GetOutOfJail");

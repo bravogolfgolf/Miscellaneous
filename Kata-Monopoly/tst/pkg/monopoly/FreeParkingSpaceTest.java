@@ -24,7 +24,7 @@ public class FreeParkingSpaceTest {
     }
 
     @Test
-    public void testLandOn() throws GoToJail.GoToJailException {
+    public void testLandOn()  {
         int expectedEndingBalance = player.getCashBalance();
         freeParking.landOn(player, "Roll");
         assertEquals(expectedEndingBalance, player.getCashBalance());

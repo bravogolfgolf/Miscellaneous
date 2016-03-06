@@ -10,7 +10,7 @@ public class GoToJail extends Space {
     }
 
     @Override
-    public void landOn(Player player, String sourceOfMove) throws GoToJailException {
+    public void landOn(Player player, String sourceOfMove){
         throw new GoToJailException();
     }
 }

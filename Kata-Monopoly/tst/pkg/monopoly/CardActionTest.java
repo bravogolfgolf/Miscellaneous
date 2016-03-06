@@ -78,7 +78,7 @@ public class CardActionTest {
     }
 
     @Test
-    public void testGetOutOfJailCardAction() throws GoToJail.GoToJailException {
+    public void testGetOutOfJailCardAction()  {
         Card.clearCards();
         Card getOutOfJail = Card.create("Get out of Jail Free – This card may be kept until needed or sold", "GetOutOfJail");
         createCommunityChestCard(getOutOfJail);
@@ -91,7 +91,7 @@ public class CardActionTest {
     }
 
     @Test
-    public void testMoveBackCardAction() throws GoToJail.GoToJailException {
+    public void testMoveBackCardAction()  {
         Card.clearCards();
         Card moveBack = Card.create("Go Back 3 Spaces", "MoveBack");
         createChanceCard(moveBack);
@@ -105,7 +105,7 @@ public class CardActionTest {
     }
 
     @Test
-    public void testMoveForwardNextCardAction_Utility() throws GoToJail.GoToJailException {
+    public void testMoveForwardNextCardAction_Utility()  {
         Card.clearCards();
         Card moveForwardNext = Card.create("Advance token to nearest Utility. If unowned, you may buy it from the Bank. If owned, throw dice and pay owner a total ten times the amount thrown.", "MoveForwardNext", "Utility");
         createChanceCard(moveForwardNext);
@@ -125,7 +125,7 @@ public class CardActionTest {
     }
 
     @Test
-    public void testMoveForwardNextCardAction_Railroad() throws GoToJail.GoToJailException {
+    public void testMoveForwardNextCardAction_Railroad()  {
         Card.clearCards();
         Card moveForwardNext = Card.create("Advance token to the nearest Railroad and pay owner twice the rental to which he is otherwise entitled. If Railroad is unowned, you may buy it from the Bank", "MoveForwardNext", "Railroad");
         createChanceCard(moveForwardNext);
@@ -147,7 +147,7 @@ public class CardActionTest {
     }
 
     @Test
-    public void testMoveForwardSpecificCardAction() throws GoToJail.GoToJailException {
+    public void testMoveForwardSpecificCardAction()  {
         Card.clearCards();
         Card moveForwardSpecific = Card.create("Advance to Illinois Ave. - If you pass Go, collect $200", "MoveForwardSpecific", "Illinois Avenue");
         createChanceCard(moveForwardSpecific);
@@ -165,7 +165,7 @@ public class CardActionTest {
     }
 
     @Test(expected = GoToJail.GoToJailException.class)
-    public void testMoveJail() throws GoToJail.GoToJailException {
+    public void testMoveJail()  {
         Card.clearCards();
         Card goToJail = Card.create("Go to Jail – Go directly to jail – Do not pass Go – Do not collect $200", "MoveJail", "Go to Jail");
         createCommunityChestCard(goToJail);
@@ -174,7 +174,7 @@ public class CardActionTest {
     }
 
     @Test
-    public void testRepairsCardAction() throws GoToJail.GoToJailException {
+    public void testRepairsCardAction()  {
         Card.clearCards();
         Card repairs = Card.create("You are assessed for street repairs – $40 per house – $115 per hotel", "Repairs", 40, 115);
         createCommunityChestCard(repairs);
@@ -206,7 +206,7 @@ public class CardActionTest {
     }
 
     @Test
-    public void testLandOnDrawsTransactionCardForBank() throws GoToJail.GoToJailException {
+    public void testLandOnDrawsTransactionCardForBank()  {
         Card.clearCards();
         Card transaction = Card.create("Bank error in your favor – Collect $200", "Transaction", 200, "Bank");
         createCommunityChestCard(transaction);
@@ -220,7 +220,7 @@ public class CardActionTest {
     }
 
     @Test
-    public void testTransactionCardActionForPlayers() throws GoToJail.GoToJailException {
+    public void testTransactionCardActionForPlayers() {
         Player player3 = new Player("Ship");
 
         player1.setNextPlayer(player2);

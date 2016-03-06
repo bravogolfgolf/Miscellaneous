@@ -11,7 +11,7 @@ public class GetOutOfJail extends Card {
     }
 
     @Override
-    public void action(Player player) throws GoToJail.GoToJailException {
+    public void action(Player player)  {
         player.addCard(this);
     }
 }

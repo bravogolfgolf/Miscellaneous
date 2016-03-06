@@ -6,7 +6,7 @@ public class CommunityChest extends Space {
     }
 
     @Override
-    public void landOn(Player player, String sourceOfMove) throws GoToJail.GoToJailException {
+    public void landOn(Player player, String sourceOfMove) {
         Card card = Card.drawCard("Community Chest");
         card.action(player);
     }

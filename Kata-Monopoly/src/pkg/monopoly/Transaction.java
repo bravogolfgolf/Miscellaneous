@@ -18,7 +18,7 @@ public class Transaction extends Card {
     }
 
     @Override
-    public void action(Player player) throws GoToJail.GoToJailException {
+    public void action(Player player)  {
         if (recipient.equals("Bank"))
             player.transaction(amount, "Cash");
         if (recipient.equals("Players")) {

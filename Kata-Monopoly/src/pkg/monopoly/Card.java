@@ -88,7 +88,7 @@ public abstract class Card {
         return !card.isGetOutOfJailCard();
     }
 
-    abstract void action(Player player) throws GoToJail.GoToJailException;
+    abstract void action(Player player);
 
     public static List<Card> load(String filename) throws IOException {
         List<String> content = Files.readAllLines(Paths.get(filename));
