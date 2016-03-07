@@ -13,10 +13,7 @@ public class Railroad extends Property {
         List<Space> properties = getAllPropertiesInGroup();
         int exponent = getCountOfPropertiesInGroupWithSameOwner(properties) - 1;
         int ownershipMultiplier = (int) Math.pow(2, exponent);
-        if (sourceOfMove.equals("Card"))
-            return getRent() * ownershipMultiplier * sourceOfMoveMultiplier.value();
-        else
-            return getRent() * ownershipMultiplier * sourceOfMoveMultiplier.value();
+        return getRent() * ownershipMultiplier * sourceOfMoveMultiplier.value();
     }
 
 }
