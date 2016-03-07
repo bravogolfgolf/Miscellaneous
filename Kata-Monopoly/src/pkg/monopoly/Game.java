@@ -55,8 +55,16 @@ public class Game {
                 getNumberOfPlayers() > MAXIMUM_NUMBER_OF_PLAYERS)
             throw new InvalidPlayerCount(String.format("Number of Players: %d", getNumberOfPlayers()));
         randomizePlayerOrder();
+        linkPlayers();
         Card.randomizeCardOrder();
         play(dice);
+    }
+
+    private void linkPlayers() {
+        for (int i = 0; i < players.size() - 1; i++) {
+            players.get(i).setNextPlayer(players.get(i + 1));
+        }
+        players.get(players.size() - 1).setNextPlayer(players.get(0));
     }
 
     public void play(Dice dice) {
