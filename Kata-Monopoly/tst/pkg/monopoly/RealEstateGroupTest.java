@@ -84,7 +84,7 @@ public class RealEstateGroupTest {
         assertTrue(mediterraneanAve.getOwner().isBank());
         int endingBalance = player1BeginningBalance - PRICE_OF_MEDITERRANEAN;
         int exceptedNetWorth = player1.getNetWorth() - PRICE_OF_MEDITERRANEAN + (PRICE_OF_MEDITERRANEAN / 2);
-        mediterraneanAve.landOn(player1, "Roll");
+        mediterraneanAve.landOn(player1, "Roll", new SourceOfMoveMultiplier());
         assertEquals(player1, mediterraneanAve.getOwner());
         assertEquals(endingBalance, player1.getCashBalance());
         assertEquals(exceptedNetWorth, player1.getNetWorth());
@@ -97,7 +97,7 @@ public class RealEstateGroupTest {
         assertEquals(0,player1.getCashBalance());
         assertEquals(0,player1.getNetWorth());
         assertTrue(mediterraneanAve.getOwner().isBank());
-        mediterraneanAve.landOn(player1, "Roll");
+        mediterraneanAve.landOn(player1, "Roll", new SourceOfMoveMultiplier());
         assertTrue(mediterraneanAve.getOwner().isBank());
         assertEquals(0, player1.getCashBalance());
         assertEquals(0, player1.getNetWorth());
@@ -108,7 +108,7 @@ public class RealEstateGroupTest {
         ownedUnMortgagedProperty(player2, mediterraneanAve);
         int player1EndingBalance = player1BeginningBalance - RENT_OF_MEDITERRANEAN;
         int player2EndingBalance = player2BeginningBalance + RENT_OF_MEDITERRANEAN;
-        mediterraneanAve.landOn(player1, "Roll");
+        mediterraneanAve.landOn(player1, "Roll", new SourceOfMoveMultiplier());
         assertEquals(player2, mediterraneanAve.getOwner());
         assertTrue(balticAve.getOwner().isBank());
         checkPlayersCashBalances(player1EndingBalance, player2EndingBalance);
@@ -116,10 +116,10 @@ public class RealEstateGroupTest {
         balticAve.setOwner(player2);
         player1EndingBalance = player1EndingBalance - (RENT_OF_BALTIC * 2);
         player2EndingBalance = player2EndingBalance + (RENT_OF_BALTIC * 2);
-        balticAve.landOn(player1, "Roll");
+        balticAve.landOn(player1, "Roll", new SourceOfMoveMultiplier());
         checkPlayersCashBalances(player1EndingBalance, player2EndingBalance);
 
-        balticAve.landOn(player2, "Roll");
+        balticAve.landOn(player2, "Roll", new SourceOfMoveMultiplier());
         checkPlayersCashBalances(player1EndingBalance, player2EndingBalance);
     }
 
@@ -132,35 +132,35 @@ public class RealEstateGroupTest {
         int player1EndingBalance = player1BeginningBalance - MEDITERRANEAN_1_HOUSE_RENT;
         int player2EndingBalance = player2BeginningBalance + MEDITERRANEAN_1_HOUSE_RENT;
 
-        mediterraneanAve.landOn(player1, "Roll");
+        mediterraneanAve.landOn(player1, "Roll", new SourceOfMoveMultiplier());
         checkPlayersCashBalances(player1EndingBalance, player2EndingBalance);
 
         mediterraneanAve.addImprovements();
         player1EndingBalance -= MEDITERRANEAN_2_HOUSE_RENT;
         player2EndingBalance += MEDITERRANEAN_2_HOUSE_RENT;
 
-        mediterraneanAve.landOn(player1, "Roll");
+        mediterraneanAve.landOn(player1, "Roll", new SourceOfMoveMultiplier());
         checkPlayersCashBalances(player1EndingBalance, player2EndingBalance);
 
         mediterraneanAve.addImprovements();
         player1EndingBalance -= MEDITERRANEAN_3_HOUSE_RENT;
         player2EndingBalance += MEDITERRANEAN_3_HOUSE_RENT;
 
-        mediterraneanAve.landOn(player1, "Roll");
+        mediterraneanAve.landOn(player1, "Roll", new SourceOfMoveMultiplier());
         checkPlayersCashBalances(player1EndingBalance, player2EndingBalance);
 
         mediterraneanAve.addImprovements();
         player1EndingBalance -= MEDITERRANEAN_4_HOUSE_RENT;
         player2EndingBalance += MEDITERRANEAN_4_HOUSE_RENT;
 
-        mediterraneanAve.landOn(player1, "Roll");
+        mediterraneanAve.landOn(player1, "Roll", new SourceOfMoveMultiplier());
         checkPlayersCashBalances(player1EndingBalance, player2EndingBalance);
 
         mediterraneanAve.addImprovements();
         player1EndingBalance -= MEDITERRANEAN_HOTEl_RENT;
         player2EndingBalance += MEDITERRANEAN_HOTEl_RENT;
 
-        mediterraneanAve.landOn(player1, "Roll");
+        mediterraneanAve.landOn(player1, "Roll", new SourceOfMoveMultiplier());
         checkPlayersCashBalances(player1EndingBalance, player2EndingBalance);
     }
 
@@ -178,7 +178,7 @@ public class RealEstateGroupTest {
     @Test
     public void testLandOnOwnedAndMortgagedProperty() {
         ownedMortgagedProperty();
-        mediterraneanAve.landOn(player1, "Roll");
+        mediterraneanAve.landOn(player1, "Roll", new SourceOfMoveMultiplier());
         assertEquals(player2, mediterraneanAve.getOwner());
         checkPlayersCashBalances(player1BeginningBalance, player2BeginningBalance);
     }
@@ -194,7 +194,7 @@ public class RealEstateGroupTest {
     public void testPlayerDoesNotPayHimselfRent() {
         PlayerMockDoesNotPaySelfRent playerMock = new PlayerMockDoesNotPaySelfRent();
         ownedUnMortgagedProperty(playerMock, mediterraneanAve);
-        mediterraneanAve.landOn(playerMock, "Roll");
+        mediterraneanAve.landOn(playerMock, "Roll", new SourceOfMoveMultiplier());
         assertEquals(0, playerMock.changeCashBalanceBy);
     }
 

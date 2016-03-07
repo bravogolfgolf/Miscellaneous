@@ -73,10 +73,29 @@ public class SpaceTest {
         assertTrue(start.getNextSpace().equals(space1));
     }
 
+
     @Test
-    public void testLandOnSpaceWithNoChangeInCash()  {
+    public void testIsGroup() {
+        Space railroad = Space.create("Railroad", "Short Line", "Railroad", 200, 25);
+        Space utility = Space.create("Utility", "Water Works", "Utility", 150);
+        assertTrue(railroad.isRailroad());
+        assertTrue(utility.isUtility());
+    }
+
+    @Test
+    public void getSourceOfMoveMultiplierBasedOnGroup() {
+        Space railroad = Space.create("Railroad", "Short Line", "Railroad", 200, 25);
+        Space utility = Space.create("Utility", "Water Works", "Utility", 150);
+        SourceOfMoveMultiplier som2 = new SourceOfMoveMultiplier2();
+        SourceOfMoveMultiplier som10 = new SourceOfMoveMultiplier10();
+        assertEquals(som2.value(), railroad.getSourceOfMoveMultiplier().value());
+        assertEquals(som10.value(),utility.getSourceOfMoveMultiplier().value());
+    }
+
+    @Test
+    public void testLandOnSpaceWithNoChangeInCash() {
         int expectedEndingBalance = player.getCashBalance();
-        space.landOn(player, "Roll");
+        space.landOn(player, "Roll", new SourceOfMoveMultiplier());
         assertEquals(expectedEndingBalance, player.getCashBalance());
     }
 
@@ -88,7 +107,7 @@ public class SpaceTest {
     }
 
     @Test
-    public void testLandOnMethodCalledProperly()  {
+    public void testLandOnMethodCalledProperly() {
         player.setSpace(start);
         player.takeATurn(diceMock);
         assertEquals(0, start.landOnCounter);

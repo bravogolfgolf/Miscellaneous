@@ -12,7 +12,7 @@ public class LuxuryTaxTest {
     final int AFTER_TAX_BALANCE = 1425;
         LuxuryTax luxuryTax = (LuxuryTax) Space.create("LuxuryTax","Luxury Tax");
         Player player = new Player("Cat");
-        luxuryTax.landOn(player, "Roll");
+        luxuryTax.landOn(player, "Roll", new SourceOfMoveMultiplier());
         assertEquals(AFTER_TAX_BALANCE, player.getCashBalance());
     }
 }

@@ -87,18 +87,18 @@ abstract class Property extends Space {
     }
 
     @Override
-    public void landOn(Player player, String sourceOfMove) {
+    public void landOn(Player player, String sourceOfMove, SourceOfMoveMultiplier sourceOfMoveMultiplier) {
         if (playerIsNotOwner(player))
             if (propertyIsUnowned())
                 // TODO Add ability to buy property or auction
                 buyProperty(player);
             else if (propertyIsNotMortgaged()) {
-                int rentOwed = calculateRentOwed(sourceOfMove);
+                int rentOwed = calculateRentOwed(sourceOfMove, sourceOfMoveMultiplier);
                 payRent(player, rentOwed);
             }
     }
 
-    protected abstract int calculateRentOwed(String sourceOfMove);
+    protected abstract int calculateRentOwed(String sourceOfMove, SourceOfMoveMultiplier sourceOfMoveMultiplier);
 
     private boolean playerIsNotOwner(Player player) {
         return !player.equals(this.getOwner());

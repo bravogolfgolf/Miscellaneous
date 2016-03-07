@@ -19,6 +19,7 @@ public class MoveForwardNext extends Card {
         Space endingSpace = startingSpace.searchForNextSpaceInGroup(group);
         String destination = endingSpace.getDescription();
         int numberOfSpacesToDestination = startingSpace.getNumberOfSpacesTo(destination);
-        startingSpace.move(player,numberOfSpacesToDestination, "Card");
+        SourceOfMoveMultiplier sourceOfMoveMultiplier = endingSpace.getSourceOfMoveMultiplier();
+        startingSpace.move(player,numberOfSpacesToDestination, "Card", sourceOfMoveMultiplier);
     }
 }

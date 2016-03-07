@@ -57,6 +57,14 @@ abstract class Space {
         return group;
     }
 
+    public boolean isRailroad() {
+        return group.equals("Railroad");
+    }
+
+    public boolean isUtility() {
+        return group.equals("Utility");
+    }
+
     public void setNextSpace(Space space) {
         nextSpace = space;
     }
@@ -65,14 +73,14 @@ abstract class Space {
         return nextSpace;
     }
 
-    public void move(Player player, int numberRolled, String sourceOfMove) {
+    public void move(Player player, int numberRolled, String sourceOfMove, SourceOfMoveMultiplier sourceOfMoveMultiplier) {
         this.numberRolled = numberRolled;
         for (int i = 1; i < numberRolled; i++) {
             moveForwardOneSpace(player);
             player.getSpace().passBy(player);
         }
         moveForwardOneSpace(player);
-        player.getSpace().landOn(player, sourceOfMove);
+        player.getSpace().landOn(player, sourceOfMove, sourceOfMoveMultiplier);
     }
 
     private void moveForwardOneSpace(Player player) {
@@ -84,7 +92,7 @@ abstract class Space {
     public void passBy(Player player) {
     }
 
-    public void landOn(Player player, String sourceOfMove)  {
+    public void landOn(Player player, String sourceOfMove, SourceOfMoveMultiplier sourceOfMoveMultiplier) {
     }
 
     public Space searchForSpaceByDescription(String description) {
@@ -108,7 +116,6 @@ abstract class Space {
         }
         return nextSpace;
     }
-
 
     public int getNumberOfSpacesTo(String description) {
         int result = 0;
@@ -174,5 +181,13 @@ abstract class Space {
         result = 31 * result + (nextSpace != null ? nextSpace.hashCode() : 0);
         result = 31 * result + group.hashCode();
         return result;
+    }
+
+    public SourceOfMoveMultiplier getSourceOfMoveMultiplier() {
+        if (this.isRailroad())
+            return new SourceOfMoveMultiplier2();
+        if(this.isUtility())
+            return new SourceOfMoveMultiplier10();
+        return new SourceOfMoveMultiplier();
     }
 }

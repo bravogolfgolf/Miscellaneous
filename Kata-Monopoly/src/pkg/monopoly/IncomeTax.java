@@ -7,7 +7,7 @@ public class IncomeTax extends Space {
     }
 
     @Override
-    public void landOn(Player player, String sourceOfMove) {
+    public void landOn(Player player, String sourceOfMove, SourceOfMoveMultiplier sourceOfMoveMultiplier) {
         final double TEN_PERCENT = .10;
 
         int tax;

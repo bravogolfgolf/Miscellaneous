@@ -34,22 +34,23 @@ public class RealEstate extends Property {
     }
 
     @Override
-    protected int calculateRentOwed(String sourceOfMove) {
+    protected int calculateRentOwed(String sourceOfMove, SourceOfMoveMultiplier sourceOfMoveMultiplier) {
         List<Space> properties = getAllPropertiesInGroup();
         if (allPropertiesHaveSameOwner(properties))
             if (numberOfImprovements == 0)
-                return getRent() * 2;
+                return getRent() * 2 * sourceOfMoveMultiplier.value();
             else if (numberOfImprovements == 1)
-                return house1Rent;
+                return house1Rent * sourceOfMoveMultiplier.value();
             else if (numberOfImprovements == 2)
-                return house2Rent;
+                return house2Rent * sourceOfMoveMultiplier.value();
             else if (numberOfImprovements == 3)
-                return house3Rent;
+                return house3Rent * sourceOfMoveMultiplier.value();
             else if (numberOfImprovements == 4)
-                return house4Rent;
+                return house4Rent * sourceOfMoveMultiplier.value();
             else if (numberOfImprovements == 5)
-                return hotelRent;
-        return getRent();
+                return hotelRent * sourceOfMoveMultiplier.value();
+        return getRent() * sourceOfMoveMultiplier.value();
+
     }
 }
 

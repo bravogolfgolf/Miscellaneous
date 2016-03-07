@@ -9,10 +9,12 @@ public class Utility extends Property {
     }
 
     @Override
-    protected int calculateRentOwed(String sourceOfMove) {
+    protected int calculateRentOwed(String sourceOfMove, SourceOfMoveMultiplier sourceOfMoveMultiplier) {
         List<Space> properties = getAllPropertiesInGroup();
-        if (allPropertiesHaveSameOwner(properties) || sourceOfMove.equals("Card"))
-            return numberRolled * 10;
-        return numberRolled * 4;
+        if (allPropertiesHaveSameOwner(properties))
+            return numberRolled * 10 * sourceOfMoveMultiplier.value();
+        if (sourceOfMove.equals("Card"))
+            return numberRolled * 1 * sourceOfMoveMultiplier.value();
+        return numberRolled * 4 * sourceOfMoveMultiplier.value();
     }
 }

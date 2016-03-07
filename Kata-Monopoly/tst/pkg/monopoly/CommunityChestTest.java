@@ -35,7 +35,7 @@ public class CommunityChestTest {
         cards.add(card);
         Card.addCommunityChestCards(cards);
         int expectedEndingBalance = player.getCashBalance();
-        communityChest.landOn(player, "Roll");
+        communityChest.landOn(player, "Roll", new SourceOfMoveMultiplier());
         assertEquals(expectedEndingBalance, player.getCashBalance());
         assertTrue(player.getCard().equals(card));
     }
