@@ -75,6 +75,17 @@ abstract class Property extends Space {
         return true;
     }
 
+    public int getCountOfPropertiesInGroupWithSameOwner(List<Space> properties) {
+        Player thisOwner = this.getOwner();
+        int ownerCount = 0;
+        for (Space space : properties) {
+            Property property = (Property) space;
+            if (property.getOwner().equals(thisOwner))
+                ownerCount++;
+        }
+        return ownerCount;
+    }
+
     @Override
     public void landOn(Player player, String sourceOfMove) {
         if (playerIsNotOwner(player))
