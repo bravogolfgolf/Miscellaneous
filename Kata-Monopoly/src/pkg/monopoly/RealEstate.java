@@ -7,7 +7,7 @@ public class RealEstate extends Property {
     }
 
     @Override
-    protected int calculateRentOwed(String sourceOfMove, SourceOfMoveMultiplier sourceOfMoveMultiplier, OwnershipMultiplier ownershipMultiplier) {
+    protected int calculateRentOwed(SourceOfMoveMultiplier sourceOfMoveMultiplier, OwnershipMultiplier ownershipMultiplier) {
         if (getImprovements() == 1)
             return house1Rent * ownershipMultiplier.value() * sourceOfMoveMultiplier.value();
         else if (getImprovements() == 2)

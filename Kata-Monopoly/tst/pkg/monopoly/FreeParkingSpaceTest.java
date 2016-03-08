@@ -26,7 +26,7 @@ public class FreeParkingSpaceTest {
     @Test
     public void testLandOn()  {
         int expectedEndingBalance = player.getCashBalance();
-        freeParking.landOn(player, "Roll", new SourceOfMoveMultiplier(), new OwnershipMultiplier());
+        freeParking.landOn(player, new SourceOfMoveMultiplier(), new OwnershipMultiplier());
         assertEquals(expectedEndingBalance, player.getCashBalance());
     }
 

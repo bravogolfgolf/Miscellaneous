@@ -98,7 +98,7 @@ public class SpaceTest {
     @Test
     public void testLandOnSpaceWithNoChangeInCash() {
         int expectedEndingBalance = player.getCashBalance();
-        space.landOn(player, "Roll", new SourceOfMoveMultiplier(), new OwnershipMultiplier());
+        space.landOn(player, new SourceOfMoveMultiplier(), new OwnershipMultiplier());
         assertEquals(expectedEndingBalance, player.getCashBalance());
     }
 

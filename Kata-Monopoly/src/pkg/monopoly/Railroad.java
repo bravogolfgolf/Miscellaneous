@@ -7,7 +7,7 @@ public class Railroad extends Property {
     }
 
     @Override
-    protected int calculateRentOwed(String sourceOfMove, SourceOfMoveMultiplier sourceOfMoveMultiplier, OwnershipMultiplier ownershipMultiplier) {
+    protected int calculateRentOwed(SourceOfMoveMultiplier sourceOfMoveMultiplier, OwnershipMultiplier ownershipMultiplier) {
         return getRent() * ownershipMultiplier.value() * sourceOfMoveMultiplier.value();
     }
 

@@ -118,15 +118,15 @@ public class Player {
         if (getNumberOfRolls() == 3) {
             if (inJail) {
                 releasedFromJail();
-                space.move(this, dice.getTwoDieRollValue(), "Roll", new SourceOfMoveMultiplier(), new OwnershipMultiplier());
+                space.move(this, dice.getTwoDieRollValue(), new SourceOfMoveMultiplier(), new OwnershipMultiplier());
             } else
                 goToJail();
         } else {
             if (inJail) {
                 releasedFromJail();
-                space.move(this, dice.getTwoDieRollValue(), "Roll", new SourceOfMoveMultiplier(), new OwnershipMultiplier());
+                space.move(this, dice.getTwoDieRollValue(), new SourceOfMoveMultiplier(), new OwnershipMultiplier());
             } else {
-                space.move(this, dice.getTwoDieRollValue(), "Roll", new SourceOfMoveMultiplier(), new OwnershipMultiplier());
+                space.move(this, dice.getTwoDieRollValue(), new SourceOfMoveMultiplier(), new OwnershipMultiplier());
                 takeATurn(dice);
             }
         }
@@ -147,18 +147,18 @@ public class Player {
 
     private void goToJail()  {
         Space goToJail = space.searchForSpaceByDescription("Go to Jail");
-        goToJail.landOn(this, "Roll", new SourceOfMoveMultiplier(), new OwnershipMultiplier());}
+        goToJail.landOn(this, new SourceOfMoveMultiplier(), new OwnershipMultiplier());}
 
     private void doubleNotRolled(Dice dice) {
         if (isInJail()) {
             if (rollCounter == 2) {
                 postBail();
-                space.move(this, dice.getTwoDieRollValue(), "Roll", new SourceOfMoveMultiplier(), new OwnershipMultiplier());
+                space.move(this, dice.getTwoDieRollValue(), new SourceOfMoveMultiplier(), new OwnershipMultiplier());
             } else {
                 rollCounter++;
             }
         } else {
-            space.move(this, dice.getTwoDieRollValue(), "Roll", new SourceOfMoveMultiplier(), new OwnershipMultiplier());
+            space.move(this, dice.getTwoDieRollValue(), new SourceOfMoveMultiplier(), new OwnershipMultiplier());
             resetRollCounter();
         }
     }

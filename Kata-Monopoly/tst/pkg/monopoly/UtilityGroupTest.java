@@ -66,7 +66,7 @@ public class UtilityGroupTest {
         assertTrue(electric.getOwner().isBank());
         int endingBalance = player1BeginningBalance - PRICE_OF_ELECTRIC;
         int exceptedNetWorth = player1.getNetWorth() - PRICE_OF_ELECTRIC + (PRICE_OF_ELECTRIC / 2);
-        electric.landOn(player1, "Roll", new SourceOfMoveMultiplier(), new OwnershipMultiplier());
+        electric.landOn(player1, new SourceOfMoveMultiplier(), new OwnershipMultiplier());
         assertEquals(player1, electric.getOwner());
         assertEquals(endingBalance, player1.getCashBalance());
         assertEquals(exceptedNetWorth,player1.getNetWorth());
@@ -78,7 +78,7 @@ public class UtilityGroupTest {
         int player1EndingBalance = player1BeginningBalance - RENT_OWED_IF_ONE_UTILITY_OWNED;
         int player2EndingBalance = player2BeginningBalance + RENT_OWED_IF_ONE_UTILITY_OWNED;
         electric.numberRolled = MOCK_ROLL_VALUE;
-        electric.landOn(player1, "Roll", new SourceOfMoveMultiplier(), new OwnershipMultiplier());
+        electric.landOn(player1, new SourceOfMoveMultiplier(), new OwnershipMultiplier());
         assertEquals(player2, electric.getOwner());
         assertTrue(water.getOwner().isBank());
         assertEquals(player1EndingBalance, player1.getCashBalance());
@@ -86,13 +86,13 @@ public class UtilityGroupTest {
 
         water.numberRolled = MOCK_ROLL_VALUE;
         water.setOwner(player2);
-        water.landOn(player1, "Roll", new SourceOfMoveMultiplier(), new OwnershipMultiplier());
+        water.landOn(player1, new SourceOfMoveMultiplier(), new OwnershipMultiplier());
         player1EndingBalance = player1EndingBalance - RENT_OWED_IF_BOTH_UTILITIES_OWNED;
         player2EndingBalance = player2EndingBalance + RENT_OWED_IF_BOTH_UTILITIES_OWNED;
         assertEquals(player1EndingBalance, player1.getCashBalance());
         assertEquals(player2EndingBalance, player2.getCashBalance());
 
-        water.landOn(player2, "Roll", new SourceOfMoveMultiplier(), new OwnershipMultiplier());
+        water.landOn(player2, new SourceOfMoveMultiplier(), new OwnershipMultiplier());
         assertEquals(player1EndingBalance, player1.getCashBalance());
         assertEquals(player2EndingBalance, player2.getCashBalance());
     }
@@ -106,7 +106,7 @@ public class UtilityGroupTest {
     @Test
     public void testLandOnOwnedAndMortgagedProperty() {
         ownedMortgagedProperty();
-        electric.landOn(player1, "Roll", new SourceOfMoveMultiplier(), new OwnershipMultiplier());
+        electric.landOn(player1, new SourceOfMoveMultiplier(), new OwnershipMultiplier());
         assertEquals(player2, electric.getOwner());
         assertEquals(player1BeginningBalance, player1.getCashBalance());
         assertEquals(player2BeginningBalance, player2.getCashBalance());
@@ -123,7 +123,7 @@ public class UtilityGroupTest {
     public void testPlayerDoesNotPayHimselfRent() {
         PlayerMockDoesNotPaySelfRent playerMock = new PlayerMockDoesNotPaySelfRent();
         ownedUnMortgagedProperty(playerMock);
-        electric.landOn(playerMock, "Roll", new SourceOfMoveMultiplier(), new OwnershipMultiplier());
+        electric.landOn(playerMock, new SourceOfMoveMultiplier(), new OwnershipMultiplier());
         assertEquals(0, playerMock.changeCashBalanceBy);
     }
 

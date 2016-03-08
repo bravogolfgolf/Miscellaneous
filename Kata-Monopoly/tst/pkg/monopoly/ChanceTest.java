@@ -35,7 +35,7 @@ public class ChanceTest {
         cards.add(card);
         Card.addChanceCards(cards);
         int expectedEndingBalance = player.getCashBalance();
-        chance.landOn(player, "Roll", new SourceOfMoveMultiplier(), new OwnershipMultiplier());
+        chance.landOn(player, new SourceOfMoveMultiplier(), new OwnershipMultiplier());
         assertEquals(expectedEndingBalance, player.getCashBalance());
         assertTrue(player.getCard().equals(card));
     }

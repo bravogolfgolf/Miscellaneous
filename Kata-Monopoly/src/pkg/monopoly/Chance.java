@@ -6,7 +6,7 @@ public class Chance extends Space {
     }
 
     @Override
-    public void landOn(Player player, String sourceOfMove, SourceOfMoveMultiplier sourceOfMoveMultiplier, OwnershipMultiplier ownershipMultiplier)  {
+    public void landOn(Player player, SourceOfMoveMultiplier sourceOfMoveMultiplier, OwnershipMultiplier ownershipMultiplier)  {
         Card card = Card.drawCard("Chance");
         card.action(player);
     }

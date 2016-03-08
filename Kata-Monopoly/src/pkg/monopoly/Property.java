@@ -99,7 +99,7 @@ abstract class Property extends Space {
     }
 
     @Override
-    public void landOn(Player player, String sourceOfMove, SourceOfMoveMultiplier sourceOfMoveMultiplier, OwnershipMultiplier ownershipMultiplier) {
+    public void landOn(Player player, SourceOfMoveMultiplier sourceOfMoveMultiplier, OwnershipMultiplier ownershipMultiplier) {
         if (playerIsNotOwner(player))
             if (propertyIsUnowned())
                 // TODO Add ability to buy property or auction
@@ -107,7 +107,7 @@ abstract class Property extends Space {
             else if (propertyIsNotMortgaged()) {
                 if (ownershipMultiplier.isDefault())
                     ownershipMultiplier = overwriteOwnershipMultiplier();
-                int rentOwed = calculateRentOwed(sourceOfMove, sourceOfMoveMultiplier, ownershipMultiplier);
+                int rentOwed = calculateRentOwed(sourceOfMoveMultiplier, ownershipMultiplier);
                 payRent(player, rentOwed);
             }
     }
@@ -148,7 +148,7 @@ abstract class Property extends Space {
         return numberOfImprovements;
     }
 
-    protected abstract int calculateRentOwed(String sourceOfMove, SourceOfMoveMultiplier sourceOfMoveMultiplier, OwnershipMultiplier ownershipMultiplier);
+    protected abstract int calculateRentOwed(SourceOfMoveMultiplier sourceOfMoveMultiplier, OwnershipMultiplier ownershipMultiplier);
 
     private boolean playerIsNotOwner(Player player) {
         return !player.equals(this.getOwner());

@@ -27,7 +27,7 @@ public class GoTest {
     @Test
     public void testLandOnIncreaseBalance() {
         int expectedEndingBalance = player.getCashBalance() + LAND_ON_GO_COLLECT_200;
-        go.landOn(player, "Roll", new SourceOfMoveMultiplier(), new OwnershipMultiplier());
+        go.landOn(player, new SourceOfMoveMultiplier(), new OwnershipMultiplier());
         assertEquals(expectedEndingBalance, player.getCashBalance());
     }
 

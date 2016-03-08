@@ -74,14 +74,14 @@ abstract class Space {
         return nextSpace;
     }
 
-    public void move(Player player, int numberRolled, String sourceOfMove, SourceOfMoveMultiplier sourceOfMoveMultiplier, OwnershipMultiplier ownershipMultiplier) {
+    public void move(Player player, int numberRolled, SourceOfMoveMultiplier sourceOfMoveMultiplier, OwnershipMultiplier ownershipMultiplier) {
         this.numberRolled = numberRolled;
         for (int i = 1; i < numberRolled; i++) {
             moveForwardOneSpace(player);
             player.getSpace().passBy(player);
         }
         moveForwardOneSpace(player);
-        player.getSpace().landOn(player, sourceOfMove, sourceOfMoveMultiplier, ownershipMultiplier);
+        player.getSpace().landOn(player, sourceOfMoveMultiplier, ownershipMultiplier);
     }
 
     private void moveForwardOneSpace(Player player) {
@@ -93,7 +93,7 @@ abstract class Space {
     public void passBy(Player player) {
     }
 
-    public void landOn(Player player, String sourceOfMove, SourceOfMoveMultiplier sourceOfMoveMultiplier, OwnershipMultiplier ownershipMultiplier) {
+    public void landOn(Player player, SourceOfMoveMultiplier sourceOfMoveMultiplier, OwnershipMultiplier ownershipMultiplier) {
     }
 
     public Space searchForSpaceByDescription(String description) {
