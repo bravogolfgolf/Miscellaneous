@@ -3,7 +3,7 @@ package pkg.monopoly;
 import java.util.List;
 
 public class Repair extends Card {
-    public static final int HOTEL = 5;
+    private static final int HOTEL = 5;
     private int hotelAssessmentAmount = 0;
     private int houseAssessmentAmount = 0;
 

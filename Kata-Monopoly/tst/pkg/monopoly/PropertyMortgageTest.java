@@ -4,14 +4,12 @@ import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 
-import java.io.IOException;
-
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
 
 public class PropertyMortgageTest {
 
-    public static final int MORTGAGE_AMOUNT = 100;
+    private static final int MORTGAGE_AMOUNT = 100;
     private Player player;
     private Property property;
     private Player owner;

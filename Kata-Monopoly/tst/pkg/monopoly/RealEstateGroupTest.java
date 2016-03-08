@@ -17,7 +17,7 @@ public class RealEstateGroupTest {
     private static final int PRICE_OF_BALTIC = 60;
     private static final int RENT_OF_MEDITERRANEAN = 2;
     private static final int RENT_OF_BALTIC = 4;
-    public static final int MEDITERRANEAN_1_HOUSE_RENT = 10;
+    private static final int MEDITERRANEAN_1_HOUSE_RENT = 10;
     private static final int MEDITERRANEAN_2_HOUSE_RENT = 30;
     private static final int MEDITERRANEAN_3_HOUSE_RENT = 90;
     private static final int MEDITERRANEAN_4_HOUSE_RENT = 160;

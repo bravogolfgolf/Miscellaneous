@@ -2,18 +2,18 @@ package pkg.monopoly;
 
 public class RentalBasis {
 
-    private final int[] renatalBases = new int[6];
+    private final int[] rentalBases = new int[6];
 
-    public RentalBasis(int rent, int improvementOne, int improvementTwo, int improvementThree, int improvementFour, int improvmentFive) {
-        renatalBases[0] = rent;
-        renatalBases[1] = improvementOne;
-        renatalBases[2] = improvementTwo;
-        renatalBases[3] = improvementThree;
-        renatalBases[4] = improvementFour;
-        renatalBases[5] = improvmentFive;
+    public RentalBasis(int rent, int improvementOne, int improvementTwo, int improvementThree, int improvementFour, int improvementFive) {
+        rentalBases[0] = rent;
+        rentalBases[1] = improvementOne;
+        rentalBases[2] = improvementTwo;
+        rentalBases[3] = improvementThree;
+        rentalBases[4] = improvementFour;
+        rentalBases[5] = improvementFive;
     }
 
     public int get(int numberOfImprovement) {
-        return renatalBases[numberOfImprovement];
+        return rentalBases[numberOfImprovement];
     }
 }

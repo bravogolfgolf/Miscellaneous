@@ -14,9 +14,9 @@ public class UtilityGroupTest {
 
     private static final int PRICE_OF_ELECTRIC = 150;
     private static final int PRICE_OF_WATER = 150;
-    public static final int MOCK_ROLL_VALUE = 5;
-    public static final int RENT_OWED_IF_ONE_UTILITY_OWNED = MOCK_ROLL_VALUE * 4;
-    public static final int RENT_OWED_IF_BOTH_UTILITIES_OWNED = MOCK_ROLL_VALUE * 10;
+    private static final int MOCK_ROLL_VALUE = 5;
+    private static final int RENT_OWED_IF_ONE_UTILITY_OWNED = MOCK_ROLL_VALUE * 4;
+    private static final int RENT_OWED_IF_BOTH_UTILITIES_OWNED = MOCK_ROLL_VALUE * 10;
     private Utility electric;
     private Utility water;
     private final Player player1 = new Player("Cat");

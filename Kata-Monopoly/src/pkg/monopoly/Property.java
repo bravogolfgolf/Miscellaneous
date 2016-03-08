@@ -13,10 +13,10 @@ abstract class Property extends Space {
     }
 
     private final int price;
-    protected RentalBasis rentalBasis;
+    private final RentalBasis rentalBasis;
     private boolean isMortgaged;
     private Player owner = Player.newBank();
-    protected int numberOfImprovements;
+    private int numberOfImprovements;
 
     public int getPrice() {
         return price;

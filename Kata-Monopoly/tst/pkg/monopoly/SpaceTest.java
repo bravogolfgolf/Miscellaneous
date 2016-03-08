@@ -83,16 +83,23 @@ public class SpaceTest {
     }
 
     @Test
-    public void getSourceOfMoveMultiplierBasedOnGroup() {
+    public void getMultipliers() {
         Space boardwalk = Space.create("RealEstate","Boardwalk","Blue",400,40,200,600,1400,1700,2000);
         Space railroad = Space.create("Railroad", "Short Line", "Railroad", 200, 25);
         Space utility = Space.create("Utility", "Water Works", "Utility", 150);
+
         SourceOfMoveMultiplier som = new SourceOfMoveMultiplier();
         SourceOfMoveMultiplier som2 = new SourceOfMoveMultiplier(2);
         SourceOfMoveMultiplier som10 = new SourceOfMoveMultiplier(10);
         assertEquals(som.value(),boardwalk.getSourceOfMoveMultiplier().value());
         assertEquals(som2.value(), railroad.getSourceOfMoveMultiplier().value());
         assertEquals(som10.value(),utility.getSourceOfMoveMultiplier().value());
+
+        OwnershipMultiplier om = new OwnershipMultiplier();
+        OwnershipMultiplier om1 = new OwnershipMultiplier(1);
+        assertEquals(om.value(),boardwalk.getOwnershipMultiplier().value());
+        assertEquals(om1.value(),railroad.getOwnershipMultiplier().value());
+        assertEquals(om1.value(),utility.getOwnershipMultiplier().value());
     }
 
     @Test
