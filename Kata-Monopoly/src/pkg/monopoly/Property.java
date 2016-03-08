@@ -5,36 +5,25 @@ import java.util.List;
 
 abstract class Property extends Space {
 
-    protected final int house1Rent;
-    protected final int house2Rent;
-    protected final int house3Rent;
-    protected final int house4Rent;
-    protected final int hotelRent;
-    protected int numberOfImprovements;
-
-    public Property(String description, String group, int price, int rent, int house2Rent, int house1Rent, int house3Rent, int house4Rent, int hotelRent) {
+    public Property(String description, String group, int price, int rent, int improvementOne, int improvementTwo, int improvementThree, int improvementFour, int improvementFive) {
         setDescription(description);
         setGroup(group);
         this.price = price;
-        this.rent = rent;
-        this.house2Rent = house2Rent;
-        this.house1Rent = house1Rent;
-        this.house3Rent = house3Rent;
-        this.house4Rent = house4Rent;
-        this.hotelRent = hotelRent;
+        this.rentalBasis = new RentalBasis(rent,improvementOne,improvementTwo,improvementThree,improvementFour,improvementFive);
     }
 
     private final int price;
-    private final int rent;
+    protected RentalBasis rentalBasis;
     private boolean isMortgaged;
     private Player owner = Player.newBank();
+    protected int numberOfImprovements;
 
     public int getPrice() {
         return price;
     }
 
     public int getRent() {
-        return rent;
+        return rentalBasis.get(0);
     }
 
     public void setIsMortgaged(boolean status) {
@@ -106,9 +95,10 @@ abstract class Property extends Space {
                 // TODO Add ability to buy property or auction
                 buyProperty(player);
             else if (propertyIsNotMortgaged()) {
+                Basis basis = new Basis(rentalBasis.get(getImprovements()));
                 if (ownershipMultiplier.isDefault())
                     ownershipMultiplier = overwriteOwnershipMultiplier();
-                int rentOwed = calculateRentOwed(sourceOfMoveMultiplier, ownershipMultiplier);
+                int rentOwed = calculateRentOwed(basis, ownershipMultiplier, sourceOfMoveMultiplier);
                 payRent(player, rentOwed);
             }
     }
@@ -191,7 +181,7 @@ abstract class Property extends Space {
         return numberOfImprovements == 0;
     }
 
-    protected abstract int calculateRentOwed(SourceOfMoveMultiplier sourceOfMoveMultiplier, OwnershipMultiplier ownershipMultiplier);
+    protected abstract int calculateRentOwed(Basis basis, OwnershipMultiplier ownershipMultiplier, SourceOfMoveMultiplier sourceOfMoveMultiplier);
 
     private void payRent(Player player, int rentOwed) {
         player.transaction(-rentOwed, "Cash");

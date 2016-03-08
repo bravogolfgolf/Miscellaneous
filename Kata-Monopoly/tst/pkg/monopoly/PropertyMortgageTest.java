@@ -17,7 +17,7 @@ public class PropertyMortgageTest {
     private Player owner;
 
     @Before
-    public void setup() throws IOException {
+    public void setup() {
         player = new Player("Cat");
         owner = new Player("Dog");
         property = new Railroad("Short Line", "Railroad",200, 25);

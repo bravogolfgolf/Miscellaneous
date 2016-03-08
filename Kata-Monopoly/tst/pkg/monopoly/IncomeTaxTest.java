@@ -11,7 +11,7 @@ public class IncomeTaxTest {
     private Player player;
 
     @Before
-    public void setUp() throws Exception {
+    public void setUp() {
         incomeTax = (IncomeTax) Space.create("IncomeTax","Income Tax");
         player = new Player("Cat");
     }

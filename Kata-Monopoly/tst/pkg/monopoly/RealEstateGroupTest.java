@@ -129,6 +129,8 @@ public class RealEstateGroupTest {
         ownedUnMortgagedProperty(player2, balticAve);
 
         mediterraneanAve.addImprovements();
+        assertEquals(1,mediterraneanAve.getImprovements());
+
         int player1EndingBalance = player1BeginningBalance - MEDITERRANEAN_1_HOUSE_RENT;
         int player2EndingBalance = player2BeginningBalance + MEDITERRANEAN_1_HOUSE_RENT;
 

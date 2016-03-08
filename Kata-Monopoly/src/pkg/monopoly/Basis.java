@@ -1,15 +1,15 @@
 package pkg.monopoly;
 
-public class SourceOfMoveMultiplier {
+public class Basis {
     private final boolean aDefault;
     private final int value;
 
-    public SourceOfMoveMultiplier(int value) {
+    public Basis(int value) {
         this.value = value;
         this.aDefault = false;
     }
 
-    public SourceOfMoveMultiplier() {
+    public Basis() {
         this.value = 1;
         this.aDefault = true;
     }

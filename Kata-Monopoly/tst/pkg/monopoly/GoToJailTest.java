@@ -17,7 +17,7 @@ public class GoToJailTest {
     private int endingBalance;
 
     @Before
-    public void setUp() throws Exception {
+    public void setUp() {
         go = new Go("Go");
         jail = new Jail("Just Visiting/Jail");
         goToJail = new GoToJail("Go to Jail");
@@ -34,7 +34,7 @@ public class GoToJailTest {
     }
 
     @After
-    public void tearDown() throws Exception {
+    public void tearDown() {
         go = null;
         jail = null;
         goToJail = null;
