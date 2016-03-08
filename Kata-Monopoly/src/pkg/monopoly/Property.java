@@ -5,11 +5,23 @@ import java.util.List;
 
 abstract class Property extends Space {
 
-    public Property(String description, String group, int price, int rent) {
+    protected final int house1Rent;
+    protected final int house2Rent;
+    protected final int house3Rent;
+    protected final int house4Rent;
+    protected final int hotelRent;
+    protected int numberOfImprovements;
+
+    public Property(String description, String group, int price, int rent, int house2Rent, int house1Rent, int house3Rent, int house4Rent, int hotelRent) {
         setDescription(description);
         setGroup(group);
         this.price = price;
         this.rent = rent;
+        this.house2Rent = house2Rent;
+        this.house1Rent = house1Rent;
+        this.house3Rent = house3Rent;
+        this.house4Rent = house4Rent;
+        this.hotelRent = hotelRent;
     }
 
     private final int price;
@@ -87,18 +99,56 @@ abstract class Property extends Space {
     }
 
     @Override
-    public void landOn(Player player, String sourceOfMove, SourceOfMoveMultiplier sourceOfMoveMultiplier) {
+    public void landOn(Player player, String sourceOfMove, SourceOfMoveMultiplier sourceOfMoveMultiplier, OwnershipMultiplier ownershipMultiplier) {
         if (playerIsNotOwner(player))
             if (propertyIsUnowned())
                 // TODO Add ability to buy property or auction
                 buyProperty(player);
             else if (propertyIsNotMortgaged()) {
-                int rentOwed = calculateRentOwed(sourceOfMove, sourceOfMoveMultiplier);
+                if (ownershipMultiplier.isDefault())
+                    ownershipMultiplier = overwriteOwnershipMultiplier();
+                int rentOwed = calculateRentOwed(sourceOfMove, sourceOfMoveMultiplier, ownershipMultiplier);
                 payRent(player, rentOwed);
             }
     }
 
-    protected abstract int calculateRentOwed(String sourceOfMove, SourceOfMoveMultiplier sourceOfMoveMultiplier);
+    private OwnershipMultiplier overwriteOwnershipMultiplier() {
+        List<Space> propertiesInGroup = getAllPropertiesInGroup();
+        if (isRailroad()) {
+            int exponent = getCountOfPropertiesInGroupWithSameOwner(propertiesInGroup) - 1;
+            int ownershipMultiplier = (int) Math.pow(2, exponent);
+            return new OwnershipMultiplier(ownershipMultiplier);
+        }
+
+        if (isUtility())
+            if (allPropertiesHaveSameOwner(propertiesInGroup))
+                return new OwnershipMultiplier(10);
+            else
+                return new OwnershipMultiplier(4);
+
+        if (allPropertiesHaveSameOwner(propertiesInGroup) && isUnimproved())
+            return new OwnershipMultiplier(2);
+
+        return new OwnershipMultiplier();
+    }
+
+    private boolean isUnimproved() {
+        return numberOfImprovements == 0;
+    }
+
+    public void addImprovements() {
+        numberOfImprovements++;
+    }
+
+    public void removeImprovements() {
+        numberOfImprovements--;
+    }
+
+    public int getImprovements() {
+        return numberOfImprovements;
+    }
+
+    protected abstract int calculateRentOwed(String sourceOfMove, SourceOfMoveMultiplier sourceOfMoveMultiplier, OwnershipMultiplier ownershipMultiplier);
 
     private boolean playerIsNotOwner(Player player) {
         return !player.equals(this.getOwner());

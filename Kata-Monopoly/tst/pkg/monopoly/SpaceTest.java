@@ -84,10 +84,13 @@ public class SpaceTest {
 
     @Test
     public void getSourceOfMoveMultiplierBasedOnGroup() {
+        Space boardwalk = Space.create("RealEstate","Boardwalk","Blue",400,40,200,600,1400,1700,2000);
         Space railroad = Space.create("Railroad", "Short Line", "Railroad", 200, 25);
         Space utility = Space.create("Utility", "Water Works", "Utility", 150);
-        SourceOfMoveMultiplier som2 = new SourceOfMoveMultiplier2();
-        SourceOfMoveMultiplier som10 = new SourceOfMoveMultiplier10();
+        SourceOfMoveMultiplier som = new SourceOfMoveMultiplier();
+        SourceOfMoveMultiplier som2 = new SourceOfMoveMultiplier(2);
+        SourceOfMoveMultiplier som10 = new SourceOfMoveMultiplier(10);
+        assertEquals(som.value(),boardwalk.getSourceOfMoveMultiplier().value());
         assertEquals(som2.value(), railroad.getSourceOfMoveMultiplier().value());
         assertEquals(som10.value(),utility.getSourceOfMoveMultiplier().value());
     }
@@ -95,7 +98,7 @@ public class SpaceTest {
     @Test
     public void testLandOnSpaceWithNoChangeInCash() {
         int expectedEndingBalance = player.getCashBalance();
-        space.landOn(player, "Roll", new SourceOfMoveMultiplier());
+        space.landOn(player, "Roll", new SourceOfMoveMultiplier(), new OwnershipMultiplier());
         assertEquals(expectedEndingBalance, player.getCashBalance());
     }
 

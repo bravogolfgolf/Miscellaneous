@@ -20,6 +20,7 @@ public class MoveForwardNext extends Card {
         String destination = endingSpace.getDescription();
         int numberOfSpacesToDestination = startingSpace.getNumberOfSpacesTo(destination);
         SourceOfMoveMultiplier sourceOfMoveMultiplier = endingSpace.getSourceOfMoveMultiplier();
-        startingSpace.move(player,numberOfSpacesToDestination, "Card", sourceOfMoveMultiplier);
+        OwnershipMultiplier ownershipMultiplier = endingSpace.getOwnershipMultiplier();
+        startingSpace.move(player,numberOfSpacesToDestination, "Card", sourceOfMoveMultiplier, ownershipMultiplier);
     }
 }

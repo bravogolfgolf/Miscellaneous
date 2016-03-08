@@ -17,5 +17,5 @@ public class MoveJail extends Card {
     void action(Player player) {
         Space space = player.getSpace();
         Space goToJail = space.searchForSpaceByDescription(destination);
-        goToJail.landOn(player, "Roll", new SourceOfMoveMultiplier());}
+        goToJail.landOn(player, "Roll", new SourceOfMoveMultiplier(), new OwnershipMultiplier());}
 }

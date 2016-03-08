@@ -17,7 +17,7 @@ public class MoveForwardSpecific extends Card {
     public void action(Player player)  {
         Space originalSpace = player.getSpace();
         int numberOfSpacesToDestination = originalSpace.getNumberOfSpacesTo(destination);
-        originalSpace.move(player, numberOfSpacesToDestination, "Roll", new SourceOfMoveMultiplier());
+        originalSpace.move(player, numberOfSpacesToDestination, "Roll", new SourceOfMoveMultiplier(), new OwnershipMultiplier());
     }
 
 }

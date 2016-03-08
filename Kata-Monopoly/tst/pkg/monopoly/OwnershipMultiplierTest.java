@@ -10,13 +10,8 @@ public class OwnershipMultiplierTest {
     public void testOwnershipMultiplier(){
         OwnershipMultiplier om1 = new OwnershipMultiplier();
         assertEquals(1,om1.value());
-        OwnershipMultiplier om2 = new OwnershipMultiplier2();
-        assertEquals(2,om2.value());
-        OwnershipMultiplier om4 = new OwnershipMultiplier4();
-        assertEquals(4,om4.value());
-        OwnershipMultiplier om10 = new OwnershipMultiplier10();
-        assertEquals(10,om10.value());
-
+        OwnershipMultiplier om = new OwnershipMultiplier(8);
+        assertEquals(8,om.value());
     }
 
 }

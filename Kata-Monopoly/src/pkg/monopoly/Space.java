@@ -12,6 +12,7 @@ abstract class Space {
     private String group = "";
     private Space nextSpace;
     protected int numberRolled;
+    private OwnershipMultiplier ownershipMultiplier;
 
     public static Space create(String classType, String description, String group, int price, int rent, int house1Rent, int house2Rent, int house3Rent, int house4Rent, int hotelRent) {
         if (classType.equals("RealEstate"))
@@ -73,14 +74,14 @@ abstract class Space {
         return nextSpace;
     }
 
-    public void move(Player player, int numberRolled, String sourceOfMove, SourceOfMoveMultiplier sourceOfMoveMultiplier) {
+    public void move(Player player, int numberRolled, String sourceOfMove, SourceOfMoveMultiplier sourceOfMoveMultiplier, OwnershipMultiplier ownershipMultiplier) {
         this.numberRolled = numberRolled;
         for (int i = 1; i < numberRolled; i++) {
             moveForwardOneSpace(player);
             player.getSpace().passBy(player);
         }
         moveForwardOneSpace(player);
-        player.getSpace().landOn(player, sourceOfMove, sourceOfMoveMultiplier);
+        player.getSpace().landOn(player, sourceOfMove, sourceOfMoveMultiplier, ownershipMultiplier);
     }
 
     private void moveForwardOneSpace(Player player) {
@@ -92,7 +93,7 @@ abstract class Space {
     public void passBy(Player player) {
     }
 
-    public void landOn(Player player, String sourceOfMove, SourceOfMoveMultiplier sourceOfMoveMultiplier) {
+    public void landOn(Player player, String sourceOfMove, SourceOfMoveMultiplier sourceOfMoveMultiplier, OwnershipMultiplier ownershipMultiplier) {
     }
 
     public Space searchForSpaceByDescription(String description) {
@@ -185,9 +186,17 @@ abstract class Space {
 
     public SourceOfMoveMultiplier getSourceOfMoveMultiplier() {
         if (this.isRailroad())
-            return new SourceOfMoveMultiplier2();
+            return new SourceOfMoveMultiplier(2);
         if(this.isUtility())
-            return new SourceOfMoveMultiplier10();
+            return new SourceOfMoveMultiplier(10);
         return new SourceOfMoveMultiplier();
+    }
+
+    public OwnershipMultiplier getOwnershipMultiplier() {
+        if (this.isRailroad())
+            return new OwnershipMultiplier();
+        if(this.isUtility())
+            return new OwnershipMultiplier(1);
+        return new OwnershipMultiplier();
     }
 }

@@ -26,7 +26,7 @@ public class JailTest {
     @Test
     public void testLandOn()  {
         int expectedEndingBalance = player.getCashBalance();
-        jail.landOn(player, "Roll", new SourceOfMoveMultiplier());
+        jail.landOn(player, "Roll", new SourceOfMoveMultiplier(), new OwnershipMultiplier());
         assertEquals(expectedEndingBalance, player.getCashBalance());
     }
 
